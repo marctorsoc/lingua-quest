@@ -2,8 +2,13 @@
   "expo": {
     "name": "caption-master",
     "slug": "caption-master",
-    "version": "1.0.0",
+    "version": "0.0.0",
     "orientation": "portrait",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
