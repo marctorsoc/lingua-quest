@@ -1,15 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
+import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from "@expo/vector-icons";
 
-import ManageExpense from './screens/ManageExpense';
-import RecentExpenses from './screens/RecentExpenses';
-import AllExpenses from './screens/AllExpenses';
-import { GlobalStyles } from './constants/styles';
-import IconButton from './components/UI/IconButton';
-import ExpensesContextProvider from './store/expenses-context';
+import ManageStory from "./screens/ManageStory";
+import Library from "./screens/Library";
+import Settings from "./screens/Settings";
+import { GlobalStyles } from "./constants/styles";
+import IconButton from "./components/UI/IconButton";
+import ExpensesContextProvider from "./store/expenses-context";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -19,8 +19,12 @@ function ExpensesOverview() {
     <BottomTabs.Navigator
       screenOptions={({ navigation }) => ({
         headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
-        headerTintColor: 'white',
-        tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+        headerTintColor: "white",
+        tabBarStyle: {
+          backgroundColor: GlobalStyles.colors.primary500,
+          paddingBottom: 2,
+          paddingTop: 5,
+        },
         tabBarActiveTintColor: GlobalStyles.colors.accent500,
         headerRight: ({ tintColor }) => (
           <IconButton
@@ -28,31 +32,32 @@ function ExpensesOverview() {
             size={24}
             color={tintColor}
             onPress={() => {
-              navigation.navigate('ManageExpense');
+              navigation.navigate("ManageStory");
             }}
           />
         ),
       })}
     >
       <BottomTabs.Screen
-        name="RecentExpenses"
-        component={RecentExpenses}
+        name="Library"
+        component={Library}
         options={{
-          title: 'Recent Expenses',
-          tabBarLabel: 'Recent',
+          title: "Library",
+          tabBarLabel: "Library",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="hourglass" size={size} color={color} />
+            // check icons at https://ionic.io/ionicons
+            <Ionicons name="library-outline" size={size} color={color} />
           ),
         }}
       />
       <BottomTabs.Screen
-        name="AllExpenses"
-        component={AllExpenses}
+        name="Settings"
+        component={Settings}
         options={{
-          title: 'All Expenses',
-          tabBarLabel: 'All Expenses',
+          title: "Settings",
+          tabBarLabel: "Settings",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="calendar" size={size} color={color} />
+            <Ionicons name="options" size={size} color={color} />
           ),
         }}
       />
@@ -69,7 +74,7 @@ export default function App() {
           <Stack.Navigator
             screenOptions={{
               headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
-              headerTintColor: 'white',
+              headerTintColor: "white",
             }}
           >
             <Stack.Screen
@@ -78,10 +83,10 @@ export default function App() {
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="ManageExpense"
-              component={ManageExpense}
+              name="ManageStory"
+              component={ManageStory}
               options={{
-                presentation: 'modal',
+                presentation: "modal",
               }}
             />
           </Stack.Navigator>
