@@ -5,26 +5,28 @@ import StoryForm from "../components/ManageStory/StoryForm";
 import ErrorOverlay from "../components/UI/ErrorOverlay";
 import IconButton from "../components/UI/IconButton";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
-import { GlobalStyles } from "../constants/styles";
-import { ExpensesContext } from "../store/expenses-context";
+import { GlobalStyles, ScreensStyles } from "../constants/styles";
+import { StoryContext } from "../context/stories-context";
 import { storeExpense, updateExpense, deleteExpense } from "../util/http";
 
 function ManageStory({ route, navigation }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState();
 
-  const expensesCtx = useContext(ExpensesContext);
+  const expensesCtx = useContext(StoryContext);
 
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
 
-  const selectedExpense = expensesCtx.expenses.find(
+  const selectedExpense = expensesCtx.stories.find(
     (expense) => expense.id === editedExpenseId
   );
 
   useLayoutEffect(() => {
     navigation.setOptions({
       title: isEditing ? "Edit Story" : "Add Story",
+      // TODO: this is a big hack
+      headerTitleStyle: ScreensStyles.headerTitleStyle,
     });
   }, [navigation, isEditing]);
 
@@ -32,7 +34,7 @@ function ManageStory({ route, navigation }) {
     setIsSubmitting(true);
     try {
       await deleteExpense(editedExpenseId);
-      expensesCtx.deleteExpense(editedExpenseId);
+      expensesCtx.deleteStory(editedExpenseId);
       navigation.goBack();
     } catch (error) {
       setError("Could not delete story - please try again later!");
@@ -41,6 +43,8 @@ function ManageStory({ route, navigation }) {
   }
 
   function cancelHandler() {
+    // TODO: extract this into a method with
+    // const navigation = useNavigation();
     navigation.goBack();
   }
 
@@ -48,11 +52,11 @@ function ManageStory({ route, navigation }) {
     setIsSubmitting(true);
     try {
       if (isEditing) {
-        expensesCtx.updateExpense(editedExpenseId, expenseData);
+        expensesCtx.updateStory(editedExpenseId, expenseData);
         await updateExpense(editedExpenseId, expenseData);
       } else {
         const id = await storeExpense(expenseData);
-        expensesCtx.addExpense({ ...expenseData, id: id });
+        expensesCtx.addStory({ ...expenseData, id: id });
       }
       navigation.goBack();
     } catch (error) {

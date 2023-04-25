@@ -25,60 +25,32 @@ export function Input({ label, invalid, style, textInputConfig }) {
 }
 
 export function PickerInput({ label, invalid, style, pickerConfig }) {
-  const containerStyle = {
-    height: 54,
-    width: "50%",
-    color: GlobalStyles.colors.primary700,
-    borderRadius: 6,
-    overflow: "hidden",
-    marginBottom: 10,
-  };
-  const viewStyle = {
-    width: "100%",
+  const containerStyle = [
+    style,
+    styles.inputContainer,
+    {
+      // useful to see frame of component
+      // backgroundColor: GlobalStyles.colors.error500,
+      marginBottom: 10,
+    },
+  ];
+  const pickerViewStyle = {
+    backgroundColor: GlobalStyles.colors.primary100,
     borderRadius: 12,
     overflow: "hidden",
-    padding: 2,
-  };
-  const textStyle = {
-    fontSize: 12,
-    width: "100%",
-    color: GlobalStyles.colors.primary100,
-    marginBottom: 4,
-  };
-  const pickerStyle = {
-    backgroundColor: GlobalStyles.colors.primary100,
-    borderRadius: 6,
-    padding: 0,
-    margin: 0,
-    textAlignVertical: "center",
-  };
-  const pickerItemStyle = {
-    backgroundColor: GlobalStyles.colors.primary100,
-    color: GlobalStyles.colors.primary700,
-    borderRadius: 6,
-    padding: 0,
-    fontSize: 12,
-    margin: 0,
-    textAlignVertical: "center",
   };
 
   return (
     <View style={containerStyle}>
-      <Text style={textStyle}>{label}</Text>
-      <View style={viewStyle}>
+      <Text style={[styles.label, { textAlign: "center" }]}>{label}</Text>
+      <View style={pickerViewStyle}>
         <Picker
           selectedValue={pickerConfig.value}
-          style={pickerStyle}
           mode={"dropdown"}
           onValueChange={pickerConfig.onChangeText}
         >
           {pickerConfig.options.map((item, index) => (
-            <Picker.Item
-              style={pickerItemStyle}
-              key={index}
-              label={item.label}
-              value={item.value}
-            />
+            <Picker.Item key={index} label={item.label} value={item.value} />
           ))}
         </Picker>
       </View>

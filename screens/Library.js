@@ -1,54 +1,86 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 
-import ExpensesOutput from "../components/ExpensesOutput/ExpensesOutput";
+import LibraryOutput from "../components/Library/LibraryOutput";
 import ErrorOverlay from "../components/UI/ErrorOverlay";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
-import { ExpensesContext } from "../store/expenses-context";
+import { StoryContext } from "../context/stories-context";
 import { getDateMinusDays } from "../util/date";
 import { fetchExpenses } from "../util/http";
+import { storiesSample } from "../assets/mocks";
 
-function Library() {
+function Library(navigation, route) {
+  // TODO marc: see example for this in https://reactnative.dev/docs/network
   const [isFetching, setIsFetching] = useState(true);
+
+  // TODO: this library is a mock, but should be
+  // retrieved from the API
+  const { stories, setStories } = useContext(StoryContext);
+
   const [error, setError] = useState();
 
-  const expensesCtx = useContext(ExpensesContext);
+  // const expensesCtx = useContext(ExpensesContext);
 
   useEffect(() => {
-    async function getExpenses() {
+    async function getStories() {
       setIsFetching(true);
       try {
-        const expenses = await fetchExpenses();
-        expensesCtx.setExpenses(expenses);
+        // const expenses = await fetchExpenses();
+        const RequestedStories = [...storiesSample];
+        setStories(RequestedStories);
+        // TODO: save a copy to disk for offline use?
       } catch (error) {
         // setError("Could not fetch expenses!");
-        console.log("Could not fetch expenses!");
+        console.log("Could not fetch stories!");
       }
       setIsFetching(false);
     }
 
-    getExpenses();
+    getStories();
   }, []);
 
-  if (error && !isFetching) {
-    return <ErrorOverlay message={error} />;
-  }
+  const parentId = navigation.route.params?.parentId;
 
-  if (isFetching) {
-    return <LoadingOverlay />;
-  }
+  useLayoutEffect(() => {
+    // console.log(parentId);
+    const title =
+      parentId !== undefined
+        ? stories.find((story) => story.id === parentId).title
+        : "Library";
+    // console.log(title);
+    navigation.navigation.setOptions({
+      title: title,
+      // TODO: this is a big hack
+      // headerTitleStyle: ScreensStyles.headerTitleStyle,
+    });
+  }, [navigation]);
 
-  const library = expensesCtx.expenses.filter((expense) => {
-    const today = new Date();
-    const date7DaysAgo = getDateMinusDays(today, 7);
+  // if (error && !isFetching) {
+  //   return <ErrorOverlay message={error} />;
+  // }
 
-    return expense.date >= date7DaysAgo && expense.date <= today;
-  });
+  // if (isFetching) {
+  //   return <LoadingOverlay />;
+  // }
+
+  // const library = expensesCtx.expenses.filter((expense) => {
+  //   const today = new Date();
+  //   const date7DaysAgo = getDateMinusDays(today, 7);
+
+  //   return expense.date >= date7DaysAgo && expense.date <= today;
+  // });
+  // console.log("route.params");
+  // console.log(route.params);
+  // // console.log(navigation);
+  // if (navigation.route.params?.filterByParentId) {
+  //   console.log("route.params.filterByParentId");
+  //   console.log(navigation.route.params.filterByParentId);
+  // }
 
   return (
-    <ExpensesOutput
-      expenses={library}
-      expensesPeriod="Last 7 Days"
-      fallbackText="No expenses registered for the last 7 days."
+    <LibraryOutput
+      stories={stories}
+      fallbackText="No stories added yet."
+      parentId={parentId}
     />
   );
 }
