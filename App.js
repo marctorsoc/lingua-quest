@@ -7,10 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import ManageStory from "./screens/ManageStory";
 import Library from "./screens/Library";
 import Settings from "./screens/Settings";
-import {
-  GlobalStyles,
-  ScreensStyles,
-} from "./constants/styles";
+import { GlobalStyles, ScreensStyles } from "./constants/styles";
 import IconButton from "./components/UI/IconButton";
 import PlayStory from "./screens/PlayStory";
 import {
@@ -48,9 +45,7 @@ function MainNavigator() {
         icon="add"
         size={24}
         color={tintColor}
-        containerStyle={
-          ScreensStyles.headerButtonsContainers
-        }
+        containerStyle={ScreensStyles.headerButtonsContainers}
         onPress={() => {
           navigation.navigate("ManageStory");
         }}
@@ -63,9 +58,7 @@ function MainNavigator() {
         icon="funnel-outline"
         size={24}
         color={tintColor}
-        containerStyle={
-          ScreensStyles.headerButtonsContainers
-        }
+        containerStyle={ScreensStyles.headerButtonsContainers}
         onPress={() => {
           console.log("TODO: implement");
           Alert.alert("TODO: implement");
@@ -130,12 +123,9 @@ function MainNavigator() {
         headerTintColor: "white",
         tabBarStyle: ScreensStyles.tabBarStyle,
         // up to here
-        tabBarActiveTintColor:
-          GlobalStyles.colors.accent500,
-        headerLeft: ({ tintColor }) =>
-          headerLeft(tintColor),
-        headerRight: ({ tintColor }) =>
-          headerRight(tintColor),
+        tabBarActiveTintColor: GlobalStyles.colors.accent500,
+        headerLeft: ({ tintColor }) => headerLeft(tintColor),
+        headerRight: ({ tintColor }) => headerRight(tintColor),
       })}
     >
       <BottomTabs.Screen
@@ -169,11 +159,7 @@ function MainNavigator() {
           },
           tabBarLabel: "Settings",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons
-              name="options"
-              size={size}
-              color={color}
-            />
+            <Ionicons name="options" size={size} color={color} />
           ),
         }}
       />

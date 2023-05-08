@@ -1,5 +1,4 @@
 import { FlatList } from "react-native";
-
 import SentenceItem from "./SentenceItem";
 import { useContext } from "react";
 import { PlayContext } from "../../context/play-context";
@@ -9,14 +8,12 @@ function SentenceList({ sentences }) {
   const flatListRef = useRef(null);
   const { playData } = useContext(PlayContext);
   const currentSentenceIdx = playData.currentSentenceIdx;
-  const reviewingAnswer =
-    playData.currentAnswerIdx !== undefined;
+  const reviewingAnswer = playData.currentAnswerIdx !== undefined;
 
   function renderSentenceItem({ item, index }) {
     const playingThisItem = currentSentenceIdx == index;
     const alreadyPlayedItem = currentSentenceIdx > index;
-    const reviewThisAnswer =
-      reviewingAnswer && playingThisItem;
+    const reviewThisAnswer = reviewingAnswer && playingThisItem;
     // only show if already answered or current to answer
     const enabled = alreadyPlayedItem || playingThisItem;
     return (
@@ -34,11 +31,12 @@ function SentenceList({ sentences }) {
     <FlatList
       ref={flatListRef}
       data={sentences}
-      style={{ flex: 1 / 3 }}
+      style={{ flex: 1 }}
       renderItem={renderSentenceItem}
-      onContentSizeChange={() =>
-        flatListRef.current.scrollToEnd()
-      }
+      onContentSizeChange={() => {
+        // TODO: this only works for Android, not web 🤷‍♂️
+        flatListRef.current.scrollToEnd();
+      }}
       keyExtractor={(item) => item.id}
     />
   );

@@ -21,7 +21,6 @@ function AnswerBox({ answers, correct_answer }) {
     <View style={styles.AnswerBoxContainer}>
       <FlatList
         data={answers}
-        style={{ flex: 1 }}
         renderItem={renderAnswerItem}
         keyExtractor={(index) => index}
         numColumns={2}
@@ -37,8 +36,6 @@ const styles = StyleSheet.create({
   AnswerBoxContainer: {
     // TODO marc: playing with this number not great
     // optimal for android is 31%
-    // height: "31%",
     backgroundColor: GlobalStyles.colors.primary500,
-    marginTop: "2%",
   },
 });

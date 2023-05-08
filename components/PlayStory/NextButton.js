@@ -14,6 +14,7 @@ function NextButton() {
     playData.currentSentenceIdx === playData.numSentences - 1;
 
   function onPressNext() {
+    if (!answered) return;
     if (isLastSentence) {
       navigation.goBack();
       return;
@@ -26,18 +27,21 @@ function NextButton() {
   }
   // console.log(text);
   return (
-    answered && (
-      <View style={styles.AnswerContainer}>
-        <Button style={styles.button} onPress={onPressNext}>
-          <Text
-            // TODO marc: use composes styles here
-            style={[styles.textBase, styles.title, styles.answerText]}
-          >
-            {isLastSentence ? "Finish" : "Next"}
-          </Text>
-        </Button>
-      </View>
-    )
+    <View style={styles.AnswerContainer}>
+      <Button onPress={onPressNext}>
+        <Text
+          // TODO marc: use composed styles here
+          style={[
+            styles.textBase,
+            styles.title,
+            styles.answerText,
+            answered ? {} : styles.disabledButton,
+          ]}
+        >
+          {isLastSentence ? "Finish" : "Next"}
+        </Text>
+      </Button>
+    </View>
   );
 }
 
@@ -49,7 +53,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderColor: "white",
     borderWidth: 0.5,
-    // backgroundColor: GlobalStyles.colors.primary700,
   },
   textBase: {
     color: GlobalStyles.colors.primary50,
@@ -61,5 +64,8 @@ const styles = StyleSheet.create({
   answerText: {
     fontSize: 20,
     textAlign: "center",
+  },
+  disabledButton: {
+    color: "transparent",
   },
 });

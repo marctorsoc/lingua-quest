@@ -45,7 +45,7 @@ function PlayStory({ navigation, route }) {
       setIsLoading(true);
       try {
         // const expenses = await fetchSentences(storyId);
-        console.log("loading sentences");
+        // console.log("loading sentences");
         const requestedSentences = [...sentencesSample];
         await sleep(0.1);
         setSentences(requestedSentences);
@@ -77,11 +77,11 @@ function PlayStory({ navigation, route }) {
     return <LoadingOverlay />;
   }
 
-  console.log("sentences");
-  console.log(sentences);
+  // console.log("sentences");
+  // console.log(sentences);
   const currentSentence = sentences[playData.currentSentenceIdx];
 
-  console.log(currentSentence);
+  // console.log(currentSentence);
   return (
     <View style={styles.mainContainer}>
       <SentenceList sentences={sentences} />

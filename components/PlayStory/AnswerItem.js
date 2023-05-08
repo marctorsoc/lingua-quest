@@ -7,8 +7,7 @@ import { PlayContext } from "../../context/play-context";
 
 function AnswerItem({ index, text, correct_answer }) {
   const { playData, setPlayData } = useContext(PlayContext);
-  const thisAnswerSelected =
-    playData.currentAnswerIdx === index;
+  const thisAnswerSelected = playData.currentAnswerIdx === index;
 
   // default, keep white
   let textStyle = undefined;
@@ -24,7 +23,7 @@ function AnswerItem({ index, text, correct_answer }) {
   }
 
   function onAnswerSelected() {
-    console.log("Answer" + index + " selected");
+    // console.log("Answer" + index + " selected");
 
     // if there's already an answer, ignore
     if (playData.currentAnswerIdx !== undefined) return;
@@ -37,10 +36,7 @@ function AnswerItem({ index, text, correct_answer }) {
   // console.log(text);
   return (
     <View style={styles.AnswerContainer}>
-      <Button
-        style={styles.button}
-        onPress={onAnswerSelected}
-      >
+      <Button style={styles.button} onPress={onAnswerSelected}>
         <Text
           // TODO marc: use composed styles here
           style={[

@@ -36,7 +36,7 @@ export default MaskedText;
 const styles = StyleSheet.create({
   text: {
     borderRadius: 4,
-    padding: 8,
+    paddingVertical: 8,
     backgroundColor: GlobalStyles.colors.primary500,
     fontSize: 14,
     textAlign: "left",
