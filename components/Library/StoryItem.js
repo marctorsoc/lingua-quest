@@ -63,6 +63,7 @@ function StoryItem({
   return (
     // TODO: use Pressable in Android and TouchableWithoutFeedback
     // for the web via Platform.select
+    // TODO marc: start by using the same button everywhere
     <TouchableWithoutFeedback
       onPress={storyPressHandler}
       style={styles.StoryItemWrapper}
