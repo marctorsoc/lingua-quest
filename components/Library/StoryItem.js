@@ -61,27 +61,19 @@ function StoryItem({
   // console.log(id);
   // const text = "this is barcelona, a very nice city";
   return (
-    // TODO: use Pressable instead of TouchableWithoutFeedback
-    // but then remove feedback on press
-    // OR, maybe via Platform.select use this for android
-    // and use Pressable for web
+    // TODO: use Pressable in Android and TouchableWithoutFeedback
+    // for the web via Platform.select
     <TouchableWithoutFeedback
       onPress={storyPressHandler}
       style={styles.StoryItemWrapper}
     >
       <View style={styles.StoryItem}>
         <View>
-          <Text style={[styles.textBase, styles.title]}>
-            {title}
-          </Text>
+          <Text style={[styles.textBase, styles.title]}>{title}</Text>
         </View>
         <View style={styles.langsContainer}>
-          <Text style={styles.language}>
-            {getEmoji(learning_lc)}
-          </Text>
-          <Text style={styles.language}>
-            {getEmoji(known_lc)}
-          </Text>
+          <Text style={styles.language}>{getEmoji(learning_lc)}</Text>
+          <Text style={styles.language}>{getEmoji(known_lc)}</Text>
         </View>
         <View style={styles.langsContainer}>
           <Text style={styles.status}>{status}</Text>

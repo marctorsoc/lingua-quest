@@ -76,7 +76,7 @@ export const storiesSample = [
   },
   {
     id: 9,
-    title: "Shrek",
+    title: "Forrest Gump",
     learning_lc: "🇱🇹 (LT)",
     known_lc: "🇬🇧 (EN)",
     status: "30%",
@@ -88,6 +88,22 @@ export const storiesSample = [
     learning_lc: "🇱🇹 (LT)",
     known_lc: "🇬🇧 (EN)",
     status: "30%",
+  },
+  {
+    id: 11,
+    title: "Shrek",
+    learning_lc: "🇱🇹 (LT)",
+    known_lc: "🇬🇧 (EN)",
+    status: "30%",
+    isLeaf: true,
+  },
+  {
+    id: 12,
+    title: "Friends with benefits",
+    learning_lc: "🇱🇹 (LT)",
+    known_lc: "🇬🇧 (EN)",
+    status: "30%",
+    isLeaf: true,
   },
 ];
 
@@ -105,12 +121,7 @@ export const sentencesSample = [
     text: "Nepamesk t\u0173 juost\u0173.",
     translation: "Don't you lose those tapes now.",
     masked_range: [0, 8],
-    answers: [
-      "dienos",
-      "nepamesk",
-      "daiktas",
-      "nuva\u017eiuoti",
-    ],
+    answers: ["dienos", "nepamesk", "daiktas", "nuva\u017eiuoti"],
     correct_answer: 1,
   },
   {
@@ -132,50 +143,31 @@ export const sentencesSample = [
   {
     id: 211,
     text: "Tai buvo taip kvaila. Senelis atsitrenk\u0117 \u012f j\u012f ma\u0161ina.",
-    translation:
-      "That was so stupid. Grandpa hit him with the car.",
+    translation: "That was so stupid. Grandpa hit him with the car.",
     masked_range: [30, 40],
-    answers: [
-      "atsitrenk\u0117",
-      "svajon\u0117",
-      "panele",
-      "manai",
-    ],
+    answers: ["atsitrenk\u0117", "svajon\u0117", "panele", "manai"],
     correct_answer: 0,
   },
   {
     id: 219,
     text: "Taigi, j\u016bs\u0173 senelis atsitrenk\u0117 \u012f j\u012f ma\u0161ina...",
-    translation:
-      "Anyway, your Grandpa hit him with the car",
+    translation: "Anyway, your Grandpa hit him with the car",
     masked_range: [0, 5],
-    answers: [
-      "gigavat\u0173",
-      "taigi",
-      "b\u016bsi",
-      "bifai",
-    ],
+    answers: ["gigavat\u0173", "taigi", "b\u016bsi", "bifai"],
     correct_answer: 1,
   },
   {
     id: 41,
     text: "Gerai. Pasimatysime \u0161i\u0105nakt. Nepamir\u0161k.",
-    translation:
-      "Good. I'll see you tonight. Don't forget now.",
+    translation: "Good. I'll see you tonight. Don't forget now.",
     masked_range: [20, 27],
-    answers: [
-      "pasimatym\u0105",
-      "pati",
-      "\u0161i\u0105nakt",
-      "nagi",
-    ],
+    answers: ["pasimatym\u0105", "pati", "\u0161i\u0105nakt", "nagi"],
     correct_answer: 2,
   },
   {
     id: 1340,
     text: "Keliai? Ten, kur mes vykstame, keliai nereikalingi.",
-    translation:
-      "Roads? Where we're going, we don't need roads.",
+    translation: "Roads? Where we're going, we don't need roads.",
     masked_range: [31, 37],
     answers: ["jo", "keliai", "kitu", "pakeitei"],
     correct_answer: 1,
@@ -183,8 +175,7 @@ export const sentencesSample = [
   {
     id: 594,
     text: "Tai rei\u0161kia, kad \u0161is prakeiktas daiktas i\u0161 viso neveikia!",
-    translation:
-      "It means that this damn thing doesn't work at all!",
+    translation: "It means that this damn thing doesn't work at all!",
     masked_range: [32, 39],
     answers: [
       "ie\u0161kojau",
@@ -199,40 +190,23 @@ export const sentencesSample = [
     text: "Tai - tikslus tavo i\u0161vykimo laikas.",
     translation: "This is the exact time you left.",
     masked_range: [6, 13],
-    answers: [
-      "j\u0105",
-      "tikslus",
-      "galvoji",
-      "pagalvojau",
-    ],
+    answers: ["j\u0105", "tikslus", "galvoji", "pagalvojau"],
     correct_answer: 1,
   },
   {
     id: 13,
     text: "Ta\u010diau pareig\u016bnai \u0161\u012f neatitikim\u0105 ai\u0161kina paprasta kanceliarijos klaida.",
-    translation:
-      "the discrepancy to a simple clerical error.",
+    translation: "the discrepancy to a simple clerical error.",
     masked_range: [0, 6],
-    answers: [
-      "stoties",
-      "ne\u017einau",
-      "ta\u010diau",
-      "geru",
-    ],
+    answers: ["stoties", "ne\u017einau", "ta\u010diau", "geru"],
     correct_answer: 2,
   },
   {
     id: 1338,
     text: "Reikia ka\u017ek\u0105 daryti d\u0117l j\u016bs\u0173 vaik\u0173.",
-    translation:
-      "Something has got to be done about your kids.",
+    translation: "Something has got to be done about your kids.",
     masked_range: [13, 19],
-    answers: [
-      "bendrauji",
-      "daryti",
-      "privert\u0117",
-      "d\u017eekas",
-    ],
+    answers: ["bendrauji", "daryti", "privert\u0117", "d\u017eekas"],
     correct_answer: 1,
   },
   {
@@ -240,12 +214,7 @@ export const sentencesSample = [
     text: "Tai kur, po velni\u0173, jie yra?",
     translation: "Then where the hell are they?",
     masked_range: [4, 7],
-    answers: [
-      "komentuoti",
-      "kur",
-      "miegu",
-      "ein\u0161teinai",
-    ],
+    answers: ["komentuoti", "kur", "miegu", "ein\u0161teinai"],
     correct_answer: 1,
   },
   {
@@ -253,12 +222,7 @@ export const sentencesSample = [
     text: "Kaip tu \u017einojai, kad a\u0161 \u010dia?",
     translation: "How did you know I was here?",
     masked_range: [24, 27],
-    answers: [
-      "\u010dia",
-      "kelio",
-      "kal\u0117jime",
-      "pacientus",
-    ],
+    answers: ["\u010dia", "kelio", "kal\u0117jime", "pacientus"],
     correct_answer: 0,
   },
   {
@@ -266,12 +230,7 @@ export const sentencesSample = [
     text: "K\u0105, po velni\u0173, darote mano ma\u0161inai?",
     translation: "What the hell are you doing to my car?",
     masked_range: [0, 2],
-    answers: [
-      "pasl\u0117piau",
-      "k\u0105",
-      "gim\u0119s",
-      "baigti",
-    ],
+    answers: ["pasl\u0117piau", "k\u0105", "gim\u0119s", "baigti"],
     correct_answer: 1,
   },
   {
@@ -310,12 +269,7 @@ export const sentencesSample = [
     text: "Nepyk. Tur\u0117jau persirengti.",
     translation: "Hey, come on. I had to change.",
     masked_range: [7, 14],
-    answers: [
-      "tur\u0117jau",
-      "juo",
-      "kalb\u0117ti",
-      "nesuvoki",
-    ],
+    answers: ["tur\u0117jau", "juo", "kalb\u0117ti", "nesuvoki"],
     correct_answer: 0,
   },
   {
@@ -339,12 +293,7 @@ export const sentencesSample = [
     text: "Jie v\u0117luoja lygiai 25 minutes!",
     translation: "That's right, 25 years into the future.",
     masked_range: [19, 21],
-    answers: [
-      "25",
-      "pasiek\u0119s",
-      "kal\u0117s",
-      "pasakojai",
-    ],
+    answers: ["25", "pasiek\u0119s", "kal\u0117s", "pasakojai"],
     correct_answer: 0,
   },
   {
@@ -378,15 +327,9 @@ export const sentencesSample = [
   {
     id: 466,
     text: "Kokia gera id\u0117ja! A\u0161 balotiruosiuos \u012f merus.",
-    translation:
-      "Now that's a good idea! I could run for mayor.",
+    translation: "Now that's a good idea! I could run for mayor.",
     masked_range: [0, 5],
-    answers: [
-      "kokia",
-      "elgiuosi",
-      "srov\u0119",
-      "\u012fjungs",
-    ],
+    answers: ["kokia", "elgiuosi", "srov\u0119", "\u012fjungs"],
     correct_answer: 0,
   },
   {
@@ -404,12 +347,7 @@ export const sentencesSample = [
     translation:
       "Marty, I'm sorry, but I'm afraid you're stuck here.",
     masked_range: [41, 43],
-    answers: [
-      "tu",
-      "ta\u010diau",
-      "sali",
-      "ma\u017eesnius",
-    ],
+    answers: ["tu", "ta\u010diau", "sali", "ma\u017eesnius"],
     correct_answer: 0,
   },
   {
@@ -417,12 +355,7 @@ export const sentencesSample = [
     text: "Taigi, Marti, tikiuosi, m\u0117gsti maltos m\u0117sos kepsn\u012f.",
     translation: "Well, Marty, I hope you like meatloaf.",
     masked_range: [7, 12],
-    answers: [
-      "marti",
-      "klausyk",
-      "finans\u0173",
-      "paimame",
-    ],
+    answers: ["marti", "klausyk", "finans\u0173", "paimame"],
     correct_answer: 0,
   },
   {
@@ -454,8 +387,7 @@ export const sentencesSample = [
   {
     id: 1290,
     text: "J\u016bs \u0161auniai atrodote. Mama, tu tokia liekna.",
-    translation:
-      "You guys look great. Mom, you look so thin.",
+    translation: "You guys look great. Mom, you look so thin.",
     masked_range: [12, 20],
     answers: ["anksti", "kabinau", "atrodote", "klausyk"],
     correct_answer: 2,
@@ -488,26 +420,15 @@ export const sentencesSample = [
     translation:
       "You know, Marty, I'm going to be very sad to see you go.",
     masked_range: [0, 5],
-    answers: [
-      "laike",
-      "gimim\u0105",
-      "pakviet\u0117",
-      "\u017einai",
-    ],
+    answers: ["laike", "gimim\u0105", "pakviet\u0117", "\u017einai"],
     correct_answer: 3,
   },
   {
     id: 537,
     text: "Taip, \u017einoma. Tu juk \u017einai, kad turime du.",
-    translation:
-      "Well, yeah. You know we have two of them.",
+    translation: "Well, yeah. You know we have two of them.",
     masked_range: [32, 38],
-    answers: [
-      "veikia",
-      "pirmadienio",
-      "vienintelis",
-      "turime",
-    ],
+    answers: ["veikia", "pirmadienio", "vienintelis", "turime"],
     correct_answer: 3,
   },
   {
@@ -515,19 +436,13 @@ export const sentencesSample = [
     text: "Atsipra\u0161au u\u017e modelio grubum\u0105.",
     translation: "Please excuse the crudity of this model.",
     masked_range: [11, 13],
-    answers: [
-      "nebijo\u010diau",
-      "varyk",
-      "tav\u0119s",
-      "u\u017e",
-    ],
+    answers: ["nebijo\u010diau", "varyk", "tav\u0119s", "u\u017e"],
     correct_answer: 3,
   },
   {
     id: 1126,
     text: "Jis niekada gerai nei\u0161moko ra\u0161yt ar skaityt",
-    translation:
-      "He never ever learned to read or write so well",
+    translation: "He never ever learned to read or write so well",
     masked_range: [36, 43],
     answers: [
       "vaikine",
@@ -540,8 +455,7 @@ export const sentencesSample = [
   {
     id: 1141,
     text: "Tu ie\u0161kai naujo skambesio?",
-    translation:
-      "You know that new sound you're looking for?",
+    translation: "You know that new sound you're looking for?",
     masked_range: [3, 9],
     answers: [
       "rinkim\u0173",
@@ -565,12 +479,7 @@ export const sentencesSample = [
     translation:
       "Just give me something without any sugar in it, okay?",
     masked_range: [20, 27],
-    answers: [
-      "knyga",
-      "leidim\u0105",
-      "cukraus",
-      "lau\u017e\u0105",
-    ],
+    answers: ["knyga", "leidim\u0105", "cukraus", "lau\u017e\u0105"],
     correct_answer: 2,
   },
   {
@@ -584,15 +493,9 @@ export const sentencesSample = [
   {
     id: 1186,
     text: "kuris \u012fvyks lygiai u\u017e 7 minu\u010di\u0173 ir 22 sekund\u017ei\u0173.",
-    translation:
-      "which will be in exactly 7 minutes and 22 seconds.",
+    translation: "which will be in exactly 7 minutes and 22 seconds.",
     masked_range: [19, 21],
-    answers: [
-      "u\u017e",
-      "nepatinka",
-      "namus",
-      "ry\u0161kus",
-    ],
+    answers: ["u\u017e", "nepatinka", "namus", "ry\u0161kus"],
     correct_answer: 0,
   },
   {
@@ -600,12 +503,7 @@ export const sentencesSample = [
     text: "paki\u0161o mane tau.",
     translation: "What I meant to say was...",
     masked_range: [7, 11],
-    answers: [
-      "tur\u0117\u010diau",
-      "kiek",
-      "mane",
-      "valgydami",
-    ],
+    answers: ["tur\u0117\u010diau", "kiek", "mane", "valgydami"],
     correct_answer: 2,
   },
   {
@@ -614,12 +512,7 @@ export const sentencesSample = [
     translation:
       "and told me that if I didn't take Lorraine out, that he'd melt my brain.",
     masked_range: [31, 37],
-    answers: [
-      "va\u017eiuoji",
-      "vilk\u0117damas",
-      "betgi",
-      "lorein",
-    ],
+    answers: ["va\u017eiuoji", "vilk\u0117damas", "betgi", "lorein"],
     correct_answer: 3,
   },
   {
@@ -657,8 +550,7 @@ export const sentencesSample = [
   {
     id: 885,
     text: "Nuo laikrod\u017eio bok\u0161to vir\u0161aus mes \u017eemyn nuleisime pramonin\u012f kabel\u012f...",
-    translation:
-      "We run some industrial-strength electrical cable",
+    translation: "We run some industrial-strength electrical cable",
     masked_range: [15, 21],
     answers: [
       "bok\u0161to",
@@ -671,8 +563,7 @@ export const sentencesSample = [
   {
     id: 1088,
     text: "Marvinai, tu privalai groti.",
-    translation:
-      "Yeah, well. Look, Marvin, you got to play.",
+    translation: "Yeah, well. Look, Marvin, you got to play.",
     masked_range: [22, 27],
     answers: ["program\u0105", "esu", "daug", "groti"],
     correct_answer: 3,
@@ -680,22 +571,15 @@ export const sentencesSample = [
   {
     id: 112,
     text: "Ji papras\u010diausiai nori, kad tu b\u016btum padorus.",
-    translation:
-      "She's just trying to keep you respectable.",
+    translation: "She's just trying to keep you respectable.",
     masked_range: [3, 17],
-    answers: [
-      "jog",
-      "vienintelis",
-      "lapelio",
-      "papras\u010diausiai",
-    ],
+    answers: ["jog", "vienintelis", "lapelio", "papras\u010diausiai"],
     correct_answer: 3,
   },
   {
     id: 607,
     text: "kas yra Jungtini\u0173 Amerikos Valstij\u0173 prezidentas 1985 metais?",
-    translation:
-      "Who's President of the United States in 1985?",
+    translation: "Who's President of the United States in 1985?",
     masked_range: [8, 17],
     answers: [
       "nuotaika",
@@ -708,22 +592,15 @@ export const sentencesSample = [
   {
     id: 1124,
     text: "Stov\u0117jo r\u0105st\u0173 namelis i\u0161 molio ir med\u017eio",
-    translation:
-      "There stood a log cabin made of earth and wood",
+    translation: "There stood a log cabin made of earth and wood",
     masked_range: [14, 21],
-    answers: [
-      "kabel\u012f",
-      "energijos",
-      "namelis",
-      "bombos",
-    ],
+    answers: ["kabel\u012f", "energijos", "namelis", "bombos"],
     correct_answer: 2,
   },
   {
     id: 925,
     text: "kad gal\u0117t\u0173 pasiprie\u0161inti...",
-    translation:
-      "where you knew you had to act a certain way,",
+    translation: "where you knew you had to act a certain way,",
     masked_range: [11, 24],
     answers: [
       "v\u0117luoja",
@@ -752,12 +629,7 @@ export const sentencesSample = [
     text: "Nori pasakyti, kad dabar 8:25?",
     translation: "Are you telling me that it's 8:25?",
     masked_range: [5, 13],
-    answers: [
-      "por\u0105",
-      "padarome",
-      "pasakyti",
-      "i\u0161spaus",
-    ],
+    answers: ["por\u0105", "padarome", "pasakyti", "i\u0161spaus"],
     correct_answer: 2,
   },
   {
@@ -776,8 +648,7 @@ export const sentencesSample = [
   {
     id: 483,
     text: "Tu miegojai beveik devynias valandas.",
-    translation:
-      "You've been asleep for almost nine hours now.",
+    translation: "You've been asleep for almost nine hours now.",
     masked_range: [12, 18],
     answers: ["beveik", "gyvenu", "namo", "galiu"],
     correct_answer: 0,
@@ -788,12 +659,7 @@ export const sentencesSample = [
     translation:
       "lightning will strike the clock tower, electrifying the cable",
     masked_range: [16, 26],
-    answers: [
-      "balt\u0105",
-      "laikrod\u017eio",
-      "nes",
-      "vietos",
-    ],
+    answers: ["balt\u0105", "laikrod\u017eio", "nes", "vietos"],
     correct_answer: 1,
   },
   {
@@ -808,8 +674,7 @@ export const sentencesSample = [
   {
     id: 808,
     text: "Noriu pakviesti Lorein, bet ne\u017einau, kaip.",
-    translation:
-      "but I was kind of wondering if you'd ask me",
+    translation: "but I was kind of wondering if you'd ask me",
     masked_range: [0, 5],
     answers: ["bif\u0105", "noriu", "kur", "savaitei"],
     correct_answer: 1,
@@ -819,19 +684,13 @@ export const sentencesSample = [
     text: "\u010cia u\u017e tai, kad suv\u0117lei man plaukus.",
     translation: "That's for messing up my hair.",
     masked_range: [24, 27],
-    answers: [
-      "nuostabi",
-      "man",
-      "pasigail\u0117siu",
-      "i\u0161rasta",
-    ],
+    answers: ["nuostabi", "man", "pasigail\u0117siu", "i\u0161rasta"],
     correct_answer: 1,
   },
   {
     id: 393,
     text: "Nusiramink. Visa tai - tik sapnas.",
-    translation:
-      "Get a grip on yourself. It's all a dream.",
+    translation: "Get a grip on yourself. It's all a dream.",
     masked_range: [12, 16],
     answers: ["linda", "t\u0117vo", "galvojau", "visa"],
     correct_answer: 3,
@@ -839,15 +698,9 @@ export const sentencesSample = [
   {
     id: 1112,
     text: "Draugu\u017ei, tai buvo \u0161aunu. Pagrokime dar vien\u0105.",
-    translation:
-      "Yeah, man, that was good. Let's do another one.",
+    translation: "Yeah, man, that was good. Let's do another one.",
     masked_range: [14, 18],
-    answers: [
-      "buvo",
-      "ateinant\u012f",
-      "ne",
-      "mutant\u0173",
-    ],
+    answers: ["buvo", "ateinant\u012f", "ne", "mutant\u0173"],
     correct_answer: 0,
   },
   {
@@ -855,12 +708,7 @@ export const sentencesSample = [
     text: "A\u0161 \u017einau, k\u0105 tu pasakysi, s\u016bnau...",
     translation: "I know what you're going to say, Son,",
     masked_range: [0, 2],
-    answers: [
-      "a\u0161",
-      "ka\u017ekur",
-      "vilsonas",
-      "beveik",
-    ],
+    answers: ["a\u0161", "ka\u017ekur", "vilsonas", "beveik"],
     correct_answer: 0,
   },
   {
@@ -868,26 +716,15 @@ export const sentencesSample = [
     text: "-Ar tu manai, kad man reikia keiktis? -B\u016btinai.",
     translation: "You really think I ought to swear?",
     masked_range: [22, 28],
-    answers: [
-      "\u0161iais",
-      "22",
-      "reikia",
-      "atsitikt\u0173",
-    ],
+    answers: ["\u0161iais", "22", "reikia", "atsitikt\u0173"],
     correct_answer: 2,
   },
   {
     id: 743,
     text: "Jie - tavo t\u0117vai. Turi juos \u017einoti.",
-    translation:
-      "They're your parents. You must know them.",
+    translation: "They're your parents. You must know them.",
     masked_range: [23, 27],
-    answers: [
-      "juos",
-      "pasiprie\u0161inti",
-      "tav\u0119s",
-      "naktis",
-    ],
+    answers: ["juos", "pasiprie\u0161inti", "tav\u0119s", "naktis"],
     correct_answer: 0,
   },
   {
@@ -914,8 +751,7 @@ export const sentencesSample = [
   {
     id: 847,
     text: "Kalvinas Kleinas. O Dieve, jis - svajon\u0117.",
-    translation:
-      "That's Calvin Klein. Oh, my God, he's a dream.",
+    translation: "That's Calvin Klein. Oh, my God, he's a dream.",
     masked_range: [33, 40],
     answers: [
       "svajon\u0117",
@@ -931,12 +767,7 @@ export const sentencesSample = [
     translation:
       "At least he's letting you borrow the car tomorrow night.",
     masked_range: [0, 3],
-    answers: [
-      "jungtini\u0173",
-      "bandykite",
-      "klozeto",
-      "jis",
-    ],
+    answers: ["jungtini\u0173", "bandykite", "klozeto", "jis"],
     correct_answer: 3,
   },
   {
@@ -955,8 +786,7 @@ export const sentencesSample = [
   {
     id: 320,
     text: "Daug kas pasikeit\u0117 aplinkui.",
-    translation:
-      "Things have certainly changed around here.",
+    translation: "Things have certainly changed around here.",
     masked_range: [5, 8],
     answers: ["ja", "reklaminiu", "tu", "kas"],
     correct_answer: 3,
@@ -967,12 +797,7 @@ export const sentencesSample = [
     translation:
       "By the way, what happened today? Did he ask her out?",
     masked_range: [15, 17],
-    answers: [
-      "bombos",
-      "galvojai",
-      "j\u0105",
-      "plan\u0105",
-    ],
+    answers: ["bombos", "galvojai", "j\u0105", "plan\u0105"],
     correct_answer: 2,
   },
   {
@@ -980,26 +805,15 @@ export const sentencesSample = [
     text: 'O jeigu jie pasakys: "Tu neturi ateities"?',
     translation: "What happens to us in the future?",
     masked_range: [2, 7],
-    answers: [
-      "\u0161ioje",
-      "\u0161is",
-      "jeigu",
-      "mokyklos",
-    ],
+    answers: ["\u0161ioje", "\u0161is", "jeigu", "mokyklos"],
     correct_answer: 2,
   },
   {
     id: 8,
     text: "Tikimasi, kad Senatas \u0161iandien u\u017e tai balsuos.",
-    translation:
-      "The Senate is expected to vote on this today.",
+    translation: "The Senate is expected to vote on this today.",
     masked_range: [34, 37],
-    answers: [
-      "nuleisime",
-      "susipa\u017einsiu",
-      "tai",
-      "baisu",
-    ],
+    answers: ["nuleisime", "susipa\u017einsiu", "tai", "baisu"],
     correct_answer: 2,
   },
   {
@@ -1008,12 +822,7 @@ export const sentencesSample = [
     translation:
       "How did I ever expect to get back? One pellet, one trip.",
     masked_range: [0, 4],
-    answers: [
-      "numesiu",
-      "nor\u0117jau",
-      "pagaminti",
-      "kaip",
-    ],
+    answers: ["numesiu", "nor\u0117jau", "pagaminti", "kaip"],
     correct_answer: 3,
   },
   {
@@ -1034,12 +843,7 @@ export const sentencesSample = [
     text: "Nedidelis or\u0173 eksperimentas.",
     translation: "Oh, just a little weather experiment.",
     masked_range: [10, 13],
-    answers: [
-      "atsisakau",
-      "paskub\u0117k",
-      "lorein",
-      "or\u0173",
-    ],
+    answers: ["atsisakau", "paskub\u0117k", "lorein", "or\u0173"],
     correct_answer: 3,
   },
   {
@@ -1065,12 +869,7 @@ export const sentencesSample = [
     translation:
       "It happens in hospitals when nurses fall in love with their patients.",
     masked_range: [4, 13],
-    answers: [
-      "sportin\u012f",
-      "atsitinka",
-      "mato",
-      "jungiantysis",
-    ],
+    answers: ["sportin\u012f", "atsitinka", "mato", "jungiantysis"],
     correct_answer: 1,
   },
   {
@@ -1092,33 +891,21 @@ export const sentencesSample = [
     text: "A\u0161 tik... Gerai b\u016bt\u0173, kad taip nebijo\u010diau.",
     translation: "I just... I wish I wasn't so scared.",
     masked_range: [3, 6],
-    answers: [
-      "akys",
-      "tik",
-      "atominio",
-      "i\u0161sklaidym\u0105",
-    ],
+    answers: ["akys", "tik", "atominio", "i\u0161sklaidym\u0105"],
     correct_answer: 1,
   },
   {
     id: 500,
     text: "Kalvinai? Kod\u0117l tu vadini mane Kalvinu?",
-    translation:
-      "Calvin? Why do you keep calling me Calvin?",
+    translation: "Calvin? Why do you keep calling me Calvin?",
     masked_range: [31, 38],
-    answers: [
-      "b\u016btum",
-      "mato",
-      "kalvinu",
-      "neskambinau",
-    ],
+    answers: ["b\u016btum", "mato", "kalvinu", "neskambinau"],
     correct_answer: 2,
   },
   {
     id: 96,
     text: "A\u0161 pradedu kalb\u0117ti kaip mano t\u0117vas.",
-    translation:
-      "You remind me of your father when he went here.",
+    translation: "You remind me of your father when he went here.",
     masked_range: [19, 23],
     answers: ["v\u0117l", "kaip", "pakviestum", "turi"],
     correct_answer: 1,
@@ -1137,12 +924,7 @@ export const sentencesSample = [
     text: "Ma\u0161inos man reik\u0117jo rytdienos vakarui, t\u0117ti.",
     translation: "I needed that car tomorrow night, Dad.",
     masked_range: [8, 11],
-    answers: [
-      "man",
-      "aplinkui",
-      "prie\u0161ingi",
-      "palauk",
-    ],
+    answers: ["man", "aplinkui", "prie\u0161ingi", "palauk"],
     correct_answer: 0,
   },
   {
@@ -1156,15 +938,9 @@ export const sentencesSample = [
   {
     id: 440,
     text: "Ar \u012fsivaizduoji, kas \u012fvykt\u0173, prista\u010dius savo nam\u0173 darb\u0105, ra\u0161yt\u0105 tavo ranka?",
-    translation:
-      "if I hand in my homework in your handwriting?",
+    translation: "if I hand in my homework in your handwriting?",
     masked_range: [57, 63],
-    answers: [
-      "netekus",
-      "akli",
-      "ra\u0161yt\u0105",
-      "modelio",
-    ],
+    answers: ["netekus", "akli", "ra\u0161yt\u0105", "modelio"],
     correct_answer: 2,
   },
   {
@@ -1172,33 +948,21 @@ export const sentencesSample = [
     text: "Tai apie ateit\u012f, ar ne?",
     translation: "It's about the future, isn't it?",
     masked_range: [0, 3],
-    answers: [
-      "meras",
-      "tai",
-      "i\u0161vykimo",
-      "likus\u012f",
-    ],
+    answers: ["meras", "tai", "i\u0161vykimo", "likus\u012f"],
     correct_answer: 1,
   },
   {
     id: 656,
     text: "Esu tikras, kad 1985 metais plutonio yra pirkti kiekvienoj kampin\u0117j vaistin\u0117j...",
-    translation:
-      "plutonium is available in every corner drugstore,",
+    translation: "plutonium is available in every corner drugstore,",
     masked_range: [48, 58],
-    answers: [
-      "plauk\u0173",
-      "ka\u017ek\u0105",
-      "kiekvienoj",
-      "ant",
-    ],
+    answers: ["plauk\u0173", "ka\u017ek\u0105", "kiekvienoj", "ant"],
     correct_answer: 2,
   },
   {
     id: 353,
     text: "tuoj prad\u0117siu istorin\u0119 kelion\u0119.",
-    translation:
-      "am about to embark on an historic journey.",
+    translation: "am about to embark on an historic journey.",
     masked_range: [0, 4],
     answers: ["pasl\u0117piau", "juo", "tuoj", "savaitei"],
     correct_answer: 2,
@@ -1209,12 +973,7 @@ export const sentencesSample = [
     translation:
       "Yeah. I think it's a major embarrassment, having an uncle in prison.",
     masked_range: [18, 22],
-    answers: [
-      "manai",
-      "turite",
-      "g\u0117da",
-      "d\u017eekas",
-    ],
+    answers: ["manai", "turite", "g\u0117da", "d\u017eekas"],
     correct_answer: 2,
   },
   {
@@ -1231,12 +990,7 @@ export const sentencesSample = [
     text: "Sveikas Marti. Negird\u0117jau tav\u0119s \u012feinant.",
     translation: "Hi, Marty. I didn't hear you come in.",
     masked_range: [26, 31],
-    answers: [
-      "tav\u0119s",
-      "tyrim\u0173",
-      "paskambinti",
-      "tojota",
-    ],
+    answers: ["tav\u0119s", "tyrim\u0173", "paskambinti", "tojota"],
     correct_answer: 0,
   },
   {
@@ -1256,8 +1010,7 @@ export const sentencesSample = [
   {
     id: 980,
     text: "Visk\u0105, k\u0105 nori man pasakyti, a\u0161 su\u017einosiu savo laiku.",
-    translation:
-      "In that case, I'll tell you straight out.",
+    translation: "In that case, I'll tell you straight out.",
     masked_range: [0, 5],
     answers: [
       "visk\u0105",
@@ -1272,12 +1025,7 @@ export const sentencesSample = [
     text: "D\u017eord\u017eai, tu man\u0119s nepabu\u010diuosi?",
     translation: "George, aren't you going to kiss me?",
     masked_range: [13, 18],
-    answers: [
-      "\u0161okiuose",
-      "jie",
-      "dirbsiu",
-      "man\u0119s",
-    ],
+    answers: ["\u0161okiuose", "jie", "dirbsiu", "man\u0119s"],
     correct_answer: 3,
   },
   {
@@ -1320,22 +1068,15 @@ export const sentencesSample = [
   {
     id: 434,
     text: "A\u0161 kalbu su tavim, Makflajau, tu airi\u0161ka blake!",
-    translation:
-      "I'm talking to you, McFly, you Irish bug!",
+    translation: "I'm talking to you, McFly, you Irish bug!",
     masked_range: [19, 28],
-    answers: [
-      "senelis",
-      "brol\u012f",
-      "laik\u0173",
-      "makflajau",
-    ],
+    answers: ["senelis", "brol\u012f", "laik\u0173", "makflajau"],
     correct_answer: 3,
   },
   {
     id: 487,
     text: "Dabar viskas gerai ir esi saugus 1955 metais.",
-    translation:
-      "you're safe and sound now, back in good old 1955.",
+    translation: "you're safe and sound now, back in good old 1955.",
     masked_range: [22, 25],
     answers: [
       "\u0161e\u0161tadien\u012f",
@@ -1351,19 +1092,13 @@ export const sentencesSample = [
     translation:
       "Your father kissed me for the very first time on that dance floor.",
     masked_range: [5, 10],
-    answers: [
-      "dalis",
-      "v\u0117liau",
-      "t\u0117vas",
-      "pybod\u017eiui",
-    ],
+    answers: ["dalis", "v\u0117liau", "t\u0117vas", "pybod\u017eiui"],
     correct_answer: 2,
   },
   {
     id: 969,
     text: "Tu pakeitei mano gyvenim\u0105, davei man vilt\u012f ka\u017eko siekti.",
-    translation:
-      "You've really made a difference in my life.",
+    translation: "You've really made a difference in my life.",
     masked_range: [43, 48],
     answers: [
       "persirengti",
@@ -1378,12 +1113,7 @@ export const sentencesSample = [
     text: "\u0160tai tau, mutant\u0173 \u0161unsnuki!",
     translation: "Take that, you mutated son of a bitch!",
     masked_range: [0, 4],
-    answers: [
-      "\u0161lavimo",
-      "tojota",
-      "\u0161tai",
-      "klaid\u0173",
-    ],
+    answers: ["\u0161lavimo", "tojota", "\u0161tai", "klaid\u0173"],
     correct_answer: 2,
   },
   {
@@ -1392,12 +1122,7 @@ export const sentencesSample = [
     translation:
       "Here's a red-letter date in the history of science.",
     masked_range: [23, 27],
-    answers: [
-      "data",
-      "\u012fd\u0117kime",
-      "gitara",
-      "kitu",
-    ],
+    answers: ["data", "\u012fd\u0117kime", "gitara", "kitu"],
     correct_answer: 0,
   },
   {
@@ -1406,12 +1131,7 @@ export const sentencesSample = [
     translation:
       "Besides, the stainless-steel construction made the flux dispersal...",
     masked_range: [47, 53],
-    answers: [
-      "niekam",
-      "skambino",
-      "kamer\u0105",
-      "srauto",
-    ],
+    answers: ["niekam", "skambino", "kamer\u0105", "srauto"],
     correct_answer: 3,
   },
   {
@@ -1420,40 +1140,23 @@ export const sentencesSample = [
     translation:
       "Tom, how am I going to generate that kind of power?",
     masked_range: [24, 29],
-    answers: [
-      "toki\u0105",
-      "\u0161i",
-      "laukti",
-      "gatv\u0117s",
-    ],
+    answers: ["toki\u0105", "\u0161i", "laukti", "gatv\u0117s"],
     correct_answer: 0,
   },
   {
     id: 315,
     text: "Vien d\u0117l jo kelion\u0117 laike yra \u012fmanoma.",
-    translation:
-      "which is what makes time travel possible.",
+    translation: "which is what makes time travel possible.",
     masked_range: [30, 37],
-    answers: [
-      "u\u017etekti",
-      "j\u012f",
-      "\u012fmanoma",
-      "tuomet",
-    ],
+    answers: ["u\u017etekti", "j\u012f", "\u012fmanoma", "tuomet"],
     correct_answer: 2,
   },
   {
     id: 560,
     text: "galb\u016bt jis gal\u0117t\u0173 \u010dia pernakvoti?",
-    translation:
-      "don't you think he ought to spend the night?",
+    translation: "don't you think he ought to spend the night?",
     masked_range: [18, 21],
-    answers: [
-      "\u010dia",
-      "u\u017etruko",
-      "laik\u0173",
-      "nei",
-    ],
+    answers: ["\u010dia", "u\u017etruko", "laik\u0173", "nei"],
     correct_answer: 0,
   },
   {
@@ -1462,26 +1165,15 @@ export const sentencesSample = [
     translation:
       "Next Saturday night, we're sending you back to the future!",
     masked_range: [40, 45],
-    answers: [
-      "nesivaikiau",
-      "vagyst\u0117s",
-      "atgal",
-      "pataikei",
-    ],
+    answers: ["nesivaikiau", "vagyst\u0117s", "atgal", "pataikei"],
     correct_answer: 2,
   },
   {
     id: 1179,
     text: "Gr\u0105\u017einsime tave atgal tiksliai tuo pa\u010diu laiku.",
-    translation:
-      "Let's send you back at exactly the same time.",
+    translation: "Let's send you back at exactly the same time.",
     masked_range: [22, 30],
-    answers: [
-      "kelion\u0119",
-      "jaunuosius",
-      "tiksliai",
-      "kelio",
-    ],
+    answers: ["kelion\u0119", "jaunuosius", "tiksliai", "kelio"],
     correct_answer: 2,
   },
   {
@@ -1495,8 +1187,7 @@ export const sentencesSample = [
   {
     id: 1162,
     text: "nety\u010dia padegs svetain\u0117s kilim\u0105...",
-    translation:
-      "accidentally sets fire to the living room rug,",
+    translation: "accidentally sets fire to the living room rug,",
     masked_range: [15, 24],
     answers: [
       "vietos",
@@ -1509,8 +1200,7 @@ export const sentencesSample = [
   {
     id: 172,
     text: "Bifas yra mano vadovas...",
-    translation:
-      "But Biff just happens to be my supervisor,",
+    translation: "But Biff just happens to be my supervisor,",
     masked_range: [6, 9],
     answers: ["skamba", "yra", "nenor\u0117tum", "vis"],
     correct_answer: 1,
@@ -1520,19 +1210,13 @@ export const sentencesSample = [
     text: "A\u0161 atitrauksiu j\u0173 d\u0117mes\u012f.",
     translation: "I'm going to read your thoughts.",
     masked_range: [3, 14],
-    answers: [
-      "tikrai",
-      "atitrauksiu",
-      "laukai",
-      "medicinos",
-    ],
+    answers: ["tikrai", "atitrauksiu", "laukai", "medicinos"],
     correct_answer: 1,
   },
   {
     id: 888,
     text: "kuris eis tiesiogiai \u012f srauto kondensatori\u0173.",
-    translation:
-      "which runs directly into the flux capacitor.",
+    translation: "which runs directly into the flux capacitor.",
     masked_range: [10, 20],
     answers: [
       "vaistin\u0117j",
@@ -1547,12 +1231,7 @@ export const sentencesSample = [
     text: "Vaike, a\u0161 gi tave apie tai persp\u0117jau.",
     translation: "I warned you about this, kid.",
     masked_range: [23, 26],
-    answers: [
-      "klasika",
-      "neatitikim\u0105",
-      "tai",
-      "pasakysi",
-    ],
+    answers: ["klasika", "neatitikim\u0105", "tai", "pasakysi"],
     correct_answer: 2,
   },
   {
@@ -1560,12 +1239,7 @@ export const sentencesSample = [
     text: "Net jeigu tavo ketinimai ir geri, rezultatai gali b\u016bti prie\u0161ingi.",
     translation: "Even if your intentions are good,",
     masked_range: [0, 3],
-    answers: [
-      "patvirtina",
-      "net",
-      "vairuojant",
-      "bendraut\u0173",
-    ],
+    answers: ["patvirtina", "net", "vairuojant", "bendraut\u0173"],
     correct_answer: 1,
   },
   {
@@ -1593,8 +1267,7 @@ export const sentencesSample = [
   {
     id: 216,
     text: "A\u0161 nesuprantu, k\u0105 t\u0117tis dar\u0117 gatv\u0117s vidury.",
-    translation:
-      "I still don't understand what Dad was doing",
+    translation: "I still don't understand what Dad was doing",
     masked_range: [29, 35],
     answers: [
       "nuva\u017eiuoti",
@@ -1616,15 +1289,9 @@ export const sentencesSample = [
   {
     id: 528,
     text: "Taip. D\u017eojui labai patinka aptvar\u0117lyje.",
-    translation:
-      "The old man really came through. It worked.",
+    translation: "The old man really came through. It worked.",
     masked_range: [13, 18],
-    answers: [
-      "sargybos",
-      "nukal\u0117",
-      "pamatyti",
-      "labai",
-    ],
+    answers: ["sargybos", "nukal\u0117", "pamatyti", "labai"],
     correct_answer: 3,
   },
   {
@@ -1638,15 +1305,9 @@ export const sentencesSample = [
   {
     id: 794,
     text: "Taip, bet Lorein nori eiti su tavimi.",
-    translation:
-      "Well, because, George, she wants to go with you.",
+    translation: "Well, because, George, she wants to go with you.",
     masked_range: [10, 16],
-    answers: [
-      "lorein",
-      "gerb\u016bv\u012f",
-      "galv\u0105",
-      "tavim",
-    ],
+    answers: ["lorein", "gerb\u016bv\u012f", "galv\u0105", "tavim"],
     correct_answer: 0,
   },
   {
@@ -1666,8 +1327,7 @@ export const sentencesSample = [
   {
     id: 153,
     text: "Ar tu supranti, kas atsitikt\u0173, jei perduo\u010diau prane\u0161imus ra\u0161ytus tavo ranka?",
-    translation:
-      "if I hand in my reports in your handwriting?",
+    translation: "if I hand in my reports in your handwriting?",
     masked_range: [70, 75],
     answers: [
       "nepamir\u0161iu",
@@ -1702,8 +1362,7 @@ export const sentencesSample = [
   {
     id: 1169,
     text: "Tu v\u0117luoji! K\u0105, tu nesuvoki laiko?",
-    translation:
-      "You're late! Do you have no concept of time?",
+    translation: "You're late! Do you have no concept of time?",
     masked_range: [28, 33],
     answers: ["milijon\u0105", "laiko", "su", "statlerio"],
     correct_answer: 1,
@@ -1713,12 +1372,7 @@ export const sentencesSample = [
     text: "Negaliu patik\u0117ti, kad paskolinai ma\u0161in\u0105...",
     translation: "I can't believe you'd loan me your car",
     masked_range: [18, 21],
-    answers: [
-      "kart\u0105",
-      "draugu\u017ei",
-      "kad",
-      "\u017einios",
-    ],
+    answers: ["kart\u0105", "draugu\u017ei", "kad", "\u017einios"],
     correct_answer: 2,
   },
   {
@@ -1735,12 +1389,7 @@ export const sentencesSample = [
     translation:
       "but I wanted to tell you that it's been educational.",
     masked_range: [38, 49],
-    answers: [
-      "\u0161iais",
-      "nieko",
-      "informatyvu",
-      "neleid\u017eiu",
-    ],
+    answers: ["\u0161iais", "nieko", "informatyvu", "neleid\u017eiu"],
     correct_answer: 2,
   },
   {
@@ -1762,12 +1411,7 @@ export const sentencesSample = [
     text: "Ma\u017edaug apie 21:00, ji ant man\u0119s labai supyks.",
     translation: "she's going to get very angry with me.",
     masked_range: [13, 18],
-    answers: [
-      "21:00",
-      "1640",
-      "remiantis",
-      "laikrod\u017eiu",
-    ],
+    answers: ["21:00", "1640", "remiantis", "laikrod\u017eiu"],
     correct_answer: 0,
   },
   {
@@ -1795,8 +1439,7 @@ export const sentencesSample = [
   {
     id: 778,
     text: "Galb\u016bt tu tokia, tik to dar ne\u017einai.",
-    translation:
-      "Maybe you are and you just don't know it yet.",
+    translation: "Maybe you are and you just don't know it yet.",
     masked_range: [10, 15],
     answers: ["tokia", "ateityje", "leisk", "\u0161lavimo"],
     correct_answer: 0,
@@ -1807,12 +1450,7 @@ export const sentencesSample = [
     translation:
       "Comes from upbringing. His parents are probably idiots, too.",
     masked_range: [43, 50],
-    answers: [
-      "darote",
-      "patvirtina",
-      "idiotai",
-      "saug\u016bs",
-    ],
+    answers: ["darote", "patvirtina", "idiotai", "saug\u016bs"],
     correct_answer: 2,
   },
   {
@@ -1820,12 +1458,7 @@ export const sentencesSample = [
     text: "Kiek turi pinig\u0173 su savimi?",
     translation: "How much money you got on you?",
     masked_range: [17, 19],
-    answers: [
-      "gra\u017eiausia",
-      "-b\u016btinai",
-      "su",
-      "kur",
-    ],
+    answers: ["gra\u017eiausia", "-b\u016btinai", "su", "kur"],
     correct_answer: 2,
   },
   {
@@ -1848,26 +1481,15 @@ export const sentencesSample = [
     translation:
       "Yeah, Mom, we know. You've told us this story a million times.",
     masked_range: [27, 36],
-    answers: [
-      "pasakojai",
-      "valley",
-      "\u012fsimetus",
-      "vaikinas",
-    ],
+    answers: ["pasakojai", "valley", "\u012fsimetus", "vaikinas"],
     correct_answer: 0,
   },
   {
     id: 1294,
     text: "Marti, vos neu\u017emir\u0161au. Skambino D\u017eenifer Parker.",
-    translation:
-      "Marty, I almost forgot. Jennifer Parker called.",
+    translation: "Marty, I almost forgot. Jennifer Parker called.",
     masked_range: [41, 47],
-    answers: [
-      "beveik",
-      "paklausyk",
-      "parker",
-      "gatv\u0117s",
-    ],
+    answers: ["beveik", "paklausyk", "parker", "gatv\u0117s"],
     correct_answer: 2,
   },
   {
@@ -1904,12 +1526,7 @@ export const sentencesSample = [
     translation:
       "Yeah, well, I might've sort of bumped into my parents.",
     masked_range: [27, 31],
-    answers: [
-      "gal\u0117jai",
-      "savo",
-      "striklandai",
-      "kiekvienoj",
-    ],
+    answers: ["gal\u0117jai", "savo", "striklandai", "kiekvienoj"],
     correct_answer: 1,
   },
   {
@@ -1931,12 +1548,7 @@ export const sentencesSample = [
     text: "A\u0161 pramiegojau. Man reikia tavo pagalbos.",
     translation: "I overslept. Look, I need your help.",
     masked_range: [3, 14],
-    answers: [
-      "\u017emogus",
-      "senelis",
-      "nusipirkti",
-      "pramiegojau",
-    ],
+    answers: ["\u017emogus", "senelis", "nusipirkti", "pramiegojau"],
     correct_answer: 3,
   },
   {
@@ -1944,12 +1556,7 @@ export const sentencesSample = [
     text: "Kas tas D\u017eonas F. Kenedis?",
     translation: "Who the hell is John F. Kennedy?",
     masked_range: [18, 25],
-    answers: [
-      "sakau",
-      "vaikinas",
-      "nor\u0117\u010diau",
-      "kenedis",
-    ],
+    answers: ["sakau", "vaikinas", "nor\u0117\u010diau", "kenedis"],
     correct_answer: 3,
   },
   {
@@ -1970,12 +1577,7 @@ export const sentencesSample = [
     text: "Ar matyti Kristaus gimim\u0105.",
     translation: "Or witness the birth of Christ.",
     masked_range: [10, 18],
-    answers: [
-      "d\u017eekas",
-      "kristaus",
-      "makflajau",
-      "pakviesti",
-    ],
+    answers: ["d\u017eekas", "kristaus", "makflajau", "pakviesti"],
     correct_answer: 1,
   },
   {
@@ -1984,19 +1586,13 @@ export const sentencesSample = [
     translation:
       "Now, I need your help to get back to the year 1985.",
     masked_range: [53, 58],
-    answers: [
-      "metai",
-      "valstij\u0173",
-      "metus",
-      "am\u017einai",
-    ],
+    answers: ["metai", "valstij\u0173", "metus", "am\u017einai"],
     correct_answer: 2,
   },
   {
     id: 617,
     text: "nukritai ir u\u017esigavai galv\u0105 \u012f kriaukl\u0119.",
-    translation:
-      "and you fell and you hit your head on the sink.",
+    translation: "and you fell and you hit your head on the sink.",
     masked_range: [22, 27],
     answers: [
       "nepamir\u0161kite",
@@ -2022,8 +1618,7 @@ export const sentencesSample = [
   {
     id: 410,
     text: "miesto gerb\u016bv\u012f ir ma\u017eesnius mokes\u010dius.",
-    translation:
-      "bigger civic improvements and lower taxes.",
+    translation: "bigger civic improvements and lower taxes.",
     masked_range: [28, 37],
     answers: ["mokes\u010dius", "bifai", "gim\u0117", "ta"],
     correct_answer: 0,
@@ -2033,12 +1628,7 @@ export const sentencesSample = [
     text: "Pastabos lapelis jums, panele Parker.",
     translation: "Tardy slip for you, Miss Parker.",
     masked_range: [9, 16],
-    answers: [
-      "manimi",
-      "\u0161ios",
-      "lapelis",
-      "patarim\u0105",
-    ],
+    answers: ["manimi", "\u0161ios", "lapelis", "patarim\u0105"],
     correct_answer: 2,
   },
   {
@@ -2067,8 +1657,7 @@ export const sentencesSample = [
   {
     id: 777,
     text: "U\u017e\u010diaupk savo ne\u0161vanki\u0105 burn\u0105. A\u0161 ne tokia, kaip tu galvoji.",
-    translation:
-      "Shut your filthy mouth. I'm not that kind of girl.",
+    translation: "Shut your filthy mouth. I'm not that kind of girl.",
     masked_range: [24, 29],
     answers: [
       "linij\u0105",
@@ -2081,8 +1670,7 @@ export const sentencesSample = [
   {
     id: 88,
     text: "I\u0161si\u0173sk j\u0105 \u012fra\u0161\u0173 kompanijai.",
-    translation:
-      "You've gotta send it in to the record company.",
+    translation: "You've gotta send it in to the record company.",
     masked_range: [11, 16],
     answers: [
       "nuda\u017eyti",
@@ -2098,12 +1686,7 @@ export const sentencesSample = [
     translation:
       "you put your mind to it, you can accomplish anything.",
     masked_range: [0, 3],
-    answers: [
-      "jei",
-      "visai",
-      "gale",
-      "nepasiruo\u0161\u0119",
-    ],
+    answers: ["jei", "visai", "gale", "nepasiruo\u0161\u0119"],
     correct_answer: 0,
   },
   {
@@ -2117,8 +1700,7 @@ export const sentencesSample = [
   {
     id: 963,
     text: "Hill Valley oras \u0161e\u0161tadienio nakt\u012f.",
-    translation:
-      "...Hill Valley area weather this Saturday night.",
+    translation: "...Hill Valley area weather this Saturday night.",
     masked_range: [5, 11],
     answers: [
       "valley",
@@ -2131,8 +1713,7 @@ export const sentencesSample = [
   {
     id: 834,
     text: "Palauk minut\u0117l\u0119. A\u0161 tave i\u0161 ka\u017ekur pa\u017e\u012fstu?",
-    translation:
-      "Wait a minute. Don't I know you from somewhere?",
+    translation: "Wait a minute. Don't I know you from somewhere?",
     masked_range: [7, 15],
     answers: [
       "minut\u0117l\u0119",
@@ -2147,12 +1728,7 @@ export const sentencesSample = [
     text: "Dieve, ar tikrai tiek ilgai u\u017etruko?",
     translation: "My God, has it been that long?",
     masked_range: [7, 9],
-    answers: [
-      "ar",
-      "1985-siais",
-      "laim\u0117s",
-      "pakankamai",
-    ],
+    answers: ["ar", "1985-siais", "laim\u0117s", "pakankamai"],
     correct_answer: 0,
   },
   {
@@ -2171,8 +1747,7 @@ export const sentencesSample = [
   {
     id: 422,
     text: "Atsiliepk.",
-    translation:
-      "You walk up, you open the door, and you say...",
+    translation: "You walk up, you open the door, and you say...",
     masked_range: [0, 9],
     answers: ["vaikinus", "-tu", "atsiliepk", "skambino"],
     correct_answer: 2,
@@ -2180,15 +1755,9 @@ export const sentencesSample = [
   {
     id: 325,
     text: "Ar ji naudoja paprast\u0105 neetiliuot\u0105 benzin\u0105?",
-    translation:
-      "Does it run on regular unleaded gasoline?",
+    translation: "Does it run on regular unleaded gasoline?",
     masked_range: [23, 34],
-    answers: [
-      "atgal",
-      "neetiliuot\u0105",
-      "r\u0105st\u0173",
-      "esi",
-    ],
+    answers: ["atgal", "neetiliuot\u0105", "r\u0105st\u0173", "esi"],
     correct_answer: 1,
   },
   {
@@ -2197,12 +1766,7 @@ export const sentencesSample = [
     translation:
       "You're instilling me with a lot of confidence, Doc.",
     masked_range: [14, 22],
-    answers: [
-      "papras\u010diausiai",
-      "nuostabi",
-      "1640",
-      "buvau",
-    ],
+    answers: ["papras\u010diausiai", "nuostabi", "1640", "buvau"],
     correct_answer: 1,
   },
   {
@@ -2211,40 +1775,23 @@ export const sentencesSample = [
     translation:
       "Linda, first of all, I'm not your answering service,",
     masked_range: [7, 9],
-    answers: [
-      "kelion\u0119",
-      "paki\u0161o",
-      "a\u0161",
-      "t\u0105",
-    ],
+    answers: ["kelion\u0119", "paki\u0161o", "a\u0161", "t\u0105"],
     correct_answer: 2,
   },
   {
     id: 982,
     text: "T\u0105 nakt\u012f, kai a\u0161 gr\u012f\u0161iu atgal laike...",
-    translation:
-      "On the night I go back in time, you get...",
+    translation: "On the night I go back in time, you get...",
     masked_range: [3, 8],
-    answers: [
-      "auk\u0161tai",
-      "daina",
-      "paprast\u0105",
-      "nakt\u012f",
-    ],
+    answers: ["auk\u0161tai", "daina", "paprast\u0105", "nakt\u012f"],
     correct_answer: 3,
   },
   {
     id: 724,
     text: "Susipa\u017eink su mano geru draugu D\u017eord\u017eu Makflajumi.",
-    translation:
-      "I'd like you to meet my good friend George McFly.",
+    translation: "I'd like you to meet my good friend George McFly.",
     masked_range: [11, 13],
-    answers: [
-      "gali\u0105",
-      "aptvar\u0117lyje",
-      "su",
-      "d\u0117ka",
-    ],
+    answers: ["gali\u0105", "aptvar\u0117lyje", "su", "d\u0117ka"],
     correct_answer: 2,
   },
   {
@@ -2271,8 +1818,7 @@ export const sentencesSample = [
   {
     id: 155,
     text: "Tu nenor\u0117tum, kad tai \u012fvykt\u0173, ar ne?",
-    translation:
-      "You wouldn't want that to happen, would you?",
+    translation: "You wouldn't want that to happen, would you?",
     masked_range: [18, 21],
     answers: ["apie", "tai", "neprivers", "miegu"],
     correct_answer: 1,
@@ -2300,19 +1846,13 @@ export const sentencesSample = [
     translation:
       "This so-called Dr. Brown is dangerous. He's a real nutcase.",
     masked_range: [5, 14],
-    answers: [
-      "raudonai",
-      "ties\u0105",
-      "vadinamas",
-      "serijas",
-    ],
+    answers: ["raudonai", "ties\u0105", "vadinamas", "serijas"],
     correct_answer: 2,
   },
   {
     id: 1005,
     text: "A\u0161 nukniaukiau j\u012f i\u0161 savo motinos g\u0117rim\u0173 baro.",
-    translation:
-      "I swiped it from the old lady's liquor cabinet.",
+    translation: "I swiped it from the old lady's liquor cabinet.",
     masked_range: [21, 25],
     answers: ["suk\u0117l\u0119s", "savo", "kalbu", "dar"],
     correct_answer: 1,
@@ -2322,12 +1862,7 @@ export const sentencesSample = [
     text: "Atrodo kaip l\u0117ktuvas be sparn\u0173.",
     translation: "Looks like an airplane without wings.",
     masked_range: [24, 30],
-    answers: [
-      "neturi",
-      "sparn\u0173",
-      "i\u0161rasta",
-      "ka\u017ekas",
-    ],
+    answers: ["neturi", "sparn\u0173", "i\u0161rasta", "ka\u017ekas"],
     correct_answer: 1,
   },
   {
@@ -2345,12 +1880,7 @@ export const sentencesSample = [
     translation:
       "so I took their plutonium and, in turn, gave them a shoddy bomb casing",
     masked_range: [44, 50],
-    answers: [
-      "paimk",
-      "keval\u0105",
-      "n\u0117ra",
-      "krituli\u0173",
-    ],
+    answers: ["paimk", "keval\u0105", "n\u0117ra", "krituli\u0173"],
     correct_answer: 1,
   },
   {
@@ -2369,15 +1899,9 @@ export const sentencesSample = [
   {
     id: 989,
     text: "Labas vakaras, dr. Braunai. K\u0105 \u010dia darote su kabeliu?",
-    translation:
-      "'Evening, Dr. Brown. What's with the wire?",
+    translation: "'Evening, Dr. Brown. What's with the wire?",
     masked_range: [42, 44],
-    answers: [
-      "kadangi",
-      "valand\u0105",
-      "lai\u0161k\u0105",
-      "su",
-    ],
+    answers: ["kadangi", "valand\u0105", "lai\u0161k\u0105", "su"],
     correct_answer: 3,
   },
   {
@@ -2385,26 +1909,15 @@ export const sentencesSample = [
     text: "A\u0161 ma\u010diau \u0161it\u0105. Tai - klasika.",
     translation: "I've seen this one! This is a classic.",
     masked_range: [22, 29],
-    answers: [
-      "klasika",
-      "ma\u0161ina",
-      "klas\u0117s",
-      "bifai",
-    ],
+    answers: ["klasika", "ma\u0161ina", "klas\u0117s", "bifai"],
     correct_answer: 0,
   },
   {
     id: 534,
     text: "Taigi, valgydami galime \u017ei\u016br\u0117ti D\u017eek\u012f Glyson\u0105.",
-    translation:
-      "Now we can watch Jackie Gleason while we eat.",
+    translation: "Now we can watch Jackie Gleason while we eat.",
     masked_range: [17, 23],
-    answers: [
-      "pu\u0161\u0173",
-      "virv\u0119",
-      "visi",
-      "galime",
-    ],
+    answers: ["pu\u0161\u0173", "virv\u0119", "visi", "galime"],
     correct_answer: 3,
   },
   {
@@ -2412,26 +1925,15 @@ export const sentencesSample = [
     text: "Turb\u016bt sapnuoju.",
     translation: "This has got to be a dream.",
     masked_range: [7, 15],
-    answers: [
-      "atbul\u0105",
-      "at\u0117jo",
-      "\u012fvesk",
-      "sapnuoju",
-    ],
+    answers: ["atbul\u0105", "at\u0117jo", "\u012fvesk", "sapnuoju"],
     correct_answer: 3,
   },
   {
     id: 328,
     text: "Nori pasakyti, kad \u0161is daik\u010diukas - branduolinis?",
-    translation:
-      "Are you telling me that this sucker is nuclear?",
+    translation: "Are you telling me that this sucker is nuclear?",
     masked_range: [5, 13],
-    answers: [
-      "ta\u0161k\u0105",
-      "pasakyti",
-      "ir",
-      "ma\u0161inoje",
-    ],
+    answers: ["ta\u0161k\u0105", "pasakyti", "ir", "ma\u0161inoje"],
     correct_answer: 1,
   },
   {
@@ -2439,12 +1941,7 @@ export const sentencesSample = [
     text: "Tik dar to ne\u017eino.",
     translation: "She just doesn't know it yet.",
     masked_range: [4, 7],
-    answers: [
-      "dar",
-      "lapelio",
-      "kal\u0117jime",
-      "pabaigti",
-    ],
+    answers: ["dar", "lapelio", "kal\u0117jime", "pabaigti"],
     correct_answer: 0,
   },
   {
@@ -2452,12 +1949,7 @@ export const sentencesSample = [
     text: "pakran\u010di\u0173 sargybos jaunuosius pagalbininkus.",
     translation: "to the Coast Guard Youth Auxiliary.",
     masked_range: [19, 29],
-    answers: [
-      "jaunuosius",
-      "sunku",
-      "klas\u0117s",
-      "uoste",
-    ],
+    answers: ["jaunuosius", "sunku", "klas\u0117s", "uoste"],
     correct_answer: 0,
   },
   {
@@ -2466,12 +1958,7 @@ export const sentencesSample = [
     translation:
       "Let's see now. You've come here from a great distance?",
     masked_range: [0, 4],
-    answers: [
-      "gr\u012f\u0161ime",
-      "nagi",
-      "trump\u0105",
-      "ralfas",
-    ],
+    answers: ["gr\u012f\u0161ime", "nagi", "trump\u0105", "ralfas"],
     correct_answer: 1,
   },
   {
@@ -2490,8 +1977,7 @@ export const sentencesSample = [
   {
     id: 605,
     text: "Sakau ties\u0105. Turi manim patik\u0117ti.",
-    translation:
-      "I'm telling the truth, Doc. You got to believe me.",
+    translation: "I'm telling the truth, Doc. You got to believe me.",
     masked_range: [18, 23],
     answers: ["\u0161is", "manim", "galvos", "laukiau"],
     correct_answer: 1,
@@ -2499,15 +1985,9 @@ export const sentencesSample = [
   {
     id: 185,
     text: "J\u016bs\u0173 d\u0117d\u0117s D\u017eojaus v\u0117l nei\u0161leido lygtinai.",
-    translation:
-      "Your Uncle Joey didn't make parole again.",
+    translation: "Your Uncle Joey didn't make parole again.",
     masked_range: [5, 10],
-    answers: [
-      "kai",
-      "d\u0117d\u0117s",
-      "gatv\u0117je",
-      "mato",
-    ],
+    answers: ["kai", "d\u0117d\u0117s", "gatv\u0117je", "mato"],
     correct_answer: 1,
   },
   {
@@ -2516,12 +1996,7 @@ export const sentencesSample = [
     translation:
       "You know, Doc, you left your equipment on all week.",
     masked_range: [9, 17],
-    answers: [
-      "t\u0117v\u0173",
-      "savaitei",
-      "lygiai",
-      "jis",
-    ],
+    answers: ["t\u0117v\u0173", "savaitei", "lygiai", "jis"],
     correct_answer: 1,
   },
   {
@@ -2543,12 +2018,7 @@ export const sentencesSample = [
     translation:
       "At the calculated moment, you start off from down the street,",
     masked_range: [3, 10],
-    answers: [
-      "turi",
-      "prad\u0117si",
-      "\u0161aunu",
-      "smegenis",
-    ],
+    answers: ["turi", "prad\u0117si", "\u0161aunu", "smegenis"],
     correct_answer: 1,
   },
   {
@@ -2556,19 +2026,13 @@ export const sentencesSample = [
     text: "Daug \u017einodamas \u012f pavoj\u0173 statau savo egzistavim\u0105...",
     translation: "I can endanger my own existence.",
     masked_range: [15, 16],
-    answers: [
-      "t\u0117v\u0173",
-      "\u012f",
-      "neatsilikti",
-      "beveik",
-    ],
+    answers: ["t\u0117v\u0173", "\u012f", "neatsilikti", "beveik"],
     correct_answer: 1,
   },
   {
     id: 841,
     text: "Man atrodo, tave \u012fsp\u0117jau, kad \u010dia neateitum.",
-    translation:
-      "I thought I told you never to come in here.",
+    translation: "I thought I told you never to come in here.",
     masked_range: [17, 24],
     answers: [
       "nukalei",
@@ -2592,12 +2056,7 @@ export const sentencesSample = [
     translation:
       "Get out of town! I didn't know you did anything creative.",
     masked_range: [4, 7],
-    answers: [
-      "kelion\u0117",
-      "nety\u010dia",
-      "jau",
-      "dingusio",
-    ],
+    answers: ["kelion\u0117", "nety\u010dia", "jau", "dingusio"],
     correct_answer: 2,
   },
   {
@@ -2605,12 +2064,7 @@ export const sentencesSample = [
     text: "Tu sulau\u017eysi jam rank\u0105!",
     translation: "You're going to break his arm!",
     masked_range: [17, 22],
-    answers: [
-      "per",
-      "rank\u0105",
-      "parduotuv\u0117je",
-      "\u0161itam",
-    ],
+    answers: ["per", "rank\u0105", "parduotuv\u0117je", "\u0161itam"],
     correct_answer: 1,
   },
   {
@@ -2618,12 +2072,7 @@ export const sentencesSample = [
     text: "kaip m\u016bs\u0173 istorijos ir paveldo dalis.",
     translation: "as part of our history and heritage.",
     masked_range: [10, 19],
-    answers: [
-      "atvyk\u0119s",
-      "istorijos",
-      "mums",
-      "a\u010di\u016b",
-    ],
+    answers: ["atvyk\u0119s", "istorijos", "mums", "a\u010di\u016b"],
     correct_answer: 1,
   },
   {
@@ -2632,12 +2081,7 @@ export const sentencesSample = [
     translation:
       "Am I to understand you're still hanging around with Dr. Emmett Brown, McFly?",
     masked_range: [10, 13],
-    answers: [
-      "rinkim\u0173",
-      "dar",
-      "saugyklos",
-      "ta\u0161kai",
-    ],
+    answers: ["rinkim\u0173", "dar", "saugyklos", "ta\u0161kai"],
     correct_answer: 1,
   },
   {
@@ -2645,26 +2089,15 @@ export const sentencesSample = [
     text: "Jei tik a\u0161 tur\u0117\u010diau daugiau laiko.",
     translation: "If I only had more time.",
     masked_range: [8, 10],
-    answers: [
-      "rezultatai",
-      "a\u0161",
-      "tur\u0117si",
-      "gim\u0119s",
-    ],
+    answers: ["rezultatai", "a\u0161", "tur\u0117si", "gim\u0119s"],
     correct_answer: 1,
   },
   {
     id: 702,
     text: "Labai juokinga. Elgiat\u0117s subrendusiai.",
-    translation:
-      "Very funny. You guys are being real mature.",
+    translation: "Very funny. You guys are being real mature.",
     masked_range: [6, 14],
-    answers: [
-      "reklaminiu",
-      "juokinga",
-      "nepasakok",
-      "galva",
-    ],
+    answers: ["reklaminiu", "juokinga", "nepasakok", "galva"],
     correct_answer: 1,
   },
   {
@@ -2683,15 +2116,9 @@ export const sentencesSample = [
   {
     id: 1148,
     text: "A\u0161 tikiuosi, neprie\u0161tarausi, bet D\u017eord\u017eas nor\u0117t\u0173 palyd\u0117ti mane namo.",
-    translation:
-      "but George asked if he could take me home.",
+    translation: "but George asked if he could take me home.",
     masked_range: [0, 2],
-    answers: [
-      "a\u0161",
-      "tariamos",
-      "patarim\u0105",
-      "ne\u017einai",
-    ],
+    answers: ["a\u0161", "tariamos", "patarim\u0105", "ne\u017einai"],
     correct_answer: 0,
   },
   {
@@ -2700,12 +2127,7 @@ export const sentencesSample = [
     translation:
       "And one for you, McFly. I believe that makes four in a row.",
     masked_range: [27, 30],
-    answers: [
-      "gerb\u016bv\u012f",
-      "kreigas",
-      "man",
-      "nukritau",
-    ],
+    answers: ["gerb\u016bv\u012f", "kreigas", "man", "nukritau"],
     correct_answer: 2,
   },
   {
@@ -2714,26 +2136,15 @@ export const sentencesSample = [
     translation:
       "that the car had any blind spot before when I would drive it.",
     masked_range: [28, 36],
-    answers: [
-      "duoti",
-      "prie\u0161ingi",
-      "dirbsiu",
-      "ka\u017ekokie",
-    ],
+    answers: ["duoti", "prie\u0161ingi", "dirbsiu", "ka\u017ekokie"],
     correct_answer: 3,
   },
   {
     id: 695,
     text: "Jei jie nesusitiks, jie ne\u012fsimyl\u0117s, nesusituoks ir netur\u0117s vaik\u0173.",
-    translation:
-      "they won't get married and they won't have kids.",
+    translation: "they won't get married and they won't have kids.",
     masked_range: [4, 7],
-    answers: [
-      "keliauti",
-      "jie",
-      "\u0161tai",
-      "trisde\u0161imt",
-    ],
+    answers: ["keliauti", "jie", "\u0161tai", "trisde\u0161imt"],
     correct_answer: 1,
   },
   {
@@ -2776,12 +2187,7 @@ export const sentencesSample = [
     text: "Jis mielas, bet ne...",
     translation: "He's kind of cute and all, but not...",
     masked_range: [4, 10],
-    answers: [
-      "pasak\u0117",
-      "pasivysime",
-      "nauja",
-      "mielas",
-    ],
+    answers: ["pasak\u0117", "pasivysime", "nauja", "mielas"],
     correct_answer: 3,
   },
   {
@@ -2804,15 +2210,9 @@ export const sentencesSample = [
   {
     id: 611,
     text: "O D\u017eekas Benis - finans\u0173 ministras.",
-    translation:
-      "And Jack Benny is secretary of the treasury.",
+    translation: "And Jack Benny is secretary of the treasury.",
     masked_range: [2, 8],
-    answers: [
-      "d\u017eekas",
-      "palikai",
-      "ne\u017einai",
-      "padarome",
-    ],
+    answers: ["d\u017eekas", "palikai", "ne\u017einai", "padarome"],
     correct_answer: 0,
   },
   {
@@ -2828,12 +2228,7 @@ export const sentencesSample = [
     text: "Lorein, jei tavo vaikas kada taip elgsis, a\u0161 tav\u0119s atsi\u017ead\u0117siu.",
     translation: "who acts that way, I'll disown you.",
     masked_range: [42, 44],
-    answers: [
-      "pasaulyje",
-      "parodo",
-      "a\u0161",
-      "pagalbininkus",
-    ],
+    answers: ["pasaulyje", "parodo", "a\u0161", "pagalbininkus"],
     correct_answer: 2,
   },
   {
@@ -2853,8 +2248,7 @@ export const sentencesSample = [
   {
     id: 323,
     text: "Jis tur\u0117jo pa\u0161\u0117lusi\u0105 id\u0117j\u0105 apie pu\u0161\u0173 auginim\u0105.",
-    translation:
-      "He had this crazy idea about breeding pine trees.",
+    translation: "He had this crazy idea about breeding pine trees.",
     masked_range: [11, 20],
     answers: [
       "pakviet\u0117",
@@ -2883,19 +2277,13 @@ export const sentencesSample = [
     translation:
       "Let me give you a nickel's worth of free advice, young man.",
     masked_range: [23, 28],
-    answers: [
-      "tur\u0117ti",
-      "kelion\u0117",
-      "duoti",
-      "galv\u0105",
-    ],
+    answers: ["tur\u0117ti", "kelion\u0117", "duoti", "galv\u0105"],
     correct_answer: 2,
   },
   {
     id: 1002,
     text: "Marti, tu taip jaudiniesi. Ar ka\u017ekas ne taip?",
-    translation:
-      "Marty, you seem so nervous. Is something wrong?",
+    translation: "Marty, you seem so nervous. Is something wrong?",
     masked_range: [7, 9],
     answers: ["tu", "tikimasi", "atominio", "suk\u016brei"],
     correct_answer: 0,
@@ -2916,8 +2304,7 @@ export const sentencesSample = [
   {
     id: 280,
     text: "mes pasivysime j\u012f ir laiko ma\u0161in\u0105.",
-    translation:
-      "we shall catch up with him and the time machine.",
+    translation: "we shall catch up with him and the time machine.",
     masked_range: [4, 14],
     answers: [
       "aplinkui",
@@ -2930,29 +2317,17 @@ export const sentencesSample = [
   {
     id: 501,
     text: "Tai tavo vardas, ar ne? Kalvinas Kleinas.",
-    translation:
-      "Well, that is your name, isn't it? Calvin Klein?",
+    translation: "Well, that is your name, isn't it? Calvin Klein?",
     masked_range: [24, 32],
-    answers: [
-      "kalvinas",
-      "toje",
-      "balsuos",
-      "va\u017eiuoti",
-    ],
+    answers: ["kalvinas", "toje", "balsuos", "va\u017eiuoti"],
     correct_answer: 0,
   },
   {
     id: 930,
     text: "Kaip man eiti \u012f \u0161okius su ja...",
-    translation:
-      "How am I supposed to go to the dance with her",
+    translation: "How am I supposed to go to the dance with her",
     masked_range: [23, 25],
-    answers: [
-      "su",
-      "dalis",
-      "paklausyk",
-      "pa\u017ei\u016brim",
-    ],
+    answers: ["su", "dalis", "paklausyk", "pa\u017ei\u016brim"],
     correct_answer: 0,
   },
   {
@@ -2960,19 +2335,13 @@ export const sentencesSample = [
     text: "Taigi dabar Statlerio Tojota si\u016blo geriausias sutartis \u0161iais metais...",
     translation: "is making the best deals of the year",
     masked_range: [61, 67],
-    answers: [
-      "pakeitei",
-      "metais",
-      "priek\u012f",
-      "tempiamas",
-    ],
+    answers: ["pakeitei", "metais", "priek\u012f", "tempiamas"],
     correct_answer: 1,
   },
   {
     id: 470,
     text: "Gerai. Gali prad\u0117ti nuo grind\u0173 \u0161lavimo.",
-    translation:
-      "Good. You can start by sweeping the floor.",
+    translation: "Good. You can start by sweeping the floor.",
     masked_range: [24, 30],
     answers: ["luisas", "jo", "grind\u0173", "geru"],
     correct_answer: 2,
@@ -2980,15 +2349,9 @@ export const sentencesSample = [
   {
     id: 599,
     text: "Pa\u017ei\u016br\u0117k \u012f mano vairuotojo teises. Baigia galioti 1987 metais.",
-    translation:
-      "Look at my driver's license. Expires 1987.",
+    translation: "Look at my driver's license. Expires 1987.",
     masked_range: [9, 10],
-    answers: [
-      "\u012f",
-      "\u0161i",
-      "viskas",
-      "gr\u012f\u017eti",
-    ],
+    answers: ["\u012f", "\u0161i", "viskas", "gr\u012f\u017eti"],
     correct_answer: 0,
   },
   {
@@ -2997,12 +2360,7 @@ export const sentencesSample = [
     translation:
       "That's why his watch is exactly one minute behind mine.",
     masked_range: [0, 4],
-    answers: [
-      "d\u017eenifer",
-      "\u0161tai",
-      "eiti",
-      "nusenusiu",
-    ],
+    answers: ["d\u017eenifer", "\u0161tai", "eiti", "nusenusiu"],
     correct_answer: 1,
   },
   {
@@ -3011,12 +2369,7 @@ export const sentencesSample = [
     translation:
       "The FBI, which is investigating the matter, had no comment.",
     masked_range: [27, 35],
-    answers: [
-      "baga\u017ein\u0117je",
-      "-o",
-      "ftb",
-      "atsisak\u0117",
-    ],
+    answers: ["baga\u017ein\u0117je", "-o", "ftb", "atsisak\u0117"],
     correct_answer: 3,
   },
   {
@@ -3030,8 +2383,7 @@ export const sentencesSample = [
   {
     id: 177,
     text: "Ar \u012fsivaizduoji, kaip man tai buvo svarbu?",
-    translation:
-      "Do you have any idea how important this was to me?",
+    translation: "Do you have any idea how important this was to me?",
     masked_range: [3, 15],
     answers: [
       "i\u0161si\u0173sime",
@@ -3053,8 +2405,7 @@ export const sentencesSample = [
   {
     id: 87,
     text: "Betgi esi tikrai \u0161aunus, ir tavo konkursin\u0117 juosta puiki.",
-    translation:
-      "and this audition tape of yours is great.",
+    translation: "and this audition tape of yours is great.",
     masked_range: [51, 56],
     answers: ["imituosiu", "paskambinti", "puiki", "eiti"],
     correct_answer: 2,
@@ -3065,26 +2416,15 @@ export const sentencesSample = [
     translation:
       "I didn't have time to build it to scale or paint it.",
     masked_range: [0, 9],
-    answers: [
-      "netur\u0117jau",
-      "bet",
-      "ta\u0161kai",
-      "oras",
-    ],
+    answers: ["netur\u0117jau", "bet", "ta\u0161kai", "oras"],
     correct_answer: 0,
   },
   {
     id: 1308,
     text: "A\u0161 nor\u0117jau pasakyti, kad dar tik pradedu antr\u0105 sluoksn\u012f.",
-    translation:
-      "I meant I was just starting on the second coat.",
+    translation: "I meant I was just starting on the second coat.",
     masked_range: [47, 55],
-    answers: [
-      "tau",
-      "sluoksn\u012f",
-      "glyson\u0105",
-      "kalvinas",
-    ],
+    answers: ["tau", "sluoksn\u012f", "glyson\u0105", "kalvinas"],
     correct_answer: 1,
   },
   {
@@ -3092,12 +2432,7 @@ export const sentencesSample = [
     text: "Makflajau, rodos, pataikei ne \u012f t\u0105 ma\u0161in\u0105.",
     translation: "I think you got the wrong car, McFly.",
     masked_range: [30, 31],
-    answers: [
-      "neu\u017esi\u0117m\u0117",
-      "\u012f",
-      "mano",
-      "nebent",
-    ],
+    answers: ["neu\u017esi\u0117m\u0117", "\u012f", "mano", "nebent"],
     correct_answer: 1,
   },
   {
@@ -3117,8 +2452,7 @@ export const sentencesSample = [
   {
     id: 282,
     text: "Nori pasakyti, kad suk\u016brei laiko ma\u0161in\u0105...",
-    translation:
-      "Are you telling me that you built a time machine",
+    translation: "Are you telling me that you built a time machine",
     masked_range: [33, 39],
     answers: [
       "-j\u016bs\u0173",
@@ -3131,8 +2465,7 @@ export const sentencesSample = [
   {
     id: 1123,
     text: "Auk\u0161tai am\u017einai \u017ealiuojan\u010diuose mi\u0161kuose",
-    translation:
-      "Way back up in the woods among the evergreens",
+    translation: "Way back up in the woods among the evergreens",
     masked_range: [16, 31],
     answers: [
       "\u017ealiuojan\u010diuose",
@@ -3159,15 +2492,9 @@ export const sentencesSample = [
   {
     id: 294,
     text: "Minut\u0117s laikotarpyje, akimirksniu jis atvyko \u010dia.",
-    translation:
-      "to instantly arrive at this moment in time.",
+    translation: "to instantly arrive at this moment in time.",
     masked_range: [22, 33],
-    answers: [
-      "pacientus",
-      "padegs",
-      "t\u0117v\u0173",
-      "akimirksniu",
-    ],
+    answers: ["pacientus", "padegs", "t\u0117v\u0173", "akimirksniu"],
     correct_answer: 3,
   },
   {
@@ -3175,12 +2502,7 @@ export const sentencesSample = [
     text: "Kaip a\u0161 susipa\u017einau su tavo t\u0117vu.",
     translation: "Like the way I met your father.",
     masked_range: [23, 27],
-    answers: [
-      "med\u017eio",
-      "\u017eino",
-      "m\u0117sos",
-      "tavo",
-    ],
+    answers: ["med\u017eio", "\u017eino", "m\u0117sos", "tavo"],
     correct_answer: 3,
   },
   {
@@ -3189,19 +2511,13 @@ export const sentencesSample = [
     translation:
       "Doc, you don't just walk into a store and buy plutonium.",
     masked_range: [33, 35],
-    answers: [
-      "ma\u0161inoje",
-      "molio",
-      "ir",
-      "vilk\u0117damas",
-    ],
+    answers: ["ma\u0161inoje", "molio", "ir", "vilk\u0117damas"],
     correct_answer: 2,
   },
   {
     id: 111,
     text: "Klausyk, manau, kad ta moteris gim\u0117 vienuole.",
-    translation:
-      "I mean, look, I think the woman was born a nun.",
+    translation: "I mean, look, I think the woman was born a nun.",
     masked_range: [0, 7],
     answers: ["laiko", "klausyk", "rytojaus", "atiduokite"],
     correct_answer: 1,
@@ -3212,12 +2528,7 @@ export const sentencesSample = [
     translation:
       "That I'm going to have a chance to travel through time!",
     masked_range: [15, 23],
-    answers: [
-      "galimyb\u0119",
-      "marti",
-      "kanceliarijos",
-      "atgal",
-    ],
+    answers: ["galimyb\u0119", "marti", "kanceliarijos", "atgal"],
     correct_answer: 0,
   },
   {
@@ -3260,12 +2571,7 @@ export const sentencesSample = [
     translation:
       "Don't pay attention to him. He's in one of his moods.",
     masked_range: [35, 43],
-    answers: [
-      "lapeliu",
-      "eil\u0117s",
-      "perduo\u010diau",
-      "nuotaika",
-    ],
+    answers: ["lapeliu", "eil\u0117s", "perduo\u010diau", "nuotaika"],
     correct_answer: 3,
   },
   {
@@ -3309,12 +2615,7 @@ export const sentencesSample = [
     translation:
       "And I'm afraid I'm just not very good at confrontations.",
     masked_range: [26, 32],
-    answers: [
-      "grind\u0173",
-      "sekasi",
-      "apatini\u0173",
-      "pagaminti",
-    ],
+    answers: ["grind\u0173", "sekasi", "apatini\u0173", "pagaminti"],
     correct_answer: 1,
   },
   {
@@ -3349,12 +2650,7 @@ export const sentencesSample = [
     translation:
       "have you interacted with anybody else today, besides me?",
     masked_range: [34, 38],
-    answers: [
-      "\u012fsp\u0117jau",
-      "kitu",
-      "tad",
-      "atvyk\u0119s",
-    ],
+    answers: ["\u012fsp\u0117jau", "kitu", "tad", "atvyk\u0119s"],
     correct_answer: 1,
   },
   {
@@ -3376,40 +2672,23 @@ export const sentencesSample = [
     translation:
       "No, no! You're staying right here with me. Come on, Lorraine.",
     masked_range: [19, 21],
-    answers: [
-      "su",
-      "pavogta",
-      "ma\u017edaug",
-      "kalb\u0117tis",
-    ],
+    answers: ["su", "pavogta", "ma\u017edaug", "kalb\u0117tis"],
     correct_answer: 0,
   },
   {
     id: 1203,
     text: "Daktare, tur\u0117si rizikuoti.",
-    translation:
-      "Doc, that's a risk you're going to have to take.",
+    translation: "Doc, that's a risk you're going to have to take.",
     masked_range: [16, 25],
-    answers: [
-      "amerikos",
-      "devynias",
-      "leid\u017eia",
-      "rizikuoti",
-    ],
+    answers: ["amerikos", "devynias", "leid\u017eia", "rizikuoti"],
     correct_answer: 3,
   },
   {
     id: 603,
     text: 'Pa\u017ei\u016br\u0117k \u012f mano sportin\u012f megztin\u012f, daktare. "1984 met\u0173 laida"?',
-    translation:
-      'Look at her sweatshirt, Doc. "Class of 1984"?',
+    translation: 'Look at her sweatshirt, Doc. "Class of 1984"?',
     masked_range: [25, 33],
-    answers: [
-      "kvaila",
-      "vadina",
-      "megztin\u012f",
-      "neleid\u017eiu",
-    ],
+    answers: ["kvaila", "vadina", "megztin\u012f", "neleid\u017eiu"],
     correct_answer: 2,
   },
   {
@@ -3417,12 +2696,7 @@ export const sentencesSample = [
     text: "Tai tiesa. Jis bus meras.",
     translation: "That's right. He's going to be mayor.",
     masked_range: [15, 18],
-    answers: [
-      "bus",
-      "vilsonas",
-      "\u012feinant",
-      "valandas",
-    ],
+    answers: ["bus", "vilsonas", "\u012feinant", "valandas"],
     correct_answer: 0,
   },
   {
@@ -3430,12 +2704,7 @@ export const sentencesSample = [
     text: "Labas. Labai malonu su tavimi susipa\u017einti.",
     translation: "Hi. It's really a pleasure to meet you.",
     masked_range: [7, 12],
-    answers: [
-      "laikotarpyje",
-      "ilgai",
-      "labai",
-      "reik\u0117jo",
-    ],
+    answers: ["laikotarpyje", "ilgai", "labai", "reik\u0117jo"],
     correct_answer: 2,
   },
   {
@@ -3443,12 +2712,7 @@ export const sentencesSample = [
     text: "Paleisk j\u012f, Bifai. Tu - girtas.",
     translation: "Let him go, Biff. You're drunk.",
     masked_range: [8, 10],
-    answers: [
-      "25",
-      "pagalvojau",
-      "j\u012f",
-      "svajon\u0117",
-    ],
+    answers: ["25", "pagalvojau", "j\u012f", "svajon\u0117"],
     correct_answer: 2,
   },
   {
@@ -3456,19 +2720,13 @@ export const sentencesSample = [
     text: "Ar \u017einai, kaip a\u0161 elgiuosi tokiose situacijose?",
     translation: "You know what I do in those situations?",
     masked_range: [27, 34],
-    answers: [
-      "mergina",
-      "tokiose",
-      "pasiek\u0119s",
-      "\u012fjungs",
-    ],
+    answers: ["mergina", "tokiose", "pasiek\u0119s", "\u012fjungs"],
     correct_answer: 1,
   },
   {
     id: 1028,
     text: "bet kai tave bu\u010diuoju, jau\u010diuosi lyg bu\u010diuo\u010diau...",
-    translation:
-      "But when I kiss you, it's like I'm kissing",
+    translation: "But when I kiss you, it's like I'm kissing",
     masked_range: [23, 32],
     answers: ["bet", "rytoj", "namelis", "jau\u010diuosi"],
     correct_answer: 3,
@@ -3478,12 +2736,7 @@ export const sentencesSample = [
     text: "Nepamir\u0161kite paimti reklaminio lapelio.",
     translation: "Don't forget to take a flyer.",
     masked_range: [20, 30],
-    answers: [
-      "reklaminio",
-      "atsitrenk\u0117",
-      "\u0161\u012f",
-      "tam",
-    ],
+    answers: ["reklaminio", "atsitrenk\u0117", "\u0161\u012f", "tam"],
     correct_answer: 0,
   },
   {
@@ -3501,12 +2754,7 @@ export const sentencesSample = [
     translation:
       "There's something wrong with the starter, so I hid it here.",
     masked_range: [32, 34],
-    answers: [
-      "prad\u0117siu",
-      "kada",
-      "vakar\u0105",
-      "a\u0161",
-    ],
+    answers: ["prad\u0117siu", "kada", "vakar\u0105", "a\u0161"],
     correct_answer: 3,
   },
   {
@@ -3526,8 +2774,7 @@ export const sentencesSample = [
   {
     id: 1314,
     text: "Sveikas, Marti. Man atrodo, tai tavo nauja knyga.",
-    translation:
-      "Oh, hi, Marty. I think it's your new book.",
+    translation: "Oh, hi, Marty. I think it's your new book.",
     masked_range: [28, 31],
     answers: [
       "nepasiruo\u0161\u0119s",
@@ -3540,29 +2787,17 @@ export const sentencesSample = [
   {
     id: 822,
     text: "Pasakyk jai, kad likimas jus suved\u0117.",
-    translation:
-      "Look, tell her destiny brought you together.",
+    translation: "Look, tell her destiny brought you together.",
     masked_range: [0, 7],
-    answers: [
-      "galioti",
-      "pasakyk",
-      "balsuos",
-      "ka\u017ek\u0105",
-    ],
+    answers: ["galioti", "pasakyk", "balsuos", "ka\u017ek\u0105"],
     correct_answer: 1,
   },
   {
     id: 751,
     text: "atsimeni t\u0105 mergin\u0105, su kuria supa\u017eindinau, Lorein?",
-    translation:
-      "Remember that girl I introduced you to, Lorraine?",
+    translation: "Remember that girl I introduced you to, Lorraine?",
     masked_range: [30, 42],
-    answers: [
-      "t\u0105",
-      "kalvinas",
-      "supa\u017eindinau",
-      "lorein",
-    ],
+    answers: ["t\u0105", "kalvinas", "supa\u017eindinau", "lorein"],
     correct_answer: 2,
   },
   {
@@ -3576,15 +2811,9 @@ export const sentencesSample = [
   {
     id: 299,
     text: "\u0160ioje klaviat\u016broje \u012fvesk kelion\u0117s vietos laik\u0105.",
-    translation:
-      "You input your destination time on this keypad.",
+    translation: "You input your destination time on this keypad.",
     masked_range: [19, 24],
-    answers: [
-      "veskite",
-      "skambinanti",
-      "\u0161tai",
-      "\u012fvesk",
-    ],
+    answers: ["veskite", "skambinanti", "\u0161tai", "\u012fvesk"],
     correct_answer: 3,
   },
   {
@@ -3593,12 +2822,7 @@ export const sentencesSample = [
     translation:
       "And he's completely unaware that anything happened.",
     masked_range: [13, 19],
-    answers: [
-      "n\u0117ra",
-      "1985-siais",
-      "ne\u017eino",
-      "reakcija",
-    ],
+    answers: ["n\u0117ra", "1985-siais", "ne\u017eino", "reakcija"],
     correct_answer: 2,
   },
   {
@@ -3644,8 +2868,7 @@ export const sentencesSample = [
   {
     id: 85,
     text: "Marti, vienas atmetimas dar ne pasaulio pabaiga.",
-    translation:
-      "Marty, one rejection isn't the end of the world.",
+    translation: "Marty, one rejection isn't the end of the world.",
     masked_range: [14, 23],
     answers: [
       "atminkite",
@@ -3658,8 +2881,7 @@ export const sentencesSample = [
   {
     id: 1280,
     text: "Tu v\u0117l miegojai apsireng\u0119s?",
-    translation:
-      "Did you sleep in your clothes again last night?",
+    translation: "Did you sleep in your clothes again last night?",
     masked_range: [3, 6],
     answers: [
       "v\u0117l",
@@ -3675,12 +2897,7 @@ export const sentencesSample = [
     translation:
       "so you've got to get your father and mother to interact",
     masked_range: [20, 24],
-    answers: [
-      "vidurin\u0117",
-      "kalu",
-      "marti",
-      "t\u0117vu",
-    ],
+    answers: ["vidurin\u0117", "kalu", "marti", "t\u0117vu"],
     correct_answer: 3,
   },
   {
@@ -3713,8 +2930,7 @@ export const sentencesSample = [
   {
     id: 133,
     text: "Tempiamas automobilis. Visiems padaliniams, atsiliepkite.",
-    translation:
-      "Tow for impoundment. Any unit, please respond.",
+    translation: "Tow for impoundment. Any unit, please respond.",
     masked_range: [44, 56],
     answers: [
       "saugok",
@@ -3729,12 +2945,7 @@ export const sentencesSample = [
     text: "Ar jau galiu eiti, pone Striklandai?",
     translation: "Can I go now, Mr. Strickland?",
     masked_range: [3, 6],
-    answers: [
-      "lau\u017e\u0105",
-      "jau",
-      "gim\u0117",
-      "gyvenu",
-    ],
+    answers: ["lau\u017e\u0105", "jau", "gim\u0117", "gyvenu"],
     correct_answer: 1,
   },
   {
@@ -3748,8 +2959,7 @@ export const sentencesSample = [
   {
     id: 894,
     text: "kai jungiantysis kablys \u012fjungs srov\u0119...",
-    translation:
-      "just as the connecting hook makes contact",
+    translation: "just as the connecting hook makes contact",
     masked_range: [31, 36],
     answers: [
       "i\u0161si\u0173sk",
@@ -3775,15 +2985,9 @@ export const sentencesSample = [
   {
     id: 164,
     text: "A\u0161 nutempiau ma\u0161in\u0105 prie tavo nam\u0173...",
-    translation:
-      "I have your car towed all the way to your house",
+    translation: "I have your car towed all the way to your house",
     masked_range: [20, 24],
-    answers: [
-      "greit\u012f",
-      "bifas",
-      "prie",
-      "bok\u0161to",
-    ],
+    answers: ["greit\u012f", "bifas", "prie", "bok\u0161to"],
     correct_answer: 2,
   },
   {
@@ -3802,29 +3006,17 @@ export const sentencesSample = [
   {
     id: 103,
     text: "\u012esimetus por\u0105 miegmai\u0161i\u0173 \u012f baga\u017ein\u0119.",
-    translation:
-      "Throw a couple of sleeping bags in the back.",
+    translation: "Throw a couple of sleeping bags in the back.",
     masked_range: [0, 8],
-    answers: [
-      "labas",
-      "\u012fsimetus",
-      "vilsonas",
-      "perduok",
-    ],
+    answers: ["labas", "\u012fsimetus", "vilsonas", "perduok"],
     correct_answer: 1,
   },
   {
     id: 208,
     text: "Kaip a\u0161 kada nors su kuo susipa\u017einsiu?",
-    translation:
-      "Then how am I supposed to ever meet anybody?",
+    translation: "Then how am I supposed to ever meet anybody?",
     masked_range: [18, 20],
-    answers: [
-      "ka\u017eko",
-      "nesivaikiau",
-      "viet\u0105",
-      "su",
-    ],
+    answers: ["ka\u017eko", "nesivaikiau", "viet\u0105", "su"],
     correct_answer: 3,
   },
   {
@@ -3841,26 +3033,15 @@ export const sentencesSample = [
     translation:
       "Mayor Wilson is sponsoring an initiative to replace that clock.",
     masked_range: [6, 14],
-    answers: [
-      "devynias",
-      "\u017eem\u0117s",
-      "seniui",
-      "vilsonas",
-    ],
+    answers: ["devynias", "\u017eem\u0117s", "seniui", "vilsonas"],
     correct_answer: 3,
   },
   {
     id: 1171,
     text: "K\u0105 galvoji, kad gr\u012f\u0161iu vilk\u0117damas tuo nusenusiu kostiumu?",
-    translation:
-      "Do you think I'm going back in that zoot suit?",
+    translation: "Do you think I'm going back in that zoot suit?",
     masked_range: [3, 10],
-    answers: [
-      "terorist\u0173",
-      "ra\u0161yt",
-      "j\u0173",
-      "galvoji",
-    ],
+    answers: ["terorist\u0173", "ra\u0161yt", "j\u0173", "galvoji"],
     correct_answer: 3,
   },
   {
@@ -3921,12 +3102,7 @@ export const sentencesSample = [
     text: "Kai tu \u0161neki, skamba labai paprastai.",
     translation: "You make it sound so easy.",
     masked_range: [14, 20],
-    answers: [
-      "d\u017eeris",
-      "eit\u0173",
-      "skamba",
-      "gatv\u0117s",
-    ],
+    answers: ["d\u017eeris", "eit\u0173", "skamba", "gatv\u0117s"],
     correct_answer: 2,
   },
   {
@@ -3948,19 +3124,13 @@ export const sentencesSample = [
     text: "Ein\u0161teino laikrodis v\u0117luoja lygiai minut\u0119 ir vis dar eina!",
     translation: "Einstein's clock is exactly one minute",
     masked_range: [28, 34],
-    answers: [
-      "lygiai",
-      "si\u016blo",
-      "namo",
-      "kontroliniu",
-    ],
+    answers: ["lygiai", "si\u016blo", "namo", "kontroliniu"],
     correct_answer: 0,
   },
   {
     id: 1184,
     text: "atsi\u017evelgiant \u012f \u012fsib\u0117g\u0117jimo greit\u012f...",
-    translation:
-      "taking into account the acceleration speed",
+    translation: "taking into account the acceleration speed",
     masked_range: [16, 27],
     answers: [
       "mamai",
@@ -3975,19 +3145,13 @@ export const sentencesSample = [
     text: "Bifai, niekad nepasteb\u0117jau...",
     translation: "Now, Biff, now, I never noticed",
     masked_range: [0, 5],
-    answers: [
-      "atsitrenk\u0117",
-      "gyvenime",
-      "irgi",
-      "bifai",
-    ],
+    answers: ["atsitrenk\u0117", "gyvenime", "irgi", "bifai"],
     correct_answer: 3,
   },
   {
     id: 995,
     text: "Sekund\u0117l\u0119. Pa\u017ei\u016br\u0117siu ar surasiu.",
-    translation:
-      "Just a second. Let me see if I can find it here.",
+    translation: "Just a second. Let me see if I can find it here.",
     masked_range: [25, 32],
     answers: [
       "surasiu",
@@ -4000,15 +3164,9 @@ export const sentencesSample = [
   {
     id: 590,
     text: "\u010cia atvykau tavo i\u0161rasta laiko ma\u0161ina.",
-    translation:
-      "I came here in a time machine that you invented.",
+    translation: "I came here in a time machine that you invented.",
     masked_range: [17, 24],
-    answers: [
-      "paskub\u0117k",
-      "i\u0161rasta",
-      "jis",
-      "plaukus",
-    ],
+    answers: ["paskub\u0117k", "i\u0161rasta", "jis", "plaukus"],
     correct_answer: 1,
   },
   {
@@ -4022,8 +3180,7 @@ export const sentencesSample = [
   {
     id: 945,
     text: "Tod\u0117l, D\u017eord\u017eai, kad geroms mergait\u0117ms nepatinka, kai jomis naudojamasi.",
-    translation:
-      "Well, because, George, nice girls get angry",
+    translation: "Well, because, George, nice girls get angry",
     masked_range: [28, 38],
     answers: [
       "valand\u0105",
@@ -4036,15 +3193,9 @@ export const sentencesSample = [
   {
     id: 803,
     text: "A\u0161 - ne \u0161ios \u017dem\u0117s b\u016btyb\u0117 i\u0161 Vulkano planetos.",
-    translation:
-      "I am an extraterrestrial from the planet Vulcan.",
+    translation: "I am an extraterrestrial from the planet Vulcan.",
     masked_range: [26, 28],
-    answers: [
-      "i\u0161",
-      "bals\u0105",
-      "dvi",
-      "suved\u0117",
-    ],
+    answers: ["i\u0161", "bals\u0105", "dvi", "suved\u0117"],
     correct_answer: 0,
   },
   {
@@ -4066,12 +3217,7 @@ export const sentencesSample = [
     translation:
       "If they can't kiss, they can't fall in love and I'm history.",
     masked_range: [55, 60],
-    answers: [
-      "b\u016bsiu",
-      "istorijoje",
-      "juk",
-      "finans\u0173",
-    ],
+    answers: ["b\u016bsiu", "istorijoje", "juk", "finans\u0173"],
     correct_answer: 0,
   },
   {
@@ -4108,12 +3254,7 @@ export const sentencesSample = [
     text: "Tu, kosmoso \u0161unsnuki! Sunaikinai mano pu\u0161\u012f!",
     translation: "You space bastard! You killed our pine!",
     masked_range: [33, 37],
-    answers: [
-      "mu\u0161tyni\u0173",
-      "pad\u0117k",
-      "eis",
-      "mano",
-    ],
+    answers: ["mu\u0161tyni\u0173", "pad\u0117k", "eis", "mano"],
     correct_answer: 3,
   },
   {
@@ -4121,33 +3262,21 @@ export const sentencesSample = [
     text: "A\u0161 atsisakau prisiimti toki\u0105 atsakomyb\u0119.",
     translation: "I refuse to accept the responsibility.",
     masked_range: [3, 12],
-    answers: [
-      "atsisakau",
-      "m\u0117gsti",
-      "ftb",
-      "priminei",
-    ],
+    answers: ["atsisakau", "m\u0117gsti", "ftb", "priminei"],
     correct_answer: 0,
   },
   {
     id: 195,
     text: "Mama. Paskub\u0117k. A\u0161 nesp\u0117siu \u012f autobus\u0105.",
-    translation:
-      "Come on, Mom. Make it fast. I'll miss my bus.",
+    translation: "Come on, Mom. Make it fast. I'll miss my bus.",
     masked_range: [0, 4],
-    answers: [
-      "laikotarpyje",
-      "mama",
-      "de\u0161imt",
-      "vaikin\u0173",
-    ],
+    answers: ["laikotarpyje", "mama", "de\u0161imt", "vaikin\u0173"],
     correct_answer: 1,
   },
   {
     id: 797,
     text: "ir nei tu, nei niekas kitas \u0161ioje planetoje...",
-    translation:
-      "and not you or anybody else on this planet",
+    translation: "and not you or anybody else on this planet",
     masked_range: [15, 21],
     answers: ["vardu", "laikrodis", "skaityti", "niekas"],
     correct_answer: 3,
@@ -4173,12 +3302,7 @@ export const sentencesSample = [
     text: "A\u0161 tav\u0119s labai pasiilgsiu, Marti.",
     translation: "I'm really going to miss you, Marty.",
     masked_range: [9, 14],
-    answers: [
-      "labai",
-      "paprast\u0105",
-      "nat\u016bralu",
-      "bendrauji",
-    ],
+    answers: ["labai", "paprast\u0105", "nat\u016bralu", "bendrauji"],
     correct_answer: 0,
   },
   {
@@ -4187,12 +3311,7 @@ export const sentencesSample = [
     translation:
       "Yeah, but I've never picked a fight in my entire life.",
     masked_range: [48, 56],
-    answers: [
-      "tuomet",
-      "mu\u0161tyni\u0173",
-      "priminei",
-      "be",
-    ],
+    answers: ["tuomet", "mu\u0161tyni\u0173", "priminei", "be"],
     correct_answer: 1,
   },
   {
@@ -4201,12 +3320,7 @@ export const sentencesSample = [
     translation:
       "Who knows if they've got cotton underwear in the future?",
     masked_range: [10, 12],
-    answers: [
-      "i\u0161trinta",
-      "ar",
-      "pakankamai",
-      "kalvinai",
-    ],
+    answers: ["i\u0161trinta", "ar", "pakankamai", "kalvinai"],
     correct_answer: 1,
   },
   {
@@ -4248,12 +3362,7 @@ export const sentencesSample = [
     text: "Perduok mamai link\u0117jim\u0173.",
     translation: "Say hi to your mom for me.",
     masked_range: [8, 13],
-    answers: [
-      "lapeliu",
-      "teorij\u0105",
-      "ma\u0161inai",
-      "mamai",
-    ],
+    answers: ["lapeliu", "teorij\u0105", "ma\u0161inai", "mamai"],
     correct_answer: 3,
   },
   {
@@ -4296,19 +3405,13 @@ export const sentencesSample = [
     text: "Pirma, \u012fjungi laiko rat\u0105.",
     translation: "First, you turn the time circuits on.",
     masked_range: [20, 24],
-    answers: [
-      "ma\u017eesnius",
-      "geros",
-      "smegen\u0173",
-      "rat\u0105",
-    ],
+    answers: ["ma\u017eesnius", "geros", "smegen\u0173", "rat\u0105"],
     correct_answer: 3,
   },
   {
     id: 683,
     text: "Negali su niekuo matytis ar kalb\u0117tis.",
-    translation:
-      "You must not see anybody or talk to anybody.",
+    translation: "You must not see anybody or talk to anybody.",
     masked_range: [10, 16],
     answers: ["ja", "gali\u0105", "manau", "niekuo"],
     correct_answer: 3,
@@ -4318,12 +3421,7 @@ export const sentencesSample = [
     text: "A\u0161 niekad niekam neleid\u017eiu skaityti savo apsakym\u0173.",
     translation: "I never let anybody read my stories.",
     masked_range: [36, 40],
-    answers: [
-      "savo",
-      "klozeto",
-      "juosta",
-      "prisi\u0117m\u0117",
-    ],
+    answers: ["savo", "klozeto", "juosta", "prisi\u0117m\u0117"],
     correct_answer: 0,
   },
   {
@@ -4337,8 +3435,7 @@ export const sentencesSample = [
   {
     id: 1143,
     text: "Atrodo, kad j\u016bs dar \u0161itam nepasiruo\u0161\u0119...",
-    translation:
-      "I guess you guys aren't ready for that yet.",
+    translation: "I guess you guys aren't ready for that yet.",
     masked_range: [8, 11],
     answers: [
       "pu\u0161\u0173",
@@ -4364,15 +3461,9 @@ export const sentencesSample = [
   {
     id: 964,
     text: "Daugiausia be krituli\u0173, \u0161iek tiek debesuota.",
-    translation:
-      "Mostly clear, with some scattered clouds.",
+    translation: "Mostly clear, with some scattered clouds.",
     masked_range: [0, 10],
-    answers: [
-      "\u0161eimos",
-      "visur",
-      "keliautoju",
-      "daugiausia",
-    ],
+    answers: ["\u0161eimos", "visur", "keliautoju", "daugiausia"],
     correct_answer: 3,
   },
   {
@@ -4381,12 +3472,7 @@ export const sentencesSample = [
     translation:
       "thereby sending 1.21 gigawatts into the flux capacitor",
     masked_range: [14, 22],
-    answers: [
-      "paprastai",
-      "\u0161\u012f",
-      "elektros",
-      "palauk",
-    ],
+    answers: ["paprastai", "\u0161\u012f", "elektros", "palauk"],
     correct_answer: 2,
   },
   {
@@ -4406,8 +3492,7 @@ export const sentencesSample = [
   {
     id: 1283,
     text: "A\u0161 vis\u0105 laik\u0105 kontoroje vilkiu kostiumu.",
-    translation:
-      "Marty, I always wear a suit to the office.",
+    translation: "Marty, I always wear a suit to the office.",
     masked_range: [3, 7],
     answers: ["vis\u0105", "ka\u017ekur", "labas", "-ar"],
     correct_answer: 0,
@@ -4441,8 +3526,7 @@ export const sentencesSample = [
   {
     id: 271,
     text: "J\u0117zau Kristau, daktare! Tu i\u0161skaidei Ein\u0161tein\u0105!",
-    translation:
-      "Jesus Christ, Doc! You disintegrated Einstein!",
+    translation: "Jesus Christ, Doc! You disintegrated Einstein!",
     masked_range: [24, 26],
     answers: ["emetu", "atsakiklis", "keliauji", "tu"],
     correct_answer: 3,
@@ -4462,12 +3546,7 @@ export const sentencesSample = [
     translation:
       "You see, Einstein has just become the world's first time traveler.",
     masked_range: [18, 22],
-    answers: [
-      "d\u0117mesio",
-      "girtas",
-      "tapo",
-      "pasimatymas",
-    ],
+    answers: ["d\u0117mesio", "girtas", "tapo", "pasimatymas"],
     correct_answer: 2,
   },
   {
@@ -4476,12 +3555,7 @@ export const sentencesSample = [
     translation:
       "I was standing on the edge of my toilet, hanging a clock.",
     masked_range: [8, 16],
-    answers: [
-      "laikrod\u012f",
-      "vis\u0105",
-      "braunai",
-      "rank\u0105",
-    ],
+    answers: ["laikrod\u012f", "vis\u0105", "braunai", "rank\u0105"],
     correct_answer: 0,
   },
   {
@@ -4490,26 +3564,15 @@ export const sentencesSample = [
     translation:
       "What do you mean, you've seen this? It's brand-new.",
     masked_range: [11, 18],
-    answers: [
-      "eina",
-      "v\u0117luoji",
-      "gal\u0117jai",
-      "gali\u0105",
-    ],
+    answers: ["eina", "v\u0117luoji", "gal\u0117jai", "gali\u0105"],
     correct_answer: 2,
   },
   {
     id: 257,
     text: "Geros kelion\u0117s, Ein\u0161teinai. Saugok galv\u0105.",
-    translation:
-      "Have a good trip, Einstein. Watch your head.",
+    translation: "Have a good trip, Einstein. Watch your head.",
     masked_range: [0, 5],
-    answers: [
-      "geros",
-      "plaukus",
-      "atsiliepkite",
-      "\u0161unsnukiai",
-    ],
+    answers: ["geros", "plaukus", "atsiliepkite", "\u0161unsnukiai"],
     correct_answer: 0,
   },
   {
@@ -4518,12 +3581,7 @@ export const sentencesSample = [
     translation:
       "Marty, you're beginning to sound just like my mother.",
     masked_range: [19, 23],
-    answers: [
-      "d\u017eojui",
-      "tai",
-      "kaip",
-      "jau\u010diuosi",
-    ],
+    answers: ["d\u017eojui", "tai", "kaip", "jau\u010diuosi"],
     correct_answer: 2,
   },
   {
@@ -4567,8 +3625,7 @@ export const sentencesSample = [
   {
     id: 478,
     text: "Ateik \u010dia! Pad\u0117k man j\u012f \u012fne\u0161ti \u012f namus!",
-    translation:
-      "Come on out here! Help me take him in the house!",
+    translation: "Come on out here! Help me take him in the house!",
     masked_range: [6, 9],
     answers: [
       "ne\u017einojau",
@@ -4635,26 +3692,15 @@ export const sentencesSample = [
     translation:
       "Now, I painted a white line on the street way over there.",
     masked_range: [26, 33],
-    answers: [
-      "niekuo",
-      "gatv\u0117je",
-      "j\u012f",
-      "makflajau",
-    ],
+    answers: ["niekuo", "gatv\u0117je", "j\u012f", "makflajau"],
     correct_answer: 1,
   },
   {
     id: 1041,
     text: "Veskite j\u012f toliau. A\u0161 tuoj ateisiu.",
-    translation:
-      "Take him in back, all right? I'll be right there.",
+    translation: "Take him in back, all right? I'll be right there.",
     masked_range: [8, 10],
-    answers: [
-      "25",
-      "\u0161unsnukiai",
-      "j\u012f",
-      "slap\u010diomis",
-    ],
+    answers: ["25", "\u0161unsnukiai", "j\u012f", "slap\u010diomis"],
     correct_answer: 2,
   },
   {
@@ -4662,19 +3708,13 @@ export const sentencesSample = [
     text: "\u0160it\u0105 \u012fd\u0117kime atgal. Dabar gerai.",
     translation: "Let's put this back here. There we go.",
     masked_range: [20, 25],
-    answers: [
-      "nugabenti",
-      "\u012fvykt\u0173",
-      "lorein",
-      "dabar",
-    ],
+    answers: ["nugabenti", "\u012fvykt\u0173", "lorein", "dabar"],
     correct_answer: 3,
   },
   {
     id: 524,
     text: "\u010cia Miltonas, o \u010dia Sali...",
-    translation:
-      "This is Milton, this is Sally, that's Toby,",
+    translation: "This is Milton, this is Sally, that's Toby,",
     masked_range: [16, 19],
     answers: [
       "\u017einote",
@@ -4690,26 +3730,15 @@ export const sentencesSample = [
     translation:
       "to the Enchantment Under the Sea dance on Saturday.",
     masked_range: [13, 19],
-    answers: [
-      "j\u016broje",
-      "bifas",
-      "motinos",
-      "\u017eino",
-    ],
+    answers: ["j\u016broje", "bifas", "motinos", "\u017eino"],
     correct_answer: 0,
   },
   {
     id: 11,
     text: "prie\u0161 dvi savaites buvo pavogta i\u0161 j\u0173 saugyklos.",
-    translation:
-      "was in fact stolen from their vault two weeks ago.",
+    translation: "was in fact stolen from their vault two weeks ago.",
     masked_range: [24, 31],
-    answers: [
-      "pavogta",
-      "teises",
-      "ginklo",
-      "lai\u0161k\u0105",
-    ],
+    answers: ["pavogta", "teises", "ginklo", "lai\u0161k\u0105"],
     correct_answer: 0,
   },
   {
@@ -4717,12 +3746,7 @@ export const sentencesSample = [
     text: "Marti, ar mes dar susitiksime?",
     translation: "Marty, will we ever see you again?",
     masked_range: [18, 29],
-    answers: [
-      "sunaikinai",
-      "susitiksime",
-      "nor\u0117jau",
-      "neturi",
-    ],
+    answers: ["sunaikinai", "susitiksime", "nor\u0117jau", "neturi"],
     correct_answer: 1,
   },
   {
@@ -4730,12 +3754,7 @@ export const sentencesSample = [
     text: "Ji sena ten, i\u0161 kur a\u0161 atvykau.",
     translation: "Well, it's an oldie where I come from.",
     masked_range: [23, 30],
-    answers: [
-      "klaviat\u016broje",
-      "atvykau",
-      "velni\u0173",
-      "be",
-    ],
+    answers: ["klaviat\u016broje", "atvykau", "velni\u0173", "be"],
     correct_answer: 1,
   },
   {
@@ -4755,8 +3774,7 @@ export const sentencesSample = [
   {
     id: 355,
     text: "Beveik u\u017emir\u0161au pasiimti papildomo plutonio.",
-    translation:
-      "I almost forgot to bring extra plutonium.",
+    translation: "I almost forgot to bring extra plutonium.",
     masked_range: [0, 6],
     answers: ["atvyk\u0119s", "beveik", "vice", "baigia"],
     correct_answer: 1,
@@ -4780,12 +3798,7 @@ export const sentencesSample = [
     translation:
       "They found me. I don't know how, but they found me.",
     masked_range: [17, 24],
-    answers: [
-      "gim\u0117",
-      "ne\u017einau",
-      "ketvirtas",
-      "vilsonas",
-    ],
+    answers: ["gim\u0117", "ne\u017einau", "ketvirtas", "vilsonas"],
     correct_answer: 1,
   },
   {
@@ -4801,26 +3814,15 @@ export const sentencesSample = [
     text: "\u012e k\u0105 tu \u017ei\u016bri, subingalvi?",
     translation: "What are you looking at, butthead?",
     masked_range: [0, 1],
-    answers: [
-      "sekund\u017ei\u0173",
-      "geru",
-      "\u012f",
-      "neseniai",
-    ],
+    answers: ["sekund\u017ei\u0173", "geru", "\u012f", "neseniai"],
     correct_answer: 2,
   },
   {
     id: 226,
     text: "Ne. Tai buvo Susi\u017eav\u0117jimo j\u016broje \u0161okiai.",
-    translation:
-      "No. It was the Enchantment Under the Sea dance.",
+    translation: "No. It was the Enchantment Under the Sea dance.",
     masked_range: [26, 32],
-    answers: [
-      "j\u016broje",
-      "tiksliai",
-      "cukraus",
-      "paimti",
-    ],
+    answers: ["j\u016broje", "tiksliai", "cukraus", "paimti"],
     correct_answer: 0,
   },
   {
@@ -4899,12 +3901,7 @@ export const sentencesSample = [
     translation:
       "have denied the rumor that a case of missing plutonium",
     masked_range: [16, 19],
-    answers: [
-      "kad",
-      "laikome",
-      "sm\u016bgiu",
-      "kriaukl\u0119",
-    ],
+    answers: ["kad", "laikome", "sm\u016bgiu", "kriaukl\u0119"],
     correct_answer: 0,
   },
   {
@@ -4913,12 +3910,7 @@ export const sentencesSample = [
     translation:
       "Look, I don't want to mess with no reefer addicts, okay?",
     masked_range: [37, 42],
-    answers: [
-      "kartu",
-      "geroms",
-      "\u017eem\u0117s",
-      "gerai",
-    ],
+    answers: ["kartu", "geroms", "\u017eem\u0117s", "gerai"],
     correct_answer: 3,
   },
   {
@@ -4927,12 +3919,7 @@ export const sentencesSample = [
     translation:
       "I'll also be able to see who wins the next 25 World Series.",
     masked_range: [39, 41],
-    answers: [
-      "buvau",
-      "nesuva\u017ein\u0117jo",
-      "leisk",
-      "25",
-    ],
+    answers: ["buvau", "nesuva\u017ein\u0117jo", "leisk", "25"],
     correct_answer: 3,
   },
   {
@@ -4966,12 +3953,7 @@ export const sentencesSample = [
     text: "O jeigu jie nuspr\u0119s, kad a\u0161 niekam tik\u0119s?",
     translation: "What if they say I'm no good?",
     masked_range: [0, 1],
-    answers: [
-      "o",
-      "keliauji",
-      "klaviat\u016broje",
-      "man\u0119s",
-    ],
+    answers: ["o", "keliauji", "klaviat\u016broje", "man\u0119s"],
     correct_answer: 0,
   },
   {
@@ -4980,12 +3962,7 @@ export const sentencesSample = [
     translation:
       "Damn it, Doc! Why did you have to tear up that letter?",
     masked_range: [20, 23],
-    answers: [
-      "kam",
-      "vilk\u0117damas",
-      "kleinas",
-      "pradedi",
-    ],
+    answers: ["kam", "vilk\u0117damas", "kleinas", "pradedi"],
     correct_answer: 0,
   },
   {
@@ -5014,8 +3991,7 @@ export const sentencesSample = [
   {
     id: 249,
     text: "Tai - laikinas eksperimentas numeris pirmas.",
-    translation:
-      "and this is temporal experiment number one.",
+    translation: "and this is temporal experiment number one.",
     masked_range: [29, 36],
     answers: ["neateitum", "suvalgyti", "numeris", "manai"],
     correct_answer: 2,
@@ -5025,19 +4001,13 @@ export const sentencesSample = [
     text: "Turb\u016bt jai jo pagailo, nes jos t\u0117vas partrenk\u0117 j\u012f ma\u0161ina.",
     translation: "'cause her dad hit him with the car.",
     masked_range: [50, 56],
-    answers: [
-      "daikt\u0105",
-      "ma\u0161ina",
-      "dar\u0117",
-      "elgiuosi",
-    ],
+    answers: ["daikt\u0105", "ma\u0161ina", "dar\u0117", "elgiuosi"],
     correct_answer: 1,
   },
   {
     id: 690,
     text: "Jo galva dingo. Lyg b\u016bt\u0173 buvus i\u0161trinta.",
-    translation:
-      "His head's gone. It's like it's been erased.",
+    translation: "His head's gone. It's like it's been erased.",
     masked_range: [9, 14],
     answers: ["niekad", "tokia", "tokio", "dingo"],
     correct_answer: 3,
@@ -5048,26 +4018,15 @@ export const sentencesSample = [
     translation:
       "They really cleaned this place up. Looks brand-new.",
     masked_range: [39, 47],
-    answers: [
-      "atgal",
-      "visi\u0161kai",
-      "atrodo",
-      "nemokam\u0105",
-    ],
+    answers: ["atgal", "visi\u0161kai", "atrodo", "nemokam\u0105"],
     correct_answer: 1,
   },
   {
     id: 732,
     text: "Tavo motina netekus galvos d\u0117l tav\u0119s, o ne t\u0117vo.",
-    translation:
-      "Look, you're not going to be picking a fight, Dad.",
+    translation: "Look, you're not going to be picking a fight, Dad.",
     masked_range: [20, 26],
-    answers: [
-      "galvos",
-      "tad",
-      "galime",
-      "pakran\u010di\u0173",
-    ],
+    answers: ["galvos", "tad", "galime", "pakran\u010di\u0173"],
     correct_answer: 0,
   },
   {
@@ -5075,26 +4034,15 @@ export const sentencesSample = [
     text: "Aplankyk mane, kai ten nuvyksi.",
     translation: "Look me up when you get there.",
     masked_range: [15, 18],
-    answers: [
-      "paskui",
-      "atsisveikinti",
-      "nepatinka",
-      "kai",
-    ],
+    answers: ["paskui", "atsisveikinti", "nepatinka", "kai"],
     correct_answer: 3,
   },
   {
     id: 823,
     text: "Pasakyk, kad ji pati gra\u017eiausia mergina pasaulyje.",
-    translation:
-      "Tell her that she is the most beautiful girl",
+    translation: "Tell her that she is the most beautiful girl",
     masked_range: [40, 49],
-    answers: [
-      "pasaulyje",
-      "padaliniams",
-      "i\u0161rasta",
-      "dvi",
-    ],
+    answers: ["pasaulyje", "padaliniams", "i\u0161rasta", "dvi"],
     correct_answer: 0,
   },
   {
@@ -5116,26 +4064,15 @@ export const sentencesSample = [
     text: "Tai kaip toli \u012f priek\u012f tu keliauji?",
     translation: "So, how far ahead are you going?",
     masked_range: [16, 22],
-    answers: [
-      "manau",
-      "gandus",
-      "priek\u012f",
-      "ry\u0161kus",
-    ],
+    answers: ["manau", "gandus", "priek\u012f", "ry\u0161kus"],
     correct_answer: 2,
   },
   {
     id: 142,
     text: "Kaip dar gali paai\u0161kinti t\u0105 lau\u017e\u0105?",
-    translation:
-      "How else do you explain that wreck out there?",
+    translation: "How else do you explain that wreck out there?",
     masked_range: [5, 8],
-    answers: [
-      "minut\u0117l\u0119",
-      "viet\u0105",
-      "dar",
-      "baigsiu",
-    ],
+    answers: ["minut\u0117l\u0119", "viet\u0105", "dar", "baigsiu"],
     correct_answer: 2,
   },
   {
@@ -5151,12 +4088,7 @@ export const sentencesSample = [
     text: "ir parsived\u0117 j\u012f namo.",
     translation: "We've got to get you home!",
     masked_range: [0, 2],
-    answers: [
-      "ir",
-      "kalb\u0117jome",
-      "pavoj\u0173",
-      "g\u0117da",
-    ],
+    answers: ["ir", "kalb\u0117jome", "pavoj\u0173", "g\u0117da"],
     correct_answer: 0,
   },
   {
@@ -5165,12 +4097,7 @@ export const sentencesSample = [
     translation:
       "Hey, guys, you gotta get back in there and finish the dance.",
     masked_range: [28, 33],
-    answers: [
-      "ritmi\u0161kas",
-      "galva",
-      "atgal",
-      "j\u016bs",
-    ],
+    answers: ["ritmi\u0161kas", "galva", "atgal", "j\u016bs"],
     correct_answer: 2,
   },
   {
@@ -5178,19 +4105,13 @@ export const sentencesSample = [
     text: "Esi per daug pana\u0161us \u012f savo t\u0117v\u0105.",
     translation: "You're too much like your old man.",
     masked_range: [13, 20],
-    answers: [
-      "pana\u0161us",
-      "miltonas",
-      "keliai",
-      "su\u017einosiu",
-    ],
+    answers: ["pana\u0161us", "miltonas", "keliai", "su\u017einosiu"],
     correct_answer: 0,
   },
   {
     id: 747,
     text: "Susi\u017eav\u0117jimas j\u016broje \u0161okiai! Jie tur\u0117jo ten eiti.",
-    translation:
-      "Of course! The Enchantment Under the Sea dance!",
+    translation: "Of course! The Enchantment Under the Sea dance!",
     masked_range: [0, 13],
     answers: [
       "susi\u017eav\u0117jimas",
@@ -5205,19 +4126,13 @@ export const sentencesSample = [
     text: "Tai mano brolis, sesuo ir a\u0161.",
     translation: "It's my brother, my sister and me.",
     masked_range: [0, 3],
-    answers: [
-      "dingo",
-      "gr\u012f\u0161iu",
-      "kalb\u0117jome",
-      "tai",
-    ],
+    answers: ["dingo", "gr\u012f\u0161iu", "kalb\u0117jome", "tai"],
     correct_answer: 3,
   },
   {
     id: 205,
     text: "Manau, kad baisu. Merginos vaikosi vaikinus.",
-    translation:
-      "I think it's terrible. Girls chasing boys.",
+    translation: "I think it's terrible. Girls chasing boys.",
     masked_range: [11, 16],
     answers: ["vakaras", "hill", "\u012fjungi", "baisu"],
     correct_answer: 3,
@@ -5225,15 +4140,9 @@ export const sentencesSample = [
   {
     id: 1161,
     text: "ir vienas j\u0173, kai jam bus a\u0161tuoneri metai...",
-    translation:
-      "and one of them, when he's eight years old,",
+    translation: "and one of them, when he's eight years old,",
     masked_range: [18, 21],
-    answers: [
-      "v\u0117liau",
-      "mar\u010dio",
-      "jam",
-      "dali\u0173",
-    ],
+    answers: ["v\u0117liau", "mar\u010dio", "jam", "dali\u0173"],
     correct_answer: 2,
   },
   {
@@ -5258,12 +4167,7 @@ export const sentencesSample = [
     text: "tuo momentu, kai \u017eaibas trenks \u012f bok\u0161t\u0105...",
     translation: "is going to strike the clock tower",
     masked_range: [31, 32],
-    answers: [
-      "vien\u0105",
-      "pakviesti",
-      "\u012f",
-      "atmetimo",
-    ],
+    answers: ["vien\u0105", "pakviesti", "\u012f", "atmetimo"],
     correct_answer: 2,
   },
 ];

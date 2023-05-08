@@ -1,9 +1,4 @@
-import {
-  Text,
-  View,
-  FlatList,
-  StyleSheet,
-} from "react-native";
+import { Text, View, FlatList, StyleSheet } from "react-native";
 import AnswerItem from "./AnswerItem";
 import { GlobalStyles } from "../../constants/styles";
 import Button from "../UI/Button";
@@ -41,7 +36,8 @@ export default AnswerBox;
 const styles = StyleSheet.create({
   AnswerBoxContainer: {
     // TODO marc: playing with this number not great
-    height: "31%",
+    // optimal for android is 31%
+    // height: "31%",
     backgroundColor: GlobalStyles.colors.primary500,
     marginTop: "2%",
   },

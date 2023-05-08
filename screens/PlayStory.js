@@ -7,10 +7,7 @@ import {
 } from "react";
 import { StyleSheet, View } from "react-native";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
-import {
-  GlobalStyles,
-  ScreensStyles,
-} from "../constants/styles";
+import { GlobalStyles, ScreensStyles } from "../constants/styles";
 import { StoryContext } from "../context/stories-context";
 import { sentencesSample } from "../assets/mocks";
 import { PickerInput } from "../components/ManageStory/Input";
@@ -26,9 +23,7 @@ function PlayStory({ navigation, route }) {
 
   const { stories } = useContext(StoryContext);
 
-  const story = stories.find(
-    (story) => story.id === storyId
-  );
+  const story = stories.find((story) => story.id === storyId);
   // console.log(story);
 
   const [sentences, setSentences] = useState();
@@ -41,7 +36,7 @@ function PlayStory({ navigation, route }) {
     navigation.setOptions({
       title: story.title,
       // TODO: this is a big hack
-      headerTitleStyle: ScreensStyles.headerTitleStyle,
+      // headerTitleStyle: ScreensStyles.headerTitleStyle,
     });
   }, []);
 
@@ -52,7 +47,7 @@ function PlayStory({ navigation, route }) {
         // const expenses = await fetchSentences(storyId);
         console.log("loading sentences");
         const requestedSentences = [...sentencesSample];
-        await sleep(3.5);
+        await sleep(0.1);
         setSentences(requestedSentences);
         // TODO: should we set loading false if error?
         return requestedSentences.length;
@@ -84,8 +79,7 @@ function PlayStory({ navigation, route }) {
 
   console.log("sentences");
   console.log(sentences);
-  const currentSentence =
-    sentences[playData.currentSentenceIdx];
+  const currentSentence = sentences[playData.currentSentenceIdx];
 
   console.log(currentSentence);
   return (

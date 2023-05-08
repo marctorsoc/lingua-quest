@@ -11,8 +11,7 @@ function NextButton() {
   const { playData, setPlayData } = useContext(PlayContext);
   const answered = playData.currentAnswerIdx !== undefined;
   const isLastSentence =
-    playData.currentSentenceIdx ===
-    playData.numSentences - 1;
+    playData.currentSentenceIdx === playData.numSentences - 1;
 
   function onPressNext() {
     if (isLastSentence) {
@@ -32,11 +31,7 @@ function NextButton() {
         <Button style={styles.button} onPress={onPressNext}>
           <Text
             // TODO marc: use composes styles here
-            style={[
-              styles.textBase,
-              styles.title,
-              styles.answerText,
-            ]}
+            style={[styles.textBase, styles.title, styles.answerText]}
           >
             {isLastSentence ? "Finish" : "Next"}
           </Text>

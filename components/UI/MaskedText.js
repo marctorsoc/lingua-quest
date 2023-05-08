@@ -8,7 +8,7 @@ function MaskedText({
   masked_range,
   maskEnabled,
 }) {
-  console.log("masked_range: ", masked_range);
+  // console.log("masked_range: ", masked_range);
   const [maskStart, maskEnd] = masked_range;
   const textBeforeMask = text.slice(0, maskStart);
   const textWithinMask = maskEnabled

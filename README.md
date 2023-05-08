@@ -32,7 +32,7 @@ Midu video
 12:26 react-native-debugger
 15:40 Linter
 17:30 Text, View, Touchable
-25:00 Moviendo text bajo StatusBar con expo-constants
+25:00 StatusBar y expo-constants
 29:30 Mostrando los repositorios
 32:37 ScrollView y FlatList
 40:15 Desactivando reglas linter
@@ -43,7 +43,7 @@ Midu video
 01:07:05 alignSelf: flex-start
 01:08:10 BorderRadius y overflow
 01:08:40 Image. Mostrando repo image
-01:11:00 FlexBox (2). Mostrando image side by side
+01:11:00 FlexBox. Mostrando image side by side
 01:18:20 MarginHorizontal y MarginVertical
 01:19:20 AppBar
 01:25:00 react-router-native
@@ -54,7 +54,7 @@ Midu video
 01:49:00 Preguntas
 02:07:40 Inicio clase 2
 02:11:30 StatusBar
-02:14:25 Platform-dependent code con Plarform.select
+02:14:25 Plarform.select
 02:26:00 Sign in con Formik
 02:40:25 Formik: useField
 02:45:15 Masking the password
@@ -64,11 +64,11 @@ Midu video
 03:04:00 Configurando el backend
 03:09:15 Queries a la REST API
 03:13:30 global.fetch y globalThis
-03:XX:XX custom hook useRepositories
-03:XX:XX Arreglando errores por localhost
+03:14:30 custom hook useRepositories
+03:17:50 Arreglando errores por localhost
 03:20:20 ApolloClient
 03:23:35 GraphQL
-03:26:45 Actualizando el custom hook
+03:26:45 Usando graphQL en el custom hook
 03:30:00 Preguntas
 
 

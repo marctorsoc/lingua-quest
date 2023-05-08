@@ -28,7 +28,7 @@ export const ScreensStyles = {
     position: "fixed",
     width: 20,
     height: 20,
-    backgroundColor: "red",
+    backgroundColor: "blue",
   },
   tabBarStyle: {
     backgroundColor: GlobalStyles.colors.primary500,

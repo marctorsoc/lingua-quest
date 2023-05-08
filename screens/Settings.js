@@ -10,7 +10,7 @@ function Settings() {
   let stories = [];
   return (
     <View>
-      <Text> A</Text>
+      <Text> Hello world</Text>
     </View>
     // stories={stories}
     // expensesPeriod="Total"
