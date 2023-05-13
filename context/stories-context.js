@@ -22,7 +22,10 @@ function storyReducer(state, action) {
         (story) => story.id === action.payload.id
       );
       const updatableStory = state[updatableStoryIndex];
-      const updatedItem = { ...updatableStory, ...action.payload.data };
+      const updatedItem = {
+        ...updatableStory,
+        ...action.payload.data,
+      };
       const updatedStories = [...state]; // make a copy of the state
       updatedStories[updatableStoryIndex] = updatedItem;
       return updatedStories;
@@ -49,7 +52,10 @@ export function StoryContextProvider({ children }) {
   }
 
   function updateStory(id, storyData) {
-    dispatch({ type: "UPDATE", payload: { id: id, data: storyData } });
+    dispatch({
+      type: "UPDATE",
+      payload: { id: id, data: storyData },
+    });
   }
 
   const value = {
@@ -61,7 +67,9 @@ export function StoryContextProvider({ children }) {
   };
 
   return (
-    <StoryContext.Provider value={value}>{children}</StoryContext.Provider>
+    <StoryContext.Provider value={value}>
+      {children}
+    </StoryContext.Provider>
   );
 }
 

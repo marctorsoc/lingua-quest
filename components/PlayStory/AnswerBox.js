@@ -1,9 +1,6 @@
-import { Text, View, FlatList, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import AnswerItem from "./AnswerItem";
 import { GlobalStyles } from "../../constants/styles";
-import Button from "../UI/Button";
-import { useContext } from "react";
-import { PlayContext } from "../../context/play-context";
 import NextButton from "./NextButton";
 
 function AnswerBox({ answers, correct_answer }) {
@@ -34,8 +31,6 @@ export default AnswerBox;
 
 const styles = StyleSheet.create({
   AnswerBoxContainer: {
-    // TODO marc: playing with this number not great
-    // optimal for android is 31%
     backgroundColor: GlobalStyles.colors.primary500,
   },
 });
