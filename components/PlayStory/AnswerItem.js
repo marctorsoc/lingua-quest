@@ -35,21 +35,19 @@ function AnswerItem({ index, text, correct_answer }) {
   }
   // console.log(text);
   return (
-    <View style={styles.AnswerContainer}>
-      <Button style={styles.button} onPress={onAnswerSelected}>
-        <Text
-          // TODO marc: use composed styles here
-          style={[
-            styles.textBase,
-            styles.title,
-            styles.answerText,
-            textStyle,
-          ]}
-        >
-          {text}
-        </Text>
-      </Button>
-    </View>
+    <Button style={styles.AnswerContainer} onPress={onAnswerSelected}>
+      <Text
+        // TODO marc: use composed styles here
+        style={[
+          styles.textBase,
+          styles.title,
+          styles.answerText,
+          textStyle,
+        ]}
+      >
+        {text}
+      </Text>
+    </Button>
   );
 }
 
@@ -62,7 +60,7 @@ const styles = StyleSheet.create({
     height: 80,
     borderColor: "white",
     borderWidth: 0.5,
-    // backgroundColor: GlobalStyles.colors.primary700,
+    // backgroundColor: GlobalStyles.colors.primary200,
   },
   textBase: {
     color: GlobalStyles.colors.primary50,

@@ -1,9 +1,4 @@
-import {
-  TouchableWithoutFeedback,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalStyles } from "../../constants/styles";
 import { sentencesSample } from "../../assets/mocks";
@@ -13,6 +8,7 @@ import MaskedText from "../UI/MaskedText";
 function getEmoji(language) {
   return language.slice(0, 4);
 }
+import Button from "../UI/Button";
 
 function StoryItem({
   id,
@@ -38,49 +34,25 @@ function StoryItem({
     });
   }
 
-  //   return (
-  //     <Pressable
-  //       onPress={storyPressHandler}
-  //       style={({ pressed }) => pressed && styles.pressed}
-  //     >
-  //       <View style={styles.StoryItem}>
-  //         <View>
-  //           <Text style={[styles.textBase, styles.title]}>
-  //             {title}
-  //           </Text>
-  //           <Text style={styles.textBase}>{getFormattedDate(date)}</Text>
-  //         </View>
-  //         <View style={styles.amountContainer}>
-  //           <Text style={styles.amount}>{amount.toFixed(2)}</Text>
-  //         </View>
-  //       </View>
-  //     </Pressable>
-  //   );
-  // }
-  // console.log("in story item");
-  // console.log(id);
-  // const text = "this is barcelona, a very nice city";
   return (
     // TODO: use Pressable in Android and TouchableWithoutFeedback
     // for the web via Platform.select
     // TODO marc: start by using the same button everywhere
-    <TouchableWithoutFeedback
+    <Button
       onPress={storyPressHandler}
       style={styles.StoryItemWrapper}
     >
       <View style={styles.StoryItem}>
-        <View>
-          <Text style={[styles.textBase, styles.title]}>{title}</Text>
-        </View>
+        <Text style={[styles.textBase, styles.title]}>{title}</Text>
         <View style={styles.langsContainer}>
           <Text style={styles.language}>{getEmoji(learning_lc)}</Text>
           <Text style={styles.language}>{getEmoji(known_lc)}</Text>
         </View>
-        <View style={styles.langsContainer}>
+        <View style={styles.statusContainer}>
           <Text style={styles.status}>{status}</Text>
         </View>
       </View>
-    </TouchableWithoutFeedback>
+    </Button>
   );
 }
 
@@ -90,20 +62,17 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.75,
   },
-  StoryItemWrapper: {},
+  StoryItemWrapper: {
+    marginVertical: "2.5%",
+    flex: 1 / 2,
+  },
   StoryItem: {
     // TODO: extract some style from here to merge with
     // sentences in PlayStory
-    margin: "2.5%",
-    width: "45%",
     backgroundColor: GlobalStyles.colors.primary500,
     borderRadius: 12,
-    elevation: 3,
-    shadowColor: GlobalStyles.colors.gray500,
-    shadowRadius: 4,
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.4,
     textAlign: "center",
+    marginHorizontal: "5%",
   },
   textBase: {
     color: GlobalStyles.colors.primary50,
@@ -116,13 +85,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   langsContainer: {
-    // paddingHorizontal: 12,
-    // paddingVertical: 4,
-    // backgroundColor: "white",
-    // justifyContent: "center",
-    // alignItems: "center",
-    // borderRadius: 4,
-    // minWidth: 80,
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  statusContainer: {
     flexDirection: "row",
     justifyContent: "center",
   },

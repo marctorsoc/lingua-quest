@@ -5,12 +5,18 @@ import StoryList from "./StoryList";
 import LibrarySummary from "./ResumeStory";
 import ResumeStory from "./ResumeStory";
 
-function LibraryOutput({ stories, fallbackText, parentId: parentId }) {
+function LibraryOutput({
+  stories,
+  fallbackText,
+  parentId: parentId,
+}) {
   let content = <Text style={styles.infoText}>{fallbackText}</Text>;
   if (stories.length > 0) {
     content = (
       <StoryList
-        stories={stories.filter((story) => story.parent_id === parentId)}
+        stories={stories.filter(
+          (story) => story.parent_id === parentId
+        )}
       />
     );
   }
