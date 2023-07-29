@@ -9,31 +9,48 @@ function AnswerItem({ index, text, correct_answer }) {
   const { playData, setPlayData } = useContext(PlayContext);
   const thisAnswerSelected = playData.currentAnswerIdx === index;
 
+  // console.log(correct_answer);
+  // console.log(index);
   // default, keep white
   let textStyle = undefined;
   // if some answer selected
   if (playData.currentAnswerIdx !== undefined) {
     // select correct style if this answer is correct
-    if (index == correct_answer)
+    if (index == correct_answer) {
       textStyle = styles.answerTextSelectedCorrect;
+    }
     // otherwise, select wrong style if selected
     // this will keep non-selected answers white
-    else if (thisAnswerSelected)
+    else if (thisAnswerSelected) {
       textStyle = styles.answerTextSelectedWrong;
+    }
   }
 
   function onAnswerSelected() {
     // console.log("Answer" + index + " selected");
+    // console.log(correct_answer);
+    // console.log(index);
 
     // if there's already an answer, ignore
+    // console.log(playData.currentAnswerIdx);
+    // console.log(index);
     if (playData.currentAnswerIdx !== undefined) return;
 
-    setPlayData({
-      ...playData,
-      currentAnswerIdx: index,
-    });
+    if (index == correct_answer) {
+      setPlayData({
+        ...playData,
+        currentAnswerIdx: index,
+        numCorrectAnswers: playData.numCorrectAnswers + 1,
+      });
+    } else {
+      setPlayData({
+        ...playData,
+        currentAnswerIdx: index,
+        numWrongAnswers: playData.numWrongAnswers + 1,
+      });
+    }
   }
-  // console.log(text);
+
   return (
     <Button style={styles.AnswerContainer} onPress={onAnswerSelected}>
       <Text

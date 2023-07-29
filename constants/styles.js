@@ -19,16 +19,16 @@ export const GlobalStyles = {
 
 export const ScreensStyles = {
   headerButtonsContainers: {
-    margin: 0,
+    margin: 5,
     padding: 0,
   },
   headerTitleStyle: {
     top: 22,
     left: 47,
     position: "fixed",
-    width: 20,
+    width: 100,
     height: 20,
-    backgroundColor: "blue",
+    // backgroundColor: "blue",
   },
   tabBarStyle: {
     backgroundColor: GlobalStyles.colors.primary500,

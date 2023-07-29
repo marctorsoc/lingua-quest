@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalStyles } from "../../constants/styles";
-import { sentencesSample } from "../../assets/mocks";
 import { useContext } from "react";
 import { GlobalContext } from "../../context/global-context";
 import MaskedText from "../UI/MaskedText";
@@ -15,20 +14,25 @@ function StoryItem({
   title,
   learning_lc,
   known_lc,
-  status,
-  isLeaf,
+  done,
+  total,
+  parent_id,
+  is_leaf,
 }) {
   const navigation = useNavigation();
-  const { data, setData } = useContext(GlobalContext);
+  const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
+
+  // const status = `${Math.round((done / total) * 100)} %`;
+  const status = `${done}, ${Math.round((done / total) * 100)} %`;
 
   function storyPressHandler() {
     // if this is the leaf of a story, play
-    if (isLeaf == true) {
+    if (is_leaf) {
       navigation.navigate("PlayStory", { storyId: id });
       return;
     }
     // TODO: make a setShowLibraryBackButton
-    setData({ ...data, showLibraryBackButton: true });
+    setGlobalConfig({ ...globalConfig, showLibraryBackButton: true });
     navigation.navigate("Library", {
       parentId: id,
     });
@@ -60,7 +64,6 @@ const styles = StyleSheet.create({
     opacity: 0.75,
   },
   StoryItemWrapper: {
-    marginVertical: "2.5%",
     flex: 1 / 2,
   },
   StoryItem: {
@@ -69,7 +72,7 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.primary500,
     borderRadius: 12,
     textAlign: "center",
-    marginHorizontal: "5%",
+    margin: "5%",
   },
   textBase: {
     color: GlobalStyles.colors.primary50,

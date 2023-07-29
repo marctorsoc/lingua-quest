@@ -1,12 +1,18 @@
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
+import {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
 
 import LibraryOutput from "../components/Library/LibraryOutput";
 import ErrorOverlay from "../components/UI/ErrorOverlay";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
 import { StoryContext } from "../context/stories-context";
 import { getDateMinusDays } from "../util/date";
-import { fetchExpenses } from "../util/http";
-import { storiesSample } from "../assets/mocks";
+import { fetchStories } from "../util/http";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { PlayContext } from "../context/play-context";
 
 function Library(navigation, route) {
   // TODO marc: see example for this in https://reactnative.dev/docs/network
@@ -15,35 +21,49 @@ function Library(navigation, route) {
   // TODO: this library is a mock, but should be
   // retrieved from the API
   const { stories, setStories } = useContext(StoryContext);
+  const { playData, setPlayData } = useContext(PlayContext);
 
   const [error, setError] = useState();
 
-  // const expensesCtx = useContext(ExpensesContext);
-
   useEffect(() => {
     async function getStories() {
-      setIsFetching(true);
       try {
         // const expenses = await fetchExpenses();
-        const RequestedStories = [...storiesSample];
-        setStories(RequestedStories);
-        // TODO: save a copy to disk for offline use?
+        // load from mock
+        // const allStories = [...data.stories];
+        const allStories = await fetchStories();
+        console.log("loaded stories");
+        setStories(allStories);
       } catch (error) {
         // setError("Could not fetch expenses!");
         console.log("Could not fetch stories!");
       }
-      setIsFetching(false);
     }
-
+    async function getLastStoryId() {
+      // console.log("Getting storyId from disk");
+      const storyId = await AsyncStorage.getItem("last_story_id");
+      // console.log(storyId);
+      if (storyId != playData.storyId) {
+        // console.log("Setting storyId in playData");
+        setPlayData({
+          ...playData,
+          storyId: storyId,
+        });
+      }
+      return storyId;
+    }
+    setIsFetching(true);
+    getLastStoryId();
     getStories();
+    setIsFetching(false);
   }, []);
 
-  const parentId = navigation.route.params?.parentId;
+  const parentId = navigation.route.params?.parentId || null;
 
   useLayoutEffect(() => {
     // console.log(parentId);
     const title =
-      parentId !== undefined
+      parentId !== null
         ? stories.find((story) => story.id === parentId).title
         : "Library";
     // console.log(title);
@@ -53,28 +73,6 @@ function Library(navigation, route) {
       // headerTitleStyle: ScreensStyles.headerTitleStyle,
     });
   }, [navigation]);
-
-  // if (error && !isFetching) {
-  //   return <ErrorOverlay message={error} />;
-  // }
-
-  // if (isFetching) {
-  //   return <LoadingOverlay />;
-  // }
-
-  // const library = expensesCtx.expenses.filter((expense) => {
-  //   const today = new Date();
-  //   const date7DaysAgo = getDateMinusDays(today, 7);
-
-  //   return expense.date >= date7DaysAgo && expense.date <= today;
-  // });
-  // console.log("route.params");
-  // console.log(route.params);
-  // // console.log(navigation);
-  // if (navigation.route.params?.filterByParentId) {
-  //   console.log("route.params.filterByParentId");
-  //   console.log(navigation.route.params.filterByParentId);
-  // }
 
   return (
     <LibraryOutput

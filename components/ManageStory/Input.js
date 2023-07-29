@@ -42,7 +42,9 @@ export function PickerInput({ label, invalid, style, pickerConfig }) {
 
   return (
     <View style={containerStyle}>
-      <Text style={[styles.label, { textAlign: "center" }]}>{label}</Text>
+      <Text style={[styles.label, { textAlign: "center" }]}>
+        {label}
+      </Text>
       <View style={pickerViewStyle}>
         <Picker
           selectedValue={pickerConfig.value}
@@ -50,7 +52,11 @@ export function PickerInput({ label, invalid, style, pickerConfig }) {
           onValueChange={pickerConfig.onChangeText}
         >
           {pickerConfig.options.map((item, index) => (
-            <Picker.Item key={index} label={item.label} value={item.value} />
+            <Picker.Item
+              key={index}
+              label={item.label}
+              value={item.value}
+            />
           ))}
         </Picker>
       </View>
@@ -69,8 +75,8 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   input: {
-    backgroundColor: GlobalStyles.colors.primary100,
-    color: GlobalStyles.colors.primary700,
+    backgroundColor: GlobalStyles.colors.primary50,
+    color: GlobalStyles.colors.primary800,
     padding: 6,
     borderRadius: 6,
     fontSize: 18,

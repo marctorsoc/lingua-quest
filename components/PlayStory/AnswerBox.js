@@ -3,13 +3,13 @@ import AnswerItem from "./AnswerItem";
 import { GlobalStyles } from "../../constants/styles";
 import NextButton from "./NextButton";
 
-function AnswerBox({ answers, correct_answer }) {
+function AnswerBox({ answers, correct_answer_idx }) {
   function renderAnswerItem({ index, item }) {
     return (
       <AnswerItem
         index={index}
         text={item}
-        correct_answer={correct_answer}
+        correct_answer={correct_answer_idx}
       />
     );
   }

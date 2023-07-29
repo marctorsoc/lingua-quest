@@ -1,14 +1,21 @@
 import { FlatList } from "react-native";
 import SentenceItem from "./SentenceItem";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { PlayContext } from "../../context/play-context";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
-function SentenceList({ sentences }) {
+function SentenceList(props) {
   const flatListRef = useRef(null);
   const { playData } = useContext(PlayContext);
+  const [sentences, setSentences] = useState();
   const currentSentenceIdx = playData.currentSentenceIdx;
   const reviewingAnswer = playData.currentAnswerIdx !== undefined;
+
+  // this little trick is needed to force a re-render
+  // probably not ideal, but it works
+  useEffect(() => {
+    setSentences(props.sentences);
+  }, [props.sentences]);
 
   function renderSentenceItem({ item, index }) {
     const playingThisItem = currentSentenceIdx == index;
@@ -19,6 +26,7 @@ function SentenceList({ sentences }) {
     return (
       enabled && (
         <SentenceItem
+          index={index}
           playingThisItem={playingThisItem}
           reviewingThisAnswer={reviewThisAnswer}
           {...item}
@@ -35,7 +43,7 @@ function SentenceList({ sentences }) {
       renderItem={renderSentenceItem}
       onContentSizeChange={() => {
         // TODO: this only works for Android, not web 🤷‍♂️
-        flatListRef.current.scrollToEnd();
+        flatListRef.current?.scrollToEnd();
       }}
       keyExtractor={(item) => item.id}
     />

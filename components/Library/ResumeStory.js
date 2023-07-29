@@ -2,23 +2,38 @@ import { View, Text, StyleSheet } from "react-native";
 
 import { GlobalStyles } from "../../constants/styles";
 import { Pressable } from "react-native";
+import { useContext } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { PlayContext } from "../../context/play-context";
+import Button from "../UI/Button";
 
 function ResumeStory({ stories: stories }) {
   // TODO: find story that was played the latest and surface
   // to the summary to resume
   // if never played any story, remove
+  const { playData } = useContext(PlayContext);
+  const navigation = useNavigation();
 
-  // TODO marc: compute properly
-  const enabled = true;
+  const storyId = playData.storyId;
+  const enabled = storyId !== undefined;
+  const story = stories.find((story) => story.id === storyId);
+  let name = story?.title;
+
+  if (story?.parent_title !== null && /^S\d{1,2}E.*/.test(name))
+    name = `${story?.parent_title} - ${name}`;
+  const msg = `Continue ${name}`;
+
+  function ResumeHandler() {
+    navigation.navigate("PlayStory");
+    return;
+  }
 
   return (
     enabled && (
       <View style={styles.container}>
-        <Pressable onPress={() => {}}>
-          <Text>
-            TODO: Implement to continue with the same story
-          </Text>
-        </Pressable>
+        <Button style={styles.button} onPress={ResumeHandler}>
+          <Text style={styles.text}>{msg}</Text>
+        </Button>
       </View>
     )
   );
@@ -29,20 +44,18 @@ export default ResumeStory;
 const styles = StyleSheet.create({
   container: {
     padding: 12,
-    marginBottom: 24,
-    backgroundColor: GlobalStyles.colors.primary50,
+    marginBottom: 12,
+    backgroundColor: GlobalStyles.colors.primary500,
     borderRadius: 6,
+    borderColor: GlobalStyles.colors.primary50,
+    borderWidth: 2,
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    justifyContent: "center",
   },
-  period: {
-    fontSize: 12,
-    color: GlobalStyles.colors.primary400,
-  },
-  sum: {
+  button: {},
+  text: {
     fontSize: 16,
     fontWeight: "bold",
-    color: GlobalStyles.colors.primary500,
+    color: GlobalStyles.colors.primary50,
   },
 });

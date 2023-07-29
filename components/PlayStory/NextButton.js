@@ -5,26 +5,96 @@ import Button from "../UI/Button";
 import { useContext } from "react";
 import { PlayContext } from "../../context/play-context";
 import { useNavigation } from "@react-navigation/native";
+import { StoryContext } from "../../context/stories-context";
+import { storeData } from "../../util/storage";
+import alert from "../../util/alert";
+import { GlobalContext } from "../../context/global-context";
 
 function NextButton() {
   const navigation = useNavigation();
   const { playData, setPlayData } = useContext(PlayContext);
+  const { globalConfig } = useContext(GlobalContext);
+  const { stories, updateStory, setStories } =
+    useContext(StoryContext);
+  const storyId = playData.storyId;
   const answered = playData.currentAnswerIdx !== undefined;
   const isLastSentence =
     playData.currentSentenceIdx === playData.numSentences - 1;
+  const allCorrect = playData.numWrongAnswers === 0;
+
+  function resetGame() {
+    setPlayData({
+      ...playData,
+      currentAnswerIdx: undefined,
+      currentSentenceIdx: 0,
+      numWrongAnswers: 0,
+      numCorrectAnswers: 0,
+    });
+  }
 
   function onPressNext() {
     if (!answered) return;
     if (isLastSentence) {
-      navigation.goBack();
+      if (allCorrect) {
+        // set new value for story.done
+        const story = stories.find((story) => story.id === storyId);
+        const updatedStory = {
+          ...story,
+          done: playData.endIdx,
+        };
+        // updateStory(updatedStory);
+        // save to local storage
+        const updatedStories = stories.map((story) => {
+          if (story.id === storyId) {
+            return updatedStory;
+          }
+          return story;
+        });
+        storeData("stories", JSON.stringify(updatedStories));
+        // show a popup to continue "yes/no"
+        askForContinue();
+        setStories(updatedStories);
+        return;
+      }
+      // reset game. Needs to be a clean sheet
+      resetGame();
       return;
     }
+    // not last sentence, so go to next
     setPlayData({
       ...playData,
       currentAnswerIdx: undefined,
       currentSentenceIdx: playData.currentSentenceIdx + 1,
     });
   }
+
+  const askForContinue = () => {
+    if (!globalConfig.showConfirmationDialog) {
+      return;
+    }
+    console.log("Asking for confirmation");
+    alert(
+      "Continue playing?",
+      "Do you want to continue?",
+      [
+        {
+          text: "No",
+          style: "cancel",
+          onPress: () => {
+            // console.log("User chose No");
+            navigation.goBack();
+          },
+        },
+        {
+          text: "Yes",
+          onPress: () => {
+            // console.log("User chose Yes");
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  };
   // console.log(text);
   return (
     <View style={styles.AnswerContainer}>
@@ -38,7 +108,11 @@ function NextButton() {
             answered ? {} : styles.disabledButton,
           ]}
         >
-          {isLastSentence ? "Finish" : "Next"}
+          {isLastSentence
+            ? allCorrect
+              ? "Finish"
+              : "Repeat"
+            : "Next"}
         </Text>
       </Button>
     </View>

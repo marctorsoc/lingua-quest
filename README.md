@@ -74,6 +74,8 @@ Midu video
 
 
 TODO marc:
+- Add next / back in PlayGame
+- Add translations
 - change fonts VScode like midu
 - add tests?
 - add to GH

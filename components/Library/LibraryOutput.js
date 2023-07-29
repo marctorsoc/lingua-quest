@@ -11,12 +11,13 @@ function LibraryOutput({
   parentId: parentId,
 }) {
   let content = <Text style={styles.infoText}>{fallbackText}</Text>;
+
   if (stories.length > 0) {
     content = (
       <StoryList
-        stories={stories.filter(
-          (story) => story.parent_id === parentId
-        )}
+        stories={stories
+          .filter((story) => story.parent_id === parentId)
+          .sort((a, b) => a.title.localeCompare(b.title))}
       />
     );
   }

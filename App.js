@@ -24,7 +24,7 @@ const BottomTabs = createBottomTabNavigator();
 
 function MainNavigator() {
   const navigation = useNavigation();
-  const { data, setData } = useContext(GlobalContext);
+  const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
 
   function headerRight(tintColor) {
     return (
@@ -69,26 +69,20 @@ function MainNavigator() {
 
   function headerLeft(tintColor) {
     return (
-      data.showLibraryBackButton && (
+      globalConfig.showLibraryBackButton && (
         <IconButton
           icon="arrow-back-outline"
           size={24}
           color={tintColor}
           containerStyle={{
-            // backgroundColor: "green",
-            // TODO: this is a big hack
             margin: 0,
             padding: 0,
             top: 13,
             left: 10,
-            // position: "fixed",
-            // width: 20,
-            // height: 20,
-            // backgroundColor: "red",
           }}
           onPress={() => {
-            setData({
-              ...data,
+            setGlobalConfig({
+              ...globalConfig,
               showLibraryBackButton: false,
             });
             navigation.navigate("Library");
@@ -105,7 +99,10 @@ function MainNavigator() {
         // Prevent default action
         e.preventDefault();
         // set showLibraryBackButton to false
-        setData({ ...data, showLibraryBackButton: false });
+        setGlobalConfig({
+          ...globalConfig,
+          showLibraryBackButton: false,
+        });
         // navigate to Library without param i.e. top-level
         navigation.navigate(tabName);
       },
@@ -168,6 +165,39 @@ function MainNavigator() {
 }
 
 function AppStack() {
+  const navigation = useNavigation();
+  function playGameHeaderRight(tintColor) {
+    return (
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          margin: 10,
+        }}
+      >
+        {moveChapterHandler(tintColor, "back")}
+        {moveChapterHandler(tintColor, "next")}
+      </View>
+    );
+  }
+  function moveChapterHandler(tintColor, direction) {
+    const icon = direction == "back" ? "arrow-undo" : "arrow-redo";
+    // TODO: compute this properly
+    const enabled = true;
+    return (
+      <IconButton
+        icon={icon}
+        size={24}
+        color={enabled ? tintColor : "grey"}
+        containerStyle={ScreensStyles.headerButtonsContainers}
+        onPress={() => {
+          if (!enabled) return;
+          navigation.navigate("ManageStory");
+        }}
+      />
+    );
+  }
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -194,6 +224,8 @@ function AppStack() {
         component={PlayStory}
         options={{
           presentation: "modal",
+          headerRight: ({ tintColor }) =>
+            playGameHeaderRight(tintColor),
         }}
       />
     </Stack.Navigator>

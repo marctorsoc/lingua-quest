@@ -16,16 +16,11 @@ function StoryForm({
 }) {
   const [inputs, setInputs] = useState({
     name: {
-      value: defaultValues
-        ? defaultValues.name.toString()
-        : "",
+      value: defaultValues ? defaultValues.name.toString() : "",
       isValid: true,
     },
     url: {
-      // value: defaultValues ? getFormattedDate(defaultValues.date) : "",
-      value: defaultValues
-        ? defaultValues.url.toString()
-        : "",
+      value: defaultValues ? defaultValues.url.toString() : "",
       isValid: true,
     },
     learning_lc: {
@@ -35,17 +30,12 @@ function StoryForm({
       isValid: true,
     },
     from_lc: {
-      value: defaultValues
-        ? defaultValues.from_lc.toString()
-        : "en",
+      value: defaultValues ? defaultValues.from_lc.toString() : "en",
       isValid: true,
     },
   });
 
-  function inputChangedHandler(
-    inputIdentifier,
-    enteredValue
-  ) {
+  function inputChangedHandler(inputIdentifier, enteredValue) {
     setInputs((curInputs) => {
       return {
         ...curInputs,
@@ -67,8 +57,7 @@ function StoryForm({
     // const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
     const nameIsValid = expenseData.name.trim().length > 0;
     // TODO: check how to validate urls
-    const urlIsValid =
-      expenseData.url.toString() !== "Invalid Url";
+    const urlIsValid = expenseData.url.toString() !== "Invalid Url";
 
     if (!nameIsValid || !urlIsValid) {
       // Alert.alert('Invalid input', 'Please check your input values');
@@ -90,8 +79,7 @@ function StoryForm({
     onSubmit(expenseData);
   }
 
-  const formIsInvalid =
-    !inputs.name.isValid || !inputs.url.isValid;
+  const formIsInvalid = !inputs.name.isValid || !inputs.url.isValid;
 
   return (
     <View style={styles.form}>
@@ -100,10 +88,7 @@ function StoryForm({
         invalid={!inputs.name.isValid}
         textInputConfig={{
           keyboardType: "decimal-pad",
-          onChangeText: inputChangedHandler.bind(
-            this,
-            "name"
-          ),
+          onChangeText: inputChangedHandler.bind(this, "name"),
           value: inputs.name.value,
         }}
       />
@@ -114,10 +99,7 @@ function StoryForm({
           multiline: true,
           // autoCapitalize: 'none'
           // autoCorrect: false // default is true
-          onChangeText: inputChangedHandler.bind(
-            this,
-            "url"
-          ),
+          onChangeText: inputChangedHandler.bind(this, "url"),
           value: inputs.url.value,
         }}
       />
@@ -140,10 +122,7 @@ function StoryForm({
           label="From"
           invalid={!inputs.from_lc.isValid}
           pickerConfig={{
-            onChangeText: inputChangedHandler.bind(
-              this,
-              "from_lc"
-            ),
+            onChangeText: inputChangedHandler.bind(this, "from_lc"),
             value: inputs.from_lc.value,
             options: languageOptions,
           }}
@@ -151,18 +130,14 @@ function StoryForm({
       </View>
       {formIsInvalid && (
         <Text style={styles.errorText}>
-          Invalid input values - please check your entered
-          data!
+          Invalid input values - please check your entered data!
         </Text>
       )}
       <View style={styles.buttons}>
         <Button style={styles.button} onPress={onCancel}>
           <Text style={{ color: "white" }}>Cancel</Text>
         </Button>
-        <Button
-          style={styles.button}
-          onPress={submitHandler}
-        >
+        <Button style={styles.button} onPress={submitHandler}>
           {submitButtonLabel}
         </Button>
       </View>
