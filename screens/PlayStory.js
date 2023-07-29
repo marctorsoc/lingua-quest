@@ -9,7 +9,6 @@ import { StyleSheet, View } from "react-native";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
 import { GlobalStyles, ScreensStyles } from "../constants/styles";
 import { StoryContext } from "../context/stories-context";
-// import { sentencesSample } from "../assets/mocks";
 import data from "../assets/data_2023_06_26";
 import { PickerInput } from "../components/ManageStory/Input";
 import { sleep } from "../util/debug";
