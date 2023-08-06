@@ -1,3 +1,12 @@
+# Table of Contents
+
+- [Running](#running)
+- [Debugging](#debugging)
+- [Building](#building)
+- [Bootcamp video index](#bootcamp-video-index)
+- [Pending work](#pending-work)
+
+
 To install, run `npm install`
 
 # Running
@@ -21,9 +30,7 @@ Running react-dev-tools. In a separate terminal, run `react-dev-tools`. This sho
 `eas init --id a9...`
 `eas build:configure`
 
-
-
-Bootcamp video index
+# Bootcamp video index
 
 - 00:00 Intro React-Native
 - 03:10 Expo
@@ -73,12 +80,11 @@ Bootcamp video index
 
 
 
-TODO marc:
+# Pending work:
 - Add translations
 - change fonts VScode as in Bootcamp
 - add tests?
 - change color of history sentences
-- add to GH
 
 
 
