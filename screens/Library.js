@@ -13,6 +13,7 @@ import { getDateMinusDays } from "../util/date";
 import { fetchStories } from "../util/http";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { PlayContext } from "../context/play-context";
+import { GlobalContext } from "../context/global-context";
 
 function Library(navigation, route) {
   // TODO marc: see example for this in https://reactnative.dev/docs/network
@@ -22,6 +23,7 @@ function Library(navigation, route) {
   // retrieved from the API
   const { stories, setStories } = useContext(StoryContext);
   const { playData, setPlayData } = useContext(PlayContext);
+  const { globalData, setGlobalConfig } = useContext(GlobalContext);
 
   const [error, setError] = useState();
 
@@ -52,7 +54,16 @@ function Library(navigation, route) {
       }
       return storyId;
     }
+    async function getSettings() {
+      // console.log("Getting settings from disk");
+      const settings = await AsyncStorage.getItem("settings");
+      if (settings) {
+        // console.log("Setting settings in globalConfig");
+        setGlobalConfig(JSON.parse(settings));
+      }
+    }
     setIsFetching(true);
+    getSettings();
     getLastStoryId();
     getStories();
     setIsFetching(false);

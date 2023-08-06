@@ -166,6 +166,7 @@ function MainNavigator() {
 
 function AppStack() {
   const navigation = useNavigation();
+
   function playGameHeaderRight(tintColor) {
     return (
       <View
@@ -224,8 +225,8 @@ function AppStack() {
         component={PlayStory}
         options={{
           presentation: "modal",
-          headerRight: ({ tintColor }) =>
-            playGameHeaderRight(tintColor),
+          // headerRight: ({ tintColor }) =>
+          //   playGameHeaderRight(tintColor),
         }}
       />
     </Stack.Navigator>

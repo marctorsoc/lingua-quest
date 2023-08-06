@@ -4,6 +4,8 @@ import { GlobalStyles } from "../../constants/styles";
 import NextButton from "./NextButton";
 
 function AnswerBox({ answers, correct_answer_idx }) {
+  console.log("AnswerBox");
+  console.log(answers);
   function renderAnswerItem({ index, item }) {
     return (
       <AnswerItem

@@ -56,26 +56,35 @@ function PlayStory({ navigation, route }) {
         );
 
         // console.log(globalConfig);
-        const startIdx = story.done;
-        const endIdx = Math.min(
+
+        // keep only next + last historyLength games
+        const numPrevSentences =
+          globalConfig.historyLength *
+          globalConfig.numSentencesPerGame;
+        const requestStartIdx = Math.max(
+          0,
+          story.done - numPrevSentences
+        );
+        const requestEndIdx = Math.min(
           story.total,
           story.done + globalConfig.numSentencesPerGame
         );
         const requestedSentences = [
-          ...sentencesForStory.slice(startIdx, endIdx),
+          ...sentencesForStory.slice(requestStartIdx, requestEndIdx),
         ];
         // console.log("requested sentences");
         // console.log(requestedSentences);
         await sleep(0.1);
         setSentences(requestedSentences);
-        // TODO: should we set loading false if error?
-        const playLength = requestedSentences.length;
+        const playLength = requestEndIdx - story.done;
         setPlayData({
           ...initialPlayData,
           numSentences: playLength,
           numAnswersToGo: playLength,
-          startIdx: startIdx,
-          endIdx: endIdx,
+          currentSentenceIdx: story.done,
+          startIdx: story.done,
+          endIdx: requestEndIdx,
+          startHistoryIdx: requestStartIdx,
           storyId: storyId,
         });
         storeData("last_story_id", storyId);
@@ -101,11 +110,13 @@ function PlayStory({ navigation, route }) {
     return <LoadingOverlay />;
   }
 
-  // console.log("sentences");
-  // console.log(sentences);
-  const currentSentence = sentences[playData.currentSentenceIdx];
-
-  // console.log(currentSentence);
+  console.log("sentences");
+  console.log(sentences);
+  let currentSentence = {};
+  const localCurrentSentenceIdx =
+    playData.currentSentenceIdx - playData.startHistoryIdx;
+  currentSentence = sentences[localCurrentSentenceIdx];
+  console.log(currentSentence);
   return (
     <View style={styles.mainContainer}>
       <GameStatusBox />

@@ -23,7 +23,7 @@ Running react-dev-tools. In a separate terminal, run `react-dev-tools`. This sho
 
 
 
-Midu video
+Bootcamp video index
 
 00:00 Intro React-Native
 03:10 Expo
@@ -74,10 +74,10 @@ Midu video
 
 
 TODO marc:
-- Add next / back in PlayGame
 - Add translations
-- change fonts VScode like midu
+- change fonts VScode as in Bootcamp
 - add tests?
+- change color of history sentences
 - add to GH
 
 

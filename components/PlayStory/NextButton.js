@@ -19,16 +19,18 @@ function NextButton() {
   const storyId = playData.storyId;
   const answered = playData.currentAnswerIdx !== undefined;
   const isLastSentence =
-    playData.currentSentenceIdx === playData.numSentences - 1;
+    playData.currentSentenceIdx ===
+    playData.startIdx + playData.numSentences - 1;
   const allCorrect = playData.numWrongAnswers === 0;
 
   function resetGame() {
     setPlayData({
       ...playData,
       currentAnswerIdx: undefined,
-      currentSentenceIdx: 0,
+      currentSentenceIdx: playData.startIdx,
       numWrongAnswers: 0,
       numCorrectAnswers: 0,
+      numAnswersToGo: playData.numSentences,
     });
   }
 
@@ -65,6 +67,7 @@ function NextButton() {
       ...playData,
       currentAnswerIdx: undefined,
       currentSentenceIdx: playData.currentSentenceIdx + 1,
+      numAnswersToGo: playData.numAnswersToGo - 1,
     });
   }
 
@@ -95,7 +98,7 @@ function NextButton() {
       { cancelable: false }
     );
   };
-  // console.log(text);
+  console.log(playData);
   return (
     <View style={styles.AnswerContainer}>
       <Button onPress={onPressNext}>
@@ -110,7 +113,7 @@ function NextButton() {
         >
           {isLastSentence
             ? allCorrect
-              ? "Finish"
+              ? "Finish round"
               : "Repeat"
             : "Next"}
         </Text>

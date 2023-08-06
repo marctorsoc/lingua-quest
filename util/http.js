@@ -11,12 +11,12 @@ export async function fetchStories(props = { try_from_disk: true }) {
   try {
     let stories_from_disk = null;
     if (try_from_disk) {
-      console.log("loading from disk");
+      console.log("loading stories from disk");
       const jsonValue = await AsyncStorage.getItem("stories");
       stories_from_disk = JSON.parse(jsonValue);
     }
     if (stories_from_disk !== null && stories_from_disk.length > 0) {
-      console.log("loaded from disk");
+      console.log("loaded stories from disk");
       return stories_from_disk;
     }
   } catch (e) {

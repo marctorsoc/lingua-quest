@@ -8,7 +8,8 @@ export const initialGlobalData = {
   // setTheme: (theme) => {},
   showLibraryBackButton: false,
   numSentencesPerGame: 2,
-  showConfirmationDialog: true,
+  historyLength: 1,
+  showConfirmationDialog: false,
   // numGamesPerDay: 3,  // TODO marc: implement this
 };
 

@@ -12,7 +12,7 @@ const GameStatusBox = () => {
       <View style={styles.box}>
         <Text style={styles.text}>
           <Ionicons name="document" size={18} color="white" />:{" "}
-          {playData.startIdx}-{playData.endIdx - 1}
+          {playData.startIdx + 1}-{playData.endIdx}
         </Text>
       </View>
       <View style={styles.box}>

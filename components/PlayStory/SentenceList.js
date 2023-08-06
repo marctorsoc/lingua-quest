@@ -18,15 +18,18 @@ function SentenceList(props) {
   }, [props.sentences]);
 
   function renderSentenceItem({ item, index }) {
-    const playingThisItem = currentSentenceIdx == index;
-    const alreadyPlayedItem = currentSentenceIdx > index;
+    // TODO marc: this won't work since currentSentenceIdx
+    // is now offset with story.done
+    const globalIndex = playData.startHistoryIdx + index;
+    const playingThisItem = currentSentenceIdx == globalIndex;
+    const alreadyPlayedItem = currentSentenceIdx > globalIndex;
     const reviewThisAnswer = reviewingAnswer && playingThisItem;
     // only show if already answered or current to answer
     const enabled = alreadyPlayedItem || playingThisItem;
     return (
       enabled && (
         <SentenceItem
-          index={index}
+          index={index + playData.startHistoryIdx}
           playingThisItem={playingThisItem}
           reviewingThisAnswer={reviewThisAnswer}
           {...item}

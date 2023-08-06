@@ -33,15 +33,33 @@ const Settings = () => {
   const [numSentences, setNumSentences] = useState(
     globalConfig.numSentencesPerGame
   );
+  const [historyLength, setHistoryLength] = useState(
+    globalConfig.historyLength
+  );
   const [showConfirmation, setShowConfirmation] = useState(
     globalConfig.showConfirmationDialog
   );
 
   // Function to handle changes to the number of sentences
   const handleNumSentencesChange = (text) => {
-    setNumSentences(text);
+    const numSentences = parseInt(text);
+    setNumSentences(numSentences);
     // set globalContext too
-    setGlobalConfig({ ...globalConfig, numSentencesPerGame: text });
+    setGlobalConfig({
+      ...globalConfig,
+      numSentencesPerGame: numSentences,
+    });
+  };
+
+  // Function to handle changes to the number of sentences
+  const handleHistoryLengthChange = (text) => {
+    const historyLength = parseInt(text);
+    setHistoryLength(historyLength);
+    // set globalContext too
+    setGlobalConfig({
+      ...globalConfig,
+      historyLength: historyLength,
+    });
   };
 
   // Function to handle the "Show confirmation" switch toggle
@@ -64,6 +82,7 @@ const Settings = () => {
     setPlayData(initialPlayData);
     setGlobalConfig(initialGlobalData);
     setNumSentences(initialGlobalData.numSentencesPerGame);
+    setHistoryLength(initialGlobalData.historyLength);
     setShowConfirmation(initialGlobalData.showConfirmationDialog);
 
     alert(
@@ -79,15 +98,43 @@ const Settings = () => {
     );
   }
 
+  async function handleSaveData() {
+    // save settings to storage
+    storeData("settings", JSON.stringify(globalConfig));
+
+    alert(
+      "Save settings",
+      "Settings saved",
+      [
+        {
+          text: "Ok",
+          onPress: () => {},
+        },
+      ],
+      { cancelable: false }
+    );
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* Option 1: Number of sentences per game */}
+      {/* Option: Number of sentences per game */}
       <View style={styles.optionContainer}>
         <Text style={styles.label}>Number of sentences per game</Text>
         <TextInput
           style={styles.input}
           onChangeText={handleNumSentencesChange}
           value={numSentences}
+          inputMode="numeric"
+          maxLength={2}
+        />
+      </View>
+      {/* Option: History length */}
+      <View style={styles.optionContainer}>
+        <Text style={styles.label}>History Length</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={handleHistoryLengthChange}
+          value={historyLength}
           inputMode="numeric"
           maxLength={2}
         />
@@ -102,12 +149,15 @@ const Settings = () => {
           onValueChange={handleShowConfirmationToggle}
         />
       </View>
-      {/* Option 3: Reset games */}
+      {/* Manage data */}
       <View style={styles.optionContainer}>
-        <Text style={styles.label}>Reset games</Text>
         <Button style={styles.button} onPress={handleResetData}>
-          {/*{TODO: center the "Go!" text}*/}
-          <Text style={styles.label}>Go!</Text>
+          {/*{TODO: center the text}*/}
+          <Text style={styles.label}>Reset all data</Text>
+        </Button>
+        <Button style={styles.button} onPress={handleSaveData}>
+          {/*{TODO: center the text}*/}
+          <Text style={styles.label}>Save settings</Text>
         </Button>
       </View>
     </ScrollView>
@@ -135,7 +185,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    width: 60,
+    width: 50,
     borderColor: "gray",
     color: "white",
     textAlign: "center",
@@ -149,6 +199,10 @@ const styles = StyleSheet.create({
   button: {
     fontSize: 18,
     color: "white",
+    borderColor: "gray",
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 8,
   },
 });
 
