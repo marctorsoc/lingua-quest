@@ -2,15 +2,11 @@
   "expo": {
     "name": "caption-master",
     "slug": "caption-master",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "orientation": "portrait",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "backgroundColor": "#83389f",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -29,10 +25,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.marc.torsoc.captionmaster"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a91a31d2-ee2d-4c8e-b52a-129de45ed98e"
+      }
+    },
+    "owner": "marc.torsoc"
   }
 }
