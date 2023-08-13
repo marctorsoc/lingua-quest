@@ -21,9 +21,9 @@ Running react-dev-tools. In a separate terminal, run `react-dev-tools`. This sho
 
 ## First time
 
-`npm install --global eas-cli`
-`eas init --id a9...`
-`eas build:configure`
+* `npm install --global eas-cli`
+* `eas init --id a9...`
+* `eas build:configure`
 
 ## Once everything configured
 
