@@ -1,3 +1,5 @@
+Disclaimer: this repo is very far from well-written code, but hey, my first react native project, and it works!
+
 # Table of Contents
 
 - [Running](#running)
