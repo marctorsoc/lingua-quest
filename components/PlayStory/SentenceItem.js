@@ -4,7 +4,8 @@ import { GlobalStyles } from "../../constants/styles";
 import { StyleSheet } from "react-native";
 import { View, Text } from "react-native";
 import { PlayContext } from "../../context/play-context";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import Button from "../UI/Button";
 
 function SentenceItem({
   index,
@@ -13,14 +14,21 @@ function SentenceItem({
   masked_range,
   playingThisItem,
   reviewingThisAnswer,
+  alreadyPlayedItem,
 }) {
   const showMasked = playingThisItem && !reviewingThisAnswer;
-  const showTranslation = playingThisItem && reviewingThisAnswer;
+  const [showTranslation, setShowTranlsation] = useState(
+    playingThisItem && reviewingThisAnswer
+  );
   const maskStyle =
     playingThisItem && reviewingThisAnswer
       ? styles.revealedMaskedText
       : {};
 
+  const { playData, setPlayData } = useContext(PlayContext);
+  useEffect(() => {
+    setShowTranlsation(reviewingThisAnswer);
+  }, [reviewingThisAnswer]);
   // TODO marc: this console.log appears many many times.
   // Might be due to the key. Check TODO in SentenceList
   // console.log(data.currentAnswer);
@@ -38,6 +46,10 @@ function SentenceItem({
       </View>
     );
   }
+  function onSentenceSelected() {
+    if (!alreadyPlayedItem) return;
+    setShowTranlsation(!showTranslation);
+  }
 
   function showTranslationHandler() {
     return (
@@ -49,15 +61,23 @@ function SentenceItem({
     );
   }
 
+  const sentenceItemStyle = [
+    styles.SentenceItem,
+    alreadyPlayedItem && styles.alreadyPlayedSentenceItem,
+  ];
+
   return (
-    <View style={styles.SentenceItem}>
+    <View style={sentenceItemStyle}>
       <View style={styles.IndexItem}>
         <Text style={styles.IndexText}>{index + 1}</Text>
       </View>
-      <View style={styles.textsContainer}>
+      <Button
+        style={styles.textsContainer}
+        onPress={onSentenceSelected}
+      >
         {showTextHandler()}
         {showTranslationHandler()}
-      </View>
+      </Button>
     </View>
   );
 }
@@ -98,6 +118,9 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.4,
     textAlign: "center",
+  },
+  alreadyPlayedSentenceItem: {
+    backgroundColor: GlobalStyles.colors.primary500a,
   },
   textsContainer: {
     flex: 1,

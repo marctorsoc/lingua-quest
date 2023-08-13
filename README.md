@@ -6,7 +6,6 @@
 - [Bootcamp video index](#bootcamp-video-index)
 - [Pending work](#pending-work)
 
-
 To install, run `npm install`
 
 # Running
@@ -20,17 +19,29 @@ Running react-dev-tools. In a separate terminal, run `react-dev-tools`. This sho
 
 # Building
 
-## Once everything configured
-
-`eas build -p android --profile preview`
-
 ## First time
 
 `npm install --global eas-cli`
 `eas init --id a9...`
 `eas build:configure`
 
+## Once everything configured
+
+Just run `eas build -p android --profile preview`, and wait for some time (> 10min):
+```bash
+~/...../caption-master ❯ eas build -p android --profile preview
+✔ Using remote Android credentials (Expo server)
+✔ Using Keystore from configuration: Build Credentials y-NTnpaOgo (default)
+
+Compressing project files and uploading to EAS Build. Learn more
+✔ Uploaded to EAS 2s
+
+Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/builds/cb2dfa67-5f3e-4b45-afd6-6afcbc8ecfc0
+```
+
 # Bootcamp video index
+
+[Link to video](https://www.youtube.com/watch?v=qi87b6VcIHY)
 
 - 00:00 Intro React-Native
 - 03:10 Expo
@@ -78,15 +89,8 @@ Running react-dev-tools. In a separate terminal, run `react-dev-tools`. This sho
 - 03:26:45 Usando graphQL en el custom hook
 - 03:30:00 Preguntas
 
+# Pending work
 
-
-# Pending work:
-- Add translations
-- change fonts VScode as in Bootcamp
-- add tests?
-- change color of history sentences
-
-
-
-
-
+- GH actions to auto-release with every push to master
+- Change fonts VScode as in Bootcamp
+- Add tests

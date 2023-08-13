@@ -23,7 +23,7 @@ function SentenceList(props) {
     const globalIndex = playData.startHistoryIdx + index;
     const playingThisItem = currentSentenceIdx == globalIndex;
     const alreadyPlayedItem = currentSentenceIdx > globalIndex;
-    const reviewThisAnswer = reviewingAnswer && playingThisItem;
+    const reviewingThisAnswer = reviewingAnswer && playingThisItem;
     // only show if already answered or current to answer
     const enabled = alreadyPlayedItem || playingThisItem;
     return (
@@ -31,7 +31,8 @@ function SentenceList(props) {
         <SentenceItem
           index={index + playData.startHistoryIdx}
           playingThisItem={playingThisItem}
-          reviewingThisAnswer={reviewThisAnswer}
+          reviewingThisAnswer={reviewingThisAnswer}
+          alreadyPlayedItem={alreadyPlayedItem}
           {...item}
         />
       )
