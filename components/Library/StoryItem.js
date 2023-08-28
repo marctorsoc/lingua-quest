@@ -68,7 +68,7 @@ function StoryItem({
           <Text style={styles.language}>{getEmoji(known_lc)}</Text>
         </View>
         <View style={styles.statusContainer}>
-          <Text style={styles.status}>{status}</Text>
+          {is_leaf && <Text style={styles.status}>{status}</Text>}
         </View>
       </View>
     </Button>
@@ -92,6 +92,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     textAlign: "center",
     margin: "5%",
+    minHeight: 120,
+    justifyContent: "center",
   },
   textBase: {
     color: GlobalStyles.colors.primary50,
