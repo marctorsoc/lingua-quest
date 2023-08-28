@@ -12,16 +12,19 @@ function SentenceItem({
   text,
   translation,
   masked_range,
+  correct_answer_idx,
   playingThisItem,
   reviewingThisAnswer,
   alreadyPlayedItem,
 }) {
-  const showMasked = playingThisItem && !reviewingThisAnswer;
+  const validSentence = correct_answer_idx !== -1;
+  const showMasked =
+    playingThisItem && !reviewingThisAnswer && validSentence;
   const [showTranslation, setShowTranlsation] = useState(
     playingThisItem && reviewingThisAnswer
   );
   const maskStyle =
-    playingThisItem && reviewingThisAnswer
+    playingThisItem && (!validSentence || reviewingThisAnswer)
       ? styles.revealedMaskedText
       : {};
 
@@ -34,12 +37,14 @@ function SentenceItem({
   // console.log(data.currentAnswer);
 
   function showTextHandler() {
+    const valid_masked_range =
+      masked_range !== null ? masked_range : [0, 0];
     return (
       <View>
         <MaskedText
           style={[styles.textBase, styles.title]}
           text={text}
-          masked_range={masked_range}
+          masked_range={valid_masked_range}
           maskEnabled={showMasked}
           maskStyle={maskStyle}
         ></MaskedText>
@@ -49,6 +54,10 @@ function SentenceItem({
   function onSentenceSelected() {
     if (!alreadyPlayedItem) return;
     setShowTranlsation(!showTranslation);
+    setPlayData({
+      ...playData,
+      processingClickedTranslation: true,
+    });
   }
 
   function showTranslationHandler() {
@@ -94,6 +103,7 @@ const styles = StyleSheet.create({
   },
   IndexItem: {
     marginLeft: 15,
+    marginRight: 20,
   },
   IndexText: {
     fontWeight: "bold",

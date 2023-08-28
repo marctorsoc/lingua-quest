@@ -20,7 +20,7 @@ import { GlobalStyles } from "../constants/styles";
 import Button from "../components/UI/Button";
 import { storeData, cleanData } from "../util/storage";
 import { fetchStories } from "../util/http";
-import alert from "../util/alert";
+import { showInformativeAlert } from "../util/alert";
 import {
   PlayContext,
   initialPlayData,
@@ -31,10 +31,10 @@ const Settings = () => {
   const { stories, setStories } = useContext(StoryContext);
   const { playData, setPlayData } = useContext(PlayContext);
   const [numSentences, setNumSentences] = useState(
-    globalConfig.numSentencesPerGame
+    String(globalConfig.numSentencesPerGame)
   );
   const [historyLength, setHistoryLength] = useState(
-    globalConfig.historyLength
+    String(globalConfig.historyLength)
   );
   const [showConfirmation, setShowConfirmation] = useState(
     globalConfig.showConfirmationDialog
@@ -81,38 +81,22 @@ const Settings = () => {
 
     setPlayData(initialPlayData);
     setGlobalConfig(initialGlobalData);
-    setNumSentences(initialGlobalData.numSentencesPerGame);
-    setHistoryLength(initialGlobalData.historyLength);
-    setShowConfirmation(initialGlobalData.showConfirmationDialog);
+    setNumSentences(String(initialGlobalData.numSentencesPerGame));
+    setHistoryLength(String(initialGlobalData.historyLength));
+    setShowConfirmation(
+      String(initialGlobalData.showConfirmationDialog)
+    );
 
-    alert(
+    showInformativeAlert(
       "Reset data",
-      "All data reset to their default values.",
-      [
-        {
-          text: "Ok",
-          onPress: () => {},
-        },
-      ],
-      { cancelable: false }
+      "All data reset to their default values."
     );
   }
 
   async function handleSaveData() {
     // save settings to storage
     storeData("settings", JSON.stringify(globalConfig));
-
-    alert(
-      "Save settings",
-      "Settings saved",
-      [
-        {
-          text: "Ok",
-          onPress: () => {},
-        },
-      ],
-      { cancelable: false }
-    );
+    showInformativeAlert("Settings saved");
   }
 
   return (
@@ -140,7 +124,7 @@ const Settings = () => {
         />
       </View>
 
-      {/* Option 2: Show confirmation */}
+      {/* Option: Show confirmation */}
       <View style={styles.optionContainer}>
         <Text style={styles.label}>Show confirmation box</Text>
         <Switch
@@ -167,9 +151,8 @@ const Settings = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    paddingHorizontal: "20%",
-    justifyContent: "center",
+    paddingHorizontal: "15%",
+    paddingVertical: "15%",
     backgroundColor: GlobalStyles.colors.primary700,
   },
   optionContainer: {

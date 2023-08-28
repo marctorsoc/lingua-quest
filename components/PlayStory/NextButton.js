@@ -7,17 +7,16 @@ import { PlayContext } from "../../context/play-context";
 import { useNavigation } from "@react-navigation/native";
 import { StoryContext } from "../../context/stories-context";
 import { storeData } from "../../util/storage";
-import alert from "../../util/alert";
+import { alert } from "../../util/alert";
 import { GlobalContext } from "../../context/global-context";
 
-function NextButton() {
+function NextButton({ skip }) {
   const navigation = useNavigation();
   const { playData, setPlayData } = useContext(PlayContext);
   const { globalConfig } = useContext(GlobalContext);
-  const { stories, updateStory, setStories } =
-    useContext(StoryContext);
+  const { stories, setStories } = useContext(StoryContext);
   const storyId = playData.storyId;
-  const answered = playData.currentAnswerIdx !== undefined;
+  const answered = skip || playData.currentAnswerIdx !== undefined;
   const isLastSentence =
     playData.currentSentenceIdx ===
     playData.startIdx + playData.numSentences - 1;
@@ -44,18 +43,17 @@ function NextButton() {
           ...story,
           done: playData.endIdx,
         };
-        // updateStory(updatedStory);
-        // save to local storage
-        const updatedStories = stories.map((story) => {
-          if (story.id === storyId) {
-            return updatedStory;
-          }
-          return story;
-        });
-        storeData("stories", JSON.stringify(updatedStories));
-        // show a popup to continue "yes/no"
-        askForContinue();
+        // save to context and local storage
+        const updatedStories = stories.map((story) =>
+          story.id === updatedStory.id ? updatedStory : story
+        );
+
         setStories(updatedStories);
+        storeData("stories", JSON.stringify(updatedStories));
+
+        // show a popup to continue "yes/no"
+        if (globalConfig.showConfirmationDialog) askForContinue();
+
         return;
       }
       // reset game. Needs to be a clean sheet
@@ -72,9 +70,6 @@ function NextButton() {
   }
 
   const askForContinue = () => {
-    if (!globalConfig.showConfirmationDialog) {
-      return;
-    }
     console.log("Asking for confirmation");
     alert(
       "Continue playing?",
@@ -98,7 +93,7 @@ function NextButton() {
       { cancelable: false }
     );
   };
-  console.log(playData);
+  // console.log(playData);
   return (
     <View style={styles.AnswerContainer}>
       <Button onPress={onPressNext}>

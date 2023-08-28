@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-import { Input, PickerInput } from "./Input";
+import { Input, PickerInput } from "../UI/Input";
 import Button from "../UI/Button";
 import { getFormattedDate } from "../../util/date";
 import { GlobalStyles } from "../../constants/styles";
 import { Picker } from "@react-native-picker/picker";
-import { languageOptions } from "../../constants/languages";
+import {
+  languageOptions,
+  lang_label_to_value,
+  lang_value_to_label,
+} from "../../constants/languages";
+import { showInformativeAlert } from "../../util/alert";
 
 function StoryForm({
   submitButtonLabel,
@@ -15,22 +20,28 @@ function StoryForm({
   defaultValues,
 }) {
   const [inputs, setInputs] = useState({
-    name: {
-      value: defaultValues ? defaultValues.name.toString() : "",
+    title: {
+      value: defaultValues ? defaultValues.title.toString() : "",
       isValid: true,
     },
-    url: {
-      value: defaultValues ? defaultValues.url.toString() : "",
-      isValid: true,
-    },
+    // url: {
+    //   value: defaultValues ? defaultValues.url?.toString() : "",
+    //   isValid: true,
+    // },
     learning_lc: {
       value: defaultValues
-        ? defaultValues.learning_lc.toString()
+        ? lang_label_to_value(defaultValues.learning_lc)
         : "lt",
       isValid: true,
     },
-    from_lc: {
-      value: defaultValues ? defaultValues.from_lc.toString() : "en",
+    known_lc: {
+      value: defaultValues
+        ? lang_label_to_value(defaultValues.known_lc)
+        : "en",
+      isValid: true,
+    },
+    done: {
+      value: String(defaultValues ? defaultValues.done : 0),
       isValid: true,
     },
   });
@@ -47,52 +58,58 @@ function StoryForm({
     });
   }
 
-  function submitHandler() {
-    const expenseData = {
-      name: +inputs.name.value,
-      // date: new Date(inputs.date.value),
-      url: inputs.url.value,
+  function onsubmitInterim() {
+    const storyData = {
+      title: inputs.title.value,
+      // url: inputs.url.value,
+      learning_lc: lang_value_to_label(inputs.learning_lc.value),
+      known_lc: lang_value_to_label(inputs.known_lc.value),
+      done:
+        inputs.done.value.trim().length > 0
+          ? Number(inputs.done.value)
+          : undefined,
     };
 
     // const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
-    const nameIsValid = expenseData.name.trim().length > 0;
+    const titleIsValid = storyData.title.trim().length > 0;
     // TODO: check how to validate urls
-    const urlIsValid = expenseData.url.toString() !== "Invalid Url";
-
-    if (!nameIsValid || !urlIsValid) {
-      // Alert.alert('Invalid input', 'Please check your input values');
-      setInputs((curInputs) => {
-        return {
-          name: {
-            value: curInputs.name.value,
-            isValid: nameIsValid,
-          },
-          url: {
-            value: curInputs.url.value,
-            isValid: urlIsValid,
-          },
-        };
-      });
+    // const urlIsValid = storyData.url.toString() !== "Invalid Url";
+    const doneIsValid = !isNaN(storyData.done);
+    // console.log(storyData);
+    setInputs((curInputs) => ({
+      ...curInputs,
+      title: {
+        value: curInputs.title.value,
+        isValid: titleIsValid,
+      },
+      // url: {
+      //   value: curInputs.url.value,
+      //   isValid: urlIsValid,
+      // },
+      done: {
+        value: curInputs.done.value,
+        isValid: doneIsValid,
+      },
+    }));
+    if (!titleIsValid || !doneIsValid) {
       return;
     }
 
-    onSubmit(expenseData);
+    onSubmit(storyData);
   }
-
-  const formIsInvalid = !inputs.name.isValid || !inputs.url.isValid;
 
   return (
     <View style={styles.form}>
       <Input
-        label="Name"
-        invalid={!inputs.name.isValid}
+        label="Title"
+        invalid={!inputs.title.isValid}
         textInputConfig={{
-          keyboardType: "decimal-pad",
-          onChangeText: inputChangedHandler.bind(this, "name"),
-          value: inputs.name.value,
+          keyboardType: "default",
+          onChangeText: inputChangedHandler.bind(this, "title"),
+          value: inputs.title.value,
         }}
       />
-      <Input
+      {/* <Input
         label="Caption Url" // previously Description
         invalid={!inputs.url.isValid}
         textInputConfig={{
@@ -102,7 +119,7 @@ function StoryForm({
           onChangeText: inputChangedHandler.bind(this, "url"),
           value: inputs.url.value,
         }}
-      />
+      /> */}
       <View style={styles.inputsRow}>
         <PickerInput
           style={[styles.rowInput, { width: "45%" }]}
@@ -120,25 +137,29 @@ function StoryForm({
         <PickerInput
           style={[styles.rowInput, { width: "45%" }]}
           label="From"
-          invalid={!inputs.from_lc.isValid}
+          invalid={!inputs.known_lc.isValid}
           pickerConfig={{
-            onChangeText: inputChangedHandler.bind(this, "from_lc"),
-            value: inputs.from_lc.value,
+            onChangeText: inputChangedHandler.bind(this, "known_lc"),
+            value: inputs.known_lc.value,
             options: languageOptions,
           }}
         />
       </View>
-      {formIsInvalid && (
-        <Text style={styles.errorText}>
-          Invalid input values - please check your entered data!
-        </Text>
-      )}
+      <Input
+        label="Sentences done"
+        invalid={!inputs.done.isValid}
+        textInputConfig={{
+          keyboardType: "decimal-pad",
+          onChangeText: inputChangedHandler.bind(this, "done"),
+          value: inputs.done.value,
+        }}
+      />
       <View style={styles.buttons}>
         <Button style={styles.button} onPress={onCancel}>
           <Text style={{ color: "white" }}>Cancel</Text>
         </Button>
-        <Button style={styles.button} onPress={submitHandler}>
-          {submitButtonLabel}
+        <Button style={styles.button} onPress={onsubmitInterim}>
+          <Text style={{ color: "white" }}>{submitButtonLabel}</Text>
         </Button>
       </View>
     </View>
@@ -173,12 +194,15 @@ const styles = StyleSheet.create({
     margin: 8,
   },
   buttons: {
+    marginTop: 24,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
   },
   button: {
-    minWidth: 120,
+    paddingVertical: 10,
+    paddingHorizontal: 40,
+    justifyContent: "center",
     marginHorizontal: 8,
     backgroundColor: GlobalStyles.colors.primary500,
     overflow: "hidden",

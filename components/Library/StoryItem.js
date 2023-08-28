@@ -23,9 +23,12 @@ function StoryItem({
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
 
   // const status = `${Math.round((done / total) * 100)} %`;
-  const status = `${done}, ${Math.round((done / total) * 100)} %`;
+  const status = `${done} (${Math.round((done / total) * 100)} %)`;
 
   function storyPressHandler() {
+    // ignore if storyLongPressed is set
+    if (globalConfig.storyLongPressed !== undefined) return;
+
     // if this is the leaf of a story, play
     if (is_leaf) {
       navigation.navigate("PlayStory", { storyId: id });
@@ -37,13 +40,28 @@ function StoryItem({
       parentId: id,
     });
   }
+  function storyLongPressHandler() {
+    // if this is the leaf of a story, play
+    // if (is_leaf) return;
+    // TODO: make a setShowLibraryBackButton
+    setGlobalConfig({
+      ...globalConfig,
+      showLibraryBackButton: true,
+      storyLongPressed: id,
+    });
+  }
+  let story_item_style = [styles.StoryItem];
+  if (globalConfig.storyLongPressed === id) {
+    story_item_style.push(styles.pressed);
+  }
 
   return (
     <Button
       onPress={storyPressHandler}
+      onLongPress={storyLongPressHandler}
       style={styles.StoryItemWrapper}
     >
-      <View style={styles.StoryItem}>
+      <View style={story_item_style}>
         <Text style={[styles.textBase, styles.title]}>{title}</Text>
         <View style={styles.langsContainer}>
           <Text style={styles.language}>{getEmoji(learning_lc)}</Text>
@@ -61,7 +79,8 @@ export default StoryItem;
 
 const styles = StyleSheet.create({
   pressed: {
-    opacity: 0.75,
+    borderColor: GlobalStyles.colors.primary50,
+    borderWidth: 2,
   },
   StoryItemWrapper: {
     flex: 1 / 2,

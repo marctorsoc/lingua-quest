@@ -10,7 +10,7 @@ import LoadingOverlay from "../components/UI/LoadingOverlay";
 import { GlobalStyles, ScreensStyles } from "../constants/styles";
 import { StoryContext } from "../context/stories-context";
 import data from "../assets/data_2023_06_26";
-import { PickerInput } from "../components/ManageStory/Input";
+import { PickerInput } from "../components/UI/Input";
 import { sleep } from "../util/debug";
 import SentenceList from "../components/PlayStory/SentenceList";
 import AnswerBox from "../components/PlayStory/AnswerBox";
@@ -110,13 +110,17 @@ function PlayStory({ navigation, route }) {
     return <LoadingOverlay />;
   }
 
-  console.log("sentences");
-  console.log(sentences);
+  // console.log("sentences");
+  // console.log(sentences);
   let currentSentence = {};
   const localCurrentSentenceIdx =
     playData.currentSentenceIdx - playData.startHistoryIdx;
-  currentSentence = sentences[localCurrentSentenceIdx];
-  console.log(currentSentence);
+  currentSentence = { ...sentences[localCurrentSentenceIdx] };
+  if (currentSentence.correctAnswerIdx == -1) {
+    // skip this sentence and mark as correct
+    // TODO marc: continue here
+  }
+  // console.log(currentSentence);
   return (
     <View style={styles.mainContainer}>
       <GameStatusBox />

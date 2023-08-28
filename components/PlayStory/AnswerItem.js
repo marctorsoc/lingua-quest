@@ -9,6 +9,17 @@ function AnswerItem({ index, text, correct_answer }) {
   const { playData, setPlayData } = useContext(PlayContext);
   const thisAnswerSelected = playData.currentAnswerIdx === index;
 
+  if (
+    playData.currentAnswerIdx === undefined &&
+    correct_answer == -1
+  ) {
+    setPlayData({
+      ...playData,
+      currentAnswerIdx: 0,
+      numCorrectAnswers: playData.numCorrectAnswers + 1,
+    });
+  }
+
   // console.log(correct_answer);
   // console.log(index);
   // default, keep white

@@ -23,7 +23,7 @@ function Library(navigation, route) {
   // retrieved from the API
   const { stories, setStories } = useContext(StoryContext);
   const { playData, setPlayData } = useContext(PlayContext);
-  const { globalData, setGlobalConfig } = useContext(GlobalContext);
+  const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
 
   const [error, setError] = useState();
 
@@ -77,13 +77,13 @@ function Library(navigation, route) {
       parentId !== null
         ? stories.find((story) => story.id === parentId).title
         : "Library";
-    // console.log(title);
     navigation.navigation.setOptions({
       title: title,
-      // TODO: this is a big hack
-      // headerTitleStyle: ScreensStyles.headerTitleStyle,
+      headerTitleStyle: {
+        marginLeft: globalConfig.showLibraryBackButton ? 0 : 30,
+      },
     });
-  }, [navigation]);
+  }, [navigation, globalConfig.showLibraryBackButton]);
 
   return (
     <LibraryOutput

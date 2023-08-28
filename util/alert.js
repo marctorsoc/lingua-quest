@@ -20,6 +20,19 @@ const alertPolyfill = (title, description, options, extra) => {
   }
 };
 
-const alert = Platform.OS === "web" ? alertPolyfill : Alert.alert;
+export const alert =
+  Platform.OS === "web" ? alertPolyfill : Alert.alert;
 
-export default alert;
+export const showInformativeAlert = (title, message) => {
+  alert(
+    title,
+    message,
+    [
+      {
+        text: "Ok",
+        onPress: () => {},
+      },
+    ],
+    { cancelable: false }
+  );
+};

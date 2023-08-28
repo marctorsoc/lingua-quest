@@ -18,6 +18,7 @@ import { useContext } from "react";
 import { Alert, View } from "react-native";
 import { StoryContextProvider } from "./context/stories-context";
 import { PlayContextProvider } from "./context/play-context";
+import BackButton from "./components/UI/BackButton";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -42,12 +43,14 @@ function MainNavigator() {
   function addStoryHandler(tintColor) {
     return (
       <IconButton
-        icon="add"
+        icon={globalConfig.storyLongPressed ? "build-outline" : "add"}
         size={24}
         color={tintColor}
         containerStyle={ScreensStyles.headerButtonsContainers}
         onPress={() => {
-          navigation.navigate("ManageStory");
+          navigation.navigate("ManageStory", {
+            storyId: globalConfig.storyLongPressed,
+          });
         }}
       />
     );
@@ -68,28 +71,7 @@ function MainNavigator() {
   }
 
   function headerLeft(tintColor) {
-    return (
-      globalConfig.showLibraryBackButton && (
-        <IconButton
-          icon="arrow-back-outline"
-          size={24}
-          color={tintColor}
-          containerStyle={{
-            margin: 0,
-            padding: 0,
-            top: 13,
-            left: 10,
-          }}
-          onPress={() => {
-            setGlobalConfig({
-              ...globalConfig,
-              showLibraryBackButton: false,
-            });
-            navigation.navigate("Library");
-          }}
-        />
-      )
-    );
+    return BackButton({ tintColor: tintColor, newPage: "Library" });
   }
   function bottomTabListener(tabName) {
     // TODO: not ideal but needed to remove back button
@@ -117,12 +99,14 @@ function MainNavigator() {
         headerStyle: {
           backgroundColor: GlobalStyles.colors.primary500,
         },
+        headerTitleStyle: {
+          marginLeft: 30,
+        },
         headerTintColor: "white",
         tabBarStyle: ScreensStyles.tabBarStyle,
         // up to here
         tabBarActiveTintColor: GlobalStyles.colors.accent500,
         headerLeft: ({ tintColor }) => headerLeft(tintColor),
-        headerRight: ({ tintColor }) => headerRight(tintColor),
       })}
     >
       <BottomTabs.Screen
@@ -131,18 +115,15 @@ function MainNavigator() {
         listeners={() => bottomTabListener("Library")}
         options={{
           title: "Library",
-          headerTitleStyle: {
-            marginLeft: 30,
-          },
           tabBarLabel: "Library",
           tabBarIcon: ({ color, size }) => (
-            // check icons at https://ionic.io/ionicons
             <Ionicons
               name="library-outline"
               size={size}
               color={color}
             />
           ),
+          headerRight: ({ tintColor }) => headerRight(tintColor),
         }}
       />
       <BottomTabs.Screen
@@ -151,9 +132,6 @@ function MainNavigator() {
         listeners={() => bottomTabListener("Settings")}
         options={{
           title: "Settings",
-          headerTitleStyle: {
-            marginLeft: 30,
-          },
           tabBarLabel: "Settings",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="options" size={size} color={color} />
@@ -166,38 +144,7 @@ function MainNavigator() {
 
 function AppStack() {
   const navigation = useNavigation();
-
-  function playGameHeaderRight(tintColor) {
-    return (
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "center",
-          margin: 10,
-        }}
-      >
-        {moveChapterHandler(tintColor, "back")}
-        {moveChapterHandler(tintColor, "next")}
-      </View>
-    );
-  }
-  function moveChapterHandler(tintColor, direction) {
-    const icon = direction == "back" ? "arrow-undo" : "arrow-redo";
-    // TODO: compute this properly
-    const enabled = true;
-    return (
-      <IconButton
-        icon={icon}
-        size={24}
-        color={enabled ? tintColor : "grey"}
-        containerStyle={ScreensStyles.headerButtonsContainers}
-        onPress={() => {
-          if (!enabled) return;
-          navigation.navigate("ManageStory");
-        }}
-      />
-    );
-  }
+  const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
 
   return (
     <Stack.Navigator
@@ -218,6 +165,8 @@ function AppStack() {
         component={ManageStory}
         options={{
           presentation: "modal",
+          headerLeft: (props) =>
+            BackButton({ ...props, newPage: "Library" }),
         }}
       />
       <Stack.Screen
@@ -225,8 +174,6 @@ function AppStack() {
         component={PlayStory}
         options={{
           presentation: "modal",
-          // headerRight: ({ tintColor }) =>
-          //   playGameHeaderRight(tintColor),
         }}
       />
     </Stack.Navigator>

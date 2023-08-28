@@ -7,34 +7,33 @@ import IconButton from "../components/UI/IconButton";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
 import { GlobalStyles, ScreensStyles } from "../constants/styles";
 import { StoryContext } from "../context/stories-context";
-// import {
-//   storeExpense,
-//   updateExpense,
-//   deleteExpense,
-// } from "../util/http";
+import { GlobalContext } from "../context/global-context";
+import { storeData } from "../util/storage";
+import { showInformativeAlert } from "../util/alert";
 
 function ManageStory({ route, navigation }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState();
 
-  const expensesCtx = useContext(StoryContext);
+  const { stories, setStories } = useContext(StoryContext);
+  const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
 
-  const editedExpenseId = route.params?.expenseId;
-  const isEditing = !!editedExpenseId;
+  const editedStoryId = route.params?.storyId;
+  const isEditing = editedStoryId !== undefined;
 
-  const selectedExpense = expensesCtx.stories.find(
-    (expense) => expense.id === editedExpenseId
+  const selectedStory = stories.find(
+    (story) => story.id === editedStoryId
   );
 
   useLayoutEffect(() => {
     navigation.setOptions({
       title: isEditing ? "Edit Story" : "Add Story",
       // TODO: this is a big hack
-      headerTitleStyle: ScreensStyles.headerTitleStyle,
+      // headerTitleStyle: ScreensStyles.headerTitleStyle,
     });
   }, [navigation, isEditing]);
 
-  async function deleteExpenseHandler() {
+  async function deleteStoryHandler() {
     //   setIsSubmitting(true);
     //   try {
     //     await deleteExpense(editedExpenseId);
@@ -46,13 +45,38 @@ function ManageStory({ route, navigation }) {
     //   }
   }
 
-  function cancelHandler() {
-    // TODO: extract this into a method with
-    // const navigation = useNavigation();
+  function goBack() {
+    setGlobalConfig({
+      ...globalConfig,
+      showLibraryBackButton: false,
+      storyLongPressed: undefined,
+    });
     navigation.goBack();
   }
+  function cancelHandler() {
+    goBack();
+  }
 
-  async function confirmHandler(expenseData) {
+  async function submitHandler(storyData) {
+    if (!isEditing) {
+      console.log("adding new story not implemented yet");
+      return;
+    }
+    // save to context and local storage
+    const updatedStories = stories.map((story) =>
+      story.id === editedStoryId
+        ? {
+            ...story,
+            ...storyData,
+          }
+        : story
+    );
+    setStories(updatedStories);
+    storeData("stories", JSON.stringify(updatedStories));
+
+    showInformativeAlert("Story updated");
+    goBack();
+
     // setIsSubmitting(true);
     // try {
     //   if (isEditing) {
@@ -81,20 +105,10 @@ function ManageStory({ route, navigation }) {
     <View style={styles.container}>
       <StoryForm
         submitButtonLabel={isEditing ? "Update" : "Add"}
-        onSubmit={confirmHandler}
+        onSubmit={submitHandler}
         onCancel={cancelHandler}
-        defaultValues={selectedExpense}
+        defaultValues={selectedStory}
       />
-      {isEditing && (
-        <View style={styles.deleteContainer}>
-          <IconButton
-            icon="trash"
-            color={GlobalStyles.colors.error500}
-            size={36}
-            onPress={deleteExpenseHandler}
-          />
-        </View>
-      )}
     </View>
   );
 }

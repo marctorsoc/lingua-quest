@@ -93,6 +93,10 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 
 # Pending work
 
-- GH actions to auto-release with every push to master
+- Use react-native-paper
+- Do not scroll to end when tapping for translation
+- Show done + pct vs just %
 - Change fonts VScode as in Bootcamp
 - Add tests
+- GH actions to auto-release with every push to master
+

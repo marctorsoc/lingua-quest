@@ -21,6 +21,7 @@ export const initialPlayData = {
   // globalContext.historyLength * globalContext.numSentencesPerGame
   // this is the global index of the first sentence shown.
   startHistoryIdx: 0,
+  processingClickedTranslation: false,
 };
 
 export function PlayContextProvider({ children }) {

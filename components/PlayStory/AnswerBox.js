@@ -4,8 +4,10 @@ import { GlobalStyles } from "../../constants/styles";
 import NextButton from "./NextButton";
 
 function AnswerBox({ answers, correct_answer_idx }) {
-  console.log("AnswerBox");
-  console.log(answers);
+  const validSentence = correct_answer_idx !== -1;
+  // console.log("AnswerBox");
+  // console.log(correct_answer_idx);
+  // console.log(validSentence);
   function renderAnswerItem({ index, item }) {
     return (
       <AnswerItem
@@ -18,13 +20,15 @@ function AnswerBox({ answers, correct_answer_idx }) {
 
   return (
     <View style={styles.AnswerBoxContainer}>
-      <FlatList
-        data={answers}
-        renderItem={renderAnswerItem}
-        keyExtractor={(index) => index}
-        numColumns={2}
-      />
-      <NextButton></NextButton>
+      {validSentence && (
+        <FlatList
+          data={answers}
+          renderItem={renderAnswerItem}
+          keyExtractor={(index) => index}
+          numColumns={2}
+        />
+      )}
+      <NextButton skip={!validSentence}></NextButton>
     </View>
   );
 }
