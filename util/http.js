@@ -1,6 +1,6 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import data from "../assets/data_2023_06_26";
+import data from "../assets/data_2023_09_11.json";
 
 const BACKEND_URL =
   // "https://expense-app-30907-default-rtdb.firebaseio.com";

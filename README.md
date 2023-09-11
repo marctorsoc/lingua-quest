@@ -93,6 +93,7 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 
 # Pending work
 
+- Add ability to import / backup data to filesystem
 - Use react-native-paper
 - Change fonts VScode as in Bootcamp
 - Add tests

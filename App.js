@@ -48,6 +48,10 @@ function MainNavigator() {
         color={tintColor}
         containerStyle={ScreensStyles.headerButtonsContainers}
         onPress={() => {
+          setGlobalConfig({
+            ...globalConfig,
+            showLibraryBackButton: true,
+          });
           navigation.navigate("ManageStory", {
             storyId: globalConfig.storyLongPressed,
           });

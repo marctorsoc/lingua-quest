@@ -9,7 +9,7 @@ import { StyleSheet, View } from "react-native";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
 import { GlobalStyles, ScreensStyles } from "../constants/styles";
 import { StoryContext } from "../context/stories-context";
-import data from "../assets/data_2023_06_26";
+import data from "../assets/data_2023_09_11.json";
 import { PickerInput } from "../components/UI/Input";
 import { sleep } from "../util/debug";
 import SentenceList from "../components/PlayStory/SentenceList";
