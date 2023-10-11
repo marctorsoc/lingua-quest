@@ -36,6 +36,14 @@
         "projectId": "a91a31d2-ee2d-4c8e-b52a-129de45ed98e"
       }
     },
-    "owner": "marc.torsoc"
+    "owner": "marc.torsoc",
+    "plugins": [
+      [
+        "expo-document-picker",
+        {
+          "iCloudContainerEnvironment": "Production"
+        }
+      ]
+    ]
   }
 }

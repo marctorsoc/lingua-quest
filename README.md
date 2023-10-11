@@ -94,8 +94,14 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 # Pending work
 
 - Add ability to import / backup data to filesystem
+- Still some repeated and 1 word sentences (strip "-" at the end of sentences) --> done
+- Still some english words in vocab --> done
+- check if complete and show Completed --> done
+- Copy to clipboard when holding sentence -> done
+- Scroll when omitted sentence does not work --> to check
+- Translate placeholders locally
 - Use react-native-paper
-- Change fonts VScode as in Bootcamp
+- Change fonts VScode like in Bootcamp
 - Add tests
 - GH actions to auto-release with every push to master
 

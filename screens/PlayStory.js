@@ -19,6 +19,7 @@ import { initialPlayData } from "../context/play-context";
 import { GlobalContext } from "../context/global-context";
 import GameStatusBox from "../components/PlayStory/GameStatusBox";
 import { storeData } from "../util/storage";
+import { fetchSentences } from "../util/http";
 
 function PlayStory({ navigation, route }) {
   // TODO: move all logic here into components
@@ -50,10 +51,9 @@ function PlayStory({ navigation, route }) {
       setIsLoading(true);
       console.log("loading sentences");
       try {
-        // const expenses = await fetchSentences(storyId);
-        const sentencesForStory = data.sentences.filter(
-          (sentence) => sentence.story_id === storyId
-        );
+        // TODO: surely when not loading from disk we will
+        // pass storyId here and not retrieve ALL sentences
+        const sentencesForStory = await fetchSentences(storyId);
 
         // console.log(globalConfig);
 

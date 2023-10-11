@@ -21,6 +21,7 @@ function NextButton({ skip }) {
     playData.currentSentenceIdx ===
     playData.startIdx + playData.numSentences - 1;
   const allCorrect = playData.numWrongAnswers === 0;
+  const storyCompleted = playData.startIdx === playData.endIdx;
 
   function resetGame() {
     setPlayData({
@@ -93,27 +94,31 @@ function NextButton({ skip }) {
       { cancelable: false }
     );
   };
+
+  const getNextButtonMessage = () => {
+    if (storyCompleted) return "Completed";
+    if (isLastSentence) {
+      return allCorrect ? "Finish round" : "Try again";
+    }
+    return "Next";
+  };
+
   // console.log(playData);
   return (
-    <View style={styles.AnswerContainer}>
-      <Button onPress={onPressNext}>
-        <Text
-          // TODO marc: use composed styles here
-          style={[
-            styles.textBase,
-            styles.title,
-            styles.answerText,
-            answered ? {} : styles.disabledButton,
-          ]}
-        >
-          {isLastSentence
-            ? allCorrect
-              ? "Finish round"
-              : "Repeat"
-            : "Next"}
-        </Text>
-      </Button>
-    </View>
+    <Button onPress={onPressNext}>
+      <Text
+        // TODO marc: use composed styles here
+        style={[
+          styles.textBase,
+          styles.title,
+          styles.answerText,
+          styles.AnswerContainer,
+          answered | storyCompleted ? {} : styles.disabledButton,
+        ]}
+      >
+        {getNextButtonMessage()}
+      </Text>
+    </Button>
   );
 }
 
@@ -122,6 +127,7 @@ export default NextButton;
 const styles = StyleSheet.create({
   AnswerContainer: {
     paddingVertical: "4%",
+    paddingLeft: "12%",
     justifyContent: "center",
     borderColor: "white",
     borderWidth: 0.5,

@@ -26,6 +26,41 @@ export async function fetchStories(props = { try_from_disk: true }) {
   return [...data.stories];
 }
 
+export async function fetchSentences(storyId, try_from_disk = true) {
+  console.log(storyId);
+  console.log(try_from_disk);
+  if (storyId === undefined)
+    throw new Error("fetchSentences: storyId cannot be undefined");
+
+  let sentencesForStory = null;
+  if (try_from_disk) {
+    try {
+      console.log("loading sentences from disk");
+      const jsonValue = await AsyncStorage.getItem(
+        `sentences_${storyId}`
+      );
+      sentencesForStory = JSON.parse(jsonValue);
+
+      if (
+        sentencesForStory !== null &&
+        sentencesForStory.length > 0
+      ) {
+        console.log("loaded sentences from disk");
+        return sentencesForStory;
+      }
+    } catch (e) {
+      // error reading value
+      console.log(e);
+    }
+  }
+  console.log("loaded from mock");
+  sentencesForStory = data.sentences.filter(
+    (sentence) => sentence.story_id === storyId
+  );
+
+  return [...sentencesForStory];
+}
+
 // export async function storeExpense(expenseData) {
 //   const response = await axios.post(
 //     BACKEND_URL + "/expenses.json",

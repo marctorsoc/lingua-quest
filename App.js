@@ -10,12 +10,17 @@ import Settings from "./screens/Settings";
 import { GlobalStyles, ScreensStyles } from "./constants/styles";
 import IconButton from "./components/UI/IconButton";
 import PlayStory from "./screens/PlayStory";
+// import { ToastProviderWrapper } from "./util/toast";
+
+import ToastProvider from "react-native-toast-notifications";
+
 import {
   GlobalContext,
   GlobalContextProvider,
 } from "./context/global-context";
+
 import { useContext } from "react";
-import { Alert, View } from "react-native";
+import { Alert, View, Text } from "react-native";
 import { StoryContextProvider } from "./context/stories-context";
 import { PlayContextProvider } from "./context/play-context";
 import BackButton from "./components/UI/BackButton";
@@ -188,7 +193,9 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
+
       <GlobalContextProvider>
+        {/* <ToastProvider> */}
         <StoryContextProvider>
           <PlayContextProvider>
             <NavigationContainer>
@@ -196,7 +203,10 @@ export default function App() {
             </NavigationContainer>
           </PlayContextProvider>
         </StoryContextProvider>
+        {/* </ToastProvider> */}
       </GlobalContextProvider>
+
+      {/* </ToastProviderWrapper> */}
     </>
   );
 }

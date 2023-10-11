@@ -1,7 +1,10 @@
 import { useContext } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import LibraryOutput from "../components/Library/LibraryOutput";
 import { StoryContext } from "../context/stories-context";
+import {
+  FileUpload,
+  JsonDownload,
+} from "../components/UI/FileManagement";
+import data from "../assets/data_2023_09_11.json";
 import {
   StyleSheet,
   Text,
@@ -9,7 +12,6 @@ import {
   Switch,
   TextInput,
   ScrollView,
-  Platform,
 } from "react-native";
 import { useState } from "react";
 import {
@@ -19,7 +21,7 @@ import {
 import { GlobalStyles } from "../constants/styles";
 import Button from "../components/UI/Button";
 import { storeData, cleanData } from "../util/storage";
-import { fetchStories } from "../util/http";
+import { fetchSentences, fetchStories } from "../util/http";
 import { showInformativeAlert } from "../util/alert";
 import {
   PlayContext,
@@ -99,6 +101,53 @@ const Settings = () => {
     showInformativeAlert("Settings saved");
   }
 
+  async function handleUploadStories() {
+    // overwrite data in context with uploaded file,
+    // and save to storage
+    const data = await FileUpload();
+
+    // 1. validate the data
+    for (let key of Object.keys(data)) {
+      console.log(key);
+    }
+    if (!("stories" in data && "sentences" in data)) {
+      console.log(
+        'Either "stories" or "sentences" not found in the uploaded data.'
+      );
+      return;
+    }
+
+    // 2. save stories into storage
+    storeData("stories", JSON.stringify(data.stories));
+
+    // 3. for each story, save its sentences into storage
+    data.stories.map((story) => {
+      if (!story.is_leaf) return; // ignore non-leaf stories
+      const storySentences = data.sentences.filter(
+        (sentence) => sentence.story_id === story.id
+      );
+      const filename = `sentences_${story.id}`;
+      console.log(
+        `Saving ${storySentences.length} sentences for story ${story.title} with id ${story.id} to ${filename}`
+      );
+      storeData(filename, JSON.stringify(storySentences));
+    });
+
+    // 4. use setStories to update context
+    // for sentences we don't have a context. We just request
+    // for the sentences of the story to be played
+    setStories(data.stories);
+
+    showInformativeAlert("Data uploaded");
+  }
+
+  async function handleDownloadStories() {
+    // TODO: this won't work now since fetchSentences requires a storyId
+    const sentences = fetchSentences({ try_from_disk: true });
+    console.log(sentences);
+    JsonDownload({ stories: stories, sentences: sentences });
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* Option: Number of sentences per game */}
@@ -137,11 +186,19 @@ const Settings = () => {
       <View style={styles.optionContainer}>
         <Button style={styles.button} onPress={handleResetData}>
           {/*{TODO: center the text}*/}
-          <Text style={styles.label}>Reset all data</Text>
+          <Text style={styles.buttonLabel}>Reset all data</Text>
         </Button>
         <Button style={styles.button} onPress={handleSaveData}>
           {/*{TODO: center the text}*/}
-          <Text style={styles.label}>Save settings</Text>
+          <Text style={styles.buttonLabel}>Save settings</Text>
+        </Button>
+      </View>
+      <View style={styles.optionContainer}>
+        <Button style={styles.button} onPress={handleUploadStories}>
+          <Text style={styles.buttonLabel}>Upload stories</Text>
+        </Button>
+        <Button style={styles.button} onPress={handleDownloadStories}>
+          <Text style={styles.buttonLabel}>Download stories</Text>
         </Button>
       </View>
     </ScrollView>
@@ -151,18 +208,25 @@ const Settings = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: "15%",
-    paddingVertical: "15%",
+    paddingVertical: "2%",
     backgroundColor: GlobalStyles.colors.primary700,
+    flexDirection: "column",
   },
   optionContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 16,
+    paddingHorizontal: "15%",
     justifyContent: "space-between",
-    height: 40,
+    height: 80,
+    backgroundColor: GlobalStyles.colors.primary700,
   },
   label: {
+    fontSize: 18,
+    color: "white",
+    paddingHorizontal: 16,
+  },
+  buttonLabel: {
+    textAlign: "center",
     fontSize: 18,
     color: "white",
   },
@@ -186,6 +250,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     padding: 8,
+    margin: 16,
+    width: "40%",
   },
 });
 

@@ -123,6 +123,6 @@ const styles = StyleSheet.create({
     color: "white",
     margin: 10,
     fontSize: 15,
-    textAlignVertical: "center",
+    verticalAlign: "middle",
   },
 });

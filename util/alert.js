@@ -36,3 +36,13 @@ export const showInformativeAlert = (title, message) => {
     { cancelable: false }
   );
 };
+
+export const showInformativeToast = (toast, text) => {
+  toast.show(`${text}`, {
+    duration: 1500,
+    data: {
+      title: "Copied to clipboard",
+    },
+    type: "custom_toast",
+  });
+};

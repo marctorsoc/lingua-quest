@@ -7,12 +7,15 @@ import { useContext } from "react";
 const GameStatusBox = () => {
   const { playData } = useContext(PlayContext);
   //   console.log(playData);
+  const sentencesIndex = playData.startIdx == playData.endIdx ? "-" : `${playData.startIdx + 1}-${
+    playData.endIdx
+  }`;
   return (
     <View style={styles.container}>
       <View style={styles.box}>
         <Text style={styles.text}>
           <Ionicons name="document" size={18} color="white" />:{" "}
-          {playData.startIdx + 1}-{playData.endIdx}
+          {sentencesIndex}
         </Text>
       </View>
       <View style={styles.box}>

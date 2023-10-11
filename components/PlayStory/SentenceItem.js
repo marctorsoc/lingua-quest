@@ -1,11 +1,13 @@
-import { useNavigation } from "@react-navigation/native";
 import MaskedText from "../UI/MaskedText";
 import { GlobalStyles } from "../../constants/styles";
 import { StyleSheet } from "react-native";
+import { showInformativeToast } from "../../util/alert";
+import * as Clipboard from "expo-clipboard";
 import { View, Text } from "react-native";
 import { PlayContext } from "../../context/play-context";
 import { useContext, useEffect, useState } from "react";
 import Button from "../UI/Button";
+import { useToast } from "react-native-toast-notifications";
 
 function SentenceItem({
   index,
@@ -29,6 +31,7 @@ function SentenceItem({
       : {};
 
   const { playData, setPlayData } = useContext(PlayContext);
+  const toast = useToast();
   useEffect(() => {
     setShowTranlsation(reviewingThisAnswer);
   }, [reviewingThisAnswer]);
@@ -70,6 +73,12 @@ function SentenceItem({
     );
   }
 
+  async function sentenceLongPressHandler() {
+    // navigator.clipboard.writeText(text);
+    Clipboard.setStringAsync(text);
+    showInformativeToast(toast, text);
+  }
+
   const sentenceItemStyle = [
     styles.SentenceItem,
     alreadyPlayedItem && styles.alreadyPlayedSentenceItem,
@@ -83,6 +92,7 @@ function SentenceItem({
       <Button
         style={styles.textsContainer}
         onPress={onSentenceSelected}
+        onLongPress={sentenceLongPressHandler}
       >
         {showTextHandler()}
         {showTranslationHandler()}
@@ -123,10 +133,10 @@ const styles = StyleSheet.create({
     // justifyContent: "space-between",
     borderRadius: 12,
     elevation: 3,
-    shadowColor: GlobalStyles.colors.gray500,
-    shadowRadius: 4,
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.4,
+    boxshadowColor: GlobalStyles.colors.gray500,
+    boxShadowRadius: 4,
+    boxShadowOffset: { width: 1, height: 1 },
+    boxShadowOpacity: 0.4,
     textAlign: "center",
   },
   alreadyPlayedSentenceItem: {
