@@ -1,7 +1,7 @@
 import * as DocumentPicker from "expo-document-picker";
 import { Platform } from "react-native";
 import * as ExpoFileSystem from "expo-file-system";
-import * as Sharing from "expo-sharing";
+// import * as Sharing from "expo-sharing";
 
 export async function FileUpload() {
   let res = null;

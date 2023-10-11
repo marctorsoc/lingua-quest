@@ -1,48 +1,21 @@
-import { Alert, Platform } from "react-native";
+import { _showInformativeAlert, _alert } from "./alert_base";
 
-const alertPolyfill = (title, description, options, extra) => {
-  const handler =
-    options.length === 1 ? window.alert : window.confirm;
-  const result = handler(
-    [title, description].filter(Boolean).join("\n")
-  );
+export const showInformativeAlert = _showInformativeAlert;
+export const alert = _alert;
 
-  if (result) {
-    const confirmOption = options.find(
-      ({ style }) => style !== "cancel"
-    );
-    confirmOption && confirmOption.onPress();
-  } else {
-    const cancelOption = options.find(
-      ({ style }) => style === "cancel"
-    );
-    cancelOption && cancelOption.onPress();
-  }
-};
+// export const showInformativeToast = (toast, text) => {
+//   // TODO: this is for react-native-toast-notifications
+//   // but at the moment it makes the whole app crash
+//   toast.show(`${text}`, {
+//     duration: 1500,
+//     data: {
+//       title: "Copied to clipboard",
+//     },
+//     type: "custom_toast",
+//   });
+// };
 
-export const alert =
-  Platform.OS === "web" ? alertPolyfill : Alert.alert;
-
-export const showInformativeAlert = (title, message) => {
-  alert(
-    title,
-    message,
-    [
-      {
-        text: "Ok",
-        onPress: () => {},
-      },
-    ],
-    { cancelable: false }
-  );
-};
-
-export const showInformativeToast = (toast, text) => {
-  toast.show(`${text}`, {
-    duration: 1500,
-    data: {
-      title: "Copied to clipboard",
-    },
-    type: "custom_toast",
-  });
+export const showInformativeToast = (text) => {
+  // we don't have support so just use an alert
+  showInformativeAlert("Copied to clipboard", text);
 };

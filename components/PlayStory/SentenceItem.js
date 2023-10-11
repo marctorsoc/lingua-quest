@@ -7,7 +7,7 @@ import { View, Text } from "react-native";
 import { PlayContext } from "../../context/play-context";
 import { useContext, useEffect, useState } from "react";
 import Button from "../UI/Button";
-import { useToast } from "react-native-toast-notifications";
+// import { useToast } from "react-native-toast-notifications";
 
 function SentenceItem({
   index,
@@ -31,7 +31,7 @@ function SentenceItem({
       : {};
 
   const { playData, setPlayData } = useContext(PlayContext);
-  const toast = useToast();
+  // const toast = useToast();
   useEffect(() => {
     setShowTranlsation(reviewingThisAnswer);
   }, [reviewingThisAnswer]);
@@ -74,9 +74,9 @@ function SentenceItem({
   }
 
   async function sentenceLongPressHandler() {
-    // navigator.clipboard.writeText(text);
     Clipboard.setStringAsync(text);
-    showInformativeToast(toast, text);
+    showInformativeToast(text);
+    // showInformativeToast(toast, text);
   }
 
   const sentenceItemStyle = [

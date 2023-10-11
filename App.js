@@ -12,7 +12,7 @@ import IconButton from "./components/UI/IconButton";
 import PlayStory from "./screens/PlayStory";
 // import { ToastProviderWrapper } from "./util/toast";
 
-import ToastProvider from "react-native-toast-notifications";
+// import ToastProvider from "react-native-toast-notifications";
 
 import {
   GlobalContext,
@@ -195,15 +195,15 @@ export default function App() {
       <StatusBar style="light" />
 
       <GlobalContextProvider>
-        {/* <ToastProvider> */}
         <StoryContextProvider>
           <PlayContextProvider>
+            {/* <ToastProvider> */}
             <NavigationContainer>
               <AppStack />
             </NavigationContainer>
+            {/* </ToastProvider> */}
           </PlayContextProvider>
         </StoryContextProvider>
-        {/* </ToastProvider> */}
       </GlobalContextProvider>
 
       {/* </ToastProviderWrapper> */}
