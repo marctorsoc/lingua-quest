@@ -1,5 +1,3 @@
-import userMiddleware from './user.middleware'
+import userMiddleware from "./user.middleware";
 
-export default [
-    userMiddleware,
-]
+export default [userMiddleware];

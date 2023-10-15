@@ -1,7 +1,4 @@
-import coreMiddleware from './core'
-import appMiddleware from './app'
+import coreMiddleware from "./core";
+import appMiddleware from "./app";
 
-export default [
-    ...coreMiddleware,
-    ...appMiddleware,
-]
+export default [...coreMiddleware, ...appMiddleware];
