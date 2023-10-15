@@ -4,7 +4,6 @@ import {
   FileUpload,
   JsonDownload,
 } from "../components/UI/FileManagement";
-import data from "../assets/data_2023_09_11.json";
 import {
   StyleSheet,
   Text,
@@ -27,6 +26,7 @@ import {
   PlayContext,
   initialPlayData,
 } from "../context/play-context";
+// import OptionModal from "../components/UI/Modal";
 
 const Settings = () => {
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
@@ -74,6 +74,10 @@ const Settings = () => {
   };
 
   async function handleResetData() {
+    // TODO: continue here to reset data with modal
+    // console.log("Resetting data");
+    // return;
+
     // set local storage stories to default stories
     const defaultStories = await fetchStories({
       try_from_disk: false,
@@ -85,9 +89,7 @@ const Settings = () => {
     setGlobalConfig(initialGlobalData);
     setNumSentences(String(initialGlobalData.numSentencesPerGame));
     setHistoryLength(String(initialGlobalData.historyLength));
-    setShowConfirmation(
-      String(initialGlobalData.showConfirmationDialog)
-    );
+    setShowConfirmation(initialGlobalData.showConfirmationDialog);
 
     showInformativeAlert(
       "Reset data",
@@ -128,7 +130,9 @@ const Settings = () => {
       );
       const filename = `sentences_${story.id}`;
       console.log(
-        `Saving ${storySentences.length} sentences for story ${story.title} with id ${story.id} to ${filename}`
+        `Saving ${storySentences.length} sentences ` +
+          `for story ${story.title} with id ${story.id}` +
+          ` to ${filename}`
       );
       storeData(filename, JSON.stringify(storySentences));
     });
@@ -184,9 +188,15 @@ const Settings = () => {
       </View>
       {/* Manage data */}
       <View style={styles.optionContainer}>
+        {/* TODO: continue here to use modal
+        <OptionModal
+          title={"Reset data"}
+          names={["Stories", "Sentences"]}
+          onConfirm={handleResetData}
+        ></OptionModal> */}
         <Button style={styles.button} onPress={handleResetData}>
           {/*{TODO: center the text}*/}
-          <Text style={styles.buttonLabel}>Reset all data</Text>
+          <Text style={styles.buttonLabel}>Reset Data</Text>
         </Button>
         <Button style={styles.button} onPress={handleSaveData}>
           {/*{TODO: center the text}*/}

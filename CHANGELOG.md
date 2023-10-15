@@ -1,4 +1,12 @@
-2023-11-09:
+2023-10-11:
+- Add ability to import data to filesystem (only Android)
+- Still some repeated and 1 word sentences (strip "-" at the end of sentences)
+- Still some english words in vocab
+- check if complete and show Completed
+- Copy to clipboard when holding sentence
+- 
+
+2023-09-11:
 - Add backButton when adding new story
 - Improve stories:
   - Replace ˝ and similar to split sents better 

@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "caption-master",
+    "displayName": "Caption Master",
     "slug": "caption-master",
     "version": "1.0.0",
     "orientation": "portrait",

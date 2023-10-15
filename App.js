@@ -20,7 +20,7 @@ import {
 } from "./context/global-context";
 
 import { useContext } from "react";
-import { Alert, View, Text } from "react-native";
+import { Alert, View } from "react-native";
 import { StoryContextProvider } from "./context/stories-context";
 import { PlayContextProvider } from "./context/play-context";
 import BackButton from "./components/UI/BackButton";
@@ -152,9 +152,6 @@ function MainNavigator() {
 }
 
 function AppStack() {
-  const navigation = useNavigation();
-  const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
-
   return (
     <Stack.Navigator
       screenOptions={{
