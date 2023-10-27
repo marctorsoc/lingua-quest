@@ -22,8 +22,9 @@ function StoryItem({
   const navigation = useNavigation();
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
 
-  // const status = `${Math.round((done / total) * 100)} %`;
-  const status = `${done} (${Math.round((done / total) * 100)} %)`;
+  let status = `${done} `;
+  if (globalConfig.showTotals) status += `of ${total} `;
+  status += `(${Math.floor((done / total) * 100)} %)`;
 
   function storyPressHandler() {
     // ignore if storyLongPressed is set

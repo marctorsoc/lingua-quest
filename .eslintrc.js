@@ -34,6 +34,7 @@ module.exports = {
     ],
     semi: ["warn", "always"],
     "no-unused-vars": ["warn"],
+    "no-unreachable": ["warn"],
     "max-len": [
       "warn",
       {

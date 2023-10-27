@@ -74,7 +74,8 @@ function StoryForm({
     const titleIsValid = storyData.title.trim().length > 0;
     // TODO: check how to validate urls
     // const urlIsValid = storyData.url.toString() !== "Invalid Url";
-    const doneIsValid = !isNaN(storyData.done);
+    const doneIsValid =
+      !isNaN(storyData.done) && storyData.done <= defaultValues.total;
     // console.log(storyData);
     setInputs((curInputs) => ({
       ...curInputs,

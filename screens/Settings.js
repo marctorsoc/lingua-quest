@@ -41,6 +41,9 @@ const Settings = () => {
   const [showConfirmation, setShowConfirmation] = useState(
     globalConfig.showConfirmationDialog
   );
+  const [showTotals, setShowTotals] = useState(
+    globalConfig.showTotals
+  );
 
   // Function to handle changes to the number of sentences
   const handleNumSentencesChange = (text) => {
@@ -70,6 +73,13 @@ const Settings = () => {
     setGlobalConfig({
       ...globalConfig,
       showConfirmationDialog: value,
+    });
+  };
+  const handleShowTotalsToggle = (value) => {
+    setShowTotals(value);
+    setGlobalConfig({
+      ...globalConfig,
+      showTotals: value,
     });
   };
 
@@ -118,6 +128,8 @@ const Settings = () => {
       );
       return;
     }
+    console.log("all good!");
+    return;
 
     // 2. save stories into storage
     storeData("stories", JSON.stringify(data.stories));
@@ -184,6 +196,15 @@ const Settings = () => {
           style={styles.switch}
           value={showConfirmation}
           onValueChange={handleShowConfirmationToggle}
+        />
+      </View>
+      {/* Option: Show totals */}
+      <View style={styles.optionContainer}>
+        <Text style={styles.label}>Show totals</Text>
+        <Switch
+          style={styles.switch}
+          value={showTotals}
+          onValueChange={handleShowTotalsToggle}
         />
       </View>
       {/* Manage data */}

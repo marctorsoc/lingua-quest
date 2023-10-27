@@ -1,3 +1,7 @@
+2023-XX-XX:
+- Add show totals and avoid editing > total
+- 
+
 2023-10-11:
 - Add ability to import data to filesystem (only Android)
 - Still some repeated and 1 word sentences (strip "-" at the end of sentences)

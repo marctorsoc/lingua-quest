@@ -93,8 +93,11 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 
 # Pending work
 
-- Add modal to select what data to reset, and what data to load
+- Join all consec omitted sentences into one, and join with \n and -.
+- When there's (name of a person + :), join into previous sentence. E.g. Monica:
+- Move languages next to "Library": 🇱🇹 from 🇬🇧
 - Scroll when omitted sentence does not work
+- Add modal to select what data to reset, and what data to load
 - Add ability to backup data to filesystem
 - Translate placeholders locally
 - Use react-native-paper

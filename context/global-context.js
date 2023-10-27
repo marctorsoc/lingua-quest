@@ -13,6 +13,7 @@ export const initialGlobalData = {
   numSentencesPerGame: 2,
   historyLength: 1,
   showConfirmationDialog: false,
+  showTotals: true,
   // numGamesPerDay: 3,  // TODO marc: implement this
 };
 
