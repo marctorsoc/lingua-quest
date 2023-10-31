@@ -55,23 +55,24 @@ const Settings = () => {
 
   // Function to handle changes to the number of sentences
   const handleNumSentencesChange = (text) => {
-    const numSentences = parseInt(text);
-    setNumSentences(numSentences);
+    setNumSentences(text);
+    if (text === "") return;
     // set globalContext too
     setGlobalConfig({
       ...globalConfig,
-      numSentencesPerGame: numSentences,
+      numSentencesPerGame: text,
     });
   };
 
   // Function to handle changes to the number of sentences
   const handleHistoryLengthChange = (text) => {
-    const historyLength = parseInt(text);
-    setHistoryLength(historyLength);
+    setHistoryLength(text);
+    if (text === "") return;
+    setHistoryLength(text);
     // set globalContext too
     setGlobalConfig({
       ...globalConfig,
-      historyLength: historyLength,
+      historyLength: text,
     });
   };
 
@@ -195,6 +196,7 @@ const Settings = () => {
           style={styles.input}
           onChangeText={handleNumSentencesChange}
           value={numSentences}
+          // TODO marc: maybe should use keyboardType="decimal-pad"?
           inputMode="numeric"
           maxLength={2}
         />

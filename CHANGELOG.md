@@ -1,6 +1,7 @@
-2023-XX-XX:
+2023-10-31:
 - Add show totals and avoid editing > total
 - Move languages to the settings screen and filter by language
+- Dirty fix to scroll when omitted sentence
 
 
 2023-10-11:

@@ -102,7 +102,6 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 
 - hide back, home controls 
 - fix repeat for last round 
-- Scroll when omitted sentence does not work
 - Add modal to select what data to reset, and what data to load
 - Translate placeholders locally
    - https://drlee.io/translate-text-from-any-language-to-any-language-with-hugging-face-transformers-and-google-colab-272876150a93
