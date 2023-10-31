@@ -28,8 +28,6 @@ function ManageStory({ route, navigation }) {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: isEditing ? "Edit Story" : "Add Story",
-      // TODO: this is a big hack
-      // headerTitleStyle: ScreensStyles.headerTitleStyle,
     });
   }, [navigation, isEditing]);
 

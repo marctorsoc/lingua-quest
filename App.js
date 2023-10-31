@@ -122,8 +122,8 @@ function MainNavigator() {
         name="Library"
         component={Library}
         listeners={() => bottomTabListener("Library")}
-        options={{
-          title: "Library",
+        options={({ route }) => ({
+          title: route.params?.parentTitle || "Library",
           tabBarLabel: "Library",
           tabBarIcon: ({ color, size }) => (
             <Ionicons
@@ -133,7 +133,7 @@ function MainNavigator() {
             />
           ),
           headerRight: ({ tintColor }) => headerRight(tintColor),
-        }}
+        })}
       />
       <BottomTabs.Screen
         name="Settings"

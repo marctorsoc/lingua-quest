@@ -9,17 +9,6 @@ function AnswerItem({ index, text, correct_answer }) {
   const { playData, setPlayData } = useContext(PlayContext);
   const thisAnswerSelected = playData.currentAnswerIdx === index;
 
-  if (
-    playData.currentAnswerIdx === undefined &&
-    correct_answer == -1
-  ) {
-    setPlayData({
-      ...playData,
-      currentAnswerIdx: 0,
-      numCorrectAnswers: playData.numCorrectAnswers + 1,
-    });
-  }
-
   // console.log(correct_answer);
   // console.log(index);
   // default, keep white
@@ -36,16 +25,16 @@ function AnswerItem({ index, text, correct_answer }) {
       textStyle = styles.answerTextSelectedWrong;
     }
   }
+  let answerContainerStyle = styles.AnswerContainer;
 
   function onAnswerSelected() {
-    // console.log("Answer" + index + " selected");
-    // console.log(correct_answer);
-    // console.log(index);
-
     // if there's already an answer, ignore
     // console.log(playData.currentAnswerIdx);
     // console.log(index);
+    console.log("onAnswerSelected");
+    // ignore if text is empty (invalid sentence) or if already answered
     if (playData.currentAnswerIdx !== undefined) return;
+    if (text == "") return;
 
     if (index == correct_answer) {
       setPlayData({
@@ -63,7 +52,7 @@ function AnswerItem({ index, text, correct_answer }) {
   }
 
   return (
-    <Button style={styles.AnswerContainer} onPress={onAnswerSelected}>
+    <Button style={answerContainerStyle} onPress={onAnswerSelected}>
       <Text
         // TODO marc: use composed styles here
         style={[
@@ -88,7 +77,7 @@ const styles = StyleSheet.create({
     height: 80,
     borderColor: "white",
     borderWidth: 0.5,
-    // backgroundColor: GlobalStyles.colors.primary200,
+    // backgroundColor: "blue",
   },
   textBase: {
     color: GlobalStyles.colors.primary50,

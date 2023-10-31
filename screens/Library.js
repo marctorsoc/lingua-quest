@@ -72,13 +72,7 @@ function Library(navigation, route) {
   const parentId = navigation.route.params?.parentId || null;
 
   useLayoutEffect(() => {
-    // console.log(parentId);
-    const title =
-      parentId !== null
-        ? stories.find((story) => story.id === parentId).title
-        : "Library";
     navigation.navigation.setOptions({
-      title: title,
       headerTitleStyle: {
         marginLeft: globalConfig.showLibraryBackButton ? 0 : 30,
       },

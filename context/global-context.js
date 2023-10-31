@@ -14,6 +14,8 @@ export const initialGlobalData = {
   historyLength: 1,
   showConfirmationDialog: false,
   showTotals: true,
+  learningLanguage: "lt",
+  knownLanguage: "en",
   // numGamesPerDay: 3,  // TODO marc: implement this
 };
 

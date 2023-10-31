@@ -22,6 +22,7 @@ export function Input({ label, invalid, style, textInputConfig }) {
 }
 
 export function PickerInput({ label, style, pickerConfig }) {
+  const showLabel = label !== undefined;
   const containerStyle = [
     style,
     styles.inputContainer,
@@ -39,9 +40,11 @@ export function PickerInput({ label, style, pickerConfig }) {
 
   return (
     <View style={containerStyle}>
-      <Text style={[styles.label, { textAlign: "center" }]}>
-        {label}
-      </Text>
+      {showLabel && (
+        <Text style={[styles.label, { textAlign: "center" }]}>
+          {label}
+        </Text>
+      )}
       <View style={pickerViewStyle}>
         <Picker
           selectedValue={pickerConfig.value}

@@ -4,6 +4,9 @@ import { GlobalStyles } from "../../constants/styles";
 import StoryList from "./StoryList";
 import LibrarySummary from "./ResumeStory";
 import ResumeStory from "./ResumeStory";
+import { GlobalContext } from "../../context/global-context";
+import { useContext } from "react";
+import { lang_label_to_value } from "../../constants/languages";
 
 function LibraryOutput({
   stories,
@@ -11,12 +14,20 @@ function LibraryOutput({
   parentId: parentId,
 }) {
   let content = <Text style={styles.infoText}>{fallbackText}</Text>;
+  const { globalConfig } = useContext(GlobalContext);
 
   if (stories.length > 0) {
     content = (
       <StoryList
         stories={stories
-          .filter((story) => story.parent_id === parentId)
+          .filter(
+            (story) =>
+              story.parent_id === parentId &&
+              lang_label_to_value(story.learning_lc) ===
+                globalConfig.learningLanguage &&
+              lang_label_to_value(story.known_lc) ===
+                globalConfig.knownLanguage
+          )
           .sort((a, b) => a.title.localeCompare(b.title))}
       />
     );

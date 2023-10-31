@@ -125,7 +125,6 @@ function StoryForm({
         <PickerInput
           style={[styles.rowInput, { width: "45%" }]}
           label="Learning"
-          invalid={!inputs.learning_lc.isValid}
           pickerConfig={{
             onChangeText: inputChangedHandler.bind(
               this,
@@ -138,7 +137,6 @@ function StoryForm({
         <PickerInput
           style={[styles.rowInput, { width: "45%" }]}
           label="From"
-          invalid={!inputs.known_lc.isValid}
           pickerConfig={{
             onChangeText: inputChangedHandler.bind(this, "known_lc"),
             value: inputs.known_lc.value,

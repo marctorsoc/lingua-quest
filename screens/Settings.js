@@ -12,6 +12,8 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
+import { PickerInput } from "../components/UI/Input";
+import { languageOptions } from "../constants/languages";
 import { useState } from "react";
 import {
   GlobalContext,
@@ -43,6 +45,12 @@ const Settings = () => {
   );
   const [showTotals, setShowTotals] = useState(
     globalConfig.showTotals
+  );
+  const [learningLanguage, setLearningLanguage] = useState(
+    globalConfig.learningLanguage
+  );
+  const [knownLanguage, setKnownLanguage] = useState(
+    globalConfig.knownLanguage
   );
 
   // Function to handle changes to the number of sentences
@@ -80,6 +88,20 @@ const Settings = () => {
     setGlobalConfig({
       ...globalConfig,
       showTotals: value,
+    });
+  };
+  const handleLearningLanguageChange = (value) => {
+    setLearningLanguage(value);
+    setGlobalConfig({
+      ...globalConfig,
+      learningLanguage: value,
+    });
+  };
+  const handleKnownLanguageChange = (value) => {
+    setKnownLanguage(value);
+    setGlobalConfig({
+      ...globalConfig,
+      knownLanguage: value,
     });
   };
 
@@ -168,7 +190,7 @@ const Settings = () => {
     <ScrollView contentContainerStyle={styles.container}>
       {/* Option: Number of sentences per game */}
       <View style={styles.optionContainer}>
-        <Text style={styles.label}>Number of sentences per game</Text>
+        <Text style={styles.label}>Number of trials per game</Text>
         <TextInput
           style={styles.input}
           onChangeText={handleNumSentencesChange}
@@ -205,6 +227,28 @@ const Settings = () => {
           style={styles.switch}
           value={showTotals}
           onValueChange={handleShowTotalsToggle}
+        />
+      </View>
+      <View style={styles.optionContainer}>
+        <Text style={styles.label}>Learning language</Text>
+        <PickerInput
+          style={[styles.rowInput]}
+          pickerConfig={{
+            onChangeText: handleLearningLanguageChange,
+            value: learningLanguage,
+            options: languageOptions,
+          }}
+        />
+      </View>
+      <View style={styles.optionContainer}>
+        <Text style={styles.label}>Known language</Text>
+        <PickerInput
+          style={[styles.rowInput]}
+          pickerConfig={{
+            onChangeText: handleKnownLanguageChange,
+            value: knownLanguage,
+            options: languageOptions,
+          }}
         />
       </View>
       {/* Manage data */}

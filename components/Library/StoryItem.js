@@ -39,6 +39,7 @@ function StoryItem({
     setGlobalConfig({ ...globalConfig, showLibraryBackButton: true });
     navigation.navigate("Library", {
       parentId: id,
+      parentTitle: title,
     });
   }
   function storyLongPressHandler() {
@@ -64,10 +65,6 @@ function StoryItem({
     >
       <View style={story_item_style}>
         <Text style={[styles.textBase, styles.title]}>{title}</Text>
-        <View style={styles.langsContainer}>
-          <Text style={styles.language}>{getEmoji(learning_lc)}</Text>
-          <Text style={styles.language}>{getEmoji(known_lc)}</Text>
-        </View>
         <View style={styles.statusContainer}>
           {is_leaf && <Text style={styles.status}>{status}</Text>}
         </View>
@@ -93,14 +90,15 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     textAlign: "center",
     margin: "5%",
-    minHeight: 120,
+    // minHeight: 120,  // this was before removing langs
+    minHeight: 90,
     justifyContent: "center",
   },
   textBase: {
     color: GlobalStyles.colors.primary50,
   },
   title: {
-    fontSize: 16,
+    fontSize: 18,
     marginTop: 8,
     marginBottom: 4,
     fontWeight: "bold",
@@ -123,7 +121,7 @@ const styles = StyleSheet.create({
   status: {
     color: "white",
     margin: 10,
-    fontSize: 15,
+    fontSize: 13,
     verticalAlign: "middle",
   },
 });

@@ -30,6 +30,8 @@ function PlayStory({ navigation, route }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
 
+  console.log(playData.currentAnswerIdx);
+
   const storyId = route.params?.storyId || playData.storyId;
   const story = stories.find((story) => story.id === storyId);
   // TODO marc: this is shown multiple times so we are rendering
@@ -40,8 +42,6 @@ function PlayStory({ navigation, route }) {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: story.title,
-      // TODO: this is a big hack
-      // headerTitleStyle: ScreensStyles.headerTitleStyle,
     });
   }, []);
 
