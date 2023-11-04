@@ -11,6 +11,7 @@ import {
   Switch,
   TextInput,
   ScrollView,
+  Platform,
 } from "react-native";
 import { PickerInput } from "../components/UI/Input";
 import { languageOptions } from "../constants/languages";
@@ -165,6 +166,12 @@ const Settings = () => {
     // and save to storage
     const data = await FileUpload();
 
+    if (data === null || data === undefined) {
+      console.log(
+        "handleUploadStories exiting since data is null or undefined"
+      );
+    }
+
     // 1. validate the data
     for (let key of Object.keys(data)) {
       console.log(key);
@@ -176,30 +183,36 @@ const Settings = () => {
       return;
     }
     console.log("all good!");
-    return;
 
     // 2. save stories into storage
     storeData("stories", JSON.stringify(data.stories));
 
-    // 3. for each story, save its sentences into storage
-    data.stories.map((story) => {
-      if (!story.is_leaf) return; // ignore non-leaf stories
-      const storySentences = data.sentences.filter(
-        (sentence) => sentence.story_id === story.id
-      );
-      const filename = `sentences_${story.id}`;
-      console.log(
-        `Saving ${storySentences.length} sentences ` +
-          `for story ${story.title} with id ${story.id}` +
-          ` to ${filename}`
-      );
-      storeData(filename, JSON.stringify(storySentences));
-    });
-
-    // 4. use setStories to update context
+    // 3. use setStories to update context
     // for sentences we don't have a context. We just request
     // for the sentences of the story to be played
     setStories(data.stories);
+
+    // 4. for each story, save its sentences into storage
+    if (Platform.OS === "web") {
+      console.log(
+        "For web we don't have enough space to save sentences. " +
+          "So this won't work."
+      );
+    } else {
+      data.stories.map((story) => {
+        if (!story.is_leaf) return; // ignore non-leaf stories
+        const storySentences = data.sentences.filter(
+          (sentence) => sentence.story_id === story.id
+        );
+        const filename = `sentences_${story.id}`;
+        console.log(
+          `Saving ${storySentences.length} sentences ` +
+            `for story ${story.title} with id ${story.id}` +
+            ` to ${filename} 333`
+        );
+        storeData(filename, JSON.stringify(storySentences));
+      });
+    }
 
     showInformativeAlert("Data uploaded");
   }

@@ -22,40 +22,17 @@ export async function FileUpload() {
       fileContent = content;
     };
     if (Platform.OS === "android") {
-      setFileContent(
-        await ExpoFileSystem.readAsStringAsync(res.assets[0].uri, {
-          encoding: ExpoFileSystem.EncodingType.UTF8,
-        })
-      );
+      fileContent = await ExpoFileSystem.readAsStringAsync(res.uri, {
+        encoding: ExpoFileSystem.EncodingType.UTF8,
+      });
     } else if (Platform.OS === "web") {
-      // TODO marc: now read the file using the uri
-      console.log("TODO: implement read file for web");
       const file = res.assets[0].file;
-      console.log(file);
-      if (typeof file === "string") {
-        throw new Error("On web we need to provide a File object");
-      }
-
-      await readFile(file, setFileContent);
-      // const requestData = new FormData();
-      // requestData.append("file", file);
-
-      // const options = {
-      //   method: "POST",
-      //   body: requestData,
-      //   // headers: headers,
-      // };
-
-      // const response = await fetch("", options);
-      // console.log(response);
-      console.log("after reading");
-      console.log(fileContent);
+      fileContent = await file.text();
     }
     if (fileContent === null || fileContent === undefined) {
       console.log("fileContent is null or undefined");
       return;
     }
-    // console.log(fileContent);
 
     try {
       setFileContent(JSON.parse(fileContent));
