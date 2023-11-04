@@ -17,10 +17,6 @@ export async function FileUpload() {
     }
     console.log(res.assets);
     let fileContent = null;
-
-    const setFileContent = (content) => {
-      fileContent = content;
-    };
     if (Platform.OS === "android") {
       fileContent = await ExpoFileSystem.readAsStringAsync(res.uri, {
         encoding: ExpoFileSystem.EncodingType.UTF8,
@@ -35,7 +31,7 @@ export async function FileUpload() {
     }
 
     try {
-      setFileContent(JSON.parse(fileContent));
+      fileContent = JSON.parse(fileContent);
     } catch (err) {
       console.log("error parsing json");
       console.log(err);
@@ -45,17 +41,6 @@ export async function FileUpload() {
   } catch (err) {
     console.log("error -----", err);
   }
-}
-
-async function readFile(file, setFileContent) {
-  const reader = new FileReader();
-
-  reader.onload = (e) => {
-    const content = e.target.result;
-    setFileContent(content);
-  };
-
-  reader.readAsText(file);
 }
 
 export async function JsonDownload(dataToDownload) {
