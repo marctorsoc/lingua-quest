@@ -55,24 +55,48 @@ const Settings = () => {
 
   // Function to handle changes to the number of sentences
   const handleNumSentencesChange = (text) => {
+    // TODO: remove setting globalContext here and only do it
+    // when clicking on "Save settings". And only if validation passes
     setNumSentences(text);
     if (text === "") return;
+    let number = NaN;
+    try {
+      number = parseInt(text);
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+    // check if nan
+    if (isNaN(number)) return;
+
     // set globalContext too
     setGlobalConfig({
       ...globalConfig,
-      numSentencesPerGame: text,
+      numSentencesPerGame: number,
     });
   };
 
   // Function to handle changes to the number of sentences
   const handleHistoryLengthChange = (text) => {
+    // TODO: remove setting globalContext here and only do it
+    // when clicking on "Save settings". And only if validation passes
     setHistoryLength(text);
     if (text === "") return;
     setHistoryLength(text);
+    let number = NaN;
+    try {
+      number = parseInt(text);
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+    // check if nan
+    if (isNaN(number)) return;
+
     // set globalContext too
     setGlobalConfig({
       ...globalConfig,
-      historyLength: text,
+      historyLength: number,
     });
   };
 
