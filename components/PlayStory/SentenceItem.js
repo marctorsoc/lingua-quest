@@ -23,7 +23,7 @@ function SentenceItem({
   const showMasked =
     playingThisItem && !reviewingThisAnswer && validSentence;
   const [showTranslation, setShowTranlsation] = useState(
-    playingThisItem && reviewingThisAnswer
+    playingThisItem && reviewingThisAnswer,
   );
   const maskStyle =
     playingThisItem && (!validSentence || reviewingThisAnswer)
@@ -132,11 +132,11 @@ const styles = StyleSheet.create({
     // flexDirection: "column",
     // justifyContent: "space-between",
     borderRadius: 12,
-    elevation: 3,
-    boxshadowColor: GlobalStyles.colors.gray500,
-    boxShadowRadius: 4,
-    boxShadowOffset: { width: 1, height: 1 },
-    boxShadowOpacity: 0.4,
+    // elevation: 3,
+    // boxshadowColor: GlobalStyles.colors.gray500,
+    // boxShadowRadius: 4,
+    // boxShadowOffset: { width: 1, height: 1 },
+    // boxShadowOpacity: 0.4,
     textAlign: "center",
   },
   alreadyPlayedSentenceItem: {

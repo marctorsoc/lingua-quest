@@ -2,11 +2,9 @@ import { StyleSheet, Text, View } from "react-native";
 
 import { GlobalStyles } from "../../constants/styles";
 import StoryList from "./StoryList";
-import LibrarySummary from "./ResumeStory";
 import ResumeStory from "./ResumeStory";
 import { GlobalContext } from "../../context/global-context";
 import { useContext } from "react";
-import { lang_label_to_value } from "../../constants/languages";
 
 function LibraryOutput({
   stories,
@@ -23,10 +21,11 @@ function LibraryOutput({
           .filter(
             (story) =>
               story.parent_id === parentId &&
-              lang_label_to_value(story.learning_lc) ===
-                globalConfig.learningLanguage &&
-              lang_label_to_value(story.known_lc) ===
-                globalConfig.knownLanguage
+              ((story.learning_lc === null &&
+                story.known_lc == null) ||
+                (story.learning_lc ===
+                  globalConfig.learningLanguage &&
+                  story.known_lc === globalConfig.knownLanguage)),
           )
           .sort((a, b) => a.title.localeCompare(b.title))}
       />

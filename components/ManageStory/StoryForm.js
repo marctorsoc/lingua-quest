@@ -29,15 +29,11 @@ function StoryForm({
     //   isValid: true,
     // },
     learning_lc: {
-      value: defaultValues
-        ? lang_label_to_value(defaultValues.learning_lc)
-        : "lt",
+      value: defaultValues ? defaultValues.learning_lc : "lt",
       isValid: true,
     },
     known_lc: {
-      value: defaultValues
-        ? lang_label_to_value(defaultValues.known_lc)
-        : "en",
+      value: defaultValues ? defaultValues.known_lc : "en",
       isValid: true,
     },
     done: {
@@ -62,8 +58,8 @@ function StoryForm({
     const storyData = {
       title: inputs.title.value,
       // url: inputs.url.value,
-      learning_lc: lang_value_to_label(inputs.learning_lc.value),
-      known_lc: lang_value_to_label(inputs.known_lc.value),
+      learning_lc: inputs.learning_lc.value,
+      known_lc: inputs.known_lc.value,
       done:
         inputs.done.value.trim().length > 0
           ? Number(inputs.done.value)
@@ -106,7 +102,7 @@ function StoryForm({
         invalid={!inputs.title.isValid}
         textInputConfig={{
           keyboardType: "default",
-          onChangeText: inputChangedHandler.bind(this, "title"),
+          onChangeText: (text) => inputChangedHandler("title", text),
           value: inputs.title.value,
         }}
       />
@@ -126,10 +122,8 @@ function StoryForm({
           style={[styles.rowInput, { width: "45%" }]}
           label="Learning"
           pickerConfig={{
-            onChangeText: inputChangedHandler.bind(
-              this,
-              "learning_lc"
-            ),
+            onChangeText: (text) =>
+              inputChangedHandler("learning_lc", text),
             value: inputs.learning_lc.value,
             options: languageOptions,
           }}
@@ -138,7 +132,8 @@ function StoryForm({
           style={[styles.rowInput, { width: "45%" }]}
           label="From"
           pickerConfig={{
-            onChangeText: inputChangedHandler.bind(this, "known_lc"),
+            onChangeText: (text) =>
+              inputChangedHandler("known_lc", text),
             value: inputs.known_lc.value,
             options: languageOptions,
           }}
@@ -149,7 +144,7 @@ function StoryForm({
         invalid={!inputs.done.isValid}
         textInputConfig={{
           keyboardType: "decimal-pad",
-          onChangeText: inputChangedHandler.bind(this, "done"),
+          onChangeText: (text) => inputChangedHandler("done", text),
           value: inputs.done.value,
         }}
       />

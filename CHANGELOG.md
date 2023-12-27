@@ -1,3 +1,12 @@
+2023-12-26:
+- Better sentencization:
+  - We used to join all text, then split with spaCy sentencizer. Now relying on subtitles splits, and joining "..." or starting with lowercase
+  - Split into two sents if "\n" found
+- Better vocabulary generation. Adding extra words to complement spacy.vocab.strings, based on 1) wordnet, 2) unimorph
+- Better answer generation. Now can mask sentences with only one maskable token but multiple non-maskable (but still valid tokens i.e. alpha and len <=2)
+- Translating texts in Colab: https://colab.research.google.com/drive/182W-BRAL8cyQ3xFn-M-CdeTDE9uyGj-L#scrollTo=ZYEGSAWziUJY
+
+
 2023-10-31:
 - Add show totals and avoid editing > total
 - Move languages to the settings screen and filter by language
@@ -8,9 +17,8 @@
 - Add ability to import data to filesystem (only Android)
 - Still some repeated and 1 word sentences (strip "-" at the end of sentences)
 - Still some english words in vocab
-- check if complete and show Completed
+- Check if complete and show Completed
 - Copy to clipboard when holding sentence
-- 
 
 2023-09-11:
 - Add backButton when adding new story

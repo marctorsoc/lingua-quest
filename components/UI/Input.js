@@ -29,7 +29,6 @@ export function PickerInput({ label, style, pickerConfig }) {
     {
       // useful to see frame of component
       // backgroundColor: GlobalStyles.colors.error500,
-      marginBottom: 10,
     },
   ];
   const pickerViewStyle = {
@@ -50,12 +49,19 @@ export function PickerInput({ label, style, pickerConfig }) {
           selectedValue={pickerConfig.value}
           mode={"dropdown"}
           onValueChange={pickerConfig.onChangeText}
+          itemStyle={{
+            color: GlobalStyles.colors.primary800,
+            fontSize: 30,
+          }}
         >
           {pickerConfig.options.map((item, index) => (
             <Picker.Item
               key={index}
               label={item.label}
               value={item.value}
+              style={{
+                fontSize: 14,
+              }}
             />
           ))}
         </Picker>

@@ -36,22 +36,22 @@ const Settings = () => {
   const { stories, setStories } = useContext(StoryContext);
   const { playData, setPlayData } = useContext(PlayContext);
   const [numSentences, setNumSentences] = useState(
-    String(globalConfig.numSentencesPerGame)
+    String(globalConfig.numSentencesPerGame),
   );
   const [historyLength, setHistoryLength] = useState(
-    String(globalConfig.historyLength)
+    String(globalConfig.historyLength),
   );
   const [showConfirmation, setShowConfirmation] = useState(
-    globalConfig.showConfirmationDialog
+    globalConfig.showConfirmationDialog,
   );
   const [showTotals, setShowTotals] = useState(
-    globalConfig.showTotals
+    globalConfig.showTotals,
   );
   const [learningLanguage, setLearningLanguage] = useState(
-    globalConfig.learningLanguage
+    globalConfig.learningLanguage,
   );
   const [knownLanguage, setKnownLanguage] = useState(
-    globalConfig.knownLanguage
+    globalConfig.knownLanguage,
   );
 
   // Function to handle changes to the number of sentences
@@ -151,7 +151,7 @@ const Settings = () => {
 
     showInformativeAlert(
       "Reset data",
-      "All data reset to their default values."
+      "All data reset to their default values.",
     );
   }
 
@@ -168,7 +168,7 @@ const Settings = () => {
 
     if (data === null || data === undefined) {
       console.log(
-        "handleUploadStories exiting since data is null or undefined"
+        "handleUploadStories exiting since data is null or undefined",
       );
     }
 
@@ -178,7 +178,7 @@ const Settings = () => {
     }
     if (!("stories" in data && "sentences" in data)) {
       console.log(
-        'Either "stories" or "sentences" not found in the uploaded data.'
+        'Either "stories" or "sentences" not found in the uploaded data.',
       );
       return;
     }
@@ -196,19 +196,19 @@ const Settings = () => {
     if (Platform.OS === "web") {
       console.log(
         "For web we don't have enough space to save sentences. " +
-          "So this won't work."
+          "So this won't work.",
       );
     } else {
       data.stories.map((story) => {
         if (!story.is_leaf) return; // ignore non-leaf stories
         const storySentences = data.sentences.filter(
-          (sentence) => sentence.story_id === story.id
+          (sentence) => sentence.story_id === story.id,
         );
         const filename = `sentences_${story.id}`;
         console.log(
           `Saving ${storySentences.length} sentences ` +
             `for story ${story.title} with id ${story.id}` +
-            ` to ${filename} 333`
+            ` to ${filename}`,
         );
         storeData(filename, JSON.stringify(storySentences));
       });
@@ -228,7 +228,7 @@ const Settings = () => {
     <ScrollView contentContainerStyle={styles.container}>
       {/* Option: Number of sentences per game */}
       <View style={styles.optionContainer}>
-        <Text style={styles.label}>Number of trials per game</Text>
+        <Text style={styles.label}>Sentences per round</Text>
         <TextInput
           style={styles.input}
           onChangeText={handleNumSentencesChange}
@@ -268,10 +268,10 @@ const Settings = () => {
           onValueChange={handleShowTotalsToggle}
         />
       </View>
-      <View style={styles.optionContainer}>
+      <View style={[styles.optionContainer]}>
         <Text style={styles.label}>Learning language</Text>
         <PickerInput
-          style={[styles.rowInput]}
+          style={[styles.languagePicker]}
           pickerConfig={{
             onChangeText: handleLearningLanguageChange,
             value: learningLanguage,
@@ -282,7 +282,7 @@ const Settings = () => {
       <View style={styles.optionContainer}>
         <Text style={styles.label}>Known language</Text>
         <PickerInput
-          style={[styles.rowInput]}
+          style={[styles.languagePicker]}
           pickerConfig={{
             onChangeText: handleKnownLanguageChange,
             value: knownLanguage,
@@ -291,7 +291,8 @@ const Settings = () => {
         />
       </View>
       {/* Manage data */}
-      <View style={styles.optionContainer}>
+      {/* height: "auto" is needed to overwrite optionContainer height */}
+      <View style={[styles.optionContainer, { height: "auto" }]}>
         {/* TODO: continue here to use modal
         <OptionModal
           title={"Reset data"}
@@ -307,7 +308,8 @@ const Settings = () => {
           <Text style={styles.buttonLabel}>Save settings</Text>
         </Button>
       </View>
-      <View style={styles.optionContainer}>
+      {/* height: "auto" is needed to overwrite optionContainer height */}
+      <View style={[styles.optionContainer, { height: "auto" }]}>
         <Button style={styles.button} onPress={handleUploadStories}>
           <Text style={styles.buttonLabel}>Upload stories</Text>
         </Button>
@@ -331,13 +333,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: "15%",
     justifyContent: "space-between",
-    height: 80,
+    height: 50,
     backgroundColor: GlobalStyles.colors.primary700,
   },
   label: {
     fontSize: 18,
     color: "white",
     paddingHorizontal: 16,
+    width: "60%",
   },
   buttonLabel: {
     textAlign: "center",
@@ -345,8 +348,8 @@ const styles = StyleSheet.create({
     color: "white",
   },
   input: {
-    height: 40,
-    width: 50,
+    height: 30,
+    width: 40,
     borderColor: "gray",
     color: "white",
     textAlign: "center",
@@ -355,7 +358,10 @@ const styles = StyleSheet.create({
   },
   switch: {
     alignSelf: "center",
-    marginRight: 8,
+    marginRight: 2,
+  },
+  languagePicker: {
+    width: Platform.OS === "web" ? "20%" : "50%",
   },
   button: {
     fontSize: 18,

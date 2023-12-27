@@ -72,8 +72,8 @@ function MainNavigator() {
         color={tintColor}
         containerStyle={ScreensStyles.headerButtonsContainers}
         onPress={() => {
-          console.log("TODO: implement");
-          Alert.alert("TODO: implement");
+          console.log("TODO: implement library filter");
+          Alert.alert("TODO: implement library filter");
         }}
       />
     );
@@ -194,16 +194,12 @@ export default function App() {
       <GlobalContextProvider>
         <StoryContextProvider>
           <PlayContextProvider>
-            {/* <ToastProvider> */}
             <NavigationContainer>
               <AppStack />
             </NavigationContainer>
-            {/* </ToastProvider> */}
           </PlayContextProvider>
         </StoryContextProvider>
       </GlobalContextProvider>
-
-      {/* </ToastProviderWrapper> */}
     </>
   );
 }

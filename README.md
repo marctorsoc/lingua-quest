@@ -93,19 +93,14 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 
 # Pending work
 
-- Data gen
-    - Join all consecutive omitted sentences into one, and join with \n and -.
-    - rstrip symbols like : , ., ... 
-    - remove more English words from vocabulary : about, hey
-    - 1word starting with ( or [. Remove
-    - When there's (name of a person + ":" ), join into previous sentence. E.g. "Monica:"
-
+- Implement filter in Library
+    - select movies / books
+    - select learning lang
+    - select known lang
 - hide back, home controls 
 - fix repeat for last round 
+- Find Picker with lower width in Android
 - Add modal to select what data to reset, and what data to load
-- Translate placeholders locally
-   - https://drlee.io/translate-text-from-any-language-to-any-language-with-hugging-face-transformers-and-google-colab-272876150a93
-   - https://huggingface.co/Helsinki-NLP/opus-mt-tc-big-lt-en
 - Add ability to backup data to filesystem
 - Use react-native-paper
 - Change fonts VScode like in Bootcamp
