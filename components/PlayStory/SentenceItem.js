@@ -9,32 +9,64 @@ import { useContext, useEffect, useState } from "react";
 import Button from "../UI/Button";
 // import { useToast } from "react-native-toast-notifications";
 
+function computeShowTranslation(
+  playingThisItem,
+  answerWasSelected,
+  validItem,
+) {
+  return playingThisItem && (answerWasSelected || !validItem);
+}
+
 function SentenceItem({
   index,
   text,
   translation,
   masked_range,
-  correct_answer_idx,
   playingThisItem,
-  reviewingThisAnswer,
-  alreadyPlayedItem,
+  validItem,
 }) {
-  const validSentence = correct_answer_idx !== -1;
+  const { playData, setPlayData } = useContext(PlayContext);
+  const currentAnswerIdx = playData.currentAnswerIdx;
+  // console.log("currentAnswerIdx: ", currentAnswerIdx);
+  const answerWasSelected = currentAnswerIdx !== undefined;
+  // show reviewingThisAnswer with prefix
   const showMasked =
-    playingThisItem && !reviewingThisAnswer && validSentence;
-  const [showTranslation, setShowTranlsation] = useState(
-    playingThisItem && reviewingThisAnswer,
-  );
+    playingThisItem && validItem && !answerWasSelected;
+
+  // maskStyle only matters when playing a valid item
+  // and determines whether adding textColor=green for
+  // for a revealed answer, or not for a masked answer
   const maskStyle =
-    playingThisItem && (!validSentence || reviewingThisAnswer)
+    playingThisItem && answerWasSelected
       ? styles.revealedMaskedText
       : {};
+  const [showTranslation, setShowTranslation] = useState(
+    computeShowTranslation(
+      playingThisItem,
+      answerWasSelected,
+      validItem,
+    ),
+  );
+  // if (text == "-Hubertas.") {
+  //   console.log("text: ", text);
+  //   console.log("answerWasSelected: ", answerWasSelected);
+  //   console.log("playingThisItem: ", playingThisItem);
+  //   console.log("validItem: ", validItem);
+  //   console.log("showMasked: ", showMasked);
+  //   console.log("showTranslation: ", showTranslation);
+  // }
 
-  const { playData, setPlayData } = useContext(PlayContext);
   // const toast = useToast();
+  // once an answer is selected, show translation
   useEffect(() => {
-    setShowTranlsation(reviewingThisAnswer);
-  }, [reviewingThisAnswer]);
+    setShowTranslation(
+      computeShowTranslation(
+        playingThisItem,
+        answerWasSelected,
+        validItem,
+      ),
+    );
+  }, [answerWasSelected]);
   // TODO marc: this console.log appears many many times.
   // Might be due to the key. Check TODO in SentenceList
   // console.log(data.currentAnswer);
@@ -55,8 +87,8 @@ function SentenceItem({
     );
   }
   function onSentenceSelected() {
-    if (!alreadyPlayedItem) return;
-    setShowTranlsation(!showTranslation);
+    if (playingThisItem) return;
+    setShowTranslation(!showTranslation);
     setPlayData({
       ...playData,
       processingClickedTranslation: true,
@@ -81,7 +113,7 @@ function SentenceItem({
 
   const sentenceItemStyle = [
     styles.SentenceItem,
-    alreadyPlayedItem && styles.alreadyPlayedSentenceItem,
+    !playingThisItem && styles.alreadyPlayedSentenceItem,
   ];
 
   return (

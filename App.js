@@ -11,26 +11,60 @@ import { GlobalStyles, ScreensStyles } from "./constants/styles";
 import IconButton from "./components/UI/IconButton";
 import PlayStory from "./screens/PlayStory";
 // import { ToastProviderWrapper } from "./util/toast";
-
+import { Popover, usePopover } from "react-native-modal-popover";
+import React from "react";
 // import ToastProvider from "react-native-toast-notifications";
-
+import { PickerInput } from "./components/UI/Input";
+import { languageOptions } from "./constants/languages";
+import { LibraryStyles } from "./constants/styles";
 import {
   GlobalContext,
   GlobalContextProvider,
 } from "./context/global-context";
 
 import { useContext } from "react";
-import { Alert, View } from "react-native";
+import { Alert, View, Text, Platform } from "react-native";
 import { StoryContextProvider } from "./context/stories-context";
 import { PlayContextProvider } from "./context/play-context";
 import BackButton from "./components/UI/BackButton";
+import { Button } from "react-native-web";
+import { Pressable } from "react-native";
+import { useState } from "react";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
 function MainNavigator() {
   const navigation = useNavigation();
+  const {
+    openPopover,
+    closePopover,
+    popoverVisible,
+    touchableRef,
+    popoverAnchorRect,
+  } = usePopover();
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
+  const [learningLanguage, setLearningLanguage] = useState(
+    globalConfig.learningLanguage,
+  );
+  const [knownLanguage, setKnownLanguage] = useState(
+    globalConfig.knownLanguage,
+  );
+
+  const handleLearningLanguageChange = (value) => {
+    setLearningLanguage(value);
+    setGlobalConfig({
+      ...globalConfig,
+      learningLanguage: value,
+    });
+  };
+  const handleKnownLanguageChange = (value) => {
+    setKnownLanguage(value);
+    setGlobalConfig({
+      ...globalConfig,
+      knownLanguage: value,
+    });
+  };
 
   function headerRight(tintColor) {
     return (
@@ -66,16 +100,58 @@ function MainNavigator() {
   }
   function sortAndFilterHandler(tintColor) {
     return (
-      <IconButton
-        icon="funnel-outline"
-        size={24}
-        color={tintColor}
-        containerStyle={ScreensStyles.headerButtonsContainers}
-        onPress={() => {
-          console.log("TODO: implement library filter");
-          Alert.alert("TODO: implement library filter");
-        }}
-      />
+      <View>
+        <IconButton
+          icon="funnel-outline"
+          size={24}
+          color={tintColor}
+          ref={touchableRef}
+          containerStyle={ScreensStyles.headerButtonsContainers}
+          onPress={() => {
+            console.log("TODO: implement library filter");
+            // openPopover();
+          }}
+        />
+        {/* <Popover
+          contentStyle={ScreensStyles.popoverContainer}
+          arrowStyle={GlobalStyles.colors.error500}
+          // backgroundStyle={GlobalStyles.colors.error500}
+          visible={popoverVisible}
+          onClose={closePopover}
+          fromRect={popoverAnchorRect}
+          placement="bottom"
+          displayArea={{
+            x: 40,
+            y: 20,
+            width: 200,
+            height: 50,
+          }}
+          supportedOrientations={["portrait", "landscape"]}
+        >
+          <View style={LibraryStyles.optionContainer}>
+            <Text style={LibraryStyles.label}>Known language</Text>
+            <PickerInput
+              style={[LibraryStyles.languagePicker]}
+              pickerConfig={{
+                onChangeText: handleKnownLanguageChange,
+                value: knownLanguage,
+                options: languageOptions,
+              }}
+            />
+          </View>
+          <View style={LibraryStyles.optionContainer}>
+            <Text style={LibraryStyles.label}>Learning language</Text>
+            <PickerInput
+              style={[LibraryStyles.languagePicker]}
+              pickerConfig={{
+                onChangeText: handleLearningLanguageChange,
+                value: learningLanguage,
+                options: languageOptions,
+              }}
+            />
+          </View>
+        </Popover> */}
+      </View>
     );
   }
 

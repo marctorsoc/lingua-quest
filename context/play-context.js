@@ -21,6 +21,10 @@ export const initialPlayData = {
   // globalContext.historyLength * globalContext.numSentencesPerGame
   // this is the global index of the first sentence shown.
   startHistoryIdx: 0,
+  // this is used to avoid scrolling when the user clicks on a
+  // translation. It's set to true when the user clicks on a
+  // sentence (either to show/hide translation) and reset to
+  // false when the list is scrolled, i.e. moving to next round
   processingClickedTranslation: false,
 };
 

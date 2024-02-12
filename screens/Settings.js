@@ -279,7 +279,7 @@ const Settings = () => {
           }}
         />
       </View>
-      <View style={styles.optionContainer}>
+      <View style={[styles.optionContainer, styles]}>
         <Text style={styles.label}>Known language</Text>
         <PickerInput
           style={[styles.languagePicker]}
@@ -292,7 +292,12 @@ const Settings = () => {
       </View>
       {/* Manage data */}
       {/* height: "auto" is needed to overwrite optionContainer height */}
-      <View style={[styles.optionContainer, { height: "auto" }]}>
+      <View
+        style={[
+          styles.optionContainer,
+          { height: "auto", marginTop: "5%" },
+        ]}
+      >
         {/* TODO: continue here to use modal
         <OptionModal
           title={"Reset data"}
@@ -309,7 +314,12 @@ const Settings = () => {
         </Button>
       </View>
       {/* height: "auto" is needed to overwrite optionContainer height */}
-      <View style={[styles.optionContainer, { height: "auto" }]}>
+      <View
+        style={[
+          styles.optionContainer,
+          { height: "auto", marginVertical: "0" },
+        ]}
+      >
         <Button style={styles.button} onPress={handleUploadStories}>
           <Text style={styles.buttonLabel}>Upload stories</Text>
         </Button>
@@ -331,37 +341,41 @@ const styles = StyleSheet.create({
   optionContainer: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: "15%",
+    marginHorizontal: "10%",
     justifyContent: "space-between",
     height: 50,
-    backgroundColor: GlobalStyles.colors.primary700,
+    // backgroundColor: GlobalStyles.colors.error50,
+    marginVertical: "1%",
   },
   label: {
     fontSize: 18,
     color: "white",
-    paddingHorizontal: 16,
     width: "60%",
+  },
+  input: {
+    height: 30,
+    width: "10%",
+    borderColor: "gray",
+    color: "white",
+    textAlign: "center",
+    borderWidth: 1,
+    // backgroundColor: "red",
+    marginRight: "5%",
+  },
+  switch: {
+    width: "10%",
+    // TODO: not clear to me why we need 5.5 to align with
+    // the input. I would expect 5%.
+    marginRight: "5.5%",
+    // backgroundColor: "red",
   },
   buttonLabel: {
     textAlign: "center",
     fontSize: 18,
     color: "white",
   },
-  input: {
-    height: 30,
-    width: 40,
-    borderColor: "gray",
-    color: "white",
-    textAlign: "center",
-    borderWidth: 1,
-    paddingHorizontal: 8,
-  },
-  switch: {
-    alignSelf: "center",
-    marginRight: 2,
-  },
   languagePicker: {
-    width: Platform.OS === "web" ? "20%" : "50%",
+    width: Platform.OS === "web" ? "20%" : "42%",
   },
   button: {
     fontSize: 18,

@@ -1,7 +1,10 @@
+import { Platform } from "react-native";
+
 export const GlobalStyles = {
   // TODO: add more colors. Could use
   // https://uicolors.app/create
   colors: {
+    white: "#ffffff",
     primary50: "#e4d9fd",
     primary100: "#c6affc",
     primary200: "#a281f0",
@@ -35,5 +38,32 @@ export const ScreensStyles = {
     backgroundColor: GlobalStyles.colors.primary500,
     paddingBottom: 2,
     paddingTop: 5,
+  },
+  popoverContainer: {
+    // width: "100%",
+    // height: "20%",
+    width: "auto",
+    backgroundColor: GlobalStyles.colors.error500,
+    borderRadius: 12,
+  },
+};
+
+export const LibraryStyles = {
+  optionContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: "15%",
+    justifyContent: "space-between",
+    height: 50,
+    backgroundColor: GlobalStyles.colors.primary700,
+  },
+  label: {
+    fontSize: 18,
+    color: "white",
+    paddingHorizontal: 16,
+    width: "100%",
+  },
+  languagePicker: {
+    width: Platform.OS === "web" ? "20%" : "100%",
   },
 };

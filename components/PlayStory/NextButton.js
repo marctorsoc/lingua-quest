@@ -46,7 +46,7 @@ function NextButton({ skip }) {
         };
         // save to context and local storage
         const updatedStories = stories.map((story) =>
-          story.id === updatedStory.id ? updatedStory : story
+          story.id === updatedStory.id ? updatedStory : story,
         );
 
         setStories(updatedStories);
@@ -91,7 +91,7 @@ function NextButton({ skip }) {
           },
         },
       ],
-      { cancelable: false }
+      { cancelable: false },
     );
   };
 
@@ -127,7 +127,6 @@ export default NextButton;
 const styles = StyleSheet.create({
   AnswerContainer: {
     paddingVertical: "4%",
-    paddingLeft: "12%",
     justifyContent: "center",
     borderColor: "white",
     borderWidth: 0.5,

@@ -1,3 +1,8 @@
+2024-XX-XX:
+- Cleaned code around showTranslation, and started showing translation when passthrough
+- Fixed language pickers in settings for Android: widths and colours
+
+
 2023-12-26:
 - Better sentencization:
   - We used to join all text, then split with spaCy sentencizer. Now relying on subtitles splits, and joining "..." or starting with lowercase

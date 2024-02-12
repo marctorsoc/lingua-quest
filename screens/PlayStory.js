@@ -30,7 +30,7 @@ function PlayStory({ navigation, route }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
 
-  console.log(playData.currentAnswerIdx);
+  // console.log("currentAnswerIdx: " + playData.currentAnswerIdx);
 
   const storyId = route.params?.storyId || playData.storyId;
   const story = stories.find((story) => story.id === storyId);
@@ -62,11 +62,11 @@ function PlayStory({ navigation, route }) {
           globalConfig.numSentencesPerGame;
         const requestStartIdx = Math.max(
           0,
-          story.done - numPrevSentences
+          story.done - numPrevSentences,
         );
         const requestEndIdx = Math.min(
           story.total,
-          story.done + globalConfig.numSentencesPerGame
+          story.done + globalConfig.numSentencesPerGame,
         );
         const requestedSentences = [
           ...sentencesForStory.slice(requestStartIdx, requestEndIdx),

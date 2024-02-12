@@ -93,11 +93,12 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 
 # Pending work
 
+- add a reading mode, where no need to guess
 - Implement filter in Library
     - select movies / books
     - select learning lang
     - select known lang
-- hide back, home controls 
+- hide back, home controls
 - fix repeat for last round 
 - Find Picker with lower width in Android
 - Add modal to select what data to reset, and what data to load

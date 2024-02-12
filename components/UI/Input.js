@@ -1,4 +1,10 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 import { GlobalStyles } from "../../constants/styles";
 import { Picker } from "@react-native-picker/picker";
@@ -32,9 +38,12 @@ export function PickerInput({ label, style, pickerConfig }) {
     },
   ];
   const pickerViewStyle = {
-    backgroundColor: GlobalStyles.colors.primary100,
+    // backgroundColor: GlobalStyles.colors.white,
     borderRadius: 12,
+    borderColor: "gray",
+    borderWidth: 1,
     overflow: "hidden",
+    // marginLeft: "5%",
   };
 
   return (
@@ -49,10 +58,8 @@ export function PickerInput({ label, style, pickerConfig }) {
           selectedValue={pickerConfig.value}
           mode={"dropdown"}
           onValueChange={pickerConfig.onChangeText}
-          itemStyle={{
-            color: GlobalStyles.colors.primary800,
-            fontSize: 30,
-          }}
+          dropdownIconColor={"white"}
+          style={{ color: Platform.OS == "web" ? "black" : "white" }}
         >
           {pickerConfig.options.map((item, index) => (
             <Picker.Item
@@ -61,6 +68,7 @@ export function PickerInput({ label, style, pickerConfig }) {
               value={item.value}
               style={{
                 fontSize: 14,
+                color: "black",
               }}
             />
           ))}
