@@ -23,7 +23,8 @@ function StoryItem({
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
 
   let status = `${done} `;
-  if (globalConfig.showTotals) status += `of ${total} `;
+  // leave like this in case we want to add showTotals again
+  status += `of ${total} `;
   status += `(${Math.floor((done / total) * 100)} %)`;
 
   function storyPressHandler() {

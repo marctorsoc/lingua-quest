@@ -44,8 +44,8 @@ const Settings = () => {
   const [showConfirmation, setShowConfirmation] = useState(
     globalConfig.showConfirmationDialog,
   );
-  const [showTotals, setShowTotals] = useState(
-    globalConfig.showTotals,
+  const [readingMode, setReadingMode] = useState(
+    globalConfig.readingMode,
   );
   const [learningLanguage, setLearningLanguage] = useState(
     globalConfig.learningLanguage,
@@ -109,11 +109,11 @@ const Settings = () => {
       showConfirmationDialog: value,
     });
   };
-  const handleShowTotalsToggle = (value) => {
-    setShowTotals(value);
+  const handleReadingModeToggle = (value) => {
+    setReadingMode(value);
     setGlobalConfig({
       ...globalConfig,
-      showTotals: value,
+      readingMode: value,
     });
   };
   const handleLearningLanguageChange = (value) => {
@@ -259,13 +259,13 @@ const Settings = () => {
           onValueChange={handleShowConfirmationToggle}
         />
       </View>
-      {/* Option: Show totals */}
+      {/* Option: Reading mode */}
       <View style={styles.optionContainer}>
-        <Text style={styles.label}>Show totals</Text>
+        <Text style={styles.label}>Reading mode</Text>
         <Switch
           style={styles.switch}
-          value={showTotals}
-          onValueChange={handleShowTotalsToggle}
+          value={readingMode}
+          onValueChange={handleReadingModeToggle}
         />
       </View>
       <View style={[styles.optionContainer]}>

@@ -13,7 +13,7 @@ export const initialGlobalData = {
   numSentencesPerGame: 2,
   historyLength: 1,
   showConfirmationDialog: false,
-  showTotals: true,
+  readingMode: false,
   learningLanguage: "lt",
   knownLanguage: "en",
   // numGamesPerDay: 3,  // TODO marc: implement this

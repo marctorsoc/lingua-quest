@@ -3,13 +3,12 @@ import AnswerItem from "./AnswerItem";
 import { GlobalStyles } from "../../constants/styles";
 import NextButton from "./NextButton";
 
-function AnswerBox({ answers, correct_answer_idx }) {
-  const validSentence = correct_answer_idx !== -1;
+function AnswerBox({ readingMode, answers, correct_answer_idx }) {
   // if answers is undefined, set to array of 4 empty strings
-  const validAnswers = answers !== null ? answers : ["", "", "", ""];
+  const validAnswers = answers === null ? ["", "", "", ""] : answers;
+
   // console.log("AnswerBox");
   // console.log(correct_answer_idx);
-  // console.log(validSentence);
   function renderAnswerItem({ index, item }) {
     return (
       <AnswerItem
@@ -22,15 +21,18 @@ function AnswerBox({ answers, correct_answer_idx }) {
 
   return (
     <View style={styles.AnswerBoxContainer}>
-      {
+      {/* Hide AnswerBox if readingMode */}
+      {!readingMode && (
         <FlatList
           data={validAnswers}
           renderItem={renderAnswerItem}
           keyExtractor={(item, index) => index}
           numColumns={2}
         />
-      }
-      <NextButton skip={!validSentence}></NextButton>
+      )}
+      <NextButton
+        skip={readingMode || correct_answer_idx == -1}
+      ></NextButton>
     </View>
   );
 }

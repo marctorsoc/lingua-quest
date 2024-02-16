@@ -7,14 +7,19 @@ import { View, Text } from "react-native";
 import { PlayContext } from "../../context/play-context";
 import { useContext, useEffect, useState } from "react";
 import Button from "../UI/Button";
+import { GlobalContext } from "../../context/global-context";
 // import { useToast } from "react-native-toast-notifications";
 
 function computeShowTranslation(
   playingThisItem,
   answerWasSelected,
   validItem,
+  readingMode,
 ) {
-  return playingThisItem && (answerWasSelected || !validItem);
+  return (
+    playingThisItem &&
+    (answerWasSelected || !validItem || readingMode)
+  );
 }
 
 function SentenceItem({
@@ -26,16 +31,19 @@ function SentenceItem({
   validItem,
 }) {
   const { playData, setPlayData } = useContext(PlayContext);
+  const { globalConfig } = useContext(GlobalContext);
   const currentAnswerIdx = playData.currentAnswerIdx;
   // console.log("currentAnswerIdx: ", currentAnswerIdx);
   const answerWasSelected = currentAnswerIdx !== undefined;
-  // show reviewingThisAnswer with prefix
   const showMasked =
-    playingThisItem && validItem && !answerWasSelected;
+    playingThisItem &&
+    !answerWasSelected &&
+    validItem &&
+    !globalConfig.readingMode;
 
   // maskStyle only matters when playing a valid item
   // and determines whether adding textColor=green for
-  // for a revealed answer, or not for a masked answer
+  // for a revealed answer, or not doing so for a masked answer
   const maskStyle =
     playingThisItem && answerWasSelected
       ? styles.revealedMaskedText
@@ -45,6 +53,7 @@ function SentenceItem({
       playingThisItem,
       answerWasSelected,
       validItem,
+      globalConfig.readingMode,
     ),
   );
   // if (text == "-Hubertas.") {
@@ -64,9 +73,10 @@ function SentenceItem({
         playingThisItem,
         answerWasSelected,
         validItem,
+        globalConfig.readingMode,
       ),
     );
-  }, [answerWasSelected]);
+  }, [answerWasSelected, playingThisItem]);
   // TODO marc: this console.log appears many many times.
   // Might be due to the key. Check TODO in SentenceList
   // console.log(data.currentAnswer);

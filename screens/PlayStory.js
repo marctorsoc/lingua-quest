@@ -31,6 +31,7 @@ function PlayStory({ navigation, route }) {
   const [error, setError] = useState();
 
   // console.log("currentAnswerIdx: " + playData.currentAnswerIdx);
+  console.log("readingMode: " + globalConfig.readingMode);
 
   const storyId = route.params?.storyId || playData.storyId;
   const story = stories.find((story) => story.id === storyId);
@@ -124,7 +125,10 @@ function PlayStory({ navigation, route }) {
     <View style={styles.mainContainer}>
       <GameStatusBox />
       <SentenceList sentences={sentences} />
-      <AnswerBox {...currentSentence}></AnswerBox>
+      <AnswerBox
+        readingMode={globalConfig.readingMode}
+        {...currentSentence}
+      ></AnswerBox>
     </View>
   );
 }

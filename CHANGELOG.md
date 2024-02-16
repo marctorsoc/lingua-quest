@@ -1,6 +1,8 @@
 2024-XX-XX:
-- Cleaned code around showTranslation, and started showing translation when passthrough
+- Cleaned code around showTranslation, started showing translation when passthrough, and hiding for previous sents in current round
 - Fixed language pickers in settings for Android: widths and colours
+- Add a reading mode, where no need to guess
+
 
 
 2023-12-26:
