@@ -13,6 +13,10 @@ import PlayStory from "./screens/PlayStory";
 // import { ToastProviderWrapper } from "./util/toast";
 import { Popover, usePopover } from "react-native-modal-popover";
 import React from "react";
+
+import * as NavigationBar from "expo-navigation-bar";
+import { setStatusBarHidden } from "expo-status-bar";
+
 // import ToastProvider from "react-native-toast-notifications";
 import { PickerInput } from "./components/UI/Input";
 import { languageOptions } from "./constants/languages";
@@ -23,13 +27,18 @@ import {
 } from "./context/global-context";
 
 import { useContext } from "react";
-import { Alert, View, Text, Platform } from "react-native";
-import { StoryContextProvider } from "./context/stories-context";
+import { View, Text, Platform } from "react-native";
+import { showConfirmation, showInformativeAlert } from "./util/alert";
+import {
+  StoryContext,
+  StoryContextProvider,
+} from "./context/stories-context";
 import { PlayContextProvider } from "./context/play-context";
 import BackButton from "./components/UI/BackButton";
 import { Button } from "react-native-web";
 import { Pressable } from "react-native";
 import { useState } from "react";
+import AddStory from "./screens/AddStory";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -44,6 +53,7 @@ function MainNavigator() {
     popoverAnchorRect,
   } = usePopover();
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
+  const { stories, deleteStory } = useContext(StoryContext);
   const [learningLanguage, setLearningLanguage] = useState(
     globalConfig.learningLanguage,
   );
@@ -74,28 +84,76 @@ function MainNavigator() {
           justifyContent: "center",
         }}
       >
-        {addStoryHandler(tintColor)}
+        {manageStoryHandler(tintColor)}
+        {addAndRemoveStoryHandler(tintColor)}
         {sortAndFilterHandler(tintColor)}
       </View>
     );
   }
-  function addStoryHandler(tintColor) {
+  function addAndRemoveStoryHandler(tintColor) {
+    function deleteThisStory() {
+      deleteStory(globalConfig.storyLongPressed);
+      showInformativeAlert("Story removed successfully!");
+    }
     return (
       <IconButton
-        icon={globalConfig.storyLongPressed ? "build-outline" : "add"}
+        icon={globalConfig.storyLongPressed ? "trash-outline" : "add"}
         size={24}
         color={tintColor}
         containerStyle={ScreensStyles.headerButtonsContainers}
         onPress={() => {
+          // if clicked with a story long pressed, delete it
+          if (globalConfig.storyLongPressed) {
+            try {
+              // TODO: right now, only showing confirmation for web
+              if (Platform.OS != "web") deleteThisStory();
+              else if (showConfirmation("Remove story?"))
+                deleteThisStory();
+            } catch (error) {
+              let msg =
+                "Could not delete story - please try again later!";
+              console.log(msg);
+              showInformativeAlert(msg);
+            }
+            // update globalConfig.storyLongPressed
+            setGlobalConfig({
+              ...globalConfig,
+              storyLongPressed: undefined,
+              showLibraryBackButton: false,
+            });
+            return;
+          }
+          // otherwise, open modal to add story
           setGlobalConfig({
             ...globalConfig,
             showLibraryBackButton: true,
           });
-          navigation.navigate("ManageStory", {
-            storyId: globalConfig.storyLongPressed,
+          navigation.navigate("AddStory", {
+            // storyId: globalConfig.storyLongPressed,
           });
         }}
       />
+    );
+  }
+  function manageStoryHandler(tintColor) {
+    return (
+      globalConfig.storyLongPressed && (
+        <IconButton
+          icon={"build-outline"}
+          size={24}
+          color={tintColor}
+          containerStyle={ScreensStyles.headerButtonsContainers}
+          onPress={() => {
+            setGlobalConfig({
+              ...globalConfig,
+              showLibraryBackButton: true,
+            });
+            navigation.navigate("ManageStory", {
+              storyId: globalConfig.storyLongPressed,
+            });
+          }}
+        />
+      )
     );
   }
   function sortAndFilterHandler(tintColor) {
@@ -169,6 +227,7 @@ function MainNavigator() {
         setGlobalConfig({
           ...globalConfig,
           showLibraryBackButton: false,
+          storyLongPressed: undefined,
         });
         // navigate to Library without param i.e. top-level
         navigation.navigate(tabName);
@@ -252,6 +311,15 @@ function AppStack() {
         }}
       />
       <Stack.Screen
+        name="AddStory"
+        component={AddStory}
+        options={{
+          presentation: "modal",
+          headerLeft: (props) =>
+            BackButton({ ...props, newPage: "Library" }),
+        }}
+      />
+      <Stack.Screen
         name="PlayStory"
         component={PlayStory}
         options={{
@@ -262,7 +330,29 @@ function AppStack() {
   );
 }
 
+function useStickyImmersiveReset() {
+  const visibility = NavigationBar.useVisibility();
+
+  React.useEffect(() => {
+    if (visibility === "visible") {
+      const interval = setTimeout(() => {
+        NavigationBar.setVisibilityAsync("hidden");
+      }, /* 3 Seconds */ 3000);
+
+      return () => {
+        clearTimeout(interval);
+      };
+    }
+  }, [visibility]);
+}
+
 export default function App() {
+  NavigationBar.setPositionAsync("absolute");
+  NavigationBar.setVisibilityAsync("hidden");
+  NavigationBar.setBehaviorAsync("inset-swipe");
+  NavigationBar.setBackgroundColorAsync("#00000080"); // `rgba(0,0,0,0.5)`
+  setStatusBarHidden(true, "none");
+  useStickyImmersiveReset();
   return (
     <>
       <StatusBar style="light" />

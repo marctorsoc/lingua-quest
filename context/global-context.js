@@ -16,6 +16,7 @@ export const initialGlobalData = {
   readingMode: false,
   learningLanguage: "lt",
   knownLanguage: "en",
+  userInfo: null,
   // numGamesPerDay: 3,  // TODO marc: implement this
 };
 

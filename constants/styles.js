@@ -46,6 +46,20 @@ export const ScreensStyles = {
     backgroundColor: GlobalStyles.colors.error500,
     borderRadius: 12,
   },
+  button: {
+    paddingVertical: 10,
+    paddingHorizontal: 40,
+    justifyContent: "center",
+    marginHorizontal: 8,
+    backgroundColor: GlobalStyles.colors.primary500,
+    overflow: "hidden",
+    borderRadius: 30,
+  },
+  buttonLabel: {
+    textAlign: "center",
+    fontSize: 18,
+    color: "white",
+  },
 };
 
 export const LibraryStyles = {

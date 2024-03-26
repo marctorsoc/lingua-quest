@@ -20,7 +20,11 @@ import {
   GlobalContext,
   initialGlobalData,
 } from "../context/global-context";
-import { GlobalStyles } from "../constants/styles";
+import {
+  GlobalStyles,
+  LibraryStyles,
+  ScreensStyles,
+} from "../constants/styles";
 import Button from "../components/UI/Button";
 import { storeData, cleanData } from "../util/storage";
 import { fetchSentences, fetchStories } from "../util/http";
@@ -306,11 +310,11 @@ const Settings = () => {
         ></OptionModal> */}
         <Button style={styles.button} onPress={handleResetData}>
           {/*{TODO: center the text}*/}
-          <Text style={styles.buttonLabel}>Reset Data</Text>
+          <Text style={ScreensStyles.buttonLabel}>Reset Data</Text>
         </Button>
         <Button style={styles.button} onPress={handleSaveData}>
           {/*{TODO: center the text}*/}
-          <Text style={styles.buttonLabel}>Save settings</Text>
+          <Text style={ScreensStyles.buttonLabel}>Save settings</Text>
         </Button>
       </View>
       {/* height: "auto" is needed to overwrite optionContainer height */}
@@ -321,10 +325,14 @@ const Settings = () => {
         ]}
       >
         <Button style={styles.button} onPress={handleUploadStories}>
-          <Text style={styles.buttonLabel}>Upload stories</Text>
+          <Text style={ScreensStyles.buttonLabel}>
+            Upload stories
+          </Text>
         </Button>
         <Button style={styles.button} onPress={handleDownloadStories}>
-          <Text style={styles.buttonLabel}>Download stories</Text>
+          <Text style={ScreensStyles.buttonLabel}>
+            Download stories
+          </Text>
         </Button>
       </View>
     </ScrollView>
@@ -368,11 +376,6 @@ const styles = StyleSheet.create({
     // the input. I would expect 5%.
     marginRight: "5.5%",
     // backgroundColor: "red",
-  },
-  buttonLabel: {
-    textAlign: "center",
-    fontSize: 18,
-    color: "white",
   },
   languagePicker: {
     width: Platform.OS === "web" ? "20%" : "42%",

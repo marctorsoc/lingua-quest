@@ -4,31 +4,49 @@
 
 import { Alert, Platform } from "react-native";
 
-const alertPolyfill = (title, description, options, extra) => {
+const alertPolyfill = (
+  title,
+  description,
+  options = [
+    {
+      text: "Cancel",
+      onPress: () => false,
+      style: "cancel",
+    },
+    {
+      text: "Ok",
+      onPress: () => true,
+    },
+  ],
+  extra,
+) => {
   const handler =
     options.length === 1 ? window.alert : window.confirm;
+  console.log("title", title);
+  console.log("description", description);
   const result = handler(
-    [title, description].filter(Boolean).join("\n")
+    [title, description].filter(Boolean).join("\n"),
   );
 
   if (result) {
     const confirmOption = options.find(
-      ({ style }) => style !== "cancel"
+      ({ style }) => style !== "cancel",
     );
-    confirmOption && confirmOption.onPress();
+    return confirmOption && confirmOption.onPress();
   } else {
     const cancelOption = options.find(
-      ({ style }) => style === "cancel"
+      ({ style }) => style === "cancel",
     );
-    cancelOption && cancelOption.onPress();
+    return cancelOption && cancelOption.onPress();
   }
 };
 
 export const _alert =
   Platform.OS === "web" ? alertPolyfill : Alert.alert;
 
-export const _showInformativeAlert = (title, message) => {
-  alert(
+export function _showInformativeAlert(title, message) {
+  // this method can be used by both
+  _alert(
     title,
     message,
     [
@@ -37,6 +55,6 @@ export const _showInformativeAlert = (title, message) => {
         onPress: () => {},
       },
     ],
-    { cancelable: false }
+    { cancelable: false },
   );
-};
+}

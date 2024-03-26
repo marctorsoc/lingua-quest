@@ -117,7 +117,7 @@ function SentenceItem({
 
   async function sentenceLongPressHandler() {
     Clipboard.setStringAsync(text);
-    showInformativeToast(text);
+    showInformativeToast("Copied to clipboard");
     // showInformativeToast(toast, text);
   }
 

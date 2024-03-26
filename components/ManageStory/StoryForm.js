@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { Input, PickerInput } from "../UI/Input";
 import Button from "../UI/Button";
 import { getFormattedDate } from "../../util/date";
-import { GlobalStyles } from "../../constants/styles";
+import { GlobalStyles, ScreensStyles } from "../../constants/styles";
 import { Picker } from "@react-native-picker/picker";
 import {
   languageOptions,
@@ -149,10 +149,13 @@ function StoryForm({
         }}
       />
       <View style={styles.buttons}>
-        <Button style={styles.button} onPress={onCancel}>
+        <Button style={ScreensStyles.button} onPress={onCancel}>
           <Text style={{ color: "white" }}>Cancel</Text>
         </Button>
-        <Button style={styles.button} onPress={onsubmitInterim}>
+        <Button
+          style={ScreensStyles.button}
+          onPress={onsubmitInterim}
+        >
           <Text style={{ color: "white" }}>{submitButtonLabel}</Text>
         </Button>
       </View>
@@ -192,14 +195,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-  },
-  button: {
-    paddingVertical: 10,
-    paddingHorizontal: 40,
-    justifyContent: "center",
-    marginHorizontal: 8,
-    backgroundColor: GlobalStyles.colors.primary500,
-    overflow: "hidden",
-    borderRadius: 30,
   },
 });

@@ -1,9 +1,11 @@
-2024-XX-XX:
-- Cleaned code around showTranslation, started showing translation when passthrough, and hiding for previous sents in current round
-- Fixed language pickers in settings for Android: widths and colours
-- Add a reading mode, where no need to guess
-
-
+2024-03:
+- Add reading mode
+- Add delete story
+- Immersive mode: hide back, home controls
+- Cleaning:
+  - Code around showTranslation, started showing translation when passthrough, and hiding for previous sents in current round
+  - Fixed language pickers in settings for Android: widths and colours
+  - Starting Google sign in
 
 2023-12-26:
 - Better sentencization:

@@ -20,7 +20,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.marc.torsoc.captionmaster"
     },
     "android": {
       "adaptiveIcon": {
@@ -28,6 +29,9 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.marc.torsoc.captionmaster"
+    },
+    "androidStatusBar": {
+      "hidden": "true"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -44,7 +48,17 @@
         {
           "iCloudContainerEnvironment": "Production"
         }
+      ],
+      [
+        "expo-navigation-bar",
+        {
+          "position": "absolute",
+          "visibility": "hidden",
+          "behavior": "inset-swipe",
+          "backgroundColor": "#00000080"
+        }
       ]
-    ]
+    ],
+    "scheme": "caption-master"
   }
 }

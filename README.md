@@ -69,7 +69,7 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 - 01:25:00 react-router-native
 - 01:28:30 Problemas con react-router-native
 - 01:29:30 Solucion: webpack-config
-- 01:34:50 Ruteando
+- 01:34:50 Routeando
 - 01:40:50 Scroll para las tabs
 - 01:49:00 Preguntas
 - 02:07:40 Inicio clase 2
@@ -93,13 +93,14 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 
 # Pending work
 
-- hide back, home controls
+- Add ability to add stories from Google Drive
 - Implement filter in Library
     - select movies / books
     - select learning lang
     - select known lang
-- fix repeat for last round 
+- Fix confirmation alert for Android
 - Add a counter for clean sheets, and congrat the user
+- Allow select multiple stories to delete, and disselect by tapping again. But if multiple invalidate edit button.
 - Find Picker with lower width in Android
 - Add modal to select what data to reset, and what data to load
 - Add ability to backup data to filesystem

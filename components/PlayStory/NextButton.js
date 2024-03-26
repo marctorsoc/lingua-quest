@@ -7,7 +7,7 @@ import { PlayContext } from "../../context/play-context";
 import { useNavigation } from "@react-navigation/native";
 import { StoryContext } from "../../context/stories-context";
 import { storeData } from "../../util/storage";
-import { alert } from "../../util/alert";
+import { alert, showConfirmation } from "../../util/alert";
 import { GlobalContext } from "../../context/global-context";
 
 function NextButton({ skip }) {
@@ -72,7 +72,7 @@ function NextButton({ skip }) {
 
   const askForContinue = () => {
     console.log("Asking for confirmation");
-    alert(
+    showConfirmation(
       "Continue playing?",
       "Do you want to continue?",
       [
