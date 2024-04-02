@@ -22,8 +22,6 @@ const alertPolyfill = (
 ) => {
   const handler =
     options.length === 1 ? window.alert : window.confirm;
-  console.log("title", title);
-  console.log("description", description);
   const result = handler(
     [title, description].filter(Boolean).join("\n"),
   );

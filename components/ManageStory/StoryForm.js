@@ -57,7 +57,6 @@ function StoryForm({
   function onsubmitInterim() {
     const storyData = {
       title: inputs.title.value,
-      // url: inputs.url.value,
       learning_lc: inputs.learning_lc.value,
       known_lc: inputs.known_lc.value,
       done:
@@ -66,10 +65,7 @@ function StoryForm({
           : undefined,
     };
 
-    // const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
     const titleIsValid = storyData.title.trim().length > 0;
-    // TODO: check how to validate urls
-    // const urlIsValid = storyData.url.toString() !== "Invalid Url";
     const doneIsValid =
       !isNaN(storyData.done) && storyData.done <= defaultValues.total;
     // console.log(storyData);
@@ -79,10 +75,6 @@ function StoryForm({
         value: curInputs.title.value,
         isValid: titleIsValid,
       },
-      // url: {
-      //   value: curInputs.url.value,
-      //   isValid: urlIsValid,
-      // },
       done: {
         value: curInputs.done.value,
         isValid: doneIsValid,
@@ -91,7 +83,6 @@ function StoryForm({
     if (!titleIsValid || !doneIsValid) {
       return;
     }
-
     onSubmit(storyData);
   }
 

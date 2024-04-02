@@ -69,6 +69,8 @@ export function PickerInput({ label, style, pickerConfig }) {
               style={{
                 fontSize: 14,
                 color: "black",
+                // TODO: align picker text
+                textAlign: "center",
               }}
             />
           ))}

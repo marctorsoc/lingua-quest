@@ -10,24 +10,19 @@ import Settings from "./screens/Settings";
 import { GlobalStyles, ScreensStyles } from "./constants/styles";
 import IconButton from "./components/UI/IconButton";
 import PlayStory from "./screens/PlayStory";
-// import { ToastProviderWrapper } from "./util/toast";
-import { Popover, usePopover } from "react-native-modal-popover";
+import SortAndFilterLibrary from "./screens/SortAndFilterLibrary";
 import React from "react";
 
 import * as NavigationBar from "expo-navigation-bar";
 import { setStatusBarHidden } from "expo-status-bar";
 
-// import ToastProvider from "react-native-toast-notifications";
-import { PickerInput } from "./components/UI/Input";
-import { languageOptions } from "./constants/languages";
-import { LibraryStyles } from "./constants/styles";
 import {
   GlobalContext,
   GlobalContextProvider,
 } from "./context/global-context";
 
 import { useContext } from "react";
-import { View, Text, Platform } from "react-native";
+import { View, Platform } from "react-native";
 import { showConfirmation, showInformativeAlert } from "./util/alert";
 import {
   StoryContext,
@@ -35,9 +30,6 @@ import {
 } from "./context/stories-context";
 import { PlayContextProvider } from "./context/play-context";
 import BackButton from "./components/UI/BackButton";
-import { Button } from "react-native-web";
-import { Pressable } from "react-native";
-import { useState } from "react";
 import AddStory from "./screens/AddStory";
 
 const Stack = createNativeStackNavigator();
@@ -45,36 +37,8 @@ const BottomTabs = createBottomTabNavigator();
 
 function MainNavigator() {
   const navigation = useNavigation();
-  const {
-    openPopover,
-    closePopover,
-    popoverVisible,
-    touchableRef,
-    popoverAnchorRect,
-  } = usePopover();
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
-  const { stories, deleteStory } = useContext(StoryContext);
-  const [learningLanguage, setLearningLanguage] = useState(
-    globalConfig.learningLanguage,
-  );
-  const [knownLanguage, setKnownLanguage] = useState(
-    globalConfig.knownLanguage,
-  );
-
-  const handleLearningLanguageChange = (value) => {
-    setLearningLanguage(value);
-    setGlobalConfig({
-      ...globalConfig,
-      learningLanguage: value,
-    });
-  };
-  const handleKnownLanguageChange = (value) => {
-    setKnownLanguage(value);
-    setGlobalConfig({
-      ...globalConfig,
-      knownLanguage: value,
-    });
-  };
+  const { deleteStory } = useContext(StoryContext);
 
   function headerRight(tintColor) {
     return (
@@ -128,9 +92,7 @@ function MainNavigator() {
             ...globalConfig,
             showLibraryBackButton: true,
           });
-          navigation.navigate("AddStory", {
-            // storyId: globalConfig.storyLongPressed,
-          });
+          navigation.navigate("AddStory");
         }}
       />
     );
@@ -163,52 +125,21 @@ function MainNavigator() {
           icon="funnel-outline"
           size={24}
           color={tintColor}
-          ref={touchableRef}
           containerStyle={ScreensStyles.headerButtonsContainers}
           onPress={() => {
-            console.log("TODO: implement library filter");
-            // openPopover();
+            if (globalConfig.storyLongPressed) {
+              showInformativeAlert(
+                "Ignoring due to story long pressed",
+              );
+              return;
+            }
+            setGlobalConfig({
+              ...globalConfig,
+              showLibraryBackButton: true,
+            });
+            navigation.navigate("FilterLibrary");
           }}
         />
-        {/* <Popover
-          contentStyle={ScreensStyles.popoverContainer}
-          arrowStyle={GlobalStyles.colors.error500}
-          // backgroundStyle={GlobalStyles.colors.error500}
-          visible={popoverVisible}
-          onClose={closePopover}
-          fromRect={popoverAnchorRect}
-          placement="bottom"
-          displayArea={{
-            x: 40,
-            y: 20,
-            width: 200,
-            height: 50,
-          }}
-          supportedOrientations={["portrait", "landscape"]}
-        >
-          <View style={LibraryStyles.optionContainer}>
-            <Text style={LibraryStyles.label}>Known language</Text>
-            <PickerInput
-              style={[LibraryStyles.languagePicker]}
-              pickerConfig={{
-                onChangeText: handleKnownLanguageChange,
-                value: knownLanguage,
-                options: languageOptions,
-              }}
-            />
-          </View>
-          <View style={LibraryStyles.optionContainer}>
-            <Text style={LibraryStyles.label}>Learning language</Text>
-            <PickerInput
-              style={[LibraryStyles.languagePicker]}
-              pickerConfig={{
-                onChangeText: handleLearningLanguageChange,
-                value: learningLanguage,
-                options: languageOptions,
-              }}
-            />
-          </View>
-        </Popover> */}
       </View>
     );
   }
@@ -320,6 +251,16 @@ function AppStack() {
         }}
       />
       <Stack.Screen
+        name="FilterLibrary"
+        component={SortAndFilterLibrary}
+        title="Filter Library"
+        options={{
+          presentation: "modal",
+          headerLeft: (props) =>
+            BackButton({ ...props, newPage: "Library" }),
+        }}
+      />
+      <Stack.Screen
         name="PlayStory"
         component={PlayStory}
         options={{
@@ -330,8 +271,13 @@ function AppStack() {
   );
 }
 
-function useStickyImmersiveReset() {
+function useStickyImmersive() {
   const visibility = NavigationBar.useVisibility();
+  NavigationBar.setPositionAsync("absolute");
+  NavigationBar.setVisibilityAsync("hidden");
+  NavigationBar.setBehaviorAsync("inset-swipe");
+  NavigationBar.setBackgroundColorAsync("#00000080"); // `rgba(0,0,0,0.5)`
+  setStatusBarHidden(true, "none");
 
   React.useEffect(() => {
     if (visibility === "visible") {
@@ -347,12 +293,7 @@ function useStickyImmersiveReset() {
 }
 
 export default function App() {
-  NavigationBar.setPositionAsync("absolute");
-  NavigationBar.setVisibilityAsync("hidden");
-  NavigationBar.setBehaviorAsync("inset-swipe");
-  NavigationBar.setBackgroundColorAsync("#00000080"); // `rgba(0,0,0,0.5)`
-  setStatusBarHidden(true, "none");
-  useStickyImmersiveReset();
+  useStickyImmersive();
   return (
     <>
       <StatusBar style="light" />

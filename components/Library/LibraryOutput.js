@@ -6,35 +6,61 @@ import ResumeStory from "./ResumeStory";
 import { GlobalContext } from "../../context/global-context";
 import { useContext } from "react";
 
-function LibraryOutput({
-  stories,
-  fallbackText,
-  parentId: parentId,
-}) {
-  let content = <Text style={styles.infoText}>{fallbackText}</Text>;
-  const { globalConfig } = useContext(GlobalContext);
+function storyHasAcceptedChildren(story_id, stories, filters) {
+  const children = stories.filter(
+    (story) =>
+      story.parent_id === story_id &&
+      (story.is_leaf === false ||
+        (story.learning_lc === filters.learningLanguage &&
+          story.known_lc === filters.knownLanguage)),
+  );
+  if (children.length > 0) {
+    return true;
+  }
+  return false;
+}
 
+function storyPassesFilters(story, filters) {
+  return (
+    // no need to check for storyType. Already done in the parent
+    story.learning_lc === filters.learningLanguage &&
+    story.known_lc === filters.knownLanguage
+  );
+}
+
+function LibraryOutput({ stories, fallbackText, parentId }) {
+  let defaultContent = (
+    <Text style={styles.infoText}>{fallbackText}</Text>
+  );
+
+  const { globalConfig } = useContext(GlobalContext);
+  // console.log(globalConfig.filters);
+
+  let content = undefined;
   if (stories.length > 0) {
-    content = (
-      <StoryList
-        stories={stories
-          .filter(
-            (story) =>
-              story.parent_id === parentId &&
-              ((story.learning_lc === null &&
-                story.known_lc == null) ||
-                (story.learning_lc ===
-                  globalConfig.learningLanguage &&
-                  story.known_lc === globalConfig.knownLanguage)),
-          )
-          .sort((a, b) => a.title.localeCompare(b.title))}
-      />
-    );
+    content = stories
+      .filter(
+        (story) =>
+          story.parent_id === parentId &&
+          // story.storyType === globalConfig.filters.storyType &&
+          (story.is_leaf
+            ? storyPassesFilters(story, globalConfig.filters)
+            : storyHasAcceptedChildren(
+                story.id,
+                stories,
+                globalConfig.filters,
+              )),
+      )
+      .sort((a, b) => a.title.localeCompare(b.title));
   }
 
   return (
     <View style={styles.container}>
-      {content}
+      {content === undefined ? (
+        defaultContent
+      ) : (
+        <StoryList stories={content} />
+      )}
       <ResumeStory stories={stories} />
     </View>
   );

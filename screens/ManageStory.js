@@ -12,9 +12,6 @@ import { storeData } from "../util/storage";
 import { showInformativeAlert } from "../util/alert";
 
 function ManageStory({ route, navigation }) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState();
-
   const { stories, setStories } = useContext(StoryContext);
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
 
@@ -22,7 +19,7 @@ function ManageStory({ route, navigation }) {
   const isEditing = editedStoryId !== undefined;
 
   const selectedStory = stories.find(
-    (story) => story.id === editedStoryId
+    (story) => story.id === editedStoryId,
   );
 
   useLayoutEffect(() => {
@@ -30,18 +27,6 @@ function ManageStory({ route, navigation }) {
       title: isEditing ? "Edit Story" : "Add Story",
     });
   }, [navigation, isEditing]);
-
-  async function deleteStoryHandler() {
-    //   setIsSubmitting(true);
-    //   try {
-    //     await deleteExpense(editedExpenseId);
-    //     expensesCtx.deleteStory(editedExpenseId);
-    //     navigation.goBack();
-    //   } catch (error) {
-    //     setError("Could not delete story - please try again later!");
-    //     setIsSubmitting(false);
-    //   }
-  }
 
   function goBack() {
     setGlobalConfig({
@@ -67,7 +52,7 @@ function ManageStory({ route, navigation }) {
             ...story,
             ...storyData,
           }
-        : story
+        : story,
     );
     setStories(updatedStories);
     storeData("stories", JSON.stringify(updatedStories));
@@ -91,13 +76,13 @@ function ManageStory({ route, navigation }) {
     // }
   }
 
-  if (error && !isSubmitting) {
-    return <ErrorOverlay message={error} />;
-  }
+  // if (error && !isSubmitting) {
+  //   return <ErrorOverlay message={error} />;
+  // }
 
-  if (isSubmitting) {
-    return <LoadingOverlay />;
-  }
+  // if (isSubmitting) {
+  //   return <LoadingOverlay />;
+  // }
 
   return (
     <View style={styles.container}>

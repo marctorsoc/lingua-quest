@@ -1,16 +1,21 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { GlobalStyles } from "../../constants/styles";
 
-function Button({ children, onPress, onLongPress, style }) {
+function Button({ children, onPress, onLongPress, style, disabled }) {
   return (
     <Pressable
+      // disabled if disabled passed and true
+      disabled={disabled === undefined ? false : disabled}
       onLongPress={() => {
         // console.log("Long Press");
         if (onLongPress !== undefined) onLongPress();
       }}
       delayLongPress={200}
       onPress={onPress}
-      style={({ pressed }) => [style, pressed && styles.pressed]}
+      style={({ pressed }) => [
+        style,
+        pressed && styles.pressed,
+        disabled && styles.disabled,
+      ]}
     >
       <View style={styles.buttonView}>{children}</View>
     </Pressable>
@@ -28,6 +33,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   pressed: {
+    opacity: 0.5,
+  },
+  disabled: {
     opacity: 0.5,
   },
 });

@@ -13,6 +13,8 @@ function StoryList({ stories }) {
       renderItem={renderStoryItem}
       keyExtractor={(item) => item.id}
       numColumns={2}
+      // TODO: add this
+      refreshControl={null}
     />
   );
 }

@@ -1,3 +1,6 @@
+2024-04-02:
+- Add ability to filter stories by language from LibraryFilter and clean settings page
+
 2024-03:
 - Add reading mode
 - Add delete story

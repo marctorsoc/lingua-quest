@@ -13,18 +13,12 @@ import {
   ScrollView,
   Platform,
 } from "react-native";
-import { PickerInput } from "../components/UI/Input";
-import { languageOptions } from "../constants/languages";
 import { useState } from "react";
 import {
   GlobalContext,
   initialGlobalData,
 } from "../context/global-context";
-import {
-  GlobalStyles,
-  LibraryStyles,
-  ScreensStyles,
-} from "../constants/styles";
+import { GlobalStyles, ScreensStyles } from "../constants/styles";
 import Button from "../components/UI/Button";
 import { storeData, cleanData } from "../util/storage";
 import { fetchSentences, fetchStories } from "../util/http";
@@ -45,17 +39,9 @@ const Settings = () => {
   const [historyLength, setHistoryLength] = useState(
     String(globalConfig.historyLength),
   );
-  const [showConfirmation, setShowConfirmation] = useState(
-    globalConfig.showConfirmationDialog,
-  );
+
   const [readingMode, setReadingMode] = useState(
     globalConfig.readingMode,
-  );
-  const [learningLanguage, setLearningLanguage] = useState(
-    globalConfig.learningLanguage,
-  );
-  const [knownLanguage, setKnownLanguage] = useState(
-    globalConfig.knownLanguage,
   );
 
   // Function to handle changes to the number of sentences
@@ -105,33 +91,11 @@ const Settings = () => {
     });
   };
 
-  // Function to handle the "Show confirmation" switch toggle
-  const handleShowConfirmationToggle = (value) => {
-    setShowConfirmation(value);
-    setGlobalConfig({
-      ...globalConfig,
-      showConfirmationDialog: value,
-    });
-  };
   const handleReadingModeToggle = (value) => {
     setReadingMode(value);
     setGlobalConfig({
       ...globalConfig,
       readingMode: value,
-    });
-  };
-  const handleLearningLanguageChange = (value) => {
-    setLearningLanguage(value);
-    setGlobalConfig({
-      ...globalConfig,
-      learningLanguage: value,
-    });
-  };
-  const handleKnownLanguageChange = (value) => {
-    setKnownLanguage(value);
-    setGlobalConfig({
-      ...globalConfig,
-      knownLanguage: value,
     });
   };
 
@@ -151,7 +115,6 @@ const Settings = () => {
     setGlobalConfig(initialGlobalData);
     setNumSentences(String(initialGlobalData.numSentencesPerGame));
     setHistoryLength(String(initialGlobalData.historyLength));
-    setShowConfirmation(initialGlobalData.showConfirmationDialog);
 
     showInformativeAlert(
       "Reset data",
@@ -254,15 +217,6 @@ const Settings = () => {
         />
       </View>
 
-      {/* Option: Show confirmation */}
-      <View style={styles.optionContainer}>
-        <Text style={styles.label}>Show confirmation box</Text>
-        <Switch
-          style={styles.switch}
-          value={showConfirmation}
-          onValueChange={handleShowConfirmationToggle}
-        />
-      </View>
       {/* Option: Reading mode */}
       <View style={styles.optionContainer}>
         <Text style={styles.label}>Reading mode</Text>
@@ -270,28 +224,6 @@ const Settings = () => {
           style={styles.switch}
           value={readingMode}
           onValueChange={handleReadingModeToggle}
-        />
-      </View>
-      <View style={[styles.optionContainer]}>
-        <Text style={styles.label}>Learning language</Text>
-        <PickerInput
-          style={[styles.languagePicker]}
-          pickerConfig={{
-            onChangeText: handleLearningLanguageChange,
-            value: learningLanguage,
-            options: languageOptions,
-          }}
-        />
-      </View>
-      <View style={[styles.optionContainer, styles]}>
-        <Text style={styles.label}>Known language</Text>
-        <PickerInput
-          style={[styles.languagePicker]}
-          pickerConfig={{
-            onChangeText: handleKnownLanguageChange,
-            value: knownLanguage,
-            options: languageOptions,
-          }}
         />
       </View>
       {/* Manage data */}
@@ -376,9 +308,6 @@ const styles = StyleSheet.create({
     // the input. I would expect 5%.
     marginRight: "5.5%",
     // backgroundColor: "red",
-  },
-  languagePicker: {
-    width: Platform.OS === "web" ? "20%" : "42%",
   },
   button: {
     fontSize: 18,
