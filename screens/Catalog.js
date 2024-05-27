@@ -79,7 +79,6 @@ function Catalog(navigation, route) {
       )
       .sort((a, b) => a.title.localeCompare(b.title));
   }
-  console.log(content);
   return (
     <View style={styles.container}>
       {content === undefined || content.length === 0 ? (

@@ -25,7 +25,6 @@ function CatalogItem({
       />
     );
   }
-  console.log(languages);
   return (
     <View style={styles.StoryItemWrapper}>
       <Text style={[styles.textBase, styles.title]}>{title}</Text>

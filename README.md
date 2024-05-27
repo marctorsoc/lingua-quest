@@ -93,6 +93,8 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 
 # Pending work
 
+- Problems
+  - Android assets not found
 - Tech debt i8n
     - add logo of language to title of tab, see https://reactnavigation.org/docs/headers#replacing-the-title-with-a-custom-component
     - Add tooltip to catalog item's corner to show num episodes and other

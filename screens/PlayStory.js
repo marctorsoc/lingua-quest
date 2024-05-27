@@ -31,7 +31,6 @@ function PlayStory({ navigation, route }) {
   const [error, setError] = useState();
 
   // console.log("currentAnswerIdx: " + playData.currentAnswerIdx);
-  console.log("readingMode: " + globalConfig.readingMode);
 
   const storyId = route.params?.storyId || playData.storyId;
   const story = stories.find((story) => story.id === storyId);
@@ -117,8 +116,6 @@ function PlayStory({ navigation, route }) {
     return <LoadingOverlay />;
   }
 
-  console.log("sentences");
-  console.log(sentences);
   let currentSentence = {};
   const localCurrentSentenceIdx =
     playData.currentSentenceIdx - playData.startHistoryIdx;

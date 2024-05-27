@@ -62,8 +62,8 @@ function SortAndFilterForm({ onCancel, onSubmit, defaultValues }) {
   // TODO: can this be solved without a useEffect?
   useEffect(() => {
     // TODO: validate input and return early if invalid
-    console.log("filtered stories");
-    console.log(getStoriesForFilters(stories, inputs));
+    // console.log("filtered stories");
+    // console.log(getStoriesForFilters(stories, inputs));
     setNumFilteredStories(
       getStoriesForFilters(stories, inputs).length,
     );
