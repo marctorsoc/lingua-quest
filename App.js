@@ -38,7 +38,7 @@ import BackButton from "./components/UI/BackButton";
 import { Button } from "react-native-web";
 import { Pressable } from "react-native";
 import { useState } from "react";
-import AddStory from "./screens/AddStory";
+// import AddStory from "./screens/AddStory";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -124,13 +124,13 @@ function MainNavigator() {
             return;
           }
           // otherwise, open modal to add story
-          setGlobalConfig({
-            ...globalConfig,
-            showLibraryBackButton: true,
-          });
-          navigation.navigate("AddStory", {
-            // storyId: globalConfig.storyLongPressed,
-          });
+          // setGlobalConfig({
+          //   ...globalConfig,
+          //   showLibraryBackButton: true,
+          // });
+          // navigation.navigate("AddStory", {
+          //   // storyId: globalConfig.storyLongPressed,
+          // });
         }}
       />
     );
@@ -310,7 +310,7 @@ function AppStack() {
             BackButton({ ...props, newPage: "Library" }),
         }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="AddStory"
         component={AddStory}
         options={{
@@ -318,7 +318,7 @@ function AppStack() {
           headerLeft: (props) =>
             BackButton({ ...props, newPage: "Library" }),
         }}
-      />
+      /> */}
       <Stack.Screen
         name="PlayStory"
         component={PlayStory}
