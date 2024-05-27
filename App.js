@@ -6,13 +6,18 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import ManageStory from "./screens/ManageStory";
 import Library from "./screens/Library";
+import Catalog from "./screens/Catalog";
 import Settings from "./screens/Settings";
 import { GlobalStyles, ScreensStyles } from "./constants/styles";
 import IconButton from "./components/UI/IconButton";
 import PlayStory from "./screens/PlayStory";
 import SortAndFilterLibrary from "./screens/SortAndFilterLibrary";
 import React from "react";
-
+import { Text, View, Image } from "react-native";
+import {
+  langValueToLongName,
+  languageOptions,
+} from "./constants/languages";
 import * as NavigationBar from "expo-navigation-bar";
 import { setStatusBarHidden } from "expo-status-bar";
 
@@ -22,7 +27,7 @@ import {
 } from "./context/global-context";
 
 import { useContext } from "react";
-import { View, Platform } from "react-native";
+import { Platform } from "react-native";
 import { showConfirmation, showInformativeAlert } from "./util/alert";
 import {
   StoryContext,
@@ -166,6 +171,35 @@ function MainNavigator() {
     };
   }
 
+  // get first character of the lang label
+  const learningLanguage = langValueToLongName(
+    globalConfig.filters.learningLanguage,
+  );
+
+  // TODO: finish this
+  // function libraryTitleComponent({ route, props }) {
+  //   return (
+  //     <View style={{ flex: 1 }}>
+  //       <Text>
+  //         <Text style={{ fontStyle: "bold", color: props.tintColor }}>
+  //           {/* {route.params?.parentTitle} || */}
+  //           Play
+  //         </Text>
+  //         <Text> - </Text>
+  //         <Text style={{ fontStyle: "italic" }}>
+  //           {learningLanguage}
+  //         </Text>
+  //       </Text>
+  //       <Image
+  //         style={{ width: 10, height: 10 }}
+  //         source={
+  //           "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AReact-icon.svg&psig=AOvVaw06OajhcBLWMDs6oTEt-mRM&ust=1716830992691000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCIj7iP3rq4YDFQAAAAAdAAAAABAE"
+  //         }
+  //       />
+  //     </View>
+  //   );
+  // }
+
   return (
     <BottomTabs.Navigator
       // TODO: remove this navigation if the hook works
@@ -189,8 +223,32 @@ function MainNavigator() {
         component={Library}
         listeners={() => bottomTabListener("Library")}
         options={({ route }) => ({
-          title: route.params?.parentTitle || "Library",
-          tabBarLabel: "Library",
+          // headerTitle: ({ props }) =>
+          //   libraryTitleComponent(route, props),
+          // TODO: to add the logo of the flag and style,
+          // use headerTitle and finish the `libraryTitleComponent`,
+          // to be moved into its own file
+          title:
+            route.params?.parentTitle ||
+            `Caption Master - ${learningLanguage}`,
+          tabBarLabel: "Play",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons
+              name="game-controller-outline"
+              size={size}
+              color={color}
+            />
+          ),
+          headerRight: ({ tintColor }) => headerRight(tintColor),
+        })}
+      />
+      <BottomTabs.Screen
+        name="Catalog"
+        component={Catalog}
+        listeners={() => bottomTabListener("Catalog")}
+        options={({ route }) => ({
+          title: route.params?.parentTitle || "Catalog",
+          tabBarLabel: "Catalog",
           tabBarIcon: ({ color, size }) => (
             <Ionicons
               name="library-outline"
@@ -253,7 +311,6 @@ function AppStack() {
       <Stack.Screen
         name="FilterLibrary"
         component={SortAndFilterLibrary}
-        title="Filter Library"
         options={{
           presentation: "modal",
           headerLeft: (props) =>

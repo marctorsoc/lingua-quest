@@ -6,7 +6,6 @@ import { useContext } from "react";
 
 const GameStatusBox = () => {
   const { playData } = useContext(PlayContext);
-  //   console.log(playData);
   const sentencesIndex =
     playData.startIdx == playData.endIdx
       ? "-"

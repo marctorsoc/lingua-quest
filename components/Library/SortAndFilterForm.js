@@ -17,13 +17,20 @@ import { languageOptions } from "../../constants/languages";
 import { storyTypeOptions } from "../../constants/story_type";
 
 function getStoriesForFilters(stories, filters) {
+  // console.log("all stories");
+  // console.log(stories);
+  // console.log(filters);
   return stories.filter(
     (story) =>
       story.is_leaf &&
       // TODO: enable filtering by story type
       // story.storyType === filters.storyType.value &&
-      story.learning_lc === filters.learningLanguage.value &&
-      story.known_lc === filters.knownLanguage.value,
+      Object.keys(story.languages).includes(
+        filters.learningLanguage.value,
+      ) &&
+      story.languages[filters.learningLanguage.value].includes(
+        filters.knownLanguage.value,
+      ),
   );
 }
 
@@ -55,6 +62,8 @@ function SortAndFilterForm({ onCancel, onSubmit, defaultValues }) {
   // TODO: can this be solved without a useEffect?
   useEffect(() => {
     // TODO: validate input and return early if invalid
+    console.log("filtered stories");
+    console.log(getStoriesForFilters(stories, inputs));
     setNumFilteredStories(
       getStoriesForFilters(stories, inputs).length,
     );

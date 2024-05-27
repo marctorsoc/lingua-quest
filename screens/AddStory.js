@@ -104,6 +104,7 @@ function AddStory({ route, navigation }) {
         </Text>
       ) : (
         <Button
+          disabled={true}
           style={[ScreensStyles.button, { height: "10%" }]}
           onPress={() => promptAsync()}
         >

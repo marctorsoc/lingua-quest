@@ -1,3 +1,7 @@
+2024-05-27:
+- Support multiple languages
+- Add catalog tab
+
 2024-04-02:
 - Add ability to filter stories by language from LibraryFilter and clean settings page
 

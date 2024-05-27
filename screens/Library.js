@@ -39,11 +39,8 @@ function Library(navigation, route) {
       }
     }
     async function getLastStoryId() {
-      // console.log("Getting storyId from disk");
       const storyId = await AsyncStorage.getItem("last_story_id");
-      // console.log(storyId);
       if (storyId != playData.storyId) {
-        // console.log("Setting storyId in playData");
         setPlayData({
           ...playData,
           storyId: storyId,
@@ -52,10 +49,8 @@ function Library(navigation, route) {
       return storyId;
     }
     async function getSettings() {
-      // console.log("Getting settings from disk");
       const settings = await AsyncStorage.getItem("settings");
       if (settings) {
-        // console.log("Setting settings in globalConfig");
         setGlobalConfig(JSON.parse(settings));
       }
       return settings;

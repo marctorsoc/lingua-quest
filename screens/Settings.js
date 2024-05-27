@@ -256,7 +256,7 @@ const Settings = () => {
           { height: "auto", marginVertical: "0" },
         ]}
       >
-        <Button style={styles.button} onPress={handleUploadStories}>
+        {/* <Button style={styles.button} onPress={handleUploadStories}>
           <Text style={ScreensStyles.buttonLabel}>
             Upload stories
           </Text>
@@ -265,7 +265,7 @@ const Settings = () => {
           <Text style={ScreensStyles.buttonLabel}>
             Download stories
           </Text>
-        </Button>
+        </Button> */}
       </View>
     </ScrollView>
   );

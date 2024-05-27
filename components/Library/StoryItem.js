@@ -22,10 +22,15 @@ function StoryItem({
   const navigation = useNavigation();
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
 
-  let status = `${done} `;
   // leave like this in case we want to add showTotals again
-  status += `of ${total} `;
-  status += `(${Math.floor((done / total) * 100)} %)`;
+  let status = "";
+  if (is_leaf) {
+    status = `${done[globalConfig.filters.learningLanguage]} `;
+    const currentTotal = total[globalConfig.filters.learningLanguage];
+    const currentDone = done[globalConfig.filters.learningLanguage];
+    status += `of ${currentTotal} `;
+    status += `(${Math.floor((currentDone / currentTotal) * 100)} %)`;
+  }
 
   function storyPressHandler() {
     // ignore if storyLongPressed is set

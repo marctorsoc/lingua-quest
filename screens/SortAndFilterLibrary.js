@@ -13,7 +13,7 @@ import SortAndFilterForm from "../components/Library/SortAndFilterForm";
 function SortAndFilterLibrary({ route, navigation }) {
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
 
-  console.log(globalConfig.filters);
+  // console.log(globalConfig.filters);
 
   function goBack() {
     navigation.navigate("Library");
@@ -31,19 +31,24 @@ function SortAndFilterLibrary({ route, navigation }) {
 
   async function submitHandler(filterData) {
     // save to context and local storage
-    console.log(filterData);
+    // console.log(filterData);
     const updatedGlobalConfig = {
       ...globalConfig,
       filters: filterData,
       showLibraryBackButton: false,
     };
-    console.log(updatedGlobalConfig);
+    // console.log(updatedGlobalConfig);
     setGlobalConfig(updatedGlobalConfig);
     storeData("settings", JSON.stringify(updatedGlobalConfig));
 
     showInformativeAlert("Data filtered");
     goBack();
   }
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: "Filter Library",
+    });
+  }, [navigation]);
 
   return (
     <View style={styles.container}>

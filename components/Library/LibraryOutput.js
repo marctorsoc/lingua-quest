@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 
 import { GlobalStyles } from "../../constants/styles";
-import StoryList from "./StoryList";
+import StoryList from "../StoryList";
 import ResumeStory from "./ResumeStory";
 import { GlobalContext } from "../../context/global-context";
 import { useContext } from "react";
@@ -11,8 +11,12 @@ function storyHasAcceptedChildren(story_id, stories, filters) {
     (story) =>
       story.parent_id === story_id &&
       (story.is_leaf === false ||
-        (story.learning_lc === filters.learningLanguage &&
-          story.known_lc === filters.knownLanguage)),
+        (Object.keys(story.languages).includes(
+          filters.learningLanguage,
+        ) &&
+          story.languages[filters.learningLanguage].includes(
+            filters.knownLanguage,
+          ))),
   );
   if (children.length > 0) {
     return true;
@@ -23,8 +27,10 @@ function storyHasAcceptedChildren(story_id, stories, filters) {
 function storyPassesFilters(story, filters) {
   return (
     // no need to check for storyType. Already done in the parent
-    story.learning_lc === filters.learningLanguage &&
-    story.known_lc === filters.knownLanguage
+    Object.keys(story.languages).includes(filters.learningLanguage) &&
+    story.languages[filters.learningLanguage].includes(
+      filters.knownLanguage,
+    )
   );
 }
 
@@ -35,6 +41,7 @@ function LibraryOutput({ stories, fallbackText, parentId }) {
 
   const { globalConfig } = useContext(GlobalContext);
   // console.log(globalConfig.filters);
+  // console.log(stories);
 
   let content = undefined;
   if (stories.length > 0) {

@@ -53,7 +53,12 @@ function PlayStory({ navigation, route }) {
       try {
         // TODO: surely when not loading from disk we will
         // pass storyId here and not retrieve ALL sentences
-        const sentencesForStory = await fetchSentences(storyId);
+        const learningLanguage =
+          globalConfig.filters.learningLanguage;
+        const sentencesForStory = await fetchSentences(
+          storyId,
+          learningLanguage,
+        );
 
         // console.log(globalConfig);
 
@@ -63,11 +68,12 @@ function PlayStory({ navigation, route }) {
           globalConfig.numSentencesPerGame;
         const requestStartIdx = Math.max(
           0,
-          story.done - numPrevSentences,
+          story.done[learningLanguage] - numPrevSentences,
         );
         const requestEndIdx = Math.min(
-          story.total,
-          story.done + globalConfig.numSentencesPerGame,
+          story.total[learningLanguage],
+          story.done[learningLanguage] +
+            globalConfig.numSentencesPerGame,
         );
         const requestedSentences = [
           ...sentencesForStory.slice(requestStartIdx, requestEndIdx),
@@ -76,13 +82,14 @@ function PlayStory({ navigation, route }) {
         // console.log(requestedSentences);
         await sleep(0.1);
         setSentences(requestedSentences);
-        const playLength = requestEndIdx - story.done;
+        const playLength =
+          requestEndIdx - story.done[learningLanguage];
         setPlayData({
           ...initialPlayData,
           numSentences: playLength,
           numAnswersToGo: playLength,
-          currentSentenceIdx: story.done,
-          startIdx: story.done,
+          currentSentenceIdx: story.done[learningLanguage],
+          startIdx: story.done[learningLanguage],
           endIdx: requestEndIdx,
           startHistoryIdx: requestStartIdx,
           storyId: storyId,
@@ -110,8 +117,8 @@ function PlayStory({ navigation, route }) {
     return <LoadingOverlay />;
   }
 
-  // console.log("sentences");
-  // console.log(sentences);
+  console.log("sentences");
+  console.log(sentences);
   let currentSentence = {};
   const localCurrentSentenceIdx =
     playData.currentSentenceIdx - playData.startHistoryIdx;
@@ -120,7 +127,6 @@ function PlayStory({ navigation, route }) {
     // skip this sentence and mark as correct
     // TODO marc: continue here
   }
-  // console.log(currentSentence);
   return (
     <View style={styles.mainContainer}>
       <GameStatusBox />

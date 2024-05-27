@@ -6,11 +6,6 @@ import Button from "../UI/Button";
 import { getFormattedDate } from "../../util/date";
 import { GlobalStyles, ScreensStyles } from "../../constants/styles";
 import { Picker } from "@react-native-picker/picker";
-import {
-  languageOptions,
-  lang_label_to_value,
-  lang_value_to_label,
-} from "../../constants/languages";
 import { showInformativeAlert } from "../../util/alert";
 
 function StoryForm({
@@ -28,27 +23,35 @@ function StoryForm({
     //   value: defaultValues ? defaultValues.url?.toString() : "",
     //   isValid: true,
     // },
-    learning_lc: {
-      value: defaultValues ? defaultValues.learning_lc : "lt",
-      isValid: true,
-    },
-    known_lc: {
-      value: defaultValues ? defaultValues.known_lc : "en",
+    languages: {
+      value: JSON.stringify(
+        defaultValues ? defaultValues.languages : {},
+      ),
       isValid: true,
     },
     done: {
-      value: String(defaultValues ? defaultValues.done : 0),
+      value: JSON.stringify(defaultValues ? defaultValues.done : {}),
       isValid: true,
     },
   });
 
-  function inputChangedHandler(inputIdentifier, enteredValue) {
+  function inputChangedHandler(
+    inputIdentifier,
+    enteredValue,
+    json_parse = false,
+  ) {
+    let isValid = enteredValue.trim().length > 0;
+    try {
+      if (json_parse) JSON.parse(enteredValue);
+    } catch (error) {
+      isValid = false;
+    }
     setInputs((curInputs) => {
       return {
         ...curInputs,
         [inputIdentifier]: {
           value: enteredValue,
-          isValid: true,
+          isValid: isValid,
         },
       };
     });
@@ -57,30 +60,15 @@ function StoryForm({
   function onsubmitInterim() {
     const storyData = {
       title: inputs.title.value,
-      learning_lc: inputs.learning_lc.value,
-      known_lc: inputs.known_lc.value,
-      done:
-        inputs.done.value.trim().length > 0
-          ? Number(inputs.done.value)
-          : undefined,
+      languages: JSON.parse(inputs.languages.value),
+      done: JSON.parse(inputs.done.value),
     };
 
-    const titleIsValid = storyData.title.trim().length > 0;
-    const doneIsValid =
-      !isNaN(storyData.done) && storyData.done <= defaultValues.total;
-    // console.log(storyData);
-    setInputs((curInputs) => ({
-      ...curInputs,
-      title: {
-        value: curInputs.title.value,
-        isValid: titleIsValid,
-      },
-      done: {
-        value: curInputs.done.value,
-        isValid: doneIsValid,
-      },
-    }));
-    if (!titleIsValid || !doneIsValid) {
+    if (!inputs.title.isValid || !inputs.done.isValid) {
+      showInformativeAlert(
+        "Invalid story",
+        "Please fix the errors above.",
+      );
       return;
     }
     onSubmit(storyData);
@@ -108,7 +96,17 @@ function StoryForm({
           value: inputs.url.value,
         }}
       /> */}
-      <View style={styles.inputsRow}>
+      <Input
+        label="Languages"
+        editable={false}
+        textInputConfig={{
+          keyboardType: "default",
+          onChangeText: (text) =>
+            inputChangedHandler("languages", text, true),
+          value: inputs.languages.value,
+        }}
+      />
+      {/* <View style={styles.inputsRow}>
         <PickerInput
           style={[styles.rowInput, { width: "45%" }]}
           label="Learning"
@@ -129,13 +127,14 @@ function StoryForm({
             options: languageOptions,
           }}
         />
-      </View>
+      </View> */}
       <Input
         label="Sentences done"
         invalid={!inputs.done.isValid}
         textInputConfig={{
-          keyboardType: "decimal-pad",
-          onChangeText: (text) => inputChangedHandler("done", text),
+          keyboardType: "default",
+          onChangeText: (text) =>
+            inputChangedHandler("done", text, true),
           value: inputs.done.value,
         }}
       />

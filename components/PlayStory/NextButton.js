@@ -71,7 +71,7 @@ function NextButton({ skip }) {
   }
 
   const askForContinue = () => {
-    console.log("Asking for confirmation");
+    // console.log("Asking for confirmation");
     showConfirmation(
       "Continue playing?",
       "Do you want to continue?",
