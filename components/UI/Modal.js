@@ -15,7 +15,7 @@ export default function OptionModal({ title, names, propsSetter }) {
     names.reduce((acc, name) => {
       acc[name] = false;
       return acc;
-    }, {})
+    }, {}),
   );
 
   const toggleOption = (option) => {
@@ -36,7 +36,7 @@ export default function OptionModal({ title, names, propsSetter }) {
   const handleSubmit = () => {
     // Handle the selected options here
     // (e.g., save to state or send to a server).
-    console.log("Selected Options:", options);
+    // console.log("Selected Options:", options);
     propsSetter(options);
 
     // Close the modal

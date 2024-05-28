@@ -6,28 +6,28 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import ManageStory from "./screens/ManageStory";
 import Library from "./screens/Library";
+import Catalog from "./screens/Catalog";
 import Settings from "./screens/Settings";
 import { GlobalStyles, ScreensStyles } from "./constants/styles";
 import IconButton from "./components/UI/IconButton";
 import PlayStory from "./screens/PlayStory";
-// import { ToastProviderWrapper } from "./util/toast";
-import { Popover, usePopover } from "react-native-modal-popover";
+import SortAndFilterLibrary from "./screens/SortAndFilterLibrary";
 import React from "react";
-
+import { Text, View, Image } from "react-native";
+import {
+  langValueToLongName,
+  languageOptions,
+} from "./constants/languages";
 import * as NavigationBar from "expo-navigation-bar";
 import { setStatusBarHidden } from "expo-status-bar";
 
-// import ToastProvider from "react-native-toast-notifications";
-import { PickerInput } from "./components/UI/Input";
-import { languageOptions } from "./constants/languages";
-import { LibraryStyles } from "./constants/styles";
 import {
   GlobalContext,
   GlobalContextProvider,
 } from "./context/global-context";
 
 import { useContext } from "react";
-import { View, Text, Platform } from "react-native";
+import { Platform } from "react-native";
 import { showConfirmation, showInformativeAlert } from "./util/alert";
 import {
   StoryContext,
@@ -35,46 +35,15 @@ import {
 } from "./context/stories-context";
 import { PlayContextProvider } from "./context/play-context";
 import BackButton from "./components/UI/BackButton";
-import { Button } from "react-native-web";
-import { Pressable } from "react-native";
-import { useState } from "react";
-// import AddStory from "./screens/AddStory";
+import AddStory from "./screens/AddStory";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
 function MainNavigator() {
   const navigation = useNavigation();
-  const {
-    openPopover,
-    closePopover,
-    popoverVisible,
-    touchableRef,
-    popoverAnchorRect,
-  } = usePopover();
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
-  const { stories, deleteStory } = useContext(StoryContext);
-  const [learningLanguage, setLearningLanguage] = useState(
-    globalConfig.learningLanguage,
-  );
-  const [knownLanguage, setKnownLanguage] = useState(
-    globalConfig.knownLanguage,
-  );
-
-  const handleLearningLanguageChange = (value) => {
-    setLearningLanguage(value);
-    setGlobalConfig({
-      ...globalConfig,
-      learningLanguage: value,
-    });
-  };
-  const handleKnownLanguageChange = (value) => {
-    setKnownLanguage(value);
-    setGlobalConfig({
-      ...globalConfig,
-      knownLanguage: value,
-    });
-  };
+  const { deleteStory } = useContext(StoryContext);
 
   function headerRight(tintColor) {
     return (
@@ -124,13 +93,11 @@ function MainNavigator() {
             return;
           }
           // otherwise, open modal to add story
-          // setGlobalConfig({
-          //   ...globalConfig,
-          //   showLibraryBackButton: true,
-          // });
-          // navigation.navigate("AddStory", {
-          //   // storyId: globalConfig.storyLongPressed,
-          // });
+          setGlobalConfig({
+            ...globalConfig,
+            showLibraryBackButton: true,
+          });
+          navigation.navigate("AddStory");
         }}
       />
     );
@@ -163,52 +130,21 @@ function MainNavigator() {
           icon="funnel-outline"
           size={24}
           color={tintColor}
-          ref={touchableRef}
           containerStyle={ScreensStyles.headerButtonsContainers}
           onPress={() => {
-            console.log("TODO: implement library filter");
-            // openPopover();
+            if (globalConfig.storyLongPressed) {
+              showInformativeAlert(
+                "Ignoring due to story long pressed",
+              );
+              return;
+            }
+            setGlobalConfig({
+              ...globalConfig,
+              showLibraryBackButton: true,
+            });
+            navigation.navigate("FilterLibrary");
           }}
         />
-        {/* <Popover
-          contentStyle={ScreensStyles.popoverContainer}
-          arrowStyle={GlobalStyles.colors.error500}
-          // backgroundStyle={GlobalStyles.colors.error500}
-          visible={popoverVisible}
-          onClose={closePopover}
-          fromRect={popoverAnchorRect}
-          placement="bottom"
-          displayArea={{
-            x: 40,
-            y: 20,
-            width: 200,
-            height: 50,
-          }}
-          supportedOrientations={["portrait", "landscape"]}
-        >
-          <View style={LibraryStyles.optionContainer}>
-            <Text style={LibraryStyles.label}>Known language</Text>
-            <PickerInput
-              style={[LibraryStyles.languagePicker]}
-              pickerConfig={{
-                onChangeText: handleKnownLanguageChange,
-                value: knownLanguage,
-                options: languageOptions,
-              }}
-            />
-          </View>
-          <View style={LibraryStyles.optionContainer}>
-            <Text style={LibraryStyles.label}>Learning language</Text>
-            <PickerInput
-              style={[LibraryStyles.languagePicker]}
-              pickerConfig={{
-                onChangeText: handleLearningLanguageChange,
-                value: learningLanguage,
-                options: languageOptions,
-              }}
-            />
-          </View>
-        </Popover> */}
       </View>
     );
   }
@@ -235,6 +171,35 @@ function MainNavigator() {
     };
   }
 
+  // get first character of the lang label
+  const learningLanguage = langValueToLongName(
+    globalConfig.filters.learningLanguage,
+  );
+
+  // TODO: finish this
+  // function libraryTitleComponent({ route, props }) {
+  //   return (
+  //     <View style={{ flex: 1 }}>
+  //       <Text>
+  //         <Text style={{ fontStyle: "bold", color: props.tintColor }}>
+  //           {/* {route.params?.parentTitle} || */}
+  //           Play
+  //         </Text>
+  //         <Text> - </Text>
+  //         <Text style={{ fontStyle: "italic" }}>
+  //           {learningLanguage}
+  //         </Text>
+  //       </Text>
+  //       <Image
+  //         style={{ width: 10, height: 10 }}
+  //         source={
+  //           "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AReact-icon.svg&psig=AOvVaw06OajhcBLWMDs6oTEt-mRM&ust=1716830992691000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCIj7iP3rq4YDFQAAAAAdAAAAABAE"
+  //         }
+  //       />
+  //     </View>
+  //   );
+  // }
+
   return (
     <BottomTabs.Navigator
       // TODO: remove this navigation if the hook works
@@ -258,8 +223,32 @@ function MainNavigator() {
         component={Library}
         listeners={() => bottomTabListener("Library")}
         options={({ route }) => ({
-          title: route.params?.parentTitle || "Library",
-          tabBarLabel: "Library",
+          // headerTitle: ({ props }) =>
+          //   libraryTitleComponent(route, props),
+          // TODO: to add the logo of the flag and style,
+          // use headerTitle and finish the `libraryTitleComponent`,
+          // to be moved into its own file
+          title:
+            route.params?.parentTitle ||
+            `Caption Master - ${learningLanguage}`,
+          tabBarLabel: "Play",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons
+              name="game-controller-outline"
+              size={size}
+              color={color}
+            />
+          ),
+          headerRight: ({ tintColor }) => headerRight(tintColor),
+        })}
+      />
+      <BottomTabs.Screen
+        name="Catalog"
+        component={Catalog}
+        listeners={() => bottomTabListener("Catalog")}
+        options={({ route }) => ({
+          title: route.params?.parentTitle || "Catalog",
+          tabBarLabel: "Catalog",
           tabBarIcon: ({ color, size }) => (
             <Ionicons
               name="library-outline"
@@ -318,7 +307,16 @@ function AppStack() {
           headerLeft: (props) =>
             BackButton({ ...props, newPage: "Library" }),
         }}
-      /> */}
+      />
+      <Stack.Screen
+        name="FilterLibrary"
+        component={SortAndFilterLibrary}
+        options={{
+          presentation: "modal",
+          headerLeft: (props) =>
+            BackButton({ ...props, newPage: "Library" }),
+        }}
+      />
       <Stack.Screen
         name="PlayStory"
         component={PlayStory}
@@ -330,8 +328,13 @@ function AppStack() {
   );
 }
 
-function useStickyImmersiveReset() {
+function useStickyImmersive() {
   const visibility = NavigationBar.useVisibility();
+  NavigationBar.setPositionAsync("absolute");
+  NavigationBar.setVisibilityAsync("hidden");
+  NavigationBar.setBehaviorAsync("inset-swipe");
+  NavigationBar.setBackgroundColorAsync("#00000080"); // `rgba(0,0,0,0.5)`
+  setStatusBarHidden(true, "none");
 
   React.useEffect(() => {
     if (visibility === "visible") {
@@ -347,12 +350,7 @@ function useStickyImmersiveReset() {
 }
 
 export default function App() {
-  NavigationBar.setPositionAsync("absolute");
-  NavigationBar.setVisibilityAsync("hidden");
-  NavigationBar.setBehaviorAsync("inset-swipe");
-  NavigationBar.setBackgroundColorAsync("#00000080"); // `rgba(0,0,0,0.5)`
-  setStatusBarHidden(true, "none");
-  useStickyImmersiveReset();
+  useStickyImmersive();
   return (
     <>
       <StatusBar style="light" />

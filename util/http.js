@@ -26,7 +26,12 @@ export async function fetchStories(props = { try_from_disk: true }) {
   return [...data.stories];
 }
 
-export async function fetchSentences(storyId, try_from_disk = true) {
+export async function fetchSentences(
+  storyId,
+  LearningLanguage,
+  // try_from_disk = true,
+  try_from_disk = false,
+) {
   console.log(storyId);
   console.log(try_from_disk);
   if (storyId === undefined)
@@ -37,7 +42,7 @@ export async function fetchSentences(storyId, try_from_disk = true) {
     try {
       console.log("loading sentences from disk");
       const jsonValue = await AsyncStorage.getItem(
-        `sentences_${storyId}`
+        `sentences_${storyId}_${LearningLanguage}`,
       );
       sentencesForStory = JSON.parse(jsonValue);
 
@@ -55,7 +60,9 @@ export async function fetchSentences(storyId, try_from_disk = true) {
   }
   console.log("loaded from mock");
   sentencesForStory = data.sentences.filter(
-    (sentence) => sentence.story_id === storyId
+    (sentence) =>
+      sentence.story_id === storyId &&
+      sentence.learning_lc === LearningLanguage,
   );
 
   return [...sentencesForStory];

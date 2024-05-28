@@ -9,7 +9,13 @@ import {
 import { GlobalStyles } from "../../constants/styles";
 import { Picker } from "@react-native-picker/picker";
 
-export function Input({ label, invalid, style, textInputConfig }) {
+export function Input({
+  label,
+  invalid,
+  style,
+  textInputConfig,
+  editable = true,
+}) {
   const inputStyles = [styles.input];
 
   if (textInputConfig && textInputConfig.multiline)
@@ -22,7 +28,11 @@ export function Input({ label, invalid, style, textInputConfig }) {
       <Text style={[styles.label, invalid && styles.invalidLabel]}>
         {label}
       </Text>
-      <TextInput style={inputStyles} {...textInputConfig} />
+      <TextInput
+        editable={editable}
+        style={inputStyles}
+        {...textInputConfig}
+      />
     </View>
   );
 }
@@ -69,6 +79,8 @@ export function PickerInput({ label, style, pickerConfig }) {
               style={{
                 fontSize: 14,
                 color: "black",
+                // TODO: align picker text
+                textAlign: "center",
               }}
             />
           ))}

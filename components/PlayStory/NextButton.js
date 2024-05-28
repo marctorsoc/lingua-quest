@@ -22,6 +22,7 @@ function NextButton({ skip }) {
     playData.startIdx + playData.numSentences - 1;
   const allCorrect = playData.numWrongAnswers === 0;
   const storyCompleted = playData.startIdx === playData.endIdx;
+  const learningLanguage = globalConfig.filters.learningLanguage;
 
   function resetGame() {
     setPlayData({
@@ -42,7 +43,10 @@ function NextButton({ skip }) {
         const story = stories.find((story) => story.id === storyId);
         const updatedStory = {
           ...story,
-          done: playData.endIdx,
+          done: {
+            ...story.done,
+            [learningLanguage]: playData.endIdx,
+          },
         };
         // save to context and local storage
         const updatedStories = stories.map((story) =>
@@ -71,7 +75,7 @@ function NextButton({ skip }) {
   }
 
   const askForContinue = () => {
-    console.log("Asking for confirmation");
+    // console.log("Asking for confirmation");
     showConfirmation(
       "Continue playing?",
       "Do you want to continue?",

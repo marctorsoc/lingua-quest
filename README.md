@@ -93,16 +93,24 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 
 # Pending work
 
+- Problems
+  - Android assets not found
+- Tech debt i8n
+    - add logo of language to title of tab, see https://reactnavigation.org/docs/headers#replacing-the-title-with-a-custom-component
+    - Add tooltip to catalog item's corner to show num episodes and other
+    information
+    - Add logo of movie / tv series / book to both catalog and library
+- Search for better translation models for
+    - ca -> es
+- Finish filter once new data with movies / books is added
 - Add ability to add stories from Google Drive
-- Implement filter in Library
-    - select movies / books
-    - select learning lang
-    - select known lang
-- Fix confirmation alert for Android
 - Add a counter for clean sheets, and congrat the user
 - Allow select multiple stories to delete, and disselect by tapping again. But if multiple invalidate edit button.
+- Add refreshControl to refresh stories by pulling down in LibraryOutput
+- Add ability to sort stories in SortAndFilter
 - Find Picker with lower width in Android
 - Add modal to select what data to reset, and what data to load
+- Search how to center text in Picker and PickerOptions
 - Add ability to backup data to filesystem
 - Use react-native-paper
 - Change fonts VScode like in Bootcamp

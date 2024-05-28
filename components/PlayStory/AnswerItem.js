@@ -9,8 +9,6 @@ function AnswerItem({ index, text, correct_answer }) {
   const { playData, setPlayData } = useContext(PlayContext);
   const thisAnswerSelected = playData.currentAnswerIdx === index;
 
-  // console.log(correct_answer);
-  // console.log(index);
   // default, keep white
   let textStyle = undefined;
   // if some answer selected
@@ -29,9 +27,6 @@ function AnswerItem({ index, text, correct_answer }) {
 
   function onAnswerSelected() {
     // if there's already an answer, ignore
-    // console.log(playData.currentAnswerIdx);
-    // console.log(index);
-    console.log("onAnswerSelected");
     // ignore if text is empty (invalid sentence) or if already answered
     if (playData.currentAnswerIdx !== undefined) return;
     if (text == "") return;

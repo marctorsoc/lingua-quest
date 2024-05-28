@@ -25,7 +25,7 @@ function computeShowTranslation(
 function SentenceItem({
   index,
   text,
-  translation,
+  translations,
   masked_range,
   playingThisItem,
   validItem,
@@ -109,7 +109,7 @@ function SentenceItem({
     return (
       showTranslation && (
         <Text style={[styles.textBase, styles.textTranslated]}>
-          {translation}
+          {translations[globalConfig.filters.knownLanguage]}
         </Text>
       )
     );
