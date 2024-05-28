@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../../context/global-context";
 import Button from "../UI/Button";
 import { Image } from "react-native";
-import { langValueToLogo } from "../../constants/languages";
+import { logos } from "../../constants/languages";
 
 function CatalogItem({
   id,
@@ -21,7 +21,7 @@ function CatalogItem({
       <Image
         id={`${id}_${lang.item}`}
         style={styles.languageIcon}
-        source={{ uri: langValueToLogo(lang.item) }}
+        source={logos[lang.item]}
       />
     );
   }
@@ -29,25 +29,26 @@ function CatalogItem({
     <View style={styles.StoryItemWrapper}>
       <Text style={[styles.textBase, styles.title]}>{title}</Text>
       <View style={styles.badge}>
-        <Text style={styles.badgeText}>{num_episodes}</Text>
+        <Text style={styles.badgeText}>x{num_episodes}</Text>
       </View>
       <View style={{ flex: 1, flexDirection: "row" }}>
-        <View style={styles.statusContainer}>
-          <Text style={styles.status}>Learning</Text>
+        <View style={styles.languagesContainer}>
+          <Text style={styles.languagesLabel}>Learning</Text>
           <FlatList
             data={Object.keys(languages)}
             renderItem={renderLanguage}
             numColumns={2}
-            style={{ alignItems: "center" }}
+            style={styles.languagesList}
           />
         </View>
-        <View style={styles.statusContainer}>
-          <Text style={styles.status}>Translations</Text>
+        <View style={styles.separator} />
+        <View style={styles.languagesContainer}>
+          <Text style={styles.languagesLabel}>Translations</Text>
           <FlatList
             data={[...new Set(Object.values(languages).flat())]}
             renderItem={renderLanguage}
             numColumns={2}
-            style={{ alignItems: "center" }}
+            style={styles.languagesList}
           />
         </View>
       </View>
@@ -89,40 +90,52 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
   },
-  statusContainer: {
+  languagesContainer: {
     flex: 0.5,
   },
   language: {
     color: GlobalStyles.colors.primary500,
     fontWeight: "bold",
     fontSize: 20,
-    margin: 5,
+    margin: 1,
   },
-  status: {
+  languagesLabel: {
     color: "white",
     margin: 10,
+    marginHorizontal: 5,
     fontSize: 13,
     textAlign: "center",
+  },
+  languagesList: {
+    alignItems: "center",
+    borderTopWidth: 1, // Adding a border only at the bottom
+    borderColor: "gray", // Color of the border
   },
   languageIcon: {
     width: 25,
     height: 25,
-    margin: 8,
+    margin: 10,
   },
   badge: {
     position: "absolute",
-    top: 0,
+    bottom: 0,
     right: 0,
     width: 25,
     height: 25,
-    borderRadius: 12,
-    borderColor: GlobalStyles.colors.primary700,
-    borderWidth: 1,
+    borderRadius: 8,
+    borderColor: "gray",
+    borderWidth: 2,
     justifyContent: "center",
     alignItems: "center",
   },
   badgeText: {
     color: "white",
     fontSize: 13,
+  },
+  separator: {
+    width: 1,
+    backgroundColor: "gray",
+    marginTop: 10, // Adjust the value to your needs
+    marginBottom: 5, // Adjust the value to your needs
   },
 });
