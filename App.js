@@ -299,13 +299,16 @@ function AppStack() {
             BackButton({ ...props, newPage: "Library" }),
         }}
       />
-      {/* <Stack.Screen
+      <Stack.Screen
         name="AddStory"
         component={AddStory}
         options={{
           presentation: "modal",
           headerLeft: (props) =>
-            BackButton({ ...props, newPage: "Library" }),
+            BackButton({
+              ...props,
+              newPage: "Library",
+            }),
         }}
       />
       <Stack.Screen

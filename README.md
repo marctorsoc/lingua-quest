@@ -1,5 +1,11 @@
 Disclaimer: this repo is very far from well-written code, but hey, my first react native project, and it works!
 
+# What's this
+
+This is a learning app, inspired by [Cloze Master](https://www.clozemaster.com/), a popular mobile app for learning languages. The twist here is to learn from movies, tv series, and books (as for writing, books still not implemented).
+
+This app is recommended for languages learners with **at least an A2 level**.
+
 # Table of Contents
 
 - [Running](#running)
@@ -93,8 +99,9 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 
 # Pending work
 
-- Problems
-  - Android assets not found
+- Find Picker with lower width in Android, and one that allows using images (for lang flags). Maybe this one? https://github.com/sohobloo/react-native-modal-dropdown
+- Add ability to sort stories in SortAndFilter
+- Sort stories by last time played, and then by name
 - Tech debt i8n
     - add logo of language to title of tab, see https://reactnavigation.org/docs/headers#replacing-the-title-with-a-custom-component
     - Add tooltip to catalog item's corner to show num episodes and other
@@ -107,8 +114,6 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 - Add a counter for clean sheets, and congrat the user
 - Allow select multiple stories to delete, and disselect by tapping again. But if multiple invalidate edit button.
 - Add refreshControl to refresh stories by pulling down in LibraryOutput
-- Add ability to sort stories in SortAndFilter
-- Find Picker with lower width in Android
 - Add modal to select what data to reset, and what data to load
 - Search how to center text in Picker and PickerOptions
 - Add ability to backup data to filesystem
