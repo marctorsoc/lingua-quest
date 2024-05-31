@@ -21,6 +21,13 @@ export const GlobalStyles = {
   },
 };
 
+export const IconStyle = {
+  width: 24,
+  height: 24,
+  resizeMode: "contain",
+  tintColor: GlobalStyles.colors.primary,
+};
+
 export const ScreensStyles = {
   headerButtonsContainers: {
     margin: 5,
@@ -54,6 +61,8 @@ export const ScreensStyles = {
     backgroundColor: GlobalStyles.colors.primary500,
     overflow: "hidden",
     borderRadius: 30,
+    // TODO: is this needed?
+    zIndex: 5,
   },
   buttonLabel: {
     textAlign: "center",

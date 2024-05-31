@@ -5,9 +5,10 @@ import {
   TextInput,
   View,
 } from "react-native";
+import { useState } from "react";
 
 import { GlobalStyles } from "../../constants/styles";
-import { Picker } from "@react-native-picker/picker";
+import DropDownPicker from "react-native-dropdown-picker";
 
 export function Input({
   label,
@@ -37,68 +38,59 @@ export function Input({
   );
 }
 
-export function PickerInput({ label, style, pickerConfig }) {
+export function PickerInput({
+  label,
+  style,
+  value,
+  options,
+  zIndex,
+  zIndexInverse,
+  onChangeText,
+  dropdownDirection = "BOTTOM",
+  disabled = false,
+}) {
   const showLabel = label !== undefined;
-  const containerStyle = [
-    style,
-    styles.inputContainer,
-    {
-      // useful to see frame of component
-      // backgroundColor: GlobalStyles.colors.error500,
-    },
-  ];
-  const pickerViewStyle = {
-    // backgroundColor: GlobalStyles.colors.white,
-    borderRadius: 12,
-    borderColor: "gray",
-    borderWidth: 1,
-    overflow: "hidden",
-    // marginLeft: "5%",
-  };
-
+  const containerStyle = [style, styles.inputContainer];
+  const [open, setOpen] = useState(false);
   return (
-    <View style={containerStyle}>
-      {showLabel && (
-        <Text style={[styles.label, { textAlign: "center" }]}>
-          {label}
-        </Text>
-      )}
-      <View style={pickerViewStyle}>
-        <Picker
-          selectedValue={pickerConfig.value}
-          mode={"dropdown"}
-          onValueChange={pickerConfig.onChangeText}
-          dropdownIconColor={"white"}
-          style={{ color: Platform.OS == "web" ? "black" : "white" }}
-        >
-          {pickerConfig.options.map((item, index) => (
-            <Picker.Item
-              key={index}
-              label={item.label}
-              value={item.value}
-              style={{
-                fontSize: 14,
-                color: "black",
-                // TODO: align picker text
-                textAlign: "center",
-              }}
-            />
-          ))}
-        </Picker>
-      </View>
-    </View>
+    <>
+      {showLabel && <Text style={styles.label}>{label}</Text>}
+      <DropDownPicker
+        open={open}
+        value={value}
+        items={options}
+        setValue={onChangeText}
+        setOpen={setOpen}
+        disabled={disabled}
+        disabledStyle={{
+          opacity: 0.7,
+        }}
+        // TODO: for now we can live with adding margin to the elems after
+        // this so that the unfolded dropdown does not lay behind them.
+        // If we don't find a way to fix this, we'll need to move to MODAL
+        //  for Android
+        // listMode={Platform.OS === "android" ? "MODAL" : "SCROLLVIEW"}
+        listMode={"SCROLLVIEW"}
+        dropDownDirection={dropdownDirection}
+        zIndex={zIndex}
+        containerStyle={containerStyle}
+        style={{}}
+        labelStyle={{
+          fontWeight: "bold",
+        }}
+      ></DropDownPicker>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   inputContainer: {
-    marginHorizontal: 4,
     marginVertical: 8,
   },
   label: {
-    fontSize: 12,
-    color: GlobalStyles.colors.primary100,
-    marginBottom: 4,
+    fontSize: 14,
+    color: GlobalStyles.colors.white,
+    textAlign: "center",
   },
   input: {
     backgroundColor: GlobalStyles.colors.primary50,
@@ -116,5 +108,11 @@ const styles = StyleSheet.create({
   },
   invalidInput: {
     backgroundColor: GlobalStyles.colors.error50,
+  },
+  dropdownStyle: {
+    borderRadius: 12,
+    borderColor: "gray",
+    borderWidth: 1,
+    color: GlobalStyles.colors.white,
   },
 });

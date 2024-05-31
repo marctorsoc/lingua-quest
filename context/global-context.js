@@ -16,7 +16,7 @@ export const initialGlobalData = {
   filters: {
     learningLanguage: "lt",
     knownLanguage: "en",
-    storyType: "all",
+    storyType: "subtitle",
   },
   userInfo: null,
   // numGamesPerDay: 3,  // TODO marc: implement this

@@ -13,11 +13,8 @@ import IconButton from "./components/UI/IconButton";
 import PlayStory from "./screens/PlayStory";
 import SortAndFilterLibrary from "./screens/SortAndFilterLibrary";
 import React from "react";
-import { Text, View, Image } from "react-native";
-import {
-  langValueToLongName,
-  languageOptions,
-} from "./constants/languages";
+import { View } from "react-native";
+import { findPropertyByKey } from "./constants/languages";
 import * as NavigationBar from "expo-navigation-bar";
 import { setStatusBarHidden } from "expo-status-bar";
 
@@ -172,8 +169,10 @@ function MainNavigator() {
   }
 
   // get first character of the lang label
-  const learningLanguage = langValueToLongName(
+  const learningLanguage = findPropertyByKey(
+    "value",
     globalConfig.filters.learningLanguage,
+    "title",
   );
 
   // TODO: finish this

@@ -1,17 +1,20 @@
+2024-05-31:
+- Adding prettier pickers supporting logos
+
 2024-05-27:
-- Support multiple languages
-- Add catalog tab
+- Supporting multiple languages
+- Adding catalog tab
 
 2024-04-02:
-- Add ability to filter stories by language from LibraryFilter and clean settings page
+- Adding ability to filter stories by language from LibraryFilter and clean settings page
 
 2024-03:
-- Add reading mode
-- Add delete story
+- Adding reading mode
+- Adding delete story
 - Immersive mode: hide back, home controls
 - Cleaning:
   - Code around showTranslation, started showing translation when passthrough, and hiding for previous sents in current round
-  - Fixed language pickers in settings for Android: widths and colours
+  - Fixing language pickers in settings for Android: widths and colours
   - Starting Google sign in
 
 2023-12-26:
@@ -24,40 +27,40 @@
 
 
 2023-10-31:
-- Add show totals and avoid editing > total
-- Move languages to the settings screen and filter by language
+- Adding show totals and avoid editing > total
+- Moving languages to the settings screen and filter by language
 - Dirty fix to scroll when omitted sentence
 
 
 2023-10-11:
-- Add ability to import data to filesystem (only Android)
+- Adding ability to import data to filesystem (only Android)
 - Still some repeated and 1 word sentences (strip "-" at the end of sentences)
 - Still some english words in vocab
-- Check if complete and show Completed
-- Copy to clipboard when holding sentence
+- Checking if complete and show Completed
+- Copying to clipboard when holding sentence
 
 2023-09-11:
-- Add backButton when adding new story
-- Improve stories:
-  - Replace ˝ and similar to split sents better 
-  - Use large spaCy model to split sents better
-  - Remove consecutive duplicate sents
-  - Keep but bypass single word sentences
-- Improve vocab:
-    - Remove 1 character words
-    - Add hardcoded list of English false positives
-- Improve answers:
+- Adding backButton when adding new story
+- Improving stories:
+  - Replacing ˝ and similar to split sents better 
+  - Using large spaCy model to split sents better
+  - Removing consecutive duplicate sents
+  - Keeping but bypass single word sentences
+- Improving vocab:
+    - Removing 1 character words
+    - Adding hardcoded list of English false positives
+- Improving answers:
   - Token to mask: 
       - Only in vocab
       - If uppercase and not starting sent, remove from negative pool
   - Wrong answers:
-    - use spaCy tags to choose words with the same tag
+    - using spaCy tags to choose words with the same tag
 
 2023-08-28:
-- Add edit story
-- Fix scrolling when tapping to translate
-- Remove status when no leaf story
-- Add "bypassable" sents
+- Adding edit story
+- Fixing scrolling when tapping to translate
+- Removing status when no leaf story
+- Adding "bypassable" sents
 
 2023-08-13:
 - First usable release 🎉
@@ -70,5 +73,5 @@
 2023-03-01
 - Starting more seriously
 
-2023-12-16
+2022-12-16
 - Created expo app

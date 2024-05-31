@@ -1,16 +1,9 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useContext, useLayoutEffect } from "react";
-import { GlobalContext } from "../../context/global-context";
-import { storeData } from "../../util/storage";
-import {
-  stories,
-  setStories,
-  StoryContext,
-} from "../../context/stories-context";
-import ErrorOverlay from "../UI/ErrorOverlay";
+import { StoryContext } from "../../context/stories-context";
 import { Platform } from "react-native";
-import { Input, PickerInput } from "../UI/Input";
+import { PickerInput } from "../UI/Input";
 import Button from "../UI/Button";
 import { GlobalStyles, ScreensStyles } from "../../constants/styles";
 import { languageOptions } from "../../constants/languages";
@@ -26,10 +19,10 @@ function getStoriesForFilters(stories, filters) {
       // TODO: enable filtering by story type
       // story.storyType === filters.storyType.value &&
       Object.keys(story.languages).includes(
-        filters.learningLanguage.value,
+        filters.learningLanguage,
       ) &&
-      story.languages[filters.learningLanguage.value].includes(
-        filters.knownLanguage.value,
+      story.languages[filters.learningLanguage].includes(
+        filters.knownLanguage,
       ),
   );
 }
@@ -39,78 +32,47 @@ function SortAndFilterForm({ onCancel, onSubmit, defaultValues }) {
 
   // TODO: only show options for languages / types that are in the stories
   // TODO: add options to sort
-  const [inputs, setInputs] = useState({
-    storyType: {
-      value: defaultValues ? defaultValues.storyType : "all",
-      isValid: true,
-    },
-    learningLanguage: {
-      value: defaultValues ? defaultValues.learningLanguage : "lt",
-      isValid: true,
-    },
-    knownLanguage: {
-      value: defaultValues ? defaultValues.knownLanguage : "en",
-      isValid: true,
-    },
-  });
-  // TODO: use this below to show how many stories apply
-  // before actually showing the filter
+  const [inputStoryType, setInputStoryType] = useState(
+    defaultValues ? defaultValues.storyType : "subtitle",
+  );
+  const [inputLearningLanguage, setInputLearningLanguage] = useState(
+    defaultValues ? defaultValues.learningLanguage : "lt",
+  );
+  const [inputKnownLanguage, setInputKnownLanguage] = useState(
+    defaultValues ? defaultValues.knownLanguage : "en",
+  );
+  const inputs = {
+    storyType: inputStoryType,
+    learningLanguage: inputLearningLanguage,
+    knownLanguage: inputKnownLanguage,
+  };
+  // TODO: why we cannot do it like this? the picker
+  // stops setting value 🤷‍♂️
+  // const [inputs, setInputs] = useState({
+  //   learningLanguage: defaultValues
+  //     ? defaultValues.learningLanguage
+  //     : "lt",
+  //   knownLanguage: defaultValues ? defaultValues.knownLanguage : "en",
+  //   storyType: defaultValues ? defaultValues.storyType : "all",
+  // });
+
   const [numFilteredStories, setNumFilteredStories] = useState(
     getStoriesForFilters(stories, inputs).length,
   );
 
   // TODO: can this be solved without a useEffect?
   useEffect(() => {
-    // TODO: validate input and return early if invalid
-    // console.log("filtered stories");
-    // console.log(getStoriesForFilters(stories, inputs));
     setNumFilteredStories(
       getStoriesForFilters(stories, inputs).length,
     );
   }, [inputs]);
 
-  function inputChangedHandler(inputIdentifier, enteredValue) {
-    const new_dict = {
-      value: enteredValue,
-      isValid: true,
-    };
-    setInputs((curInputs) => {
-      return {
-        ...curInputs,
-        [inputIdentifier]: new_dict,
-      };
-    });
-  }
-
   function onsubmitInterim() {
     const filterData = {
-      storyType: inputs.storyType.value,
-      learningLanguage: inputs.learningLanguage.value,
-      knownLanguage: inputs.knownLanguage.value,
+      storyType: inputs.storyType,
+      learningLanguage: inputs.learningLanguage,
+      knownLanguage: inputs.knownLanguage,
     };
-
-    const storyTypeIsValid = true;
-    const learningLcIsValid = true;
-    const knownLcIsValid = true;
-
-    setInputs((curInputs) => ({
-      ...curInputs,
-      storyType: {
-        value: filterData.storyType,
-        isValid: storyTypeIsValid,
-      },
-      learningLanguage: {
-        value: filterData.learningLanguage,
-        isValid: learningLcIsValid,
-      },
-      knownLanguage: {
-        value: filterData.knownLanguage,
-        isValid: knownLcIsValid,
-      },
-    }));
-    if (!storyTypeIsValid || !learningLcIsValid || !knownLcIsValid) {
-      return;
-    }
 
     onSubmit({
       knownLanguage: filterData.knownLanguage,
@@ -118,39 +80,39 @@ function SortAndFilterForm({ onCancel, onSubmit, defaultValues }) {
       storyType: filterData.storyType,
     });
   }
+  const languageOptionsProcessed = languageOptions.map((item) => ({
+    ...item,
+    label: item.longName,
+  }));
 
+  console.log(storyTypeOptions);
   return (
     <View style={styles.form}>
       <View style={styles.inputsRow}>
         <PickerInput
-          style={[styles.rowInput, styles.picker]}
+          style={styles.picker}
           label="Story Type"
-          pickerConfig={{
-            onChangeText: (text) =>
-              inputChangedHandler("storyType", text),
-            value: inputs.storyType.value,
-            options: storyTypeOptions,
-          }}
+          onChangeText={(text) => setInputStoryType(text)}
+          zIndex={3000}
+          value={inputStoryType}
+          options={storyTypeOptions}
+          disabled={true}
         />
         <PickerInput
-          style={[styles.rowInput, styles.picker]}
+          style={styles.picker}
           label="Learning"
-          pickerConfig={{
-            onChangeText: (text) =>
-              inputChangedHandler("learningLanguage", text),
-            value: inputs.learningLanguage.value,
-            options: languageOptions,
-          }}
+          onChangeText={(text) => setInputLearningLanguage(text)}
+          zIndex={2000}
+          value={inputLearningLanguage}
+          options={languageOptionsProcessed}
         />
         <PickerInput
-          style={[styles.rowInput, styles.picker]}
-          label="From"
-          pickerConfig={{
-            onChangeText: (text) =>
-              inputChangedHandler("knownLanguage", text),
-            value: inputs.knownLanguage.value,
-            options: languageOptions,
-          }}
+          style={styles.picker}
+          label="Translations"
+          onChangeText={(text) => setInputKnownLanguage(text)}
+          zIndex={1000}
+          value={inputKnownLanguage}
+          options={languageOptionsProcessed}
         />
       </View>
       <View style={styles.buttons}>
@@ -183,9 +145,7 @@ const styles = StyleSheet.create({
   inputsRow: {
     flexDirection: "column",
     alignItems: "center",
-  },
-  rowInput: {
-    padding: 5,
+    zIndex: 500,
   },
   errorText: {
     textAlign: "center",
@@ -193,12 +153,14 @@ const styles = StyleSheet.create({
     margin: 8,
   },
   buttons: {
-    marginTop: 24,
+    marginTop: 180,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    zIndex: -100,
   },
   picker: {
-    width: Platform.OS === "web" ? "20%" : "42%",
+    width: Platform.OS === "web" ? "32%" : "45%",
+    padding: 5,
   },
 });

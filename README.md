@@ -1,17 +1,20 @@
-Disclaimer: this repo is very far from well-written code, but hey, my first react native project, and it works!
+Disclaimer: this repo is very far from production code, but hey, my first react native project, and it works(*)! 💪
+
+(*) at least on Android and web
 
 # What's this
 
-This is a learning app, inspired by [Cloze Master](https://www.clozemaster.com/), a popular mobile app for learning languages. The twist here is to learn from movies, tv series, and books (as for writing, books still not implemented).
+This is a language learning app, inspired by [Cloze Master](https://www.clozemaster.com/), a popular mobile app for learning languages. The twist here is to learn from movies, tv series, and books, i.e. from stories. While `Cloze Master`'s motto is to *learn in context*, one still learns from sentences coming in a random order, from a dictionary of millions of sentences. Instead, here we follow stories, leading to interesting multi-sentence episodes.
 
-This app is recommended for languages learners with **at least an A2 level**.
+This app does not help in learning the basics of a language. You won't learn grammar or basic vocabulary, but simply practice/extend vocabulary and see applications of what you already know. Consequently, it is recommended for language learners with **at least an A2 level**.
+
+Please note that there are still a ton of features to be implemented, see [Pending work](#pending-work) section for more details. Bare with me , I'll get there!
 
 # Table of Contents
 
 - [Running](#running)
 - [Debugging](#debugging)
 - [Building](#building)
-- [Bootcamp video index](#bootcamp-video-index)
 - [Pending work](#pending-work)
 
 To install, run `npm install`
@@ -47,66 +50,16 @@ Compressing project files and uploading to EAS Build. Learn more
 Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/builds/cb2dfa67-5f3e-4b45-afd6-6afcbc8ecfc0
 ```
 
-# Bootcamp video index
-
-[Link to video](https://www.youtube.com/watch?v=qi87b6VcIHY)
-
-- 00:00 Intro React-Native
-- 03:10 Expo
-- 05:10 Creando la app
-- 10:07 Configurando iOS simulator
-- 12:26 react-native-debugger
-- 15:40 Linter
-- 17:30 Text, View, Touchable
-- 25:00 StatusBar y expo-constants
-- 29:30 Mostrando los repositorios
-- 32:37 ScrollView y FlatList
-- 40:15 Desactivando reglas linter
-- 41:00 StyleSheet, theme y estilos
-- 54:38 FlexBox. Alineando texto y stats
-- 01:02:00 ParseThousands
-- 01:04:19 Estilando language
-- 01:07:05 alignSelf: flex-start
-- 01:08:10 BorderRadius y overflow
-- 01:08:40 Image. Mostrando repo image
-- 01:11:00 FlexBox. Mostrando image side by side
-- 01:18:20 MarginHorizontal y MarginVertical
-- 01:19:20 AppBar
-- 01:25:00 react-router-native
-- 01:28:30 Problemas con react-router-native
-- 01:29:30 Solucion: webpack-config
-- 01:34:50 Routeando
-- 01:40:50 Scroll para las tabs
-- 01:49:00 Preguntas
-- 02:07:40 Inicio clase 2
-- 02:11:30 StatusBar
-- 02:14:25 Plarform.select
-- 02:26:00 Sign in con Formik
-- 02:40:25 Formik: useField
-- 02:45:15 Masking the password
-- 02:46:15 Preguntas
-- 02:50:30 Validacion de formulario
-- 02:57:40 Validacion con yup
-- 03:04:00 Configurando el backend
-- 03:09:15 Queries a la REST API
-- 03:13:30 global.fetch y globalThis
-- 03:14:30 custom hook useRepositories
-- 03:17:50 Arreglando errores por localhost
-- 03:20:20 ApolloClient
-- 03:23:35 GraphQL
-- 03:26:45 Usando graphQL en el custom hook
-- 03:30:00 Preguntas
-
 # Pending work
 
-- Find Picker with lower width in Android, and one that allows using images (for lang flags). Maybe this one? https://github.com/sohobloo/react-native-modal-dropdown
+- Find Picker with lower width in Android, and one that allows using images (for lang flags). Maybe this one? 
 - Add ability to sort stories in SortAndFilter
 - Sort stories by last time played, and then by name
 - Tech debt i8n
     - add logo of language to title of tab, see https://reactnavigation.org/docs/headers#replacing-the-title-with-a-custom-component
     - Add tooltip to catalog item's corner to show num episodes and other
     information
-    - Add logo of movie / tv series / book to both catalog and library
+    - Add logo for movie / tv series / book to story cards in both catalog and library
 - Search for better translation models for
     - ca -> es
 - Finish filter once new data with movies / books is added
