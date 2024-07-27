@@ -52,6 +52,14 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 
 # Pending work
 
+- Disable immersive mode by default, and add to settings to enable. Remove status bar as well in immersive mode
+- Reduce sentences to go once reviewing
+
+- Add tutorial
+- Add i8n. Adapt depending on the language of the phone
+
+
+
 - Find Picker with lower width in Android, and one that allows using images (for lang flags). Maybe this one? 
 - Add ability to sort stories in SortAndFilter
 - Sort stories by last time played, and then by name

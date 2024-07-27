@@ -68,6 +68,10 @@ function MainNavigator() {
         color={tintColor}
         containerStyle={ScreensStyles.headerButtonsContainers}
         onPress={() => {
+          showInformativeAlert(
+            "Future work. Please ignore this button",
+          );
+          return;
           // if clicked with a story long pressed, delete it
           if (globalConfig.storyLongPressed) {
             try {
