@@ -52,11 +52,20 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 
 # Pending work
 
-- Find Picker with lower width in Android, and one that allows using images (for lang flags). Maybe this one? 
-- Add ability to sort stories in SortAndFilter
-- Sort stories by last time played, and then by name
+- Add Welcome screen first time and as a button with icon=(?) in headerRight
+- Detect clean sheets and react-native-confetti
+- Create logo of the app
+- i8n app (choose english, spanish or catalan in the welcome screen and save forever). Suggest the one configured in the phone
+
+- Review immersive mode
+    - Hide status bar when immersive mode is on
+- in `sentenceLongPressHandler`
+    - use a deep link to google translate
+    - ask if translate or copy to clipboard
+    - if translate, do a get to "https://clients5.google.com", get the translation and overwrite
+- Add ability to sort stories by last time played, and then by name in SortAndFilter. But allow to keep sorting just by name.
+
 - Tech debt i8n
-    - add logo of language to title of tab, see https://reactnavigation.org/docs/headers#replacing-the-title-with-a-custom-component
     - Add tooltip to catalog item's corner to show num episodes and other
     information
     - Add logo for movie / tv series / book to story cards in both catalog and library
@@ -64,12 +73,8 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
     - ca -> es
 - Finish filter once new data with movies / books is added
 - Add ability to add stories from Google Drive
-- Add a counter for clean sheets, and congrat the user
-- Allow select multiple stories to delete, and disselect by tapping again. But if multiple invalidate edit button.
 - Add refreshControl to refresh stories by pulling down in LibraryOutput
 - Add modal to select what data to reset, and what data to load
-- Search how to center text in Picker and PickerOptions
-- Add ability to backup data to filesystem
 - Use react-native-paper
 - Change fonts VScode like in Bootcamp
 - Add tests

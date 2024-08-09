@@ -1,3 +1,7 @@
+2024-08-31:
+- Migrate to expo-router, with lot of cleaning e.g. no more hardcoded back button
+- Header with logo
+
 2024-05-31:
 - Adding prettier pickers supporting logos
 

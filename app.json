@@ -1,7 +1,6 @@
 {
   "expo": {
     "name": "caption-master",
-    "displayName": "Caption Master",
     "slug": "caption-master",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -31,10 +30,11 @@
       "package": "com.marc.torsoc.captionmaster"
     },
     "androidStatusBar": {
-      "hidden": "true"
+      "hidden": true
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
     },
     "extra": {
       "eas": {
@@ -57,7 +57,8 @@
           "behavior": "inset-swipe",
           "backgroundColor": "#00000080"
         }
-      ]
+      ],
+      "expo-router"
     ],
     "scheme": "caption-master"
   }
