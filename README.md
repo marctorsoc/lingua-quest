@@ -52,19 +52,28 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 
 # Pending work
 
+- Add Welcome screen first time and as a button with icon=(?) in headerRight to open again
+- Add splash screen with more elaborated logo
+- Detect clean sheets and react-native-confetti
 - Disable immersive mode by default, and add to settings to enable. Remove status bar as well in immersive mode
-- Reduce sentences to go once reviewing
+- Create logo of the app and add to use
+- Change all mentions of caption-master to lingua-quest and LinguaQuest
+- i8n app (choose english, spanish or catalan in the welcome screen and save). Suggest the one configured in the phone. Add setting to change language of the app too
 
-- Add tutorial
-- Add i8n. Adapt depending on the language of the phone
+- Track usage of the app
+    - Stories completed
+    - Number of sentences done
+    - Number of clean sheets (total and per story)
+    - Strikes (consecutive days using)
 
+- Review immersive mode
+    - Hide status bar when immersive mode is on
+- in `sentenceLongPressHandler`
+    - ask if translate or copy to clipboard
+    - if translate, GET to "https://clients5.google.com", get the translation and overwrite
+- Add ability to sort stories by last time played, and then by name in SortAndFilter. But allow to keep sorting just by name.
 
-
-- Find Picker with lower width in Android, and one that allows using images (for lang flags). Maybe this one? 
-- Add ability to sort stories in SortAndFilter
-- Sort stories by last time played, and then by name
 - Tech debt i8n
-    - add logo of language to title of tab, see https://reactnavigation.org/docs/headers#replacing-the-title-with-a-custom-component
     - Add tooltip to catalog item's corner to show num episodes and other
     information
     - Add logo for movie / tv series / book to story cards in both catalog and library
@@ -72,12 +81,8 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
     - ca -> es
 - Finish filter once new data with movies / books is added
 - Add ability to add stories from Google Drive
-- Add a counter for clean sheets, and congrat the user
-- Allow select multiple stories to delete, and disselect by tapping again. But if multiple invalidate edit button.
 - Add refreshControl to refresh stories by pulling down in LibraryOutput
 - Add modal to select what data to reset, and what data to load
-- Search how to center text in Picker and PickerOptions
-- Add ability to backup data to filesystem
 - Use react-native-paper
 - Change fonts VScode like in Bootcamp
 - Add tests
