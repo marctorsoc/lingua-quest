@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "caption-master",
-    "slug": "caption-master",
+    "name": "lingua-quest",
+    "slug": "lingua-quest",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo3.2.png",
     "userInterfaceStyle": "light",
     "backgroundColor": "#83389f",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo3.2.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -20,25 +20,34 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.marc.torsoc.captionmaster"
+      "bundleIdentifier": "com.marc.torsoc.linguaquest"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logo3.2.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.marc.torsoc.captionmaster"
+      "package": "com.marc.torsoc.linguaquest"
     },
     "androidStatusBar": {
       "hidden": true
     },
     "web": {
-      "favicon": "./assets/favicon.png",
+      "favicon": "./assets/logo3.2.png",
       "bundler": "metro"
     },
     "extra": {
       "eas": {
-        "projectId": "a91a31d2-ee2d-4c8e-b52a-129de45ed98e"
+        "projectId": "f7d8172d-4553-4ea0-ae23-529b7d720226"
+      },
+      "expo-navigation-bar": {
+        "position": "absolute",
+        "visibility": "hidden",
+        "behavior": "inset-swipe",
+        "backgroundColor": "#00000080"
+      },
+      "router": {
+        "origin": false
       }
     },
     "owner": "marc.torsoc",
@@ -60,6 +69,6 @@
       ],
       "expo-router"
     ],
-    "scheme": "caption-master"
+    "scheme": "lingua-quest"
   }
 }

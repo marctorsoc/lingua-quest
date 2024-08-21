@@ -1,5 +1,6 @@
 {
-  "name": "caption-master",
+  "name": "lingua-quest",
+  "displayName": "LinguaQuest",
   "version": "1.0.0",
   "main": "expo-router/entry",
   "scripts": {
@@ -27,7 +28,7 @@
     "expo-document-picker": "~12.0.2",
     "expo-file-system": "~17.0.1",
     "expo-navigation-bar": "~3.0.7",
-    "expo-router": "~3.5.22",
+    "expo-router": "~3.5.23",
     "expo-splash-screen": "~0.27.5",
     "expo-status-bar": "~1.12.1",
     "expo-web-browser": "~13.0.3",
