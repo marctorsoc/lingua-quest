@@ -52,17 +52,25 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 
 # Pending work
 
-- Add Welcome screen first time and as a button with icon=(?) in headerRight
+- Add Welcome screen first time and as a button with icon=(?) in headerRight to open again
+- Add splash screen with more elaborated logo
 - Detect clean sheets and react-native-confetti
-- Create logo of the app
-- i8n app (choose english, spanish or catalan in the welcome screen and save forever). Suggest the one configured in the phone
+- Disable immersive mode by default, and add to settings to enable. Remove status bar as well in immersive mode
+- Create logo of the app and add to use
+- Change all mentions of caption-master to lingua-quest and LinguaQuest
+- i8n app (choose english, spanish or catalan in the welcome screen and save). Suggest the one configured in the phone. Add setting to change language of the app too
+
+- Track usage of the app
+    - Stories completed
+    - Number of sentences done
+    - Number of clean sheets (total and per story)
+    - Strikes (consecutive days using)
 
 - Review immersive mode
     - Hide status bar when immersive mode is on
 - in `sentenceLongPressHandler`
-    - use a deep link to google translate
     - ask if translate or copy to clipboard
-    - if translate, do a get to "https://clients5.google.com", get the translation and overwrite
+    - if translate, GET to "https://clients5.google.com", get the translation and overwrite
 - Add ability to sort stories by last time played, and then by name in SortAndFilter. But allow to keep sorting just by name.
 
 - Tech debt i8n
