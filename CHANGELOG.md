@@ -1,6 +1,10 @@
-2024-08-31:
+2024-XX-XX:
 - Migrate to expo-router, with lot of cleaning e.g. no more hardcoded back button
 - Header with logo
+- react-native-confetti after round complete
+- User management (with local storage)
+- Welcome screen and tutorial
+- i8n text
 
 2024-05-31:
 - Adding prettier pickers supporting logos

@@ -33,14 +33,6 @@ export const ScreensStyles = {
     margin: 5,
     padding: 0,
   },
-  headerTitleStyle: {
-    top: 22,
-    left: 47,
-    position: "fixed",
-    width: 100,
-    height: 20,
-    // backgroundColor: "blue",
-  },
   tabBarStyle: {
     backgroundColor: GlobalStyles.colors.primary500,
     paddingBottom: 2,
@@ -66,8 +58,23 @@ export const ScreensStyles = {
   },
   buttonLabel: {
     textAlign: "center",
-    fontSize: 18,
+    fontSize: 16,
     color: "white",
+  },
+  input: {
+    height: 30,
+    borderColor: "gray",
+    color: "black",
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+    borderWidth: 1,
+    backgroundColor: "white",
+    margin: 10,
+  },
+  numericInput: {
+    width: "10%",
+    marginRight: "5%",
   },
 };
 
@@ -81,9 +88,10 @@ export const LibraryStyles = {
     backgroundColor: GlobalStyles.colors.primary700,
   },
   label: {
-    fontSize: 18,
+    fontSize: 25,
     color: "white",
     paddingHorizontal: 16,
+    textAlign: "center",
     width: "100%",
   },
   languagePicker: {

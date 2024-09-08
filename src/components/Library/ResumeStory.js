@@ -7,15 +7,16 @@ import { useNavigation } from "@react-navigation/native";
 import { PlayContext } from "../../context/play-context";
 import Button from "../UI/Button";
 import { useRouter } from "expo-router";
+import { GlobalContext } from "../../context/global-context";
 
 function ResumeStory({ stories: stories }) {
   // TODO: find story that was played the latest and surface
   // to the summary to resume
   // if never played any story, remove
-  const { playData } = useContext(PlayContext);
+  const { globalConfig } = useContext(GlobalContext);
   const router = useRouter();
 
-  const storyId = playData.storyId;
+  const storyId = globalConfig.lastStoryId;
   const enabled = storyId !== undefined;
   const story = stories.find((story) => story.id === storyId);
   let name = story?.title;

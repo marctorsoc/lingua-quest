@@ -3,13 +3,20 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { forwardRef } from "react";
 
 const IconButton = forwardRef(
-  ({ icon, size, color, onPress, containerStyle }, ref) => (
+  ({ icon, size, disabled, color, onPress, containerStyle }, ref) => (
     <Pressable
       ref={ref}
       onPress={onPress}
+      disabled={disabled}
       style={({ pressed }) => pressed && styles.pressed}
     >
-      <View style={[containerStyle, styles.buttonContainer]}>
+      <View
+        style={[
+          containerStyle,
+          styles.buttonContainer,
+          disabled && styles.disabled,
+        ]}
+      >
         <Ionicons name={icon} size={size} color={color} />
       </View>
     </Pressable>
@@ -29,4 +36,5 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.75,
   },
+  disabled: {},
 });

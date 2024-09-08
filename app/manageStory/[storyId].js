@@ -51,7 +51,10 @@ function ManageStory() {
         : story,
     );
     setStories(updatedStories);
-    storeData("stories", JSON.stringify(updatedStories));
+    storeData(
+      "stories-" + globalConfig.userId,
+      JSON.stringify(updatedStories),
+    );
 
     showInformativeAlert("Story updated");
     goBack();

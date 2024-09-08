@@ -81,8 +81,11 @@ function SortAndFilterForm({ onCancel, onSubmit, defaultValues }) {
     ...item,
     label: item.longName,
   }));
+  // translations only in English and Spanish
+  const translationOptionsProcessed = languageOptionsProcessed.filter(
+    (item) => ["en", "es"].includes(item.value),
+  );
 
-  console.log(storyTypeOptions);
   return (
     <View style={styles.form}>
       <View style={styles.inputsRow}>
@@ -109,7 +112,7 @@ function SortAndFilterForm({ onCancel, onSubmit, defaultValues }) {
           onChangeText={(text) => setInputKnownLanguage(text)}
           zIndex={1000}
           value={inputKnownLanguage}
-          options={languageOptionsProcessed}
+          options={translationOptionsProcessed}
         />
       </View>
       <View style={styles.buttons}>

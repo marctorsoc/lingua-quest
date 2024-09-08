@@ -25,13 +25,19 @@ export const HeaderLeft = ({ tintColor }) => {
       <Text
         style={{ color: tintColor, fontSize: 18, fontWeight: "bold" }}
       >
-        Caption Master
+        LinguaQuest ({globalConfig.userId})
       </Text>
-      <Text style={{ color: tintColor, fontSize: 18 }}>
-        : Learning{"  "}
-      </Text>
+      <Text style={{ color: tintColor, fontSize: 14 }}>{"  "}</Text>
       <Image
         source={logos[globalConfig.filters.learningLanguage]}
+        style={IconStyle}
+      />
+      <Text style={{ color: tintColor, fontSize: 14 }}>
+        {"  "}
+        from{"  "}
+      </Text>
+      <Image
+        source={logos[globalConfig.filters.knownLanguage]}
         style={IconStyle}
       />
     </View>

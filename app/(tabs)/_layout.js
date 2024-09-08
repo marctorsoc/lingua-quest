@@ -3,9 +3,10 @@ import { Tabs } from "expo-router";
 import { GlobalStyles } from "../../src/constants/styles";
 import { Ionicons } from "@expo/vector-icons";
 import {
-  HeaderLeft,
-  HeaderRight,
+  HeaderLeft as LibraryHeaderLeft,
+  HeaderRight as LibraryHeaderRight,
 } from "../../src/components/Library/Header";
+import { HeaderRight as SettingsHeaderRight } from "../../src/components/Settings/Header";
 import { GlobalContext } from "../../src/context/global-context";
 
 export default function Layout() {
@@ -33,7 +34,7 @@ export default function Layout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="library"
         options={{
           title: null,
           tabBarLabel: "Play",
@@ -45,10 +46,10 @@ export default function Layout() {
             />
           ),
           headerLeft: ({ tintColor }) => (
-            <HeaderLeft tintColor={tintColor} />
+            <LibraryHeaderLeft tintColor={tintColor} />
           ),
           headerRight: ({ tintColor }) => (
-            <HeaderRight tintColor={tintColor}></HeaderRight>
+            <LibraryHeaderRight tintColor={tintColor} />
           ),
         }}
       />
@@ -71,6 +72,9 @@ export default function Layout() {
               size={size}
               color={color}
             />
+          ),
+          headerRight: ({ tintColor }) => (
+            <SettingsHeaderRight tintColor={tintColor} />
           ),
         }}
       />

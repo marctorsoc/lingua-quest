@@ -16,6 +16,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { PlayContext } from "../../src/context/play-context";
 import { GlobalContext } from "../../src/context/global-context";
 import CatalogItem from "../../src/components/Catalog/CatalogItem";
+import { loadData } from "../../src/util/storage";
 
 function Catalog() {
   // TODO marc: see example for this in https://reactnative.dev/docs/network
@@ -42,12 +43,12 @@ function Catalog() {
     }
     async function getSettings() {
       // console.log("Getting settings from disk");
-      const settings = await AsyncStorage.getItem("settings");
-      if (settings) {
-        // console.log("Setting settings in globalConfig");
-        setGlobalConfig(JSON.parse(settings));
-      }
-      return settings;
+      return loadData("settings").then((settings) => {
+        if (settings) {
+          setGlobalConfig(JSON.parse(settings));
+        }
+        return settings;
+      });
     }
     setIsFetching(true);
     getSettings();

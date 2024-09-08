@@ -24,6 +24,7 @@
     "expo-application": "^5.9.1",
     "expo-auth-session": "~5.5.2",
     "expo-clipboard": "~6.0.3",
+    "expo-constants": "~16.0.2",
     "expo-crypto": "~13.0.2",
     "expo-document-picker": "~12.0.2",
     "expo-file-system": "~17.0.1",
@@ -37,6 +38,8 @@
     "react-dom": "18.2.0",
     "react-i18next": "^15.0.0",
     "react-native": "0.74.5",
+    "react-native-autocomplete-dropdown": "^4.0.0-rc.5",
+    "react-native-confetti-cannon": "^1.5.2",
     "react-native-dotenv": "^3.4.10",
     "react-native-dropdown-picker": "^5.4.6",
     "react-native-gesture-handler": "~2.16.1",
@@ -46,8 +49,7 @@
     "react-native-safe-area-view": "^1.1.1",
     "react-native-screens": "3.31.1",
     "react-native-toast-notifications": "^3.4.0",
-    "react-native-web": "~0.19.6",
-    "expo-constants": "~16.0.2"
+    "react-native-web": "~0.19.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

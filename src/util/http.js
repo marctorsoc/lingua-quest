@@ -1,39 +1,42 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import data from "../../assets/data.json";
+import { loadData } from "./storage";
 
 const BACKEND_URL =
   // "https://expense-app-30907-default-rtdb.firebaseio.com";
   "https://caption-master-cd8b4-default-rtdb.europe-west1.firebasedatabase.app/";
 
-export async function fetchStories(props = { try_from_disk: true }) {
-  const { try_from_disk } = props;
+export async function fetchStories(
+  props = { try_from_disk: true, userId: undefined },
+) {
+  const { try_from_disk, userId } = props;
+
+  if (!try_from_disk) {
+    console.log("loaded stories with default values");
+    return [...data.stories];
+  }
   try {
     let stories_from_disk = null;
-    if (try_from_disk) {
-      console.log("loading stories from disk");
-      const jsonValue = await AsyncStorage.getItem("stories");
-      stories_from_disk = JSON.parse(jsonValue);
-    }
+    console.log("loading stories for user " + userId);
+    const jsonValue = await loadData("stories-" + userId);
+    stories_from_disk = JSON.parse(jsonValue);
     if (stories_from_disk !== null && stories_from_disk.length > 0) {
-      console.log("loaded stories from disk");
+      console.log("loaded stories from disk for user " + userId);
       return stories_from_disk;
     }
   } catch (e) {
     // error reading value
   }
-  console.log("loaded from mock");
+  console.log("loaded stories with default values");
   return [...data.stories];
 }
 
 export async function fetchSentences(
   storyId,
   LearningLanguage,
-  // try_from_disk = true,
   try_from_disk = false,
 ) {
-  console.log(storyId);
-  console.log(try_from_disk);
   if (storyId === undefined)
     throw new Error("fetchSentences: storyId cannot be undefined");
 

@@ -23,6 +23,7 @@ import GameStatusBox from "../../src/components/PlayStory/GameStatusBox";
 import { storeData } from "../../src/util/storage";
 import { fetchSentences } from "../../src/util/http";
 import { useLocalSearchParams, useNavigation } from "expo-router";
+import ConfettiCannon from "react-native-confetti-cannon";
 
 function PlayStory() {
   // TODO: move all logic here into components
@@ -89,6 +90,9 @@ function PlayStory() {
           requestEndIdx - story.done[learningLanguage];
         setPlayData({
           ...initialPlayData,
+          // keep celebrate from previous iteration
+          // so it's run just once
+          celebrate: playData.celebrate,
           numSentences: playLength,
           numAnswersToGo: playLength,
           currentSentenceIdx: story.done[learningLanguage],
@@ -97,7 +101,6 @@ function PlayStory() {
           startHistoryIdx: requestStartIdx,
           storyId: storyId,
         });
-        storeData("last_story_id", storyId);
       } catch (error) {
         // setError("Could not fetch expenses!");
         // TODO: use the error state
@@ -130,6 +133,13 @@ function PlayStory() {
   }
   return (
     <View style={styles.mainContainer}>
+      <ConfettiCannon
+        autoStart={playData.celebrate}
+        count={150}
+        explosionSpeed={500}
+        // fallSpeed={3000}
+        origin={{ x: -10, y: 0 }}
+      />
       <GameStatusBox />
       <SentenceList sentences={sentences} />
       <AnswerBox

@@ -9,17 +9,9 @@ function getEmoji(language) {
 }
 import Button from "../UI/Button";
 import { useRouter } from "expo-router";
+import { storeData } from "../../util/storage";
 
-function StoryItem({
-  id,
-  title,
-  learning_lc,
-  known_lc,
-  done,
-  total,
-  parent_id,
-  is_leaf,
-}) {
+function StoryItem({ id, title, done, total, is_leaf }) {
   const router = useRouter();
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
 
@@ -39,6 +31,15 @@ function StoryItem({
 
     // if this is the leaf of a story, play
     if (is_leaf) {
+      const updatedGlobalConfig = {
+        ...globalConfig,
+        lastStoryId: id,
+      };
+      setGlobalConfig(updatedGlobalConfig);
+      storeData(
+        "globalConfig-" + globalConfig.userId,
+        JSON.stringify(updatedGlobalConfig),
+      );
       router.push({
         pathname: "/play/[storyId]",
         params: { storyId: id },

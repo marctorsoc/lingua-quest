@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { StoryContext } from "../../src/context/stories-context";
 import {
   FileUpload,
   JsonDownload,
 } from "../../src/components/UI/FileManagement";
+
 import {
   StyleSheet,
   Text,
@@ -23,22 +24,34 @@ import {
   ScreensStyles,
 } from "../../src/constants/styles";
 import Button from "../../src/components/UI/Button";
-import { storeData, cleanData } from "../../src/util/storage";
+import {
+  storeData,
+  cleanAllData,
+  getUserNames,
+  cleanData,
+  loadData,
+} from "../../src/util/storage";
 import { fetchSentences, fetchStories } from "../../src/util/http";
 import { showInformativeAlert } from "../../src/util/alert";
 import {
   PlayContext,
   initialPlayData,
 } from "../../src/context/play-context";
+import { useRouter } from "expo-router";
+import { use } from "i18next";
+import DataRestoreModal from "../../src/components/Settings/DataRestoreModal";
 // import OptionModal from "../components/UI/Modal";
 
 const Settings = () => {
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
   const { stories, setStories } = useContext(StoryContext);
   const { playData, setPlayData } = useContext(PlayContext);
+  const [showRestoreModal, setShowRestoreModal] = useState(false);
+
   const [numSentences, setNumSentences] = useState(
     String(globalConfig.numSentencesPerGame),
   );
+  const router = useRouter();
   const [historyLength, setHistoryLength] = useState(
     String(globalConfig.historyLength),
   );
@@ -46,6 +59,22 @@ const Settings = () => {
   const [readingMode, setReadingMode] = useState(
     globalConfig.readingMode,
   );
+
+  const [allUsers, setAllUsers] = useState([]);
+  // let allUsers = [];
+
+  useEffect(() => {
+    getUserNames().then((users) => {
+      setAllUsers(users);
+    });
+    setNumSentences(globalConfig.numSentencesPerGame);
+    setHistoryLength(globalConfig.historyLength);
+    setReadingMode(globalConfig.readingMode);
+
+    // allUsers = getUserNamesWrapper();
+    // setIsFetching(false);
+  }, [globalConfig]);
+  console.log("allUsers: ", allUsers);
 
   // Function to handle changes to the number of sentences
   const handleNumSentencesChange = (text) => {
@@ -102,33 +131,82 @@ const Settings = () => {
     });
   };
 
-  async function handleResetData() {
+  // async function handleRestoreData() {
+  //   // TODO: continue here to reset data with modal
+  //   // console.log("Resetting data");
+  //   // return;
+
+  //   // set local storage stories to default stories
+  //   const defaultStories = await fetchStories({
+  //     try_from_disk: false,
+  //   });
+  //   cleanData();
+  //   setStories(defaultStories);
+
+  //   setPlayData(initialPlayData);
+  //   setGlobalConfig(initialGlobalData);
+  //   setNumSentences(String(initialGlobalData.numSentencesPerGame));
+  //   setHistoryLength(String(initialGlobalData.historyLength));
+
+  //   // TOOD: update this message to be default if it is default
+  //   // or the user name if it is not default
+  //   showInformativeAlert(
+  //     "Restore data",
+  //     "All data reset to their default values.",
+  //   );
+  //   // TODO: navigate to / only if factory reset.
+  //   // otherwise, to library
+  //   router.navigate("/");
+  // }
+
+  const handleRestoreOption = (selectedOption) => {
+    // Restore from selected storage key
+
+    loadData("globalConfig-" + selectedOption)
+      .then((globalConfigFromDisk) => {
+        const parsedConfig = JSON.parse(globalConfigFromDisk);
+        setGlobalConfig(parsedConfig);
+        storeData("lastUser", selectedOption);
+      })
+      .then(() => {
+        showInformativeAlert("Restored data for " + selectedOption);
+        setShowRestoreModal(false);
+      })
+      .catch((error) => {
+        console.error("Error restoring data:", error);
+        showInformativeAlert("Error restoring data");
+      });
+  };
+
+  const handleDeleteData = (selectedOption) => {
     // TODO: continue here to reset data with modal
     // console.log("Resetting data");
     // return;
+    const currentUser = globalConfig.userId;
+    if (selectedOption == currentUser) {
+      showInformativeAlert("Cannot delete current user's data");
+      return;
+    }
 
-    // set local storage stories to default stories
-    const defaultStories = await fetchStories({
-      try_from_disk: false,
-    });
-    cleanData();
-    setStories(defaultStories);
+    cleanData("globalConfig-" + selectedOption);
+    setAllUsers(allUsers.filter((user) => user !== selectedOption));
+    showInformativeAlert("Deleted data for " + selectedOption);
+    setShowRestoreModal(false);
+  };
 
-    setPlayData(initialPlayData);
-    setGlobalConfig(initialGlobalData);
-    setNumSentences(String(initialGlobalData.numSentencesPerGame));
-    setHistoryLength(String(initialGlobalData.historyLength));
-
-    showInformativeAlert(
-      "Reset data",
-      "All data reset to their default values.",
-    );
+  async function handleRestoreData() {
+    setShowRestoreModal(true);
   }
 
   async function handleSaveData() {
     // save settings to storage
-    storeData("settings", JSON.stringify(globalConfig));
-    showInformativeAlert("Settings saved");
+    storeData(
+      "globalConfig-" + globalConfig.userId,
+      JSON.stringify(globalConfig),
+    );
+    showInformativeAlert(
+      "Settings saved for player `" + globalConfig.userId + "`",
+    );
   }
 
   // async function handleUploadStories() {
@@ -193,14 +271,22 @@ const Settings = () => {
   //   console.log(sentences);
   //   JsonDownload({ stories: stories, sentences: sentences });
   // }
-
+  console.log(globalConfig);
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <DataRestoreModal
+        isVisible={showRestoreModal}
+        onClose={() => setShowRestoreModal(false)}
+        onRestore={handleRestoreOption}
+        onDelete={handleDeleteData}
+        options={allUsers}
+        disabledOption={globalConfig.userId}
+      />
       {/* Option: Number of sentences per game */}
       <View style={styles.optionContainer}>
         <Text style={styles.label}>Sentences per round</Text>
         <TextInput
-          style={styles.input}
+          style={[ScreensStyles.input, ScreensStyles.numericInput]}
           onChangeText={handleNumSentencesChange}
           value={numSentences}
           // TODO marc: maybe should use keyboardType="decimal-pad"?
@@ -212,7 +298,7 @@ const Settings = () => {
       <View style={styles.optionContainer}>
         <Text style={styles.label}>History Length</Text>
         <TextInput
-          style={styles.input}
+          style={[ScreensStyles.input, ScreensStyles.numericInput]}
           onChangeText={handleHistoryLengthChange}
           value={historyLength}
           inputMode="numeric"
@@ -237,19 +323,13 @@ const Settings = () => {
           { height: "auto", marginTop: "5%" },
         ]}
       >
-        {/* TODO: continue here to use modal
-        <OptionModal
-          title={"Reset data"}
-          names={["Stories", "Sentences"]}
-          onConfirm={handleResetData}
-        ></OptionModal> */}
-        <Button style={styles.button} onPress={handleResetData}>
+        <Button style={styles.button} onPress={handleRestoreData}>
           {/*{TODO: center the text}*/}
-          <Text style={ScreensStyles.buttonLabel}>Reset Data</Text>
+          <Text style={ScreensStyles.buttonLabel}>Restore Data</Text>
         </Button>
         <Button style={styles.button} onPress={handleSaveData}>
           {/*{TODO: center the text}*/}
-          <Text style={ScreensStyles.buttonLabel}>Save settings</Text>
+          <Text style={ScreensStyles.buttonLabel}>Save Data</Text>
         </Button>
       </View>
       {/* height: "auto" is needed to overwrite optionContainer height */}
@@ -295,16 +375,6 @@ const styles = StyleSheet.create({
     color: "white",
     width: "60%",
   },
-  input: {
-    height: 30,
-    width: "10%",
-    borderColor: "gray",
-    color: "white",
-    textAlign: "center",
-    borderWidth: 1,
-    // backgroundColor: "red",
-    marginRight: "5%",
-  },
   switch: {
     width: "10%",
     // TODO: not clear to me why we need 5.5 to align with
@@ -314,8 +384,8 @@ const styles = StyleSheet.create({
   },
   button: {
     fontSize: 18,
+    backgroundColor: GlobalStyles.colors.primary500,
     color: "white",
-    borderColor: "gray",
     borderWidth: 1,
     borderRadius: 8,
     padding: 8,

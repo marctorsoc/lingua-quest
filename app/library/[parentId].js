@@ -34,6 +34,5 @@ export default function storyGroup() {
       title: parentTitle,
     });
   }, []);
-  console.log(parentId);
   return <LibraryOutput stories={stories} parentId={parentId} />;
 }

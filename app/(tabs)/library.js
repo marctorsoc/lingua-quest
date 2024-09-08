@@ -20,29 +20,29 @@ import { View, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { findPropertyByKey } from "../../src/constants/languages";
 import { useNavigation } from "expo-router";
+import { loadData } from "../../src/util/storage";
 
-export default function Index() {
+export default function Library() {
   // TODO marc: see example for this in https://reactnative.dev/docs/network
   const [isFetching, setIsFetching] = useState(true);
 
   // TODO: this library is a mock, but should be
   // retrieved from the API
   const { stories, setStories } = useContext(StoryContext);
-  const { playData, setPlayData } = useContext(PlayContext);
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
-
-  const navigation = useNavigation();
 
   // useLayoutEffect(() => {
   //   navigation.setOptions({
   //     title: `Caption Master - ${learningLanguageEmoji}`,
   //   });
   // }, []);
-
   useEffect(() => {
     async function getStories() {
       try {
-        const allStories = await fetchStories();
+        const allStories = await fetchStories({
+          try_from_disk: true,
+          userId: globalConfig.userId,
+        });
         console.log("loaded stories");
         setStories(allStories);
       } catch (error) {
@@ -50,26 +50,7 @@ export default function Index() {
         console.log("Could not fetch stories!");
       }
     }
-    async function getLastStoryId() {
-      const storyId = await AsyncStorage.getItem("last_story_id");
-      if (storyId != playData.storyId) {
-        setPlayData({
-          ...playData,
-          storyId: storyId,
-        });
-      }
-      return storyId;
-    }
-    async function getSettings() {
-      const settings = await AsyncStorage.getItem("settings");
-      if (settings) {
-        setGlobalConfig(JSON.parse(settings));
-      }
-      return settings;
-    }
     setIsFetching(true);
-    getSettings();
-    getLastStoryId();
     getStories();
     setIsFetching(false);
   }, []);

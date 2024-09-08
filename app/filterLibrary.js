@@ -27,7 +27,10 @@ function SortAndFilterLibrary() {
     };
     // console.log(updatedGlobalConfig);
     setGlobalConfig(updatedGlobalConfig);
-    storeData("settings", JSON.stringify(updatedGlobalConfig));
+    storeData(
+      "globalConfig-" + globalConfig.userId,
+      JSON.stringify(updatedGlobalConfig),
+    );
 
     showInformativeAlert("Data filtered");
     router.back();

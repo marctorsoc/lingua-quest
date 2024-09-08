@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.primary50,
     color: GlobalStyles.colors.primary800,
     padding: 6,
+    margin: 5,
     borderRadius: 6,
     fontSize: 14,
   },

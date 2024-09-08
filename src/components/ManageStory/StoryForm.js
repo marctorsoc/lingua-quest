@@ -170,9 +170,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  // TODO marc: remove this if stays empty
   rowInput: {
-    // flex: 1,
     padding: 6,
   },
   errorText: {

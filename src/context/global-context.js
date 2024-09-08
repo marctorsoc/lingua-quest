@@ -12,12 +12,13 @@ export const initialGlobalData = {
   historyLength: 1,
   readingMode: false,
   filters: {
-    learningLanguage: "lt",
+    learningLanguage: "es",
     knownLanguage: "en",
     storyType: "subtitle",
   },
-  userInfo: null,
+  userId: undefined,
   tutorialMode: false,
+  lastStoryId: undefined,
   // numGamesPerDay: 3,  // TODO marc: implement this
 };
 

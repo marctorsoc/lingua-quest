@@ -27,6 +27,7 @@ function NextButton({ skip }) {
   function resetGame() {
     setPlayData({
       ...playData,
+      celebrate: false,
       currentAnswerIdx: undefined,
       currentSentenceIdx: playData.startIdx,
       numWrongAnswers: 0,
@@ -48,16 +49,24 @@ function NextButton({ skip }) {
             [learningLanguage]: playData.endIdx,
           },
         };
-        // save to context and local storage
+        // save to context AND local storage
         const updatedStories = stories.map((story) =>
           story.id === updatedStory.id ? updatedStory : story,
         );
 
         setStories(updatedStories);
-        storeData("stories", JSON.stringify(updatedStories));
+        storeData(
+          "stories-" + globalConfig.userId,
+          JSON.stringify(updatedStories),
+        );
 
         // show a popup to continue "yes/no"
         if (globalConfig.showConfirmationDialog) askForContinue();
+
+        setPlayData({
+          ...playData,
+          celebrate: true,
+        });
 
         return;
       }

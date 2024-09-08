@@ -56,11 +56,18 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/bui
 
 # Pending work
 
-- Add Welcome screen first time and as a button with icon=(?) in headerRight to open again
+- Check TODO marc 's
 
-- Detect clean sheets and react-native-confetti
+
+- Add tutorial after Welcome (first time mandatory, later as optional) and as a button in settings
+
+
 - Disable immersive mode by default, and add to settings to enable. Remove status bar as well in immersive mode
-- i8n app (choose english, spanish or catalan in the welcome screen and save). Suggest the one configured in the phone. Add setting to change language of the app too
+
+- i8n app (choose english, spanish or catalan in the welcome screen and save). Suggest the one configured in the phone. Add setting to change language within the app too
+https://medium.com/@lasithherath00/implementing-react-native-i18n-and-language-selection-with-asyncstorage-b24ae59e788e
+
+
 
 - Add splash screen with 2secs delay and more elaborated logo
 - Add ability to add stories from Google Drive

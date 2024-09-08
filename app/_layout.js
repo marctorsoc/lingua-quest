@@ -1,5 +1,5 @@
 import * as NavigationBar from "expo-navigation-bar";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Stack } from "expo-router";
 import {
   GlobalContext,
@@ -15,9 +15,12 @@ import {
   setStatusBarTranslucent,
   StatusBar,
 } from "expo-status-bar";
+import { fetchStories } from "../src/util/http";
+import { getData } from "../src/util/storage";
 
 export default function Layout() {
   useStickyImmersive();
+
   return (
     <GestureHandlerRootView>
       <SafeAreaProvider>
@@ -34,6 +37,10 @@ export default function Layout() {
                   headerTintColor: "white",
                 }}
               >
+                <Stack.Screen
+                  name="(auth)"
+                  options={{ headerShown: false }}
+                />
                 <Stack.Screen
                   name="(tabs)"
                   options={{ headerShown: false }}

@@ -10,6 +10,9 @@ export const initialPlayData = {
   numAnswersToGo: 0,
   storyId: undefined,
 
+  // whether we need to celebrate with confetti
+  celebrate: false,
+
   // these are global to the story. When a game is loaded,
   // startIdx = story.done. endIdx = story.done + numSentences
   // and they are used for the `GameStatusBox` to show what
