@@ -19,15 +19,18 @@ import { showInformativeAlert } from "../../util/alert";
 import AutocompleteInput from "../UI/AutocompleteInput";
 import { AutocompleteDropdownContextProvider } from "react-native-autocomplete-dropdown";
 import { useRouter } from "expo-router";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
   // TODO: only show options for languages / types that are in the stories
   // TODO: add options to sort
   const [inputUserName, setInputUserName] = useState(
     defaultValues ? defaultValues.userName : "",
   );
-  const [inputAppLanguage, setInputAppLanguage] = useState(
-    defaultValues ? defaultValues.appLanguage : "en",
-  );
+  // TODO: remove if finally not used
+  // const [inputAppLanguage, setInputAppLanguage] = useState(
+  //   defaultValues ? defaultValues.appLanguage : "en",
+  // );
   const [inputLearningLanguage, setInputLearningLanguage] = useState(
     defaultValues ? defaultValues.learningLanguage : "lt",
   );
@@ -35,6 +38,7 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
     defaultValues ? defaultValues.knownLanguage : "en",
   );
   const [allUsers, setAllUsers] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     // setIsFetching(true);
@@ -44,7 +48,13 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
     // setIsFetching(false);
   }, []);
 
-  console.log(allUsers);
+  // TODO: remove if finally not used
+  // useEffect(() => {
+  //   // setIsFetching(true);
+  //   i18next.changeLanguage(inputAppLanguage);
+  //   // setIsFetching(false);
+  // }, [inputAppLanguage]);
+
   function onsignUpInterim() {
     if (allUsers.includes(inputUserName)) {
       showInformativeAlert(
@@ -65,7 +75,7 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
         // this could be e.g. the hash of userName
         userId: inputUserName,
       },
-      appLanguage: inputAppLanguage,
+      appLanguage: i18next.language,
       filters: {
         knownLanguage: inputKnownLanguage,
         learningLanguage: inputLearningLanguage,
@@ -104,7 +114,7 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
             value={inputUserName}
           /> */}
         <View style={{ alignItems: "center", marginVertical: 10 }}>
-          <Text style={{ color: "white" }}>Your name</Text>
+          <Text style={{ color: "white" }}>{t("AUTH.NAME")}</Text>
           <TextInput
             style={[ScreensStyles.input, { width: 150 }]}
             onChangeText={setInputUserName}
@@ -116,32 +126,42 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
         </View>
         {/* <Text style={styles.errorText}>{inputUserName}</Text> */}
         {onSignUp && (
-          <>
-            <PickerInput
+          <View style={styles.inputsCol}>
+            {/* TODO: remove if finally not used */}
+            {/* <PickerInput
               style={styles.picker}
-              label="App language"
-              onChangeText={(text) => setInputAppLanguage(text)}
+              label={t("AUTH.SIGNUP.APP_LANGUAGE")}
+              onChangeText={(text) => {
+                // console.log(text);
+                setInputAppLanguage(text);
+              }}
               zIndex={3000}
               value={inputAppLanguage}
               options={languageOptionsProcessed}
-            />
-            <PickerInput
-              style={styles.picker}
-              label="Language to learn"
-              onChangeText={(text) => setInputLearningLanguage(text)}
-              zIndex={2000}
-              value={inputLearningLanguage}
-              options={languageOptionsProcessed}
-            />
-            <PickerInput
-              style={styles.picker}
-              label="In-game translations"
-              onChangeText={(text) => setInputKnownLanguage(text)}
-              zIndex={1000}
-              value={inputKnownLanguage}
-              options={translationOptionsProcessed}
-            />
-          </>
+            /> */}
+            <View style={styles.inputsRow}>
+              <PickerInput
+                style={styles.picker}
+                label={t("AUTH.SIGNUP.LEARNING_LANG")}
+                onChangeText={(text) =>
+                  setInputLearningLanguage(text)
+                }
+                zIndex={2000}
+                value={inputLearningLanguage}
+                options={languageOptionsProcessed}
+              />
+            </View>
+            <View style={styles.inputsRow}>
+              <PickerInput
+                style={styles.picker}
+                label={t("AUTH.SIGNUP.IN_GAME_TRANSLATIONS")}
+                onChangeText={(text) => setInputKnownLanguage(text)}
+                zIndex={1000}
+                value={inputKnownLanguage}
+                options={translationOptionsProcessed}
+              />
+            </View>
+          </View>
         )}
       </View>
       {(allUsers.length > 0) & !onSignIn ? (
@@ -153,7 +173,7 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
             }}
           >
             <Text style={{ color: "white" }}>
-              I already have an account
+              {t("AUTH.SIGNUP.SIGNIN_LINK")}
             </Text>
           </Button>
         </View>
@@ -169,7 +189,7 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
             }}
           >
             <Text style={{ color: "white" }}>
-              I want to create a new player
+              {t("AUTH.SIGNIN.SIGNUP_LINK")}
             </Text>
           </Button>
         </View>
@@ -181,7 +201,9 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
             onPress={onsignInInterim}
             disabled={!allUsers.includes(inputUserName)}
           >
-            <Text style={{ color: "white" }}>Continue</Text>
+            <Text style={{ color: "white" }}>
+              {t("AUTH.CONTINUE")}
+            </Text>
           </Button>
         </View>
       )}
@@ -192,7 +214,9 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
             onPress={onsignUpInterim}
             disabled={inputUserName === ""}
           >
-            <Text style={{ color: "white" }}>Continue</Text>
+            <Text style={{ color: "white" }}>
+              {t("AUTH.CONTINUE")}
+            </Text>
           </Button>
         </View>
       )}
@@ -209,6 +233,12 @@ const styles = StyleSheet.create({
   },
   inputsRow: {
     flexDirection: "column",
+    alignItems: "center",
+    zIndex: 500,
+    // width: "50%",
+  },
+  inputsCol: {
+    flexDirection: "row",
     alignItems: "center",
     zIndex: 500,
   },
@@ -233,7 +263,8 @@ const styles = StyleSheet.create({
     zIndex: -100,
   },
   picker: {
-    width: Platform.OS === "web" ? "40%" : "45%",
+    flexDirection: "row",
+    width: Platform.OS === "web" ? "40%" : "50%",
     padding: 5,
   },
 });

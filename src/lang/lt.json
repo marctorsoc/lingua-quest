@@ -1,0 +1,19 @@
+{
+  "translation": {
+    "AUTH": {
+      "NAME": "Vardas",
+      "CONTINUE": "Tęsti",
+      "SIGNUP": {
+        "TITLE": "Sukurti naują paskyrą",
+        "APP_LANGUAGE": "App kalba",
+        "LEARNING_LANG": "Kalba mokymuisi",
+        "IN_GAME_TRANSLATIONS": "Vertimai",
+        "SIGNIN_LINK": "Jau turiu paskyrą"
+      },
+      "SIGNIN": {
+        "TITLE": "Įkelti savo paskyrą",
+        "SIGNUP_LINK": "Sukurti naują žaidėją"
+      }
+    }
+  }
+}

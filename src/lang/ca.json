@@ -1,0 +1,19 @@
+{
+  "translation": {
+    "AUTH": {
+      "NAME": "Nom",
+      "CONTINUE": "Continuar",
+      "SIGNUP": {
+        "TITLE": "Crear un nou compte",
+        "APP_LANGUAGE": "Idioma de l'app",
+        "LEARNING_LANG": "Idioma a aprendre",
+        "IN_GAME_TRANSLATIONS": "Traduccions",
+        "SIGNIN_LINK": "Ja tinc una compte"
+      },
+      "SIGNIN": {
+        "TITLE": "Carregar el teu compte",
+        "SIGNUP_LINK": "Crear un nou jugador"
+      }
+    }
+  }
+}

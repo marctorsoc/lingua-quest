@@ -1,0 +1,19 @@
+{
+  "translation": {
+    "AUTH": {
+      "NAME": "Name",
+      "CONTINUE": "Continue",
+      "SIGNUP": {
+        "TITLE": "Create a new account",
+        "APP_LANGUAGE": "App language",
+        "LEARNING_LANG": "Language to learn",
+        "IN_GAME_TRANSLATIONS": "In-game translations",
+        "SIGNIN_LINK": "I already have an account"
+      },
+      "SIGNIN": {
+        "TITLE": "Load your account",
+        "SIGNUP_LINK": "Create a new player"
+      }
+    }
+  }
+}
