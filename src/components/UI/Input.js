@@ -75,15 +75,9 @@ export function PickerInput({
         zIndex={zIndex}
         containerStyle={containerStyle}
         style={{}}
-        maxHeight={20}
         labelStyle={{
           fontWeight: "bold",
-        }}
-        itemProps={{
-          style: {
-            fontSize: 6,
-            color: "green",
-          },
+          // fontSize: 6,
         }}
       ></DropDownPicker>
     </>
