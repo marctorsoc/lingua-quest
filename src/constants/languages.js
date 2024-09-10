@@ -3,9 +3,9 @@ import { IconStyle } from "./styles";
 
 export const logos = {
   en: require("../../assets/flags/en.svg.png"),
-  lt: require("../../assets/flags/lt.svg.png"),
   es: require("../../assets/flags/es.svg.png"),
   ca: require("../../assets/flags/ca.svg.png"),
+  lt: require("../../assets/flags/lt.svg.png"),
 };
 
 export const languageOptions = [
@@ -15,13 +15,6 @@ export const languageOptions = [
     emoji: "🇬🇧",
     longName: "English",
     icon: () => <Image source={logos["en"]} style={IconStyle} />,
-  },
-  {
-    label: "🇱🇹 (LT)",
-    value: "lt",
-    emoji: "🇱🇹",
-    longName: "Lietuvių",
-    icon: () => <Image source={logos["lt"]} style={IconStyle} />,
   },
   // { label: "🇵🇹 (PT)", value: "pt", logo: "https://seeklogo.com/images/F/flag___bandeira_Portugal-logo-34D2D6FC45-seeklogo.com.png" },
   {
@@ -37,6 +30,13 @@ export const languageOptions = [
     emoji: "CAT",
     longName: "Català",
     icon: () => <Image source={logos["ca"]} style={IconStyle} />,
+  },
+  {
+    label: "🇱🇹 (LT)",
+    value: "lt",
+    emoji: "🇱🇹",
+    longName: "Lietuvių",
+    icon: () => <Image source={logos["lt"]} style={IconStyle} />,
   },
   // {
   //   label: "italia",

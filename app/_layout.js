@@ -17,6 +17,7 @@ import {
 } from "expo-status-bar";
 import { fetchStories } from "../src/util/http";
 import { getData } from "../src/util/storage";
+import "../src/lang/i18n";
 
 export default function Layout() {
   useStickyImmersive();

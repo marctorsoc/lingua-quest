@@ -74,7 +74,7 @@ const Settings = () => {
     // allUsers = getUserNamesWrapper();
     // setIsFetching(false);
   }, [globalConfig]);
-  console.log("allUsers: ", allUsers);
+  // console.log("allUsers: ", allUsers);
 
   // Function to handle changes to the number of sentences
   const handleNumSentencesChange = (text) => {
@@ -271,7 +271,7 @@ const Settings = () => {
   //   console.log(sentences);
   //   JsonDownload({ stories: stories, sentences: sentences });
   // }
-  console.log(globalConfig);
+  // console.log(globalConfig);
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <DataRestoreModal

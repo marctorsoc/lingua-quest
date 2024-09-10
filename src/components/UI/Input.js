@@ -44,13 +44,13 @@ export function PickerInput({
   value,
   options,
   zIndex,
-  zIndexInverse,
   onChangeText,
   dropdownDirection = "BOTTOM",
   disabled = false,
 }) {
   const showLabel = label !== undefined;
   const containerStyle = [style, styles.inputContainer];
+  // const containerStyle = styles.inputContainer;
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -75,8 +75,15 @@ export function PickerInput({
         zIndex={zIndex}
         containerStyle={containerStyle}
         style={{}}
+        maxHeight={20}
         labelStyle={{
           fontWeight: "bold",
+        }}
+        itemProps={{
+          style: {
+            fontSize: 6,
+            color: "green",
+          },
         }}
       ></DropDownPicker>
     </>

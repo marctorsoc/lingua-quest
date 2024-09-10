@@ -11,11 +11,13 @@ import {
   GlobalStyles,
   LibraryStyles,
 } from "../../src/constants/styles";
-import WelcomeForm from "../../src/components/Library/WelcomeForm";
+import WelcomeForm from "../../src/components/Auth/WelcomeForm";
+import { useTranslation } from "react-i18next";
 
 function Welcome() {
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
   const router = useRouter();
+  const { t } = useTranslation();
   // console.log(globalConfig.filters);
 
   async function signInHandler(welcomeFormData) {
@@ -31,7 +33,9 @@ function Welcome() {
 
   return (
     <View style={styles.container}>
-      <Text style={LibraryStyles.label}>Resume a language quest</Text>
+      <Text style={LibraryStyles.label}>
+        {t("AUTH.SIGNIN.TITLE")}
+      </Text>
       <WelcomeForm
         onSignIn={signInHandler}
         //   onSignUp={signInHandler}

@@ -4,12 +4,22 @@ import {
   initialGlobalData,
 } from "../../src/context/global-context";
 import { loadData } from "../../src/util/storage";
-import { Slot, useLocalSearchParams, useRouter } from "expo-router";
+import { HeaderRight as AuthHeaderRight } from "../../src/components/Auth/Header";
+import {
+  Slot,
+  Stack,
+  useLocalSearchParams,
+  useRouter,
+} from "expo-router";
+import i18next from "i18next";
+import { GlobalStyles } from "../../src/constants/styles";
+import { useTranslation } from "react-i18next";
 
 export default function Layout() {
   const { setGlobalConfig } = useContext(GlobalContext);
   const router = useRouter();
   const { logout } = useLocalSearchParams(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     async function getGlobalConfig() {
@@ -33,5 +43,18 @@ export default function Layout() {
     // setIsFetching(false);
   }, []);
 
-  return <Slot options={{ headerShown: false }} />;
+  return (
+    <Stack
+      screenOptions={{
+        headerShown: true,
+        title: t("AUTH.SIGNUP.TITLE"),
+        headerRight: AuthHeaderRight,
+        headerStyle: {
+          backgroundColor: GlobalStyles.colors.primary500,
+        },
+        headerTitleAlign: "center",
+        headerTintColor: "white",
+      }}
+    />
+  );
 }

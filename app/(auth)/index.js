@@ -11,11 +11,15 @@ import {
   GlobalStyles,
   LibraryStyles,
 } from "../../src/constants/styles";
-import WelcomeForm from "../../src/components/Library/WelcomeForm";
+import { useTranslation, Trans } from "react-i18next";
+
+import WelcomeForm from "../../src/components/Auth/WelcomeForm";
 
 function Welcome() {
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
   const router = useRouter();
+  const { t } = useTranslation();
+
   // console.log(globalConfig.filters);
 
   async function signUpHandler(welcomeFormData) {
@@ -26,10 +30,10 @@ function Welcome() {
         ...globalConfig.filters,
         ...welcomeFormData.filters,
       },
+      appLanguage: welcomeFormData.appLanguage,
       userId: welcomeFormData.userInfo.userId,
     };
     setGlobalConfig(updatedGlobalConfig);
-
     storeData("lastUser", updatedGlobalConfig.userId);
     storeData(
       "globalConfig-" + updatedGlobalConfig.userId,
@@ -42,9 +46,10 @@ function Welcome() {
 
   return (
     <View style={styles.container}>
-      <Text style={LibraryStyles.label}>
-        Start a new language quest
-      </Text>
+      {/* TODO: remove if not needed anymore */}
+      {/* <Text style={LibraryStyles.label}>
+        {t("AUTH.SIGNUP.TITLE")}
+      </Text> */}
       {/* {userInfo && <WelcomeForm></WelcomeForm>} */}
       <WelcomeForm
         onSignUp={signUpHandler}

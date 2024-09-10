@@ -16,6 +16,7 @@ export const initialGlobalData = {
     knownLanguage: "en",
     storyType: "subtitle",
   },
+  appLanguage: "en",
   userId: undefined,
   tutorialMode: false,
   lastStoryId: undefined,
