@@ -54,9 +54,13 @@ Compressing project files and uploading to EAS Build. Learn more
 Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/builds/cb2dfa67-5f3e-4b45-afd6-6afcbc8ecfc0
 ```
 
+# Updating a translation
+
+Go to `raw.js` and update. Then run `node raw.js` to generate all `$language.json` files.
+
 # Pending work
 
-- Find a new picker
+- Add clean all data
 
 - Add tutorial after Welcome (first time mandatory, later as optional) and as a button in settings
 
@@ -67,6 +71,8 @@ https://medium.com/@lasithherath00/implementing-react-native-i18n-and-language-s
 
 ----------- ENOUGH FOR GOOGLE PLAY ---------
 
+- Show translations for answers when reviewing if clicked
+(need first to get translations from the backend)
 - Add splash screen with 2secs delay and more elaborated logo
 - Add ability to add stories from Google Drive
 - Track usage of the app

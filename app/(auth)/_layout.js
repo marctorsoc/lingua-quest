@@ -4,7 +4,6 @@ import {
   initialGlobalData,
 } from "../../src/context/global-context";
 import { loadData } from "../../src/util/storage";
-import { HeaderRight as AuthHeaderRight } from "../../src/components/Auth/Header";
 import {
   Slot,
   Stack,
@@ -46,14 +45,14 @@ export default function Layout() {
   return (
     <Stack
       screenOptions={{
-        headerShown: true,
+        headerShown: false,
         title: t("AUTH.SIGNUP.TITLE"),
-        headerRight: AuthHeaderRight,
-        headerStyle: {
-          backgroundColor: GlobalStyles.colors.primary500,
-        },
-        headerTitleAlign: "center",
-        headerTintColor: "white",
+        // headerRight: AuthHeaderRight,
+        // headerStyle: {
+        //   backgroundColor: GlobalStyles.colors.primary500,
+        // },
+        // headerTitleAlign: "center",
+        // headerTintColor: "white",
       }}
     />
   );

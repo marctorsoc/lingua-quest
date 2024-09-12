@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import {
   Platform,
   StyleSheet,
@@ -49,11 +50,21 @@ export function PickerInput({
   disabled = false,
 }) {
   const showLabel = label !== undefined;
-  const containerStyle = [style, styles.inputContainer];
-  // const containerStyle = styles.inputContainer;
+  const containerStyle = [styles.pickerInputContainer, style];
   const [open, setOpen] = useState(false);
   return (
-    <>
+    <View
+      style={{
+        zIndex: zIndex,
+        marginHorizontal: showLabel
+          ? Platform.OS == "web"
+            ? "40px"
+            : "10%"
+          : "0%",
+        padding: "0%",
+        // backgroundColor: "red",
+      }}
+    >
       {showLabel && <Text style={styles.label}>{label}</Text>}
       <DropDownPicker
         open={open}
@@ -73,23 +84,110 @@ export function PickerInput({
         listMode={"SCROLLVIEW"}
         dropDownDirection={dropdownDirection}
         zIndex={zIndex}
+        ArrowDownIconComponent={({ style }) => (
+          <Ionicons
+            name="chevron-down-outline"
+            size={10}
+            color={"black"}
+          />
+        )}
+        ArrowUpIconComponent={({ style }) => (
+          <Ionicons
+            name="chevron-up-outline"
+            size={10}
+            color={"black"}
+          />
+        )}
+        TickIconComponent={({ style }) =>
+          showLabel && (
+            <Ionicons
+              name="checkmark-outline"
+              size={10}
+              color={"black"}
+            />
+          )
+        }
+        style={{
+          minHeight: "0%",
+          minWidth: "30%",
+          padding: 0,
+          margin: 0,
+        }}
         containerStyle={containerStyle}
-        style={{}}
+        // containerStyle={{
+        //   marginVertical: "5%",
+        //   minHeight: "5%",
+        //   padding: 0, // use this when no text for each option
+        // }}
+        // dropDownContainerStyle={{ height: 100 }}
         labelStyle={{
-          fontWeight: "bold",
-          // fontSize: 6,
+          fontSize: 14,
+        }}
+        // this is for the object showing the options (shown after clicking)
+        dropDownContainerStyle={
+          {
+            // height: "auto",
+            // alignSelf: "auto",
+            // alignContent: showLabel ? "" : "",
+            // alignItems: "center",
+          }
+        }
+        listParentContainerStyle={{
+          // backgroundColor: "green",
+          paddingLeft: showLabel ? undefined : "30%",
+          flexDirection: showLabel ? "row" : "row",
+        }}
+        listItemContainerStyle={{
+          height: "",
+          padding: 0,
+          margin: 0,
+          flexDirection: showLabel ? "row" : "",
+          alignContent: "center",
+        }}
+        // itemSeparator={true} // TODO: remove
+        listItemLabelStyle={{
+          fontSize: 14,
+        }}
+        // this is the icon before showing the options
+        iconContainerStyle={{
+          // height: "0%",
+          padding: 0,
+          margin: 0,
+          marginRight: showLabel ? "10%" : "0",
+          // backgroundColor: "red",
+          // minHeight: "5%",
+        }}
+        showTickIcon={true}
+        selectedItemContainerStyle={{
+          margin: 0,
+          padding: 0,
+          backgroundColor: GlobalStyles.colors.primary200,
+          flexDirection: "row",
+        }}
+        selectedItemLabelStyle={{}}
+        arrowIconContainerStyle={{
+          // paddingHorizontal: showLabel ? "5%" : "0px",
+          marginLeft: showLabel ? "5%" : "15%",
+          paddingRight: showLabel ? "20px" : "15%",
         }}
       ></DropDownPicker>
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   inputContainer: {
-    marginVertical: 8,
+    marginVertical: 10,
+    height: 20,
+    padding: 15, // use this when no text for each option
+  },
+  pickerInputContainer: {
+    marginVertical: "5%",
+    minHeight: "0%",
+    padding: 0, // use this when no text for each option
   },
   label: {
-    fontSize: 14,
+    fontSize: 16,
     color: GlobalStyles.colors.white,
     textAlign: "center",
   },
@@ -110,11 +208,5 @@ const styles = StyleSheet.create({
   },
   invalidInput: {
     backgroundColor: GlobalStyles.colors.error50,
-  },
-  dropdownStyle: {
-    borderRadius: 12,
-    borderColor: "gray",
-    borderWidth: 1,
-    color: GlobalStyles.colors.white,
   },
 });

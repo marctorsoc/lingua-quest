@@ -7,8 +7,8 @@
         "TITLE": "Crear un nou compte",
         "APP_LANGUAGE": "Idioma de l'app",
         "LEARNING_LANG": "Idioma a aprendre",
-        "IN_GAME_TRANSLATIONS": "Traduccions",
-        "SIGNIN_LINK": "Ja tinc una compte"
+        "IN_GAME_TRANSLATIONS": "Idioma conegut",
+        "SIGNIN_LINK": "Ja tinc un compte"
       },
       "SIGNIN": {
         "TITLE": "Carregar el teu compte",

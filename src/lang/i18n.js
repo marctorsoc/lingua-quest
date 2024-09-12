@@ -1,10 +1,10 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
-import en from "./en.json";
-import es from "./es.json";
-import ca from "./ca.json";
-import lt from "./lt.json";
+import en from "./generated/en.json";
+import es from "./generated/es.json";
+import ca from "./generated/ca.json";
+import lt from "./generated/lt.json";
 
 /* To add a new language:
 - Add translatins to raw.js

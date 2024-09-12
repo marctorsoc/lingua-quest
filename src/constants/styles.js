@@ -28,6 +28,23 @@ export const IconStyle = {
   tintColor: GlobalStyles.colors.primary,
 };
 
+export const AuthStyles = {
+  container: {
+    flex: 1,
+    padding: 50,
+    backgroundColor: GlobalStyles.colors.primary700,
+  },
+  title: {
+    marginVertical: "10%",
+  },
+  appLangContainer: {
+    position: "absolute",
+    top: "2%",
+    right: "5%",
+    maxWidth: "20%",
+  },
+};
+
 export const ScreensStyles = {
   headerButtonsContainers: {
     margin: 5,
@@ -46,13 +63,13 @@ export const ScreensStyles = {
     borderRadius: 12,
   },
   button: {
-    paddingVertical: 10,
-    paddingHorizontal: 40,
-    justifyContent: "center",
-    marginHorizontal: 8,
+    paddingVertical: "3%",
+    paddingHorizontal: "2%",
+    marginHorizontal: "1%",
     backgroundColor: GlobalStyles.colors.primary500,
-    overflow: "hidden",
-    borderRadius: 30,
+    // overflow: "hidden",
+    borderRadius: 20,
+
     // TODO: is this needed?
     zIndex: 5,
   },
@@ -60,9 +77,11 @@ export const ScreensStyles = {
     textAlign: "center",
     fontSize: 16,
     color: "white",
+    paddingHorizontal: "5%",
+    paddingVertical: "2%",
   },
   input: {
-    height: 30,
+    height: Platform.OS === "web" ? "25px" : "25%",
     borderColor: "gray",
     color: "black",
     fontSize: 16,
@@ -70,7 +89,7 @@ export const ScreensStyles = {
     textAlign: "center",
     borderWidth: 1,
     backgroundColor: "white",
-    margin: 10,
+    margin: "1%",
   },
   numericInput: {
     width: "10%",

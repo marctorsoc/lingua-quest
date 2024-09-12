@@ -2,12 +2,12 @@
   "translation": {
     "AUTH": {
       "NAME": "Nombre",
-      "CONTINUE": "Continuar!",
+      "CONTINUE": "Continuar",
       "SIGNUP": {
-        "TITLE": "Crear una nueva cuenta",
+        "TITLE": "Crear una cuenta nueva ",
         "APP_LANGUAGE": "Idioma de la app",
         "LEARNING_LANG": "Idioma a aprender",
-        "IN_GAME_TRANSLATIONS": "Traducciones",
+        "IN_GAME_TRANSLATIONS": "Idioma conocido",
         "SIGNIN_LINK": "Ya tengo una cuenta"
       },
       "SIGNIN": {

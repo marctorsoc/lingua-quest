@@ -15,7 +15,7 @@ const translations = {
     SIGNUP: {
       TITLE: {
         en: "Create a new account",
-        es: "Crear una nueva cuenta",
+        es: "Crear una cuenta nueva ",
         ca: "Crear un nou compte",
         lt: "Sukurti naują paskyrą",
       },
@@ -32,15 +32,15 @@ const translations = {
         lt: "Kalba mokymuisi",
       },
       IN_GAME_TRANSLATIONS: {
-        en: "In-game translations",
-        es: "Traducciones",
-        ca: "Traduccions",
-        lt: "Vertimai",
+        en: "Known language",
+        es: "Idioma conocido",
+        ca: "Idioma conegut",
+        lt: "Vertimo kalba",
       },
       SIGNIN_LINK: {
         en: "I already have an account",
         es: "Ya tengo una cuenta",
-        ca: "Ja tinc una compte",
+        ca: "Ja tinc un compte",
         lt: "Jau turiu paskyrą",
       },
     },
@@ -122,7 +122,7 @@ languages.forEach((lang) => {
 
   // Write the JSON file for each language
   fs.writeFileSync(
-    path.join(__dirname, `${lang}.json`),
+    path.join(__dirname, "generated", `${lang}.json`),
     JSON.stringify(langTranslations, null, 2),
   );
   console.log(`Generated ${lang}.json`);

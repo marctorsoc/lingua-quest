@@ -77,7 +77,7 @@ function SortAndFilterForm({ onCancel, onSubmit, defaultValues }) {
       storyType: filterData.storyType,
     });
   }
-  const languageOptionsProcessed = languageOptions.map((item) => ({
+  let languageOptionsProcessed = languageOptions.map((item) => ({
     ...item,
     label: item.longName,
   }));
@@ -85,6 +85,10 @@ function SortAndFilterForm({ onCancel, onSubmit, defaultValues }) {
   const translationOptionsProcessed = languageOptionsProcessed.filter(
     (item) => ["en", "es"].includes(item.value),
   );
+  languageOptionsProcessed = languageOptionsProcessed.map((item) => ({
+    ...item,
+    label: undefined,
+  }));
 
   return (
     <View style={styles.form}>
@@ -100,7 +104,7 @@ function SortAndFilterForm({ onCancel, onSubmit, defaultValues }) {
         />
         <PickerInput
           style={styles.picker}
-          label="Learning"
+          // label="Learning"
           onChangeText={(text) => setInputLearningLanguage(text)}
           zIndex={2000}
           value={inputLearningLanguage}

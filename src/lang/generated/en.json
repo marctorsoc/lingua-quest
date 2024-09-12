@@ -7,7 +7,7 @@
         "TITLE": "Create a new account",
         "APP_LANGUAGE": "App language",
         "LEARNING_LANG": "Language to learn",
-        "IN_GAME_TRANSLATIONS": "In-game translations",
+        "IN_GAME_TRANSLATIONS": "Known language",
         "SIGNIN_LINK": "I already have an account"
       },
       "SIGNIN": {

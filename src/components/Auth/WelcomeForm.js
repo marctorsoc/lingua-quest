@@ -103,8 +103,12 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
   const router = useRouter();
 
   return (
-    <ScrollView style={styles.form}>
-      <View style={styles.inputsRow}>
+    <ScrollView
+      style={styles.form}
+      contentContainerStyle={styles.scrollViewContainer}
+    >
+      {/* each of the elements inside one below the next one */}
+      <View style={styles.inputsCol}>
         {/* <AutocompleteInput
             label="Name"
             style={{ paddingVertical: 10 }}
@@ -113,8 +117,10 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
             keyboardType={"default"}
             value={inputUserName}
           /> */}
-        <View style={{ alignItems: "center", marginVertical: 10 }}>
-          <Text style={{ color: "white" }}>{t("AUTH.NAME")}</Text>
+        <View style={{ alignItems: "center", marginVertical: "5%" }}>
+          <Text style={ScreensStyles.buttonLabel}>
+            {t("AUTH.NAME")}
+          </Text>
           <TextInput
             style={[ScreensStyles.input, { width: 150 }]}
             onChangeText={setInputUserName}
@@ -126,20 +132,10 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
         </View>
         {/* <Text style={styles.errorText}>{inputUserName}</Text> */}
         {onSignUp && (
-          <View style={styles.inputsCol}>
-            {/* TODO: remove if finally not used */}
-            {/* <PickerInput
-              style={styles.picker}
-              label={t("AUTH.SIGNUP.APP_LANGUAGE")}
-              onChangeText={(text) => {
-                // console.log(text);
-                setInputAppLanguage(text);
-              }}
-              zIndex={3000}
-              value={inputAppLanguage}
-              options={languageOptionsProcessed}
-            /> */}
-            <View style={styles.inputsRow}>
+          // two (label + picker) blocks in a row, side by side
+          <View style={styles.inputsRow}>
+            {/* each of which in a col (label on top of a picker) */}
+            <View style={styles.inputsCol}>
               <PickerInput
                 style={styles.picker}
                 label={t("AUTH.SIGNUP.LEARNING_LANG")}
@@ -151,7 +147,8 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
                 options={languageOptionsProcessed}
               />
             </View>
-            <View style={styles.inputsRow}>
+            {/* A col with label on top of a picker */}
+            <View style={styles.inputsCol}>
               <PickerInput
                 style={styles.picker}
                 label={t("AUTH.SIGNUP.IN_GAME_TRANSLATIONS")}
@@ -164,62 +161,68 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
           </View>
         )}
       </View>
-      {(allUsers.length > 0) & !onSignIn ? (
-        <View style={styles.signInSignUpLinks}>
-          <Button
-            style={ScreensStyles.button}
-            onPress={() => {
-              router.navigate("(auth)/signin");
-            }}
-          >
-            <Text style={{ color: "white" }}>
-              {t("AUTH.SIGNUP.SIGNIN_LINK")}
-            </Text>
-          </Button>
-        </View>
-      ) : (
-        <></>
-      )}
-      {onSignIn && (
-        <View style={styles.signInSignUpLinks}>
-          <Button
-            style={ScreensStyles.button}
-            onPress={() => {
-              router.navigate("(auth)");
-            }}
-          >
-            <Text style={{ color: "white" }}>
-              {t("AUTH.SIGNIN.SIGNUP_LINK")}
-            </Text>
-          </Button>
-        </View>
-      )}
-      {onSignIn && (
-        <View style={styles.buttons}>
-          <Button
-            style={ScreensStyles.button}
-            onPress={onsignInInterim}
-            disabled={!allUsers.includes(inputUserName)}
-          >
-            <Text style={{ color: "white" }}>
-              {t("AUTH.CONTINUE")}
-            </Text>
-          </Button>
-        </View>
-      )}
-      {onSignUp && (
-        <View style={styles.buttons}>
-          <Button
-            style={ScreensStyles.button}
-            onPress={onsignUpInterim}
-            disabled={inputUserName === ""}
-          >
-            <Text style={{ color: "white" }}>
-              {t("AUTH.CONTINUE")}
-            </Text>
-          </Button>
-        </View>
-      )}
+      <View style={styles.buttonsContainer}>
+        {(allUsers.length > 0) & !onSignIn ? (
+          <View style={styles.button}>
+            <Button
+              style={ScreensStyles.button}
+              onPress={() => {
+                router.navigate("(auth)/signin");
+              }}
+            >
+              <Text style={ScreensStyles.buttonLabel}>
+                {t("AUTH.SIGNUP.SIGNIN_LINK")}
+              </Text>
+            </Button>
+          </View>
+        ) : (
+          <></>
+        )}
+        {onSignIn && (
+          <View style={styles.button}>
+            <Button
+              style={ScreensStyles.button}
+              onPress={() => {
+                router.navigate("(auth)");
+              }}
+            >
+              <Text style={ScreensStyles.buttonLabel}>
+                {t("AUTH.SIGNIN.SIGNUP_LINK")}
+              </Text>
+            </Button>
+          </View>
+        )}
+        {onSignIn && (
+          <View style={styles.button}>
+            <Button
+              style={ScreensStyles.button}
+              onPress={onsignInInterim}
+              disabled={!allUsers.includes(inputUserName)}
+            >
+              <Text style={ScreensStyles.buttonLabel}>
+                {t("AUTH.CONTINUE")}
+              </Text>
+            </Button>
+          </View>
+        )}
+        {onSignUp && (
+          <View style={styles.button}>
+            <Button
+              style={ScreensStyles.button}
+              onPress={onsignUpInterim}
+              disabled={
+                inputUserName === "" ||
+                inputUserName.length < 3 ||
+                inputKnownLanguage === inputLearningLanguage
+              }
+            >
+              <Text style={ScreensStyles.buttonLabel}>
+                {t("AUTH.CONTINUE")}
+              </Text>
+            </Button>
+          </View>
+        )}
+      </View>
     </ScrollView>
   );
 }
@@ -228,43 +231,38 @@ export default WelcomeForm;
 
 const styles = StyleSheet.create({
   form: {
-    marginTop: 20,
-    width: "100%",
+    // marginTop: "5%",
+    // alignContent: "center",
   },
-  inputsRow: {
-    flexDirection: "column",
+  scrollViewContainer: {
     alignItems: "center",
-    zIndex: 500,
-    // width: "50%",
+    justifyContent: "center",
+    flex: Platform.OS == "web" ? undefined : 1,
   },
   inputsCol: {
+    flexDirection: "column",
+    alignItems: "center",
+    // marginVertical: "15%",
+    zIndex: 500,
+    // marginHorizontal: "5%",
+    // width: "5%",
+  },
+  inputsRow: {
     flexDirection: "row",
     alignItems: "center",
     zIndex: 500,
+    marginHorizontal: Platform.OS == "web" ? "0" : "25%",
   },
-  errorText: {
-    textAlign: "center",
-    color: GlobalStyles.colors.error500,
-    margin: 8,
+  buttonsContainer: {
+    marginTop: "20%",
+    minWidth: "60%",
   },
-  signInSignUpLinks: {
-    marginTop: 10,
-    flexDirection: "row",
+  button: {
+    marginTop: "8%",
     justifyContent: "center",
-    alignItems: "center",
-    zIndex: -100,
-    // backgroundColor: "white",
-  },
-  buttons: {
-    marginTop: 15,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    zIndex: -100,
   },
   picker: {
-    flexDirection: "row",
-    width: Platform.OS === "web" ? "40%" : "50%",
-    padding: 5,
+    width: Platform.OS === "web" ? "100%" : "110%",
+    // padding: "5px",
   },
 });

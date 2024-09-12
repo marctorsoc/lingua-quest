@@ -1,6 +1,6 @@
 // Not used atm
 
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import { GlobalContext } from "../../src/context/global-context";
@@ -8,16 +8,23 @@ import { loadData, storeData } from "../../src/util/storage";
 import { showInformativeAlert } from "../../src/util/alert";
 import SortAndFilterForm from "../../src/components/Library/SortAndFilterForm";
 import {
+  AuthStyles,
   GlobalStyles,
   LibraryStyles,
 } from "../../src/constants/styles";
 import WelcomeForm from "../../src/components/Auth/WelcomeForm";
 import { useTranslation } from "react-i18next";
+import { PickerInput } from "../../src/components/UI/Input";
+import i18next from "i18next";
+import { languageOptions } from "../../src/constants/languages";
 
 function Welcome() {
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
   const router = useRouter();
   const { t } = useTranslation();
+  const [inputAppLanguage, setInputAppLanguage] = useState(
+    i18next.language ? i18next.language : "en",
+  );
   // console.log(globalConfig.filters);
 
   async function signInHandler(welcomeFormData) {
@@ -31,11 +38,33 @@ function Welcome() {
     router.navigate("(tabs)/library");
   }
 
+  useEffect(() => {
+    // setIsFetching(true);
+    i18next.changeLanguage(inputAppLanguage);
+    // setIsFetching(false);
+  }, [inputAppLanguage]);
+
+  const languageOptionsProcessed = languageOptions.map((item) => ({
+    ...item,
+    label: "",
+  }));
+
   return (
-    <View style={styles.container}>
-      <Text style={LibraryStyles.label}>
+    <View style={AuthStyles.container}>
+      <Text style={[LibraryStyles.label, AuthStyles.title]}>
         {t("AUTH.SIGNIN.TITLE")}
       </Text>
+      <View style={AuthStyles.appLangContainer}>
+        <PickerInput
+          style={{}}
+          onChangeText={(text) => {
+            setInputAppLanguage(text);
+          }}
+          zIndex={10000}
+          value={inputAppLanguage}
+          options={languageOptionsProcessed}
+        />
+      </View>
       <WelcomeForm
         onSignIn={signInHandler}
         //   onSignUp={signInHandler}
@@ -46,17 +75,4 @@ function Welcome() {
 
 export default Welcome;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 50,
-    backgroundColor: GlobalStyles.colors.primary700,
-  },
-  deleteContainer: {
-    marginTop: 16,
-    paddingTop: 8,
-    borderTopWidth: 2,
-    borderTopColor: GlobalStyles.colors.primary200,
-    alignItems: "center",
-  },
-});
+const styles = StyleSheet.create({});
