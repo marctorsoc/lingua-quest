@@ -10,10 +10,12 @@ function getEmoji(language) {
 import Button from "../UI/Button";
 import { useRouter } from "expo-router";
 import { storeData } from "../../util/storage";
+import { useTranslation } from "react-i18next";
 
 function StoryItem({ id, title, done, total, is_leaf }) {
   const router = useRouter();
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
+  const { t } = useTranslation();
 
   // leave like this in case we want to add showTotals again
   let status = "";
@@ -21,7 +23,7 @@ function StoryItem({ id, title, done, total, is_leaf }) {
     status = `${done[globalConfig.filters.learningLanguage]} `;
     const currentTotal = total[globalConfig.filters.learningLanguage];
     const currentDone = done[globalConfig.filters.learningLanguage];
-    status += `of ${currentTotal} `;
+    status += `${t("GLOBAL.OF")} ${currentTotal} `;
     status += `(${Math.floor((currentDone / currentTotal) * 100)} %)`;
   }
 
@@ -38,7 +40,7 @@ function StoryItem({ id, title, done, total, is_leaf }) {
       setGlobalConfig(updatedGlobalConfig);
       storeData(
         "globalConfig-" + globalConfig.userId,
-        JSON.stringify(updatedGlobalConfig),
+        JSON.stringify(updatedGlobalConfig)
       );
       router.push({
         pathname: "/play/[storyId]",
@@ -62,9 +64,9 @@ function StoryItem({ id, title, done, total, is_leaf }) {
       storyLongPressed: id,
     });
   }
-  let story_item_style = [styles.StoryItem];
+  let storyItemStyle = [styles.StoryItem];
   if (globalConfig.storyLongPressed === id) {
-    story_item_style.push(styles.pressed);
+    storyItemStyle.push(styles.pressed);
   }
 
   return (
@@ -73,8 +75,8 @@ function StoryItem({ id, title, done, total, is_leaf }) {
       onLongPress={storyLongPressHandler}
       style={styles.StoryItemWrapper}
     >
-      <View style={story_item_style}>
-        <Text style={[styles.textBase, styles.title]}>{title}</Text>
+      <View style={storyItemStyle}>
+        <Text style={[styles.title]}>{title}</Text>
         <View style={styles.statusContainer}>
           {is_leaf && <Text style={styles.status}>{status}</Text>}
         </View>
@@ -96,23 +98,30 @@ const styles = StyleSheet.create({
   StoryItem: {
     // TODO: extract some style from here to merge with
     // sentences in PlayStory
-    backgroundColor: GlobalStyles.colors.primary500,
+    backgroundColor: GlobalStyles.colors.interactiveItem,
     borderRadius: 12,
+    // add shadow
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+
     textAlign: "center",
     margin: "5%",
     // minHeight: 120,  // this was before removing langs
     minHeight: 90,
     justifyContent: "center",
   },
-  textBase: {
-    color: GlobalStyles.colors.primary50,
-  },
   title: {
-    fontSize: 18,
+    fontSize: 16,
     marginTop: 8,
     marginBottom: 4,
     fontWeight: "bold",
     textAlign: "center",
+    color: GlobalStyles.colors.white,
   },
   langsContainer: {
     flexDirection: "row",
@@ -129,9 +138,9 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   status: {
-    color: "white",
+    color: GlobalStyles.colors.lightGray,
     margin: 10,
-    fontSize: 13,
+    fontSize: 14,
     verticalAlign: "middle",
   },
 });

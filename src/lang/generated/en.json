@@ -1,19 +1,68 @@
 {
   "translation": {
+    "GLOBAL": {
+      "OF": "of",
+      "FROM": "from",
+      "CANCEL": "Cancel",
+      "APPLY": "Apply",
+      "LEARNING_LANG": "Language to learn",
+      "IN_GAME_TRANSLATIONS": "Known language"
+    },
+    "TABS": {
+      "PLAY": "Play",
+      "CATALOG": "Catalog",
+      "SETTINGS": "Settings"
+    },
     "AUTH": {
       "NAME": "Name",
-      "CONTINUE": "Continue",
       "SIGNUP": {
-        "TITLE": "Create a new account",
-        "APP_LANGUAGE": "App language",
-        "LEARNING_LANG": "Language to learn",
-        "IN_GAME_TRANSLATIONS": "Known language",
-        "SIGNIN_LINK": "I already have an account"
+        "TITLE": "Create account",
+        "ABOVE_SIGNIN_LINK_TEXT": "Already have an account?",
+        "SIGNIN_LINK": "Sign in",
+        "CONTINUE": "Sign up",
+        "ALERT_DATA_STORED": "Data stored. Ready to play",
+        "ALERT_NAME_TAKEN": "Name already taken. Please choose another name.",
+        "ALERT_LANGUAGE_CLASH": "Learning language and language for translations cannot be the same."
       },
       "SIGNIN": {
-        "TITLE": "Load your account",
-        "SIGNUP_LINK": "Create a new player"
+        "TITLE": "Sign in now",
+        "ABOVE_SIGNUP_LINK_TEXT": "Don't you have an account yet?",
+        "SIGNUP_LINK": "Sign up from here",
+        "CONTINUE": "Sign in",
+        "ALERT_DATA_RESTORED": "Data restored. Ready to play"
       }
+    },
+    "LIBRARY": {
+      "RESUME": "Continue",
+      "ALERT_ADD_STORY": "Adding stories not implemented yet 😞",
+      "ALERT_REMOVED_STORY": "Story removed successfully!"
+    },
+    "SETTINGS": {
+      "SENTENCES_PER_ROUND": "Sentences per round",
+      "HISTORY_LENGTH": "Rounds in memory",
+      "READING_MODE": "Reading mode",
+      "APP_LANGUAGE": "App language",
+      "RESTORE_DATA": "Restore data",
+      "SAVE_DATA": "Save data",
+      "ALERT_RESTORED_DATA_FOR": "Restored data for ",
+      "ALERT_ERROR_RESTORING": "Error restoring data",
+      "ALERT_ERROR_DELETING": "Cannot delete current user's data",
+      "ALERT_DELETED_DATA_FOR": "Deleted data for ",
+      "ALERT_SETTINGS_SAVED_FOR": "Settings saved for player `"
+    },
+    "FILTER": {
+      "TITLE": "Filter stories",
+      "NUM_STORIES": "Number of stories",
+      "ALERT_DATA_FILTERED": "Data filtered"
+    },
+    "EDIT": {
+      "TITLE": "Edit story",
+      "TITLE_INPUT": "Title",
+      "LANGUAGES_AND_TRANSLATIONS": "Languages and translations",
+      "SENTENCES_DONE": "Sentences done",
+      "ALERT_STORY_UPDATED": "Story updated",
+      "ALERT_INVALID_STORY": "Invalid story",
+      "ALERT_FIX_ERRORS": "Please fix the errors above."
     }
   }
 }

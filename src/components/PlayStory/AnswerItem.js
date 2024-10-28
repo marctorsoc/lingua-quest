@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     height: 80,
-    borderColor: "white",
+    borderColor: GlobalStyles.colors.textLight,
     borderWidth: 0.5,
     // backgroundColor: "blue",
   },

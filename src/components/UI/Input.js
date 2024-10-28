@@ -32,7 +32,11 @@ export function Input({
       </Text>
       <TextInput
         editable={editable}
-        style={inputStyles}
+        style={
+          editable
+            ? inputStyles
+            : [inputStyles, GlobalStyles.disabled]
+        }
         {...textInputConfig}
       />
     </View>
@@ -76,6 +80,13 @@ export function PickerInput({
         disabledStyle={{
           opacity: 0.7,
         }}
+        style={{
+          minHeight: "0%",
+          minWidth: "30%",
+          padding: 0,
+          borderColor: GlobalStyles.colors.lightGray,
+        }}
+        containerStyle={containerStyle}
         // TODO: for now we can live with adding margin to the elems after
         // this so that the unfolded dropdown does not lay behind them.
         // If we don't find a way to fix this, we'll need to move to MODAL
@@ -107,19 +118,6 @@ export function PickerInput({
             />
           )
         }
-        style={{
-          minHeight: "0%",
-          minWidth: "30%",
-          padding: 0,
-          margin: 0,
-        }}
-        containerStyle={containerStyle}
-        // containerStyle={{
-        //   marginVertical: "5%",
-        //   minHeight: "5%",
-        //   padding: 0, // use this when no text for each option
-        // }}
-        // dropDownContainerStyle={{ height: 100 }}
         labelStyle={{
           fontSize: 14,
         }}
@@ -135,7 +133,7 @@ export function PickerInput({
         listParentContainerStyle={{
           // backgroundColor: "green",
           paddingLeft: showLabel ? undefined : "30%",
-          flexDirection: showLabel ? "row" : "row",
+          flexDirection: "row",
         }}
         listItemContainerStyle={{
           height: "",
@@ -185,15 +183,16 @@ const styles = StyleSheet.create({
     marginVertical: "5%",
     minHeight: "0%",
     padding: 0, // use this when no text for each option
+    color: "red",
+    backgroundColor: "red",
   },
   label: {
     fontSize: 16,
-    color: GlobalStyles.colors.white,
+    color: GlobalStyles.colors.gray,
     textAlign: "center",
   },
   input: {
     backgroundColor: GlobalStyles.colors.primary50,
-    color: GlobalStyles.colors.primary800,
     padding: 6,
     margin: 5,
     borderRadius: 6,

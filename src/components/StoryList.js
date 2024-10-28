@@ -1,16 +1,17 @@
-import { FlatList } from "react-native";
-
+import { LinearTransition } from "react-native-reanimated";
+import { Animated } from "react-native";
 import StoryItem from "./Library/StoryItem";
 
 function StoryList({ stories, renderer = renderStoryItem }) {
   return (
-    <FlatList
+    <Animated.FlatList
       data={stories}
       renderItem={renderer}
       keyExtractor={(item) => item.id}
       numColumns={2}
       // TODO: add this
       refreshControl={null}
+      itemLayoutAnimation={LinearTransition}
     />
   );
 }

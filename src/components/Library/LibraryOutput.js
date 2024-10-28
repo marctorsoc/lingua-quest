@@ -12,11 +12,11 @@ function storyHasAcceptedChildren(story_id, stories, filters) {
       story.parent_id === story_id &&
       (story.is_leaf === false ||
         (Object.keys(story.languages).includes(
-          filters.learningLanguage,
+          filters.learningLanguage
         ) &&
           story.languages[filters.learningLanguage].includes(
-            filters.knownLanguage,
-          ))),
+            filters.knownLanguage
+          )))
   );
   if (children.length > 0) {
     return true;
@@ -29,7 +29,7 @@ function storyPassesFilters(story, filters) {
     // no need to check for storyType. Already done in the parent
     Object.keys(story.languages).includes(filters.learningLanguage) &&
     story.languages[filters.learningLanguage].includes(
-      filters.knownLanguage,
+      filters.knownLanguage
     )
   );
 }
@@ -57,8 +57,8 @@ function LibraryOutput({ stories, fallbackText, parentId = null }) {
             : storyHasAcceptedChildren(
                 story.id,
                 stories,
-                globalConfig.filters,
-              )),
+                globalConfig.filters
+              ))
       )
       .sort((a, b) => a.title.localeCompare(b.title));
   }
@@ -83,10 +83,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 24,
     paddingBottom: 0,
-    backgroundColor: GlobalStyles.colors.primary700,
+    backgroundColor: GlobalStyles.colors.background,
   },
   infoText: {
-    color: "white",
+    color: GlobalStyles.colors.textLight,
     fontSize: 16,
     textAlign: "center",
     marginTop: 32,

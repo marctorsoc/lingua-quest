@@ -8,20 +8,29 @@ import {
 } from "../../src/components/Library/Header";
 import { HeaderRight as SettingsHeaderRight } from "../../src/components/Settings/Header";
 import { GlobalContext } from "../../src/context/global-context";
+import { useTranslation } from "react-i18next";
 
 export default function Layout() {
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
+  const { t } = useTranslation();
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: GlobalStyles.colors.accent500,
+        tabBarActiveTintColor: GlobalStyles.colors.accent, // Accent color for active icon
+        tabBarInactiveTintColor: GlobalStyles.colors.gray, // Gray or subdued color for inactive icon
         tabBarStyle: {
-          backgroundColor: GlobalStyles.colors.primary500,
+          backgroundColor: GlobalStyles.colors.tabBar, // Background color of the tab bar
+          padding: 5, // Add margin at the bottom of the tab bar
         },
         headerStyle: {
-          backgroundColor: GlobalStyles.colors.primary500,
+          backgroundColor: GlobalStyles.colors.header,
         },
-        headerTintColor: "white",
+        headerTitleAlign: "center",
+        headerTitleStyle: {
+          fontWeight: "bold",
+          fontSize: 20,
+        },
+        headerTintColor: GlobalStyles.colors.white,
       }}
       screenListeners={{
         tabPress: () => {
@@ -36,8 +45,8 @@ export default function Layout() {
       <Tabs.Screen
         name="library"
         options={{
-          title: null,
-          tabBarLabel: "Play",
+          title: "LinguaQuest",
+          tabBarLabel: t("TABS.PLAY"),
           tabBarIcon: ({ color, size }) => (
             <Ionicons
               name="library-outline"
@@ -56,7 +65,7 @@ export default function Layout() {
       <Tabs.Screen
         name="catalog"
         options={{
-          title: "Catalog",
+          title: t("TABS.CATALOG"),
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="book-outline" size={size} color={color} />
           ),
@@ -65,7 +74,7 @@ export default function Layout() {
       <Tabs.Screen
         name="settings"
         options={{
-          title: "Settings",
+          title: t("TABS.SETTINGS"),
           tabBarIcon: ({ color, size }) => (
             <Ionicons
               name="settings-outline"

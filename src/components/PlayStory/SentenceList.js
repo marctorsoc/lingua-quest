@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react";
 import { PlayContext } from "../../context/play-context";
 import { useRef, useState } from "react";
 import { GlobalContext } from "../../context/global-context";
+import Animated, { LinearTransition } from "react-native-reanimated";
 
 function SentenceList(props) {
   const flatListRef = useRef(null);
@@ -38,7 +39,7 @@ function SentenceList(props) {
   }
 
   return (
-    <FlatList
+    <Animated.FlatList
       ref={flatListRef}
       data={sentences}
       style={{ flex: 1 }}
@@ -52,6 +53,7 @@ function SentenceList(props) {
           });
         else flatListRef.current?.scrollToEnd();
       }}
+      itemLayoutAnimation={LinearTransition}
     />
   );
 }

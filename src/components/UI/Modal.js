@@ -73,11 +73,11 @@ const styles = StyleSheet.create({
   buttonLabel: {
     textAlign: "center",
     fontSize: 18,
-    color: "white",
+    color: GlobalStyles.colors.textLight,
   },
   button: {
     fontSize: 18,
-    color: "white",
+    color: GlobalStyles.colors.textLight,
     borderColor: "gray",
     borderWidth: 1,
     borderRadius: 8,

@@ -1,10 +1,6 @@
 import { Image, Platform, Text, View } from "react-native";
-import { IconStyle, ScreensStyles } from "../../constants/styles";
+import { languageFlag, ScreensStyles } from "../../constants/styles";
 import IconButton from "../UI/IconButton";
-import {
-  showConfirmation,
-  showInformativeAlert,
-} from "../../util/alert";
 import { useNavigation, useRouter } from "expo-router";
 import { useContext } from "react";
 import { StoryContext } from "../../context/stories-context";

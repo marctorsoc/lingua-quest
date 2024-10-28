@@ -6,21 +6,15 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { useContext } from "react";
 import { Platform } from "react-native";
-import { Input, PickerInput } from "../UI/Input";
 import Button from "../UI/Button";
-import { GlobalStyles, ScreensStyles } from "../../constants/styles";
-import { languageOptions } from "../../constants/languages";
-import { storyTypeOptions } from "../../constants/story_type";
-import { StoryContext } from "../../context/stories-context";
-import { getUserNames, loadData } from "../../util/storage";
+import { ScreensStyles } from "../../constants/styles";
+import { getUserNames } from "../../util/storage";
 import { showInformativeAlert } from "../../util/alert";
-import AutocompleteInput from "../UI/AutocompleteInput";
-import { AutocompleteDropdownContextProvider } from "react-native-autocomplete-dropdown";
 import { useRouter } from "expo-router";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
+import { GameLanguagePickers } from "../UI/GameLanguagePickers";
 function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
   // TODO: only show options for languages / types that are in the stories
   // TODO: add options to sort
@@ -57,15 +51,11 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
 
   function onsignUpInterim() {
     if (allUsers.includes(inputUserName)) {
-      showInformativeAlert(
-        "Name already taken. Please choose another name.",
-      );
+      showInformativeAlert(t("AUTH.SIGNUP.ALERT_NAME_TAKEN"));
       return;
     }
     if (inputKnownLanguage === inputLearningLanguage) {
-      showInformativeAlert(
-        "Learning language and language for translations cannot be the same.",
-      );
+      showInformativeAlert(t("AUTH.SIGNUP.ALERT_LANGUAGE_CLASH"));
       return;
     }
 
@@ -92,14 +82,6 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
     });
   }
 
-  const languageOptionsProcessed = languageOptions.map((item) => ({
-    ...item,
-    label: item.longName,
-  }));
-  // translations only in English and Spanish for now
-  const translationOptionsProcessed = languageOptionsProcessed.filter(
-    (item) => ["en", "es"].includes(item.value),
-  );
   const router = useRouter();
 
   return (
@@ -133,65 +115,15 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
         {/* <Text style={styles.errorText}>{inputUserName}</Text> */}
         {onSignUp && (
           // two (label + picker) blocks in a row, side by side
-          <View style={styles.inputsRow}>
-            {/* each of which in a col (label on top of a picker) */}
-            <View style={styles.inputsCol}>
-              <PickerInput
-                style={styles.picker}
-                label={t("AUTH.SIGNUP.LEARNING_LANG")}
-                onChangeText={(text) =>
-                  setInputLearningLanguage(text)
-                }
-                zIndex={2000}
-                value={inputLearningLanguage}
-                options={languageOptionsProcessed}
-              />
-            </View>
-            {/* A col with label on top of a picker */}
-            <View style={styles.inputsCol}>
-              <PickerInput
-                style={styles.picker}
-                label={t("AUTH.SIGNUP.IN_GAME_TRANSLATIONS")}
-                onChangeText={(text) => setInputKnownLanguage(text)}
-                zIndex={1000}
-                value={inputKnownLanguage}
-                options={translationOptionsProcessed}
-              />
-            </View>
-          </View>
+          <GameLanguagePickers
+            inputLearningLanguage={inputLearningLanguage}
+            setInputLearningLanguage={setInputLearningLanguage}
+            inputKnownLanguage={inputKnownLanguage}
+            setInputKnownLanguage={setInputKnownLanguage}
+          ></GameLanguagePickers>
         )}
       </View>
       <View style={styles.buttonsContainer}>
-        {(allUsers.length > 0) & !onSignIn ? (
-          <View style={styles.button}>
-            <Button
-              style={ScreensStyles.button}
-              onPress={() => {
-                router.navigate("(auth)/signin");
-              }}
-            >
-              <Text style={ScreensStyles.buttonLabel}>
-                {t("AUTH.SIGNUP.SIGNIN_LINK")}
-              </Text>
-            </Button>
-          </View>
-        ) : (
-          <></>
-        )}
-        {onSignIn && (
-          <View style={styles.button}>
-            <Button
-              style={ScreensStyles.button}
-              onPress={() => {
-                router.navigate("(auth)");
-              }}
-            >
-              <Text style={ScreensStyles.buttonLabel}>
-                {t("AUTH.SIGNIN.SIGNUP_LINK")}
-              </Text>
-            </Button>
-          </View>
-        )}
         {onSignIn && (
           <View style={styles.button}>
             <Button
@@ -200,7 +132,7 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
               disabled={!allUsers.includes(inputUserName)}
             >
               <Text style={ScreensStyles.buttonLabel}>
-                {t("AUTH.CONTINUE")}
+                {t("AUTH.SIGNIN.CONTINUE")}
               </Text>
             </Button>
           </View>
@@ -217,7 +149,43 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
               }
             >
               <Text style={ScreensStyles.buttonLabel}>
-                {t("AUTH.CONTINUE")}
+                {t("AUTH.SIGNUP.CONTINUE")}
+              </Text>
+            </Button>
+          </View>
+        )}
+        {(allUsers.length > 0) & !onSignIn ? (
+          <View style={styles.button}>
+            <Text style={ScreensStyles.buttonLabel}>
+              {t("AUTH.SIGNUP.ABOVE_SIGNIN_LINK_TEXT")}
+            </Text>
+            <Button
+              style={ScreensStyles.button}
+              onPress={() => {
+                router.navigate("(auth)/signin");
+              }}
+            >
+              <Text style={ScreensStyles.buttonLabel}>
+                {t("AUTH.SIGNUP.SIGNIN_LINK")}
+              </Text>
+            </Button>
+          </View>
+        ) : (
+          <></>
+        )}
+        {onSignIn && (
+          <View style={styles.button}>
+            <Text style={ScreensStyles.buttonLabel}>
+              {t("AUTH.SIGNIN.ABOVE_SIGNUP_LINK_TEXT")}
+            </Text>
+            <Button
+              style={ScreensStyles.button}
+              onPress={() => {
+                router.navigate("(auth)");
+              }}
+            >
+              <Text style={ScreensStyles.buttonLabel}>
+                {t("AUTH.SIGNIN.SIGNUP_LINK")}
               </Text>
             </Button>
           </View>

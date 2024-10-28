@@ -8,6 +8,7 @@ import { PlayContext } from "../../context/play-context";
 import Button from "../UI/Button";
 import { useRouter } from "expo-router";
 import { GlobalContext } from "../../context/global-context";
+import { useTranslation } from "react-i18next";
 
 function ResumeStory({ stories: stories }) {
   // TODO: find story that was played the latest and surface
@@ -15,15 +16,22 @@ function ResumeStory({ stories: stories }) {
   // if never played any story, remove
   const { globalConfig } = useContext(GlobalContext);
   const router = useRouter();
+  const { t } = useTranslation();
 
   const storyId = globalConfig.lastStoryId;
   const enabled = storyId !== undefined;
   const story = stories.find((story) => story.id === storyId);
   let name = story?.title;
 
+  let status = "";
+  status = `${story?.done[globalConfig.filters.learningLanguage]} `;
+  const currentTotal =
+    story?.total[globalConfig.filters.learningLanguage];
+  status += `${t("GLOBAL.OF")} ${currentTotal}`;
+
   if (story?.parent_title !== null && /^S\d{1,2}E.*/.test(name))
     name = `${story?.parent_title} - ${name}`;
-  const msg = `Continue ${name}`;
+  const msg = `${t("LIBRARY.RESUME")} ${name} (${status})`;
 
   function ResumeHandler() {
     router.push({
@@ -50,17 +58,17 @@ const styles = StyleSheet.create({
   container: {
     padding: 12,
     marginBottom: 12,
-    backgroundColor: GlobalStyles.colors.primary500,
-    borderRadius: 6,
-    borderColor: GlobalStyles.colors.primary50,
-    borderWidth: 2,
+    backgroundColor: GlobalStyles.colors.secondaryButton,
+    borderRadius: 8,
+    borderColor: GlobalStyles.colors.header,
+    borderWidth: 1,
     flexDirection: "row",
     justifyContent: "center",
   },
   button: {},
   text: {
     fontSize: 16,
-    fontWeight: "bold",
-    color: GlobalStyles.colors.primary50,
+    fontWeight: "600",
+    color: GlobalStyles.colors.header,
   },
 });

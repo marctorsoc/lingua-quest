@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   },
   IndexText: {
     fontWeight: "bold",
-    color: "white",
+    color: GlobalStyles.colors.textLight,
   },
   SentenceItem: {
     // TODO: extract some style from here to merge with

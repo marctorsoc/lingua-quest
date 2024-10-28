@@ -1,19 +1,68 @@
 {
   "translation": {
+    "GLOBAL": {
+      "OF": "iš",
+      "FROM": "iš",
+      "CANCEL": "Atšaukti",
+      "APPLY": "Taikyti",
+      "LEARNING_LANG": "Kalba mokymuisi",
+      "IN_GAME_TRANSLATIONS": "Vertimo kalba"
+    },
+    "TABS": {
+      "PLAY": "Žaisti",
+      "CATALOG": "Katalogas",
+      "SETTINGS": "Nustatymai"
+    },
     "AUTH": {
       "NAME": "Vardas",
-      "CONTINUE": "Tęsti",
       "SIGNUP": {
-        "TITLE": "Sukurti naują paskyrą",
-        "APP_LANGUAGE": "App kalba",
-        "LEARNING_LANG": "Kalba mokymuisi",
-        "IN_GAME_TRANSLATIONS": "Vertimo kalba",
-        "SIGNIN_LINK": "Jau turiu paskyrą"
+        "TITLE": "Sukurti paskyrą",
+        "ABOVE_SIGNIN_LINK_TEXT": "Jau turite paskyrą?",
+        "SIGNIN_LINK": "Įkelti savo paskyrą",
+        "CONTINUE": "Registruotis",
+        "ALERT_DATA_STORED": "Duomenys saugomi. Gerai žaisti",
+        "ALERT_NAME_TAKEN": "Vardas jau naudojama. Prašome pasirinkti kitą vardą.",
+        "ALERT_LANGUAGE_CLASH": "Mokymosi kalba ir kalba, kuriai atliksite vertimus, negali būti vienodi."
       },
       "SIGNIN": {
         "TITLE": "Įkelti savo paskyrą",
-        "SIGNUP_LINK": "Sukurti naują žaidėją"
+        "ABOVE_SIGNUP_LINK_TEXT": "Neturite vis dar paskyros?",
+        "SIGNUP_LINK": "Registruotis iš čia",
+        "CONTINUE": "Įkelti",
+        "ALERT_DATA_RESTORED": "Duomenys atkurti. Gerai žaisti"
       }
+    },
+    "LIBRARY": {
+      "RESUME": "Tęsti",
+      "ALERT_ADD_STORY": "Kol kas negalima pridėti daugiau istorijų 😞",
+      "ALERT_REMOVED_STORY": "Istorija pašalinta sėkmingai!"
+    },
+    "SETTINGS": {
+      "SENTENCES_PER_ROUND": "Žodžiai per rūšį",
+      "HISTORY_LENGTH": "Rūšių skaičius",
+      "READING_MODE": "Skaitymo režimas",
+      "APP_LANGUAGE": "App kalba",
+      "RESTORE_DATA": "Atkurti duomenis",
+      "SAVE_DATA": "Išsaugoti duomenis",
+      "ALERT_RESTORED_DATA_FOR": "Atkurti duomenys už ",
+      "ALERT_ERROR_RESTORING": "Klaida atkurti duomenis",
+      "ALERT_ERROR_DELETING": "Negalima ištrinti dabartinio vartotojo duomenų",
+      "ALERT_DELETED_DATA_FOR": "Ištrinti duomenys už ",
+      "ALERT_SETTINGS_SAVED_FOR": "Nustatymai saugomi už žaidėją `"
+    },
+    "FILTER": {
+      "TITLE": "Filtruoti istorijas",
+      "NUM_STORIES": "Skaičius istorijų",
+      "ALERT_DATA_FILTERED": "Duomenys filtravimas"
+    },
+    "EDIT": {
+      "TITLE": "Redaguoti istoriją",
+      "TITLE_INPUT": "Pavadinimas",
+      "LANGUAGES_AND_TRANSLATIONS": "Kalbos ir vertimai",
+      "SENTENCES_DONE": "Išsamiai",
+      "ALERT_STORY_UPDATED": "Istorija atnaujinta",
+      "ALERT_INVALID_STORY": "Neteisinga istorija",
+      "ALERT_FIX_ERRORS": "Prašau ištaisyti klaidų viršuje."
     }
   }
 }

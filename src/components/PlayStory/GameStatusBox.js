@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { PlayContext } from "../../context/play-context";
 import { useContext } from "react";
+import { GlobalStyles } from "../../constants/styles";
 
 const GameStatusBox = () => {
   const { playData } = useContext(PlayContext);
@@ -14,8 +15,12 @@ const GameStatusBox = () => {
     <View style={styles.container}>
       <View style={styles.box}>
         <Text style={styles.text}>
-          <Ionicons name="document" size={18} color="white" />:{" "}
-          {sentencesIndex}
+          <Ionicons
+            name="document"
+            size={18}
+            color={GlobalStyles.colors.textLight}
+          />
+          : {sentencesIndex}
         </Text>
       </View>
       <View style={styles.box}>
@@ -40,8 +45,12 @@ const GameStatusBox = () => {
       </View>
       <View style={styles.box}>
         <Text style={styles.text}>
-          <Ionicons name="exit" size={18} color="white" />:{" "}
-          {playData.numAnswersToGo}
+          <Ionicons
+            name="exit"
+            size={18}
+            color={GlobalStyles.colors.textLight}
+          />
+          : {playData.numAnswersToGo}
         </Text>
       </View>
     </View>

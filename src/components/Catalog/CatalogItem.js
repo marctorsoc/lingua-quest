@@ -6,6 +6,7 @@ import { GlobalContext } from "../../context/global-context";
 import Button from "../UI/Button";
 import { Image } from "react-native";
 import { logos } from "../../constants/languages";
+import { useTranslation } from "react-i18next";
 
 function CatalogItem({
   id,
@@ -16,6 +17,7 @@ function CatalogItem({
   total,
   parent_id,
 }) {
+  const { t } = useTranslation();
   function renderLanguage(lang) {
     return (
       <Image
@@ -33,7 +35,9 @@ function CatalogItem({
       </View>
       <View style={{ flex: 1, flexDirection: "row" }}>
         <View style={styles.languagesContainer}>
-          <Text style={styles.languagesLabel}>Learning</Text>
+          <Text style={styles.languagesLabel}>
+            {t("GLOBAL.LEARNING_LANG")}
+          </Text>
           <FlatList
             data={Object.keys(languages)}
             renderItem={renderLanguage}
@@ -43,7 +47,9 @@ function CatalogItem({
         </View>
         <View style={styles.separator} />
         <View style={styles.languagesContainer}>
-          <Text style={styles.languagesLabel}>Translations</Text>
+          <Text style={styles.languagesLabel}>
+            {t("GLOBAL.IN_GAME_TRANSLATIONS")}
+          </Text>
           <FlatList
             data={[...new Set(Object.values(languages).flat())]}
             renderItem={renderLanguage}
@@ -100,7 +106,7 @@ const styles = StyleSheet.create({
     margin: 1,
   },
   languagesLabel: {
-    color: "white",
+    color: GlobalStyles.colors.textLight,
     margin: 10,
     marginHorizontal: 5,
     fontSize: 13,
@@ -129,7 +135,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   badgeText: {
-    color: "white",
+    color: GlobalStyles.colors.textLight,
     fontSize: 13,
   },
   separator: {

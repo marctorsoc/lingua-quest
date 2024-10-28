@@ -16,7 +16,10 @@ import { useTranslation, Trans } from "react-i18next";
 
 import WelcomeForm from "../../src/components/Auth/WelcomeForm";
 import { PickerInput } from "../../src/components/UI/Input";
-import { languageOptions } from "../../src/constants/languages";
+import {
+  languageOptions,
+  LanguageOptionsNoLabel,
+} from "../../src/constants/languages";
 import i18next from "i18next";
 
 function Welcome() {
@@ -52,13 +55,9 @@ function Welcome() {
       JSON.stringify(updatedGlobalConfig),
     );
 
-    showInformativeAlert("Data stored. Ready to play");
+    showInformativeAlert(t("AUTH.SIGNUP.ALERT_DATA_STORED"));
     router.navigate("library");
   }
-  const languageOptionsProcessed = languageOptions.map((item) => ({
-    ...item,
-    label: "",
-  }));
 
   return (
     <View style={AuthStyles.container}>
@@ -67,6 +66,7 @@ function Welcome() {
         {t("AUTH.SIGNUP.TITLE")}
       </Text>
       {/* {userInfo && <WelcomeForm></WelcomeForm>} */}
+      {/* TODO: Create a component for this */}
       <View style={AuthStyles.appLangContainer}>
         <PickerInput
           style={{}}
@@ -75,7 +75,7 @@ function Welcome() {
           }}
           zIndex={10000}
           value={inputAppLanguage}
-          options={languageOptionsProcessed}
+          options={LanguageOptionsNoLabel}
         />
       </View>
       <WelcomeForm

@@ -8,11 +8,13 @@ import { StoryContext } from "../../src/context/stories-context";
 import { GlobalContext } from "../../src/context/global-context";
 import { showInformativeAlert } from "../../src/util/alert";
 import { storeData } from "../../src/util/storage";
+import { useTranslation } from "react-i18next";
 
 function ManageStory() {
   const { stories, setStories } = useContext(StoryContext);
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
   const router = useRouter();
+  const { t } = useTranslation();
 
   const { storyId } = useLocalSearchParams();
   const isEditing = storyId !== undefined;
@@ -56,7 +58,7 @@ function ManageStory() {
       JSON.stringify(updatedStories),
     );
 
-    showInformativeAlert("Story updated");
+    showInformativeAlert(t("EDIT.ALERT_STORY_UPDATED"));
     goBack();
 
     // setIsSubmitting(true);
@@ -86,7 +88,9 @@ function ManageStory() {
   return (
     <View style={styles.container}>
       <StoryForm
-        submitButtonLabel={isEditing ? "Update" : "Add"}
+        submitButtonLabel={
+          isEditing ? t("GLOBAL.APPLY") : t("GLOBAL.ADD")
+        }
         onSubmit={submitHandler}
         onCancel={cancelHandler}
         defaultValues={selectedStory}

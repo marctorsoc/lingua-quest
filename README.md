@@ -1,6 +1,6 @@
-Disclaimer: this is far from production code, but hey, my first react native project, and it works(*)! 💪
+Disclaimer: this is far from production code, but hey, my first frontend/mobile project, and multi-platform! (*)! 💪
 
-(*) at least on Android and web
+(*) only Android and web tested
 
 # What's this
 
@@ -60,19 +60,24 @@ Go to `raw.js` and update. Then run `node raw.js` to generate all `$language.jso
 
 # Pending work
 
-- Add clean all data
+- Review ALL pickers and buttons for ALL screens, both on web and android
+    - picker in settings, review in Android
+
+- Remove colours and simply use black and white. Do 
+bright mode only for now
 
 - Add tutorial after Welcome (first time mandatory, later as optional) and as a button in settings
 
 - Disable immersive mode by default, and add to settings to enable. Remove status bar as well in immersive mode
 
-- i8n app (choose english, spanish or catalan in the welcome screen and save). Suggest the one configured in the phone. Add setting to change language within the app too
-https://medium.com/@lasithherath00/implementing-react-native-i18n-and-language-selection-with-asyncstorage-b24ae59e788e
+- Start with app language from the the one configured in the phone
 
 ----------- ENOUGH FOR GOOGLE PLAY ---------
 
 - Show translations for answers when reviewing if clicked
 (need first to get translations from the backend)
+- Add dark mode. Tips in https://www.youtube.com/watch?v=zuFh9lfb4HY
+- Use google fonts, see https://www.youtube.com/watch?v=zuFh9lfb4HY
 - Add splash screen with 2secs delay and more elaborated logo
 - Add ability to add stories from Google Drive
 - Track usage of the app
@@ -88,13 +93,11 @@ https://medium.com/@lasithherath00/implementing-react-native-i18n-and-language-s
     - if translate, GET to "https://clients5.google.com", get the translation and overwrite
 - Add ability to sort stories by last time played, and then by name in SortAndFilter. But allow to keep sorting just by name.
 
-- Tech debt i8n
-    - Add tooltip to catalog item's corner to show num episodes and other
-    information
+- Tech debt Catalog
+    - Add tooltip to catalog item's corner to show num episodes and other information
     - Add logo for movie / tv series / book to story cards in both catalog and library
 - Finish filter once new data with movies / books is added
 - Add refreshControl to refresh stories by pulling down in LibraryOutput
-- Add modal to select what data to reset, and what data to load
 - Use react-native-paper
 - Change fonts VScode like in Bootcamp
 - Add tests

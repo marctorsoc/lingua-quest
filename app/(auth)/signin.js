@@ -16,7 +16,10 @@ import WelcomeForm from "../../src/components/Auth/WelcomeForm";
 import { useTranslation } from "react-i18next";
 import { PickerInput } from "../../src/components/UI/Input";
 import i18next from "i18next";
-import { languageOptions } from "../../src/constants/languages";
+import {
+  languageOptions,
+  LanguageOptionsNoLabel,
+} from "../../src/constants/languages";
 
 function Welcome() {
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
@@ -33,7 +36,7 @@ function Welcome() {
     );
     setGlobalConfig(JSON.parse(globalConfigFromDisk));
 
-    showInformativeAlert("Data restored. Ready to play");
+    showInformativeAlert(t("AUTH.SIGNIN.ALERT_DATA_RESTORED"));
     storeData("lastUser", welcomeFormData.userInfo.userId);
     router.navigate("(tabs)/library");
   }
@@ -44,16 +47,12 @@ function Welcome() {
     // setIsFetching(false);
   }, [inputAppLanguage]);
 
-  const languageOptionsProcessed = languageOptions.map((item) => ({
-    ...item,
-    label: "",
-  }));
-
   return (
     <View style={AuthStyles.container}>
       <Text style={[LibraryStyles.label, AuthStyles.title]}>
         {t("AUTH.SIGNIN.TITLE")}
       </Text>
+      {/* TODO: Reuse component from auth/index.js */}
       <View style={AuthStyles.appLangContainer}>
         <PickerInput
           style={{}}
@@ -62,7 +61,7 @@ function Welcome() {
           }}
           zIndex={10000}
           value={inputAppLanguage}
-          options={languageOptionsProcessed}
+          options={LanguageOptionsNoLabel}
         />
       </View>
       <WelcomeForm

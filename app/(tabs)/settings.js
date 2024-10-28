@@ -21,6 +21,7 @@ import {
 } from "../../src/context/global-context";
 import {
   GlobalStyles,
+  LanguagePickers,
   ScreensStyles,
 } from "../../src/constants/styles";
 import Button from "../../src/components/UI/Button";
@@ -38,8 +39,15 @@ import {
   initialPlayData,
 } from "../../src/context/play-context";
 import { useRouter } from "expo-router";
-import { use } from "i18next";
+import i18next, { use } from "i18next";
 import DataRestoreModal from "../../src/components/Settings/DataRestoreModal";
+import { useTranslation } from "react-i18next";
+import { PickerInput } from "../../src/components/UI/Input";
+import {
+  languageOptions,
+  LanguageOptionsLongNames,
+  LanguageOptionsNoLabel,
+} from "../../src/constants/languages";
 // import OptionModal from "../components/UI/Modal";
 
 const Settings = () => {
@@ -49,15 +57,20 @@ const Settings = () => {
   const [showRestoreModal, setShowRestoreModal] = useState(false);
 
   const [numSentences, setNumSentences] = useState(
-    String(globalConfig.numSentencesPerGame),
+    String(globalConfig.numSentencesPerGame)
   );
   const router = useRouter();
+  const { t } = useTranslation();
   const [historyLength, setHistoryLength] = useState(
-    String(globalConfig.historyLength),
+    String(globalConfig.historyLength)
   );
 
   const [readingMode, setReadingMode] = useState(
-    globalConfig.readingMode,
+    globalConfig.readingMode
+  );
+
+  const [inputAppLanguage, setInputAppLanguage] = useState(
+    i18next.language ? i18next.language : "en"
   );
 
   const [allUsers, setAllUsers] = useState([]);
@@ -75,6 +88,12 @@ const Settings = () => {
     // setIsFetching(false);
   }, [globalConfig]);
   // console.log("allUsers: ", allUsers);
+
+  useEffect(() => {
+    // setIsFetching(true);
+    i18next.changeLanguage(inputAppLanguage);
+    // setIsFetching(false);
+  }, [inputAppLanguage]);
 
   // Function to handle changes to the number of sentences
   const handleNumSentencesChange = (text) => {
@@ -169,12 +188,14 @@ const Settings = () => {
         storeData("lastUser", selectedOption);
       })
       .then(() => {
-        showInformativeAlert("Restored data for " + selectedOption);
+        showInformativeAlert(
+          t("SETTINGS.ALERT_RESTORED_DATA_FOR") + selectedOption
+        );
         setShowRestoreModal(false);
       })
       .catch((error) => {
         console.error("Error restoring data:", error);
-        showInformativeAlert("Error restoring data");
+        showInformativeAlert(t("SETTINGS.ALERT_ERROR_RESTORING"));
       });
   };
 
@@ -184,13 +205,15 @@ const Settings = () => {
     // return;
     const currentUser = globalConfig.userId;
     if (selectedOption == currentUser) {
-      showInformativeAlert("Cannot delete current user's data");
+      showInformativeAlert(t("SETTINGS.ALERT_ERROR_DELETING"));
       return;
     }
 
     cleanData("globalConfig-" + selectedOption);
     setAllUsers(allUsers.filter((user) => user !== selectedOption));
-    showInformativeAlert("Deleted data for " + selectedOption);
+    showInformativeAlert(
+      t("SETTINGS.ALERT_DELETED_DATA_FOR") + selectedOption
+    );
     setShowRestoreModal(false);
   };
 
@@ -202,10 +225,12 @@ const Settings = () => {
     // save settings to storage
     storeData(
       "globalConfig-" + globalConfig.userId,
-      JSON.stringify(globalConfig),
+      JSON.stringify(globalConfig)
     );
     showInformativeAlert(
-      "Settings saved for player `" + globalConfig.userId + "`",
+      t("SETTINGS.ALERT_SETTINGS_SAVED_FOR") +
+        globalConfig.userId +
+        "`"
     );
   }
 
@@ -284,7 +309,9 @@ const Settings = () => {
       />
       {/* Option: Number of sentences per game */}
       <View style={styles.optionContainer}>
-        <Text style={styles.label}>Sentences per round</Text>
+        <Text style={styles.label}>
+          {t("SETTINGS.SENTENCES_PER_ROUND")}
+        </Text>
         <TextInput
           style={[ScreensStyles.input, ScreensStyles.numericInput]}
           onChangeText={handleNumSentencesChange}
@@ -296,7 +323,9 @@ const Settings = () => {
       </View>
       {/* Option: History length */}
       <View style={styles.optionContainer}>
-        <Text style={styles.label}>History Length</Text>
+        <Text style={styles.label}>
+          {t("SETTINGS.HISTORY_LENGTH")}
+        </Text>
         <TextInput
           style={[ScreensStyles.input, ScreensStyles.numericInput]}
           onChangeText={handleHistoryLengthChange}
@@ -308,47 +337,63 @@ const Settings = () => {
 
       {/* Option: Reading mode */}
       <View style={styles.optionContainer}>
-        <Text style={styles.label}>Reading mode</Text>
+        <Text style={styles.label}>{t("SETTINGS.READING_MODE")}</Text>
         <Switch
           style={styles.switch}
           value={readingMode}
+          // trackColor={GlobalStyles.colors.lightGray}
+          trackColor={{
+            false: "#767577",
+            true: "#767577",
+          }}
+          thumbColor={readingMode ? "red" : "#f4f3f4"}
+          activeThumbColor={
+            readingMode ? GlobalStyles.colors.accent : "#f4f3f4"
+          }
           onValueChange={handleReadingModeToggle}
         />
+      </View>
+      <View style={styles.optionContainer}>
+        <View>
+          <Text style={styles.label}>
+            {t("SETTINGS.APP_LANGUAGE")}
+          </Text>
+        </View>
+        <View style={{ marginRight: "2.5%" }}>
+          <PickerInput
+            onChangeText={(text) => setInputAppLanguage(text)}
+            zIndex={2000}
+            value={inputAppLanguage}
+            options={LanguageOptionsNoLabel}
+          />
+        </View>
       </View>
       {/* Manage data */}
       {/* height: "auto" is needed to overwrite optionContainer height */}
       <View
         style={[
           styles.optionContainer,
-          { height: "auto", marginTop: "5%" },
+          { height: "auto", marginTop: "5%", zIndex: 0 },
         ]}
       >
-        <Button style={styles.button} onPress={handleRestoreData}>
+        <Button
+          style={[ScreensStyles.button, styles.button]}
+          onPress={handleRestoreData}
+        >
           {/*{TODO: center the text}*/}
-          <Text style={ScreensStyles.buttonLabel}>Restore Data</Text>
-        </Button>
-        <Button style={styles.button} onPress={handleSaveData}>
-          {/*{TODO: center the text}*/}
-          <Text style={ScreensStyles.buttonLabel}>Save Data</Text>
-        </Button>
-      </View>
-      {/* height: "auto" is needed to overwrite optionContainer height */}
-      <View
-        style={[
-          styles.optionContainer,
-          { height: "auto", marginVertical: "0" },
-        ]}
-      >
-        {/* <Button style={styles.button} onPress={handleUploadStories}>
           <Text style={ScreensStyles.buttonLabel}>
-            Upload stories
+            {t("SETTINGS.RESTORE_DATA")}
           </Text>
         </Button>
-        <Button style={styles.button} onPress={handleDownloadStories}>
+        <Button
+          style={[ScreensStyles.button, styles.button]}
+          onPress={handleSaveData}
+        >
+          {/*{TODO: center the text}*/}
           <Text style={ScreensStyles.buttonLabel}>
-            Download stories
+            {t("SETTINGS.SAVE_DATA")}
           </Text>
-        </Button> */}
+        </Button>
       </View>
     </ScrollView>
   );
@@ -366,14 +411,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginHorizontal: "10%",
     justifyContent: "space-between",
-    height: 50,
-    // backgroundColor: GlobalStyles.colors.error50,
+    height: "8%",
+    zIndex: 1000,
     marginVertical: "1%",
   },
   label: {
     fontSize: 18,
-    color: "white",
-    width: "60%",
+    color: GlobalStyles.colors.blackText,
+    width: "100%",
   },
   switch: {
     width: "10%",
@@ -382,13 +427,11 @@ const styles = StyleSheet.create({
     marginRight: "5.5%",
     // backgroundColor: "red",
   },
+  pickerView: {
+    // marginLeft: "40%",
+  },
   button: {
     fontSize: 18,
-    backgroundColor: GlobalStyles.colors.primary500,
-    color: "white",
-    borderWidth: 1,
-    borderRadius: 8,
-    padding: 8,
     margin: 16,
     width: "40%",
   },

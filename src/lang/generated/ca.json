@@ -1,19 +1,68 @@
 {
   "translation": {
+    "GLOBAL": {
+      "OF": "de",
+      "FROM": "desde",
+      "CANCEL": "Cancel·lar",
+      "APPLY": "Aplicar",
+      "LEARNING_LANG": "Idioma a aprendre",
+      "IN_GAME_TRANSLATIONS": "Idioma conegut"
+    },
+    "TABS": {
+      "PLAY": "Jugar",
+      "CATALOG": "Catàleg",
+      "SETTINGS": "Configuració"
+    },
     "AUTH": {
       "NAME": "Nom",
-      "CONTINUE": "Continuar",
       "SIGNUP": {
-        "TITLE": "Crear un nou compte",
-        "APP_LANGUAGE": "Idioma de l'app",
-        "LEARNING_LANG": "Idioma a aprendre",
-        "IN_GAME_TRANSLATIONS": "Idioma conegut",
-        "SIGNIN_LINK": "Ja tinc un compte"
+        "TITLE": "Crear compte",
+        "ABOVE_SIGNIN_LINK_TEXT": "Ja tens una compte?",
+        "SIGNIN_LINK": "Entra al teu compte",
+        "CONTINUE": "Registrar-se",
+        "ALERT_DATA_STORED": "Dades desats. Preparat per jugar",
+        "ALERT_NAME_TAKEN": "Nom ja utilitzat. Si us plau, trieu un altre nom.",
+        "ALERT_LANGUAGE_CLASH": "El idioma a aprendre i l'idioma per a les traduccions no poden ser el mateix."
       },
       "SIGNIN": {
-        "TITLE": "Carregar el teu compte",
-        "SIGNUP_LINK": "Crear un nou jugador"
+        "TITLE": "Entra al teu compte",
+        "ABOVE_SIGNUP_LINK_TEXT": "Encara no tens una compte?",
+        "SIGNUP_LINK": "Registra't des d'aquí",
+        "CONTINUE": "Entrar",
+        "ALERT_DATA_RESTORED": "Dades restaurades. Preparat per jugar"
       }
+    },
+    "LIBRARY": {
+      "RESUME": "Continuar",
+      "ALERT_ADD_STORY": "De moment no es poden afegir més històries 😞",
+      "ALERT_REMOVED_STORY": "Història eliminada amb èxit!"
+    },
+    "SETTINGS": {
+      "SENTENCES_PER_ROUND": "Frases per ronda",
+      "HISTORY_LENGTH": "Rondes en memòria",
+      "READING_MODE": "Mode lectura",
+      "APP_LANGUAGE": "Idioma de l'app",
+      "RESTORE_DATA": "Restaurar dades",
+      "SAVE_DATA": "Guardar dades",
+      "ALERT_RESTORED_DATA_FOR": "Dades restaurades per a ",
+      "ALERT_ERROR_RESTORING": "Error al restaurar dades",
+      "ALERT_ERROR_DELETING": "No es poden esborrar les dades de l'usuari actual",
+      "ALERT_DELETED_DATA_FOR": "Dades eliminades per a ",
+      "ALERT_SETTINGS_SAVED_FOR": "Configuració guardada per al jugador `"
+    },
+    "FILTER": {
+      "TITLE": "Filtrar històries",
+      "NUM_STORIES": "Nombre d'històries",
+      "ALERT_DATA_FILTERED": "Dades filtrades"
+    },
+    "EDIT": {
+      "TITLE": "Editar història",
+      "TITLE_INPUT": "Títol",
+      "LANGUAGES_AND_TRANSLATIONS": "Idiomes i traduccions",
+      "SENTENCES_DONE": "Frases completades",
+      "ALERT_STORY_UPDATED": "Història actualitzada",
+      "ALERT_INVALID_STORY": "Història invàlida",
+      "ALERT_FIX_ERRORS": "Si us plau, corregiu els errors."
     }
   }
 }

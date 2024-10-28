@@ -17,7 +17,6 @@ import { GlobalContext } from "../../src/context/global-context";
 import { React } from "react";
 import { View, Text } from "react-native";
 // import IconButton from "../src/components/UI/IconButton";
-import { Ionicons } from "@expo/vector-icons";
 import {
   useRouter,
   useLocalSearchParams,

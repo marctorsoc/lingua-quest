@@ -1,5 +1,5 @@
 import { Image } from "react-native";
-import { IconStyle } from "./styles";
+import { languageFlag, languageFlagPicker } from "./styles";
 
 export const logos = {
   en: require("../../assets/flags/en.svg.png"),
@@ -14,7 +14,9 @@ export const languageOptions = [
     value: "en",
     emoji: "🇬🇧",
     longName: "English",
-    icon: () => <Image source={logos["en"]} style={IconStyle} />,
+    icon: () => (
+      <Image source={logos["en"]} style={languageFlagPicker} />
+    ),
   },
   // { label: "🇵🇹 (PT)", value: "pt", logo: "https://seeklogo.com/images/F/flag___bandeira_Portugal-logo-34D2D6FC45-seeklogo.com.png" },
   {
@@ -22,21 +24,27 @@ export const languageOptions = [
     value: "es",
     emoji: "🇪🇸",
     longName: "Español",
-    icon: () => <Image source={logos["es"]} style={IconStyle} />,
+    icon: () => (
+      <Image source={logos["es"]} style={languageFlagPicker} />
+    ),
   },
   {
     label: "🏴‍☠️ (CA)",
     value: "ca",
     emoji: "CAT",
     longName: "Català",
-    icon: () => <Image source={logos["ca"]} style={IconStyle} />,
+    icon: () => (
+      <Image source={logos["ca"]} style={languageFlagPicker} />
+    ),
   },
   {
     label: "🇱🇹 (LT)",
     value: "lt",
     emoji: "🇱🇹",
     longName: "Lietuvių",
-    icon: () => <Image source={logos["lt"]} style={IconStyle} />,
+    icon: () => (
+      <Image source={logos["lt"]} style={languageFlagPicker} />
+    ),
   },
   // {
   //   label: "italia",
@@ -59,10 +67,28 @@ export const languageOptions = [
   //   longName: "dutch",
   // },
 ];
+export const LanguageOptionsNoLabel = languageOptions.map(
+  (option) => ({
+    ...option,
+    label: "",
+  })
+);
+
+export const LanguageOptionsLongNames = languageOptions.map(
+  (option) => ({
+    ...option,
+    label: option.longName,
+  })
+);
+
+// translations only in English and Spanish for now
+export const translationOptions = LanguageOptionsLongNames.filter(
+  (item) => ["en", "es"].includes(item.value)
+);
 
 export const findPropertyByKey = (key, keyValue, property) => {
   const option = languageOptions.find(
-    (option) => option[key] === keyValue,
+    (option) => option[key] === keyValue
   );
   return option ? option[property] : undefined;
 };

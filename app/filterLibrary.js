@@ -7,10 +7,12 @@ import { storeData } from "../src/util/storage";
 import { showInformativeAlert } from "../src/util/alert";
 import SortAndFilterForm from "../src/components/Library/SortAndFilterForm";
 import { GlobalStyles } from "../src/constants/styles";
+import { useTranslation } from "react-i18next";
 
 function SortAndFilterLibrary() {
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
   const router = useRouter();
+  const { t } = useTranslation();
 
   // console.log(globalConfig.filters);
 
@@ -32,7 +34,7 @@ function SortAndFilterLibrary() {
       JSON.stringify(updatedGlobalConfig),
     );
 
-    showInformativeAlert("Data filtered");
+    showInformativeAlert(t("FILTER.ALERT_DATA_FILTERED"));
     router.back();
   }
   return (
@@ -52,13 +54,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    backgroundColor: GlobalStyles.colors.primary700,
-  },
-  deleteContainer: {
-    marginTop: 16,
-    paddingTop: 8,
-    borderTopWidth: 2,
-    borderTopColor: GlobalStyles.colors.primary200,
-    alignItems: "center",
+    backgroundColor: GlobalStyles.colors.background,
   },
 });

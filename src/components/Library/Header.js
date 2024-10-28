@@ -1,5 +1,5 @@
 import { Image, Platform, Text, View } from "react-native";
-import { IconStyle, ScreensStyles } from "../../constants/styles";
+import { languageFlag, ScreensStyles } from "../../constants/styles";
 import IconButton from "../UI/IconButton";
 import {
   showConfirmation,
@@ -10,9 +10,12 @@ import { useContext } from "react";
 import { StoryContext } from "../../context/stories-context";
 import { GlobalContext } from "../../context/global-context";
 import { findPropertyByKey, logos } from "../../constants/languages";
+import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 
 export const HeaderLeft = ({ tintColor }) => {
   const { globalConfig } = useContext(GlobalContext);
+  const { t } = useTranslation();
   return (
     <View
       style={{
@@ -22,23 +25,28 @@ export const HeaderLeft = ({ tintColor }) => {
         color: tintColor,
       }}
     >
-      <Text
+      {/* <Ionicons name="document" size={18} color="white" /> */}
+      {/* <Text
         style={{ color: tintColor, fontSize: 18, fontWeight: "bold" }}
       >
-        LinguaQuest ({globalConfig.userId})
-      </Text>
+        {/* LinguaQuest ({globalConfig.userId}) */}
+      {/* {globalConfig.userId}
+      </Text> */}
       <Text style={{ color: tintColor, fontSize: 14 }}>{"  "}</Text>
       <Image
         source={logos[globalConfig.filters.learningLanguage]}
-        style={IconStyle}
+        style={languageFlag}
       />
-      <Text style={{ color: tintColor, fontSize: 14 }}>
+      <Text
+        style={{ color: tintColor, fontWeight: "600", fontSize: 14 }}
+      >
         {"  "}
-        from{"  "}
+        {t("GLOBAL.FROM")}
+        {"  "}
       </Text>
       <Image
         source={logos[globalConfig.filters.knownLanguage]}
-        style={IconStyle}
+        style={languageFlag}
       />
     </View>
   );
@@ -48,6 +56,7 @@ export const HeaderRight = ({ tintColor }) => {
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
   const router = useRouter();
   const { deleteStory } = useContext(StoryContext);
+  const { t } = useTranslation();
 
   function manageStoryHandler() {
     return (
@@ -71,7 +80,7 @@ export const HeaderRight = ({ tintColor }) => {
   function addAndRemoveStoryHandler() {
     function deleteThisStory() {
       deleteStory(globalConfig.storyLongPressed);
-      showInformativeAlert("Story removed successfully!");
+      showInformativeAlert(t("LIBRARY.ALERT_REMOVED_STORY"));
     }
     return (
       <IconButton
@@ -101,7 +110,7 @@ export const HeaderRight = ({ tintColor }) => {
             return;
           }
           // otherwise, open modal to add story
-          showInformativeAlert("Adding stories not implemented yet!");
+          showInformativeAlert(t("LIBRARY.ALERT_ADD_STORY"));
           //   router.push("AddStory");
         }}
       />

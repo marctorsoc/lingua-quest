@@ -10,11 +10,8 @@ import {
 import { GlobalStyles, ScreensStyles } from "../../constants/styles";
 import Button from "../UI/Button";
 import { AntDesign } from "@expo/vector-icons"; // Import icon library
-import {
-  showConfirmation,
-  showInformativeAlert,
-} from "../../util/alert";
 import IconButton from "../UI/IconButton";
+import Animated, { LinearTransition } from "react-native-reanimated";
 
 const DataRestoreModal = ({
   isVisible,
@@ -40,7 +37,7 @@ const DataRestoreModal = ({
           <View style={styles.separator} />
           {options.length > 0 && (
             <View style={styles.flatList}>
-              <FlatList
+              <Animated.FlatList
                 data={[...options]}
                 keyExtractor={(item, idx) => idx}
                 renderItem={({ item }) => (
@@ -65,6 +62,7 @@ const DataRestoreModal = ({
                     }
                   </View>
                 )}
+                itemLayoutAnimation={LinearTransition}
               />
             </View>
           )}
@@ -97,7 +95,7 @@ const styles = StyleSheet.create({
   },
   popupContainer: {
     backgroundColor: GlobalStyles.colors.primary800,
-    borderColor: "white",
+    borderColor: GlobalStyles.colors.textLight,
     borderWidth: 1,
     paddingTop: 20,
     marginBottom: 0,
@@ -121,16 +119,16 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 15, // Increased margin
     textAlign: "center", // Center the title
-    color: "white",
+    color: GlobalStyles.colors.textLight,
   },
   separator: {
     height: 1, // Use height for cross-platform compatibility
     width: "100%",
-    backgroundColor: "white", // Customize color as needed
+    backgroundColor: GlobalStyles.colors.textLight, // Customize color as needed
   },
   noDataText: {
     fontSize: 14,
-    color: "white",
+    color: GlobalStyles.colors.textLight,
     textAlign: "center",
     padding: 20,
   },
@@ -148,7 +146,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     flex: 1,
     backgroundColor: GlobalStyles.colors.primary500,
-    color: "white",
+    color: GlobalStyles.colors.textLight,
     borderWidth: 1,
     borderRadius: 8,
     padding: 8,
@@ -163,7 +161,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   buttonLabel: {
-    color: "white",
+    color: GlobalStyles.colors.textLight,
     textAlign: "center",
   },
   closeButtonLabel: {

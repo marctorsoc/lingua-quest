@@ -18,9 +18,11 @@ import {
 import { fetchStories } from "../src/util/http";
 import { getData } from "../src/util/storage";
 import "../src/lang/i18n";
+import { useTranslation } from "react-i18next";
 
 export default function Layout() {
   useStickyImmersive();
+  const { t } = useTranslation();
 
   return (
     <GestureHandlerRootView>
@@ -30,12 +32,11 @@ export default function Layout() {
             <PlayContextProvider>
               <Stack
                 screenOptions={{
-                  tabBarActiveTintColor:
-                    GlobalStyles.colors.accent500,
+                  tabBarActiveTintColor: GlobalStyles.colors.accent,
                   headerStyle: {
-                    backgroundColor: GlobalStyles.colors.primary500,
+                    backgroundColor: GlobalStyles.colors.header,
                   },
-                  headerTintColor: "white",
+                  headerTintColor: GlobalStyles.colors.white,
                 }}
               >
                 <Stack.Screen
@@ -55,7 +56,7 @@ export default function Layout() {
                   name="filterLibrary"
                   options={{
                     presentation: "modal",
-                    title: "Filter Library",
+                    title: t("FILTER.TITLE"),
                   }}
                 />
                 <Stack.Screen
@@ -66,7 +67,7 @@ export default function Layout() {
                   name="manageStory/[storyId]"
                   options={{
                     presentation: "modal",
-                    title: "Edit story",
+                    title: t("EDIT.TITLE"),
                   }}
                 />
               </Stack>

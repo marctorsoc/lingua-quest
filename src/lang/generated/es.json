@@ -1,19 +1,68 @@
 {
   "translation": {
+    "GLOBAL": {
+      "OF": "de",
+      "FROM": "desde",
+      "CANCEL": "Cancelar",
+      "APPLY": "Aplicar",
+      "LEARNING_LANG": "Idioma a aprender",
+      "IN_GAME_TRANSLATIONS": "Idioma conocido"
+    },
+    "TABS": {
+      "PLAY": "Jugar",
+      "CATALOG": "Catálogo",
+      "SETTINGS": "Ajustes"
+    },
     "AUTH": {
       "NAME": "Nombre",
-      "CONTINUE": "Continuar",
       "SIGNUP": {
-        "TITLE": "Crear una cuenta nueva ",
-        "APP_LANGUAGE": "Idioma de la app",
-        "LEARNING_LANG": "Idioma a aprender",
-        "IN_GAME_TRANSLATIONS": "Idioma conocido",
-        "SIGNIN_LINK": "Ya tengo una cuenta"
+        "TITLE": "Crear cuenta",
+        "ABOVE_SIGNIN_LINK_TEXT": "¿Ya tienes una cuenta?",
+        "SIGNIN_LINK": "Entra en tu cuenta",
+        "CONTINUE": "Registrarse",
+        "ALERT_DATA_STORED": "Datos guardados. Listo para jugar",
+        "ALERT_NAME_TAKEN": "Nombre ya usado. Por favor, elige otro nombre.",
+        "ALERT_LANGUAGE_CLASH": "El idioma a aprender y el idioma para las traducciones no pueden ser el mismo."
       },
       "SIGNIN": {
-        "TITLE": "Cargar tu cuenta",
-        "SIGNUP_LINK": "Crear un nuevo jugador"
+        "TITLE": "Entra en tu cuenta",
+        "ABOVE_SIGNUP_LINK_TEXT": "¿Aún no tienes una cuenta?",
+        "SIGNUP_LINK": "Registrarse desde aquí",
+        "CONTINUE": "Entrar",
+        "ALERT_DATA_RESTORED": "Datos restaurados. Listo para jugar"
       }
+    },
+    "LIBRARY": {
+      "RESUME": "Continuar",
+      "ALERT_ADD_STORY": "De momento no se pueden añadir más historias 😞",
+      "ALERT_REMOVED_STORY": "¡Historia eliminada con éxito!"
+    },
+    "SETTINGS": {
+      "SENTENCES_PER_ROUND": "Frases por ronda",
+      "HISTORY_LENGTH": "Rondas en memoria",
+      "READING_MODE": "Modo lectura",
+      "APP_LANGUAGE": "Idioma de la app",
+      "RESTORE_DATA": "Restaurar datos",
+      "SAVE_DATA": "Guardar datos",
+      "ALERT_RESTORED_DATA_FOR": "Datos restaurados para ",
+      "ALERT_ERROR_RESTORING": "Error al restaurar datos",
+      "ALERT_ERROR_DELETING": "No se pueden borrar los datos del usuario actual",
+      "ALERT_DELETED_DATA_FOR": "Datos eliminados para ",
+      "ALERT_SETTINGS_SAVED_FOR": "Ajustes guardados para el jugador `"
+    },
+    "FILTER": {
+      "TITLE": "Filtrar historias",
+      "NUM_STORIES": "Número de historias",
+      "ALERT_DATA_FILTERED": "Datos filtrados"
+    },
+    "EDIT": {
+      "TITLE": "Editar historia",
+      "TITLE_INPUT": "Título",
+      "LANGUAGES_AND_TRANSLATIONS": "Idiomas y traducciones",
+      "SENTENCES_DONE": "Frases completadas",
+      "ALERT_STORY_UPDATED": "Historia actualizada",
+      "ALERT_INVALID_STORY": "Historia inválida",
+      "ALERT_FIX_ERRORS": "Por favor, corrige los errores."
     }
   }
 }
