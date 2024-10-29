@@ -67,6 +67,6 @@ const styles = StyleSheet.create({
     color: GlobalStyles.colors.error500,
   },
   invalidInput: {
-    backgroundColor: GlobalStyles.colors.error50,
+    backgroundColor: GlobalStyles.colors.error,
   },
 });

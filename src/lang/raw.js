@@ -36,6 +36,12 @@ const translations = {
       ca: "Idioma conegut",
       lt: "Vertimo kalba",
     },
+    TRANSLATIONS: {
+      en: "Translations",
+      es: "Traducciones",
+      ca: "Traduccions",
+      lt: "Vertimai",
+    },
   },
   TABS: {
     PLAY: {
@@ -58,6 +64,12 @@ const translations = {
     },
   },
   AUTH: {
+    ALL_USERS: {
+      en: "Registered users",
+      es: "Usuarios registrados",
+      ca: "Usuaris registrats",
+      lt: "Registruoti vartotojai",
+    },
     NAME: {
       en: "Name",
       es: "Nombre",
@@ -122,10 +134,10 @@ const translations = {
         lt: "Neturite vis dar paskyros?",
       },
       SIGNUP_LINK: {
-        en: "Sign up from here",
-        es: "Registrarse desde aquí",
-        ca: "Registra't des d'aquí",
-        lt: "Registruotis iš čia",
+        en: "Sign up",
+        es: "Registrarse",
+        ca: "Registrar-se",
+        lt: "Registruotis",
       },
       CONTINUE: {
         en: "Sign in",
@@ -310,7 +322,7 @@ function discoverLanguages(obj, languages = new Set()) {
     if (typeof value === "object" && !Array.isArray(value)) {
       if (
         Object.keys(value).some(
-          (key) => typeof value[key] === "string",
+          (key) => typeof value[key] === "string"
         )
       ) {
         // If the object contains translations (language keys), add them to the set
@@ -357,7 +369,7 @@ languages.forEach((lang) => {
   // Write the JSON file for each language
   fs.writeFileSync(
     path.join(__dirname, "generated", `${lang}.json`),
-    JSON.stringify(langTranslations, null, 2),
+    JSON.stringify(langTranslations, null, 2)
   );
   console.log(`Generated ${lang}.json`);
 });

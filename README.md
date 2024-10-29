@@ -60,25 +60,28 @@ Go to `raw.js` and update. Then run `node raw.js` to generate all `$language.jso
 
 # Pending work
 
-- Review ALL pickers and buttons for ALL screens, both on web and android
-    - picker in settings, review in Android
-
-- Remove colours and use something simpler. Do bright mode only for now
-
 - Add tutorial after Welcome (first time mandatory, later as optional) and as a button in settings
 
-- Disable immersive mode by default, and add to settings to enable. Remove status bar as well in immersive mode
-
-- Start with app language from the the one configured in the phone
+- Remove Name from signin and make the registered users clickable. Remove also Sign in button
 
 ----------- ENOUGH FOR GOOGLE PLAY ---------
 
+- Start with app language from the the one configured in the phone
+- Disable immersive mode by default, and add to settings to enable. Remove status bar as well in immersive mode
+- re-enable confetti. Right now makes it too slow on Android
+- Fix selected app language in settings when loading another user. There
+is some code comment that creates an infinite loop
 - Show translations for answers when reviewing if clicked
 (need first to get translations from the backend)
 - Add dark mode. Tips in https://www.youtube.com/watch?v=zuFh9lfb4HY
 - Use google fonts, see https://www.youtube.com/watch?v=zuFh9lfb4HY
 - Add splash screen with 2secs delay and more elaborated logo
+- Pickers
+    - when no label for each option, center icons and remove check
+
+- Make header back in ManageStory remove storyLongPressed
 - Add ability to add stories from Google Drive
+- Allow edit for stories within folders (it gets selected but the header is not updated to show the icon)
 - Track usage of the app
     - Stories completed
     - Number of sentences done

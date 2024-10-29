@@ -57,12 +57,14 @@ const Settings = () => {
   const [showRestoreModal, setShowRestoreModal] = useState(false);
 
   const [numSentences, setNumSentences] = useState(
-    String(globalConfig.numSentencesPerGame)
+    globalConfig.numSentencesPerGame
+    // String(globalConfig.numSentencesPerGame)
   );
   const router = useRouter();
   const { t } = useTranslation();
   const [historyLength, setHistoryLength] = useState(
-    String(globalConfig.historyLength)
+    globalConfig.historyLength
+    // String(globalConfig.historyLength)
   );
 
   const [readingMode, setReadingMode] = useState(
@@ -84,6 +86,13 @@ const Settings = () => {
     setHistoryLength(globalConfig.historyLength);
     setReadingMode(globalConfig.readingMode);
 
+    // enabling this creates an infinite loop. Careful!
+    // setInputAppLanguage(globalConfig.appLanguage);
+
+    if (i18next.language != globalConfig.appLanguage) {
+      i18next.changeLanguage(globalConfig.appLanguage);
+    }
+
     // allUsers = getUserNamesWrapper();
     // setIsFetching(false);
   }, [globalConfig]);
@@ -91,25 +100,43 @@ const Settings = () => {
 
   useEffect(() => {
     // setIsFetching(true);
+    setGlobalConfig({
+      ...globalConfig,
+      appLanguage: inputAppLanguage,
+    });
     i18next.changeLanguage(inputAppLanguage);
     // setIsFetching(false);
   }, [inputAppLanguage]);
 
   // Function to handle changes to the number of sentences
   const handleNumSentencesChange = (text) => {
-    // TODO: remove setting globalContext here and only do it
-    // when clicking on "Save settings". And only if validation passes
     setNumSentences(text);
-    if (text === "") return;
+    // console.log(text);
+    // console.log(typeof text);
+    if (text === "") {
+      return;
+    }
     let number = NaN;
     try {
       number = parseInt(text);
     } catch (error) {
       console.log(error);
+      showInformativeAlert(
+        "Error",
+        "Please enter a valid number for the number of sentences."
+      );
       return;
     }
     // check if nan
-    if (isNaN(number)) return;
+    if (isNaN(number)) {
+      showInformativeAlert(
+        "Error",
+        "Please enter a valid number for the number of sentences."
+      );
+      return;
+    }
+
+    setNumSentences(number);
 
     // set globalContext too
     setGlobalConfig({
@@ -120,20 +147,33 @@ const Settings = () => {
 
   // Function to handle changes to the number of sentences
   const handleHistoryLengthChange = (text) => {
-    // TODO: remove setting globalContext here and only do it
-    // when clicking on "Save settings". And only if validation passes
     setHistoryLength(text);
-    if (text === "") return;
-    setHistoryLength(text);
+    // console.log(text);
+    // console.log(typeof text);
+    if (text === "") {
+      return;
+    }
     let number = NaN;
     try {
       number = parseInt(text);
     } catch (error) {
       console.log(error);
+      showInformativeAlert(
+        "Error",
+        "Please enter a valid number for the history length."
+      );
       return;
     }
     // check if nan
-    if (isNaN(number)) return;
+    if (isNaN(number)) {
+      showInformativeAlert(
+        "Error",
+        "Please enter a valid number for the history length."
+      );
+      return;
+    }
+
+    setHistoryLength(number);
 
     // set globalContext too
     setGlobalConfig({
@@ -181,6 +221,10 @@ const Settings = () => {
   const handleRestoreOption = (selectedOption) => {
     // Restore from selected storage key
 
+    const currentUser = globalConfig.userId;
+    if (selectedOption == currentUser) {
+      return;
+    }
     loadData("globalConfig-" + selectedOption)
       .then((globalConfigFromDisk) => {
         const parsedConfig = JSON.parse(globalConfigFromDisk);
@@ -210,6 +254,7 @@ const Settings = () => {
     }
 
     cleanData("globalConfig-" + selectedOption);
+    cleanData("stories-" + selectedOption);
     setAllUsers(allUsers.filter((user) => user !== selectedOption));
     showInformativeAlert(
       t("SETTINGS.ALERT_DELETED_DATA_FOR") + selectedOption
@@ -234,69 +279,6 @@ const Settings = () => {
     );
   }
 
-  // async function handleUploadStories() {
-  //   // overwrite data in context with uploaded file,
-  //   // and save to storage
-  //   const data = await FileUpload();
-
-  //   if (data === null || data === undefined) {
-  //     console.log(
-  //       "handleUploadStories exiting since data is null or undefined",
-  //     );
-  //   }
-
-  //   // 1. validate the data
-  //   for (let key of Object.keys(data)) {
-  //     console.log(key);
-  //   }
-  //   if (!("stories" in data && "sentences" in data)) {
-  //     console.log(
-  //       'Either "stories" or "sentences" not found in the uploaded data.',
-  //     );
-  //     return;
-  //   }
-  //   console.log("all good!");
-
-  //   // 2. save stories into storage
-  //   storeData("stories", JSON.stringify(data.stories));
-
-  //   // 3. use setStories to update context
-  //   // for sentences we don't have a context. We just request
-  //   // for the sentences of the story to be played
-  //   setStories(data.stories);
-
-  //   // 4. for each story, save its sentences into storage
-  //   if (Platform.OS === "web") {
-  //     console.log(
-  //       "For web we don't have enough space to save sentences. " +
-  //         "So this won't work.",
-  //     );
-  //   } else {
-  //     data.stories.map((story) => {
-  //       if (!story.is_leaf) return; // ignore non-leaf stories
-  //       const storySentences = data.sentences.filter(
-  //         (sentence) => sentence.story_id === story.id,
-  //       );
-  //       const filename = `sentences_${story.id}`;
-  //       console.log(
-  //         `Saving ${storySentences.length} sentences ` +
-  //           `for story ${story.title} with id ${story.id}` +
-  //           ` to ${filename}`,
-  //       );
-  //       storeData(filename, JSON.stringify(storySentences));
-  //     });
-  //   }
-
-  //   showInformativeAlert("Data uploaded");
-  // }
-
-  // async function handleDownloadStories() {
-  //   // TODO: this won't work now since fetchSentences requires a storyId
-  //   const sentences = fetchSentences({ try_from_disk: true });
-  //   console.log(sentences);
-  //   JsonDownload({ stories: stories, sentences: sentences });
-  // }
-  // console.log(globalConfig);
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <DataRestoreModal
@@ -305,7 +287,7 @@ const Settings = () => {
         onRestore={handleRestoreOption}
         onDelete={handleDeleteData}
         options={allUsers}
-        disabledOption={globalConfig.userId}
+        currentOption={globalConfig.userId}
       />
       {/* Option: Number of sentences per game */}
       <View style={styles.optionContainer}>
@@ -317,8 +299,9 @@ const Settings = () => {
           onChangeText={handleNumSentencesChange}
           value={numSentences}
           // TODO marc: maybe should use keyboardType="decimal-pad"?
+          keyboardType="number-pad"
           inputMode="numeric"
-          maxLength={2}
+          // maxLength={2}
         />
       </View>
       {/* Option: History length */}
@@ -348,26 +331,36 @@ const Settings = () => {
             false: "#767577",
             true: "#767577",
           }}
+          // web
           activeThumbColor={
+            readingMode ? GlobalStyles.colors.accent : "#f4f3f4"
+          }
+          // android
+          thumbColor={
             readingMode ? GlobalStyles.colors.accent : "#f4f3f4"
           }
           onValueChange={handleReadingModeToggle}
         />
       </View>
       <View style={styles.optionContainer}>
-        {/* <View>
-          <Text style={styles.label}>
+        <View>
+          <Text style={styles.optionLabel}>
             {t("SETTINGS.APP_LANGUAGE")}
           </Text>
         </View>
-        <View style={{ marginRight: "2.5%" }}>
+        <View
+          style={{
+            marginRight: "2.5%",
+            width: Platform.OS == "web" ? "15%" : "18%",
+          }}
+        >
           <PickerInput
             onChangeText={(text) => setInputAppLanguage(text)}
             zIndex={2000}
             value={inputAppLanguage}
             options={LanguageOptionsNoLabel}
           />
-        </View> */}
+        </View>
       </View>
       {/* Manage data */}
       {/* height: "auto" is needed to overwrite optionContainer height */}
@@ -396,6 +389,22 @@ const Settings = () => {
           </Text>
         </Button>
       </View>
+      {/* For debugging purposes, show global config */}
+      {/* <ScrollView
+        style={{
+          marginLeft: "5%",
+          marginRight: "5%",
+        }}
+      >
+        <View>
+          <Text>Global config</Text>
+          <Text>{JSON.stringify(globalConfig, null, 2)}</Text>
+        </View>
+        <View>
+          <Text>Play data</Text>
+          <Text>{JSON.stringify(playData, null, 2)}</Text>
+        </View>
+      </ScrollView> */}
     </ScrollView>
   );
 };

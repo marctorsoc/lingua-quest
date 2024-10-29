@@ -6,7 +6,8 @@
       "CANCEL": "Cancel·lar",
       "APPLY": "Aplicar",
       "LEARNING_LANG": "Idioma a aprendre",
-      "IN_GAME_TRANSLATIONS": "Idioma conegut"
+      "IN_GAME_TRANSLATIONS": "Idioma conegut",
+      "TRANSLATIONS": "Traduccions"
     },
     "TABS": {
       "PLAY": "Jugar",
@@ -14,6 +15,7 @@
       "SETTINGS": "Configuració"
     },
     "AUTH": {
+      "ALL_USERS": "Usuaris registrats",
       "NAME": "Nom",
       "SIGNUP": {
         "TITLE": "Crear compte",
@@ -27,7 +29,7 @@
       "SIGNIN": {
         "TITLE": "Entra al teu compte",
         "ABOVE_SIGNUP_LINK_TEXT": "Encara no tens una compte?",
-        "SIGNUP_LINK": "Registra't des d'aquí",
+        "SIGNUP_LINK": "Registrar-se",
         "CONTINUE": "Entrar",
         "ALERT_DATA_RESTORED": "Dades restaurades. Preparat per jugar"
       }

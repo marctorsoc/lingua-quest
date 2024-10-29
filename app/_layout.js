@@ -1,3 +1,5 @@
+import { HeaderBackButton, router } from "expo-router";
+
 import * as NavigationBar from "expo-navigation-bar";
 import React, { useContext, useEffect, useState } from "react";
 import { Platform, UIManager } from "react-native";
@@ -12,7 +14,9 @@ import { GlobalStyles } from "../src/constants/styles";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
+  setStatusBarBackgroundColor,
   setStatusBarHidden,
+  setStatusBarStyle,
   setStatusBarTranslucent,
   StatusBar,
 } from "expo-status-bar";
@@ -35,11 +39,16 @@ export default function Layout() {
         <GlobalContextProvider>
           <StoryContextProvider>
             <PlayContextProvider>
+              <StatusBar style="light" />
               <Stack
                 screenOptions={{
                   tabBarActiveTintColor: GlobalStyles.colors.accent,
                   headerStyle: {
                     backgroundColor: GlobalStyles.colors.header,
+                  },
+                  headerTitleStyle: {
+                    fontWeight: "bold",
+                    fontSize: 20,
                   },
                   headerTintColor: GlobalStyles.colors.white,
                 }}
@@ -89,7 +98,10 @@ function useStickyImmersive() {
   NavigationBar.setPositionAsync("absolute");
   NavigationBar.setVisibilityAsync("hidden");
   NavigationBar.setBehaviorAsync("inset-swipe");
-  NavigationBar.setBackgroundColorAsync("#00000080"); // `rgba(0,0,0,0.5)`
+  // NavigationBar.setBackgroundColorAsync("#fff"); // `rgba(0,0,0,0.5)`
+  // StatusBar.setco("#fff"); // `rgba(0,0,0,0.5)`
+  // setStatusBarBackgroundColor("#fff"); // `rgba(0,0,0,0.5)`
+  setStatusBarStyle("light");
   setStatusBarHidden(true, "none");
   // StatusBar.setVisibilityAsync("hidden");
   // setStatusBarTranslucent(true);

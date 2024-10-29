@@ -16,22 +16,19 @@ export function PickerInput({
   disabled = false,
 }) {
   const showLabel = label !== undefined;
+  // check if the options have non-empty labels
+  const showOptionLabels = options.some(
+    (option) => option.label !== ""
+  );
   const containerStyle = [styles.pickerInputContainer, style];
   const [open, setOpen] = useState(false);
   return (
-    <View
-      style={{
-        zIndex: zIndex,
-        marginHorizontal: showLabel
-          ? Platform.OS == "web"
-            ? "40px"
-            : "10%"
-          : "0%",
-        padding: "0%",
-        // backgroundColor: "red",
-      }}
-    >
-      {showLabel && <Text style={styles.label}>{label}</Text>}
+    <View style={getLabelAndPickerContainerStyle(showLabel, zIndex)}>
+      {showLabel && (
+        <Text style={styles.label} numberOfLines={1}>
+          {label}
+        </Text>
+      )}
       <DropDownPicker
         open={open}
         value={value}
@@ -44,8 +41,6 @@ export function PickerInput({
         }}
         style={{
           minHeight: "0%",
-          minWidth: "30%",
-          padding: 0,
           borderColor: GlobalStyles.colors.lightGray,
         }}
         containerStyle={containerStyle}
@@ -86,6 +81,7 @@ export function PickerInput({
         // this is for the object showing the options (shown after clicking)
         dropDownContainerStyle={
           {
+            // width: "50%",
             // height: "auto",
             // alignSelf: "auto",
             // alignContent: showLabel ? "" : "",
@@ -94,7 +90,7 @@ export function PickerInput({
         }
         listParentContainerStyle={{
           // backgroundColor: "green",
-          paddingLeft: showLabel ? undefined : "30%",
+          paddingLeft: showLabel ? undefined : "10%",
           flexDirection: "row",
         }}
         listItemContainerStyle={{
@@ -121,7 +117,7 @@ export function PickerInput({
         selectedItemContainerStyle={{
           margin: 0,
           padding: 0,
-          backgroundColor: GlobalStyles.colors.primary200,
+          backgroundColor: GlobalStyles.colors.accent,
           flexDirection: "row",
         }}
         selectedItemLabelStyle={{}}
@@ -135,11 +131,24 @@ export function PickerInput({
   );
 }
 
+const getLabelAndPickerContainerStyle = (showLabel, zIndex) => {
+  return {
+    zIndex: zIndex,
+    marginHorizontal: showLabel
+      ? Platform.OS == "web"
+        ? "40px"
+        : "10%"
+      : "0%",
+    padding: Platform.OS == "web" ? "0%" : "5%",
+    // backgroundColor: "green",
+  };
+};
+
 const styles = StyleSheet.create({
   pickerInputContainer: {
-    marginVertical: "5%",
-    minHeight: "0%",
-    padding: 0, // use this when no text for each option
+    // marginVertical: "5%",
+    // minHeight: "0%",
+    // padding: 0, // use this when no text for each option
     // color: "red",
     // backgroundColor: "red",
   },

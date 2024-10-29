@@ -18,7 +18,7 @@ function Button({ children, onPress, onLongPress, style, disabled }) {
         disabled && GlobalStyles.disabled,
       ]}
     >
-      <View style={styles.buttonView}>{children}</View>
+      {children}
     </Pressable>
   );
 }
@@ -26,13 +26,6 @@ function Button({ children, onPress, onLongPress, style, disabled }) {
 export default Button;
 
 const styles = StyleSheet.create({
-  flat: {
-    backgroundColor: "transparent",
-  },
-  buttonView: {
-    color: GlobalStyles.colors.textLight,
-    textAlign: "center",
-  },
   pressed: {
     opacity: 0.5,
   },

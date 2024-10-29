@@ -31,7 +31,7 @@ function SortAndFilterLibrary() {
     setGlobalConfig(updatedGlobalConfig);
     storeData(
       "globalConfig-" + globalConfig.userId,
-      JSON.stringify(updatedGlobalConfig),
+      JSON.stringify(updatedGlobalConfig)
     );
 
     showInformativeAlert(t("FILTER.ALERT_DATA_FILTERED"));

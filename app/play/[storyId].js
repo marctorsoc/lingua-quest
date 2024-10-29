@@ -81,8 +81,21 @@ function PlayStory() {
         const requestedSentences = [
           ...sentencesForStory.slice(requestStartIdx, requestEndIdx),
         ];
-        // console.log("requested sentences");
-        // console.log(requestedSentences);
+        console.log(playData);
+        console.log(
+          "requested sentences from " +
+            requestStartIdx +
+            " to " +
+            requestEndIdx
+        );
+        console.log({
+          story_total: story.total[learningLanguage],
+          story_done: story.done[learningLanguage],
+          requestEndIdx: requestEndIdx,
+          numPrevSentences: numPrevSentences,
+          numSentencesPerGame: globalConfig.numSentencesPerGame,
+        });
+        console.log(requestedSentences);
         await sleep(0.1);
         setSentences(requestedSentences);
         const playLength =
@@ -132,13 +145,13 @@ function PlayStory() {
   }
   return (
     <View style={styles.mainContainer}>
-      <ConfettiCannon
+      {/* <ConfettiCannon
         autoStart={playData.celebrate}
         count={150}
         explosionSpeed={500}
         // fallSpeed={3000}
         origin={{ x: -10, y: 0 }}
-      />
+      /> */}
       <GameStatusBox />
       <SentenceList sentences={sentences} />
       <AnswerBox

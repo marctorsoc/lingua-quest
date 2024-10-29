@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   },
   IndexText: {
     fontWeight: "bold",
-    color: GlobalStyles.colors.textLight,
+    color: GlobalStyles.colors.white,
   },
   SentenceItem: {
     // TODO: extract some style from here to merge with
@@ -171,14 +171,14 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: "3%",
     marginHorizontal: 24,
-    backgroundColor: GlobalStyles.colors.primaryButton,
+    backgroundColor: GlobalStyles.colors.interactiveItem,
     flexDirection: "row",
     alignItems: "center",
     borderRadius: 12,
     ...ScreensStyles.tileShadow,
   },
   alreadyPlayedSentenceItem: {
-    backgroundColor: GlobalStyles.colors.primaryButton,
+    backgroundColor: GlobalStyles.colors.interactiveItem,
   },
   textsContainer: {
     flex: 1,
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   revealedMaskedText: {
-    color: "green",
+    color: GlobalStyles.colors.correctAnswer,
     fontStyle: "italic",
   },
 });

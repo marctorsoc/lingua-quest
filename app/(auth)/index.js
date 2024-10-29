@@ -1,5 +1,3 @@
-// Not used atm
-
 import React, { useContext, useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
@@ -21,9 +19,14 @@ import {
   LanguageOptionsNoLabel,
 } from "../../src/constants/languages";
 import i18next from "i18next";
+import {
+  initialPlayData,
+  PlayContext,
+} from "../../src/context/play-context";
 
 function Welcome() {
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
+  const { setPlayData } = useContext(PlayContext);
   const router = useRouter();
   const { t } = useTranslation();
   const [inputAppLanguage, setInputAppLanguage] = useState(
@@ -49,6 +52,8 @@ function Welcome() {
       userId: welcomeFormData.userInfo.userId,
     };
     setGlobalConfig(updatedGlobalConfig);
+    setPlayData(initialPlayData);
+
     storeData("lastUser", updatedGlobalConfig.userId);
     storeData(
       "globalConfig-" + updatedGlobalConfig.userId,
@@ -87,5 +92,3 @@ function Welcome() {
 }
 
 export default Welcome;
-
-const styles = StyleSheet.create({});

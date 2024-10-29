@@ -70,8 +70,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     height: 80,
-    borderColor: GlobalStyles.colors.white,
-    borderWidth: 0.01,
+    borderColor: GlobalStyles.colors.background,
+    borderWidth: 0.5,
     // backgroundColor: "blue",
   },
   textBase: {
@@ -87,9 +87,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   answerTextSelectedCorrect: {
-    color: "green",
+    color: GlobalStyles.colors.correctAnswer,
   },
   answerTextSelectedWrong: {
-    color: "red",
+    color: GlobalStyles.colors.incorrectAnswer,
   },
 });

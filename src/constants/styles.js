@@ -20,18 +20,21 @@ export const GlobalStyles = {
     gray700: "#221c30",
   },
   colors: {
-    background: "#f0f1f3", // Main background for all screens (good choice, light and neutral)
+    background: "#DFE1E6", // Main background for all screens (good choice, light and neutral)
     header: "#4A115F", // Dark purple header color (works well, but consider a slightly brighter option)
     primaryButton: "#6B1D73", // Use a brighter variant of purple for primary buttons to enhance visibility
     secondaryButton: "#DBC2E5", // Light lavender for secondary buttons (this works, soft and pleasant)
+    thirdButton: "#B699C4",
     interactiveItem: "#83389f", // Rich purple for clickable items (consider changing to #6B1D73 for consistency)
-    accent: "#f59e0b", // Bright yellow for highlights and calls-to-action (great choice for visibility)
+    accent: "#a564b5", // Bright yellow for highlights and calls-to-action (great choice for visibility)
     error: "#dc2626", // Red for error messages (effective and clear)
     lightGray: "#d1d5db", // Light gray for backgrounds and borders (appropriate)
     gray: "#6b7280", // Neutral gray for secondary text (effective)
     blackText: "#111827", // Dark gray for main text (excellent choice for readability)
     white: "#f2f2f2", // Soft white for elements on dark backgrounds (good)
     tabBar: "#e2e5ea", // Light gray for the tab bar background (this works well)
+    correctAnswer: "#22c55e", // Green for correct answers (effective)
+    incorrectAnswer: "#DB564C", // Red for incorrect answers (clear and impactful)
   },
   disabled: {
     opacity: 0.6,
@@ -66,7 +69,7 @@ export const AuthStyles = {
   },
   appLangContainer: {
     position: "absolute",
-    top: "2%",
+    top: Platform.OS == "web" ? "2%" : "5%",
     right: "5%",
     maxWidth: "20%",
   },
@@ -90,9 +93,23 @@ export const ScreensStyles = {
       width: 4, // Horizontal shadow offset
       height: 4, // Vertical shadow offset
     },
-    shadowOpacity: 0.2, // Shadow opacity
+    shadowOpacity: 0.5, // Shadow opacity
     shadowRadius: 6, // Shadow blur radius
-    elevation: 4, // Elevation for Android
+    // For now, disabling this because when clicking this makes
+    // the items inside show a box, and looks bad. This is only
+    // for Android
+    // elevation: 4, // Elevation for Android
+  },
+  tileShadowAccent: {
+    // shadowColor: "#000", // Shadow color for iOS
+    // shadowOffset: {
+    //   width: 5, // Horizontal shadow offset
+    //   height: 5, // Vertical shadow offset
+    // },
+    // shadowOpacity: 1, // Shadow opacity
+    // shadowRadius: 15, // Shadow blur radius
+    // elevation: 15, // Elevation for Android
+    // backgroundColor: GlobalStyles.colors.primaryButton,
   },
   button: {
     paddingVertical: "3%",
@@ -115,7 +132,7 @@ export const ScreensStyles = {
     // paddingVertical: "2%",
   },
   input: {
-    height: Platform.OS === "web" ? "25px" : "45%",
+    height: "25px",
     borderColor: GlobalStyles.colors.lightGray,
     color: "black",
     fontSize: 16,
@@ -128,23 +145,6 @@ export const ScreensStyles = {
   numericInput: {
     width: "10%",
     marginRight: "5%",
-  },
-};
-
-export const LanguagePickers = {
-  inputsLanguagesRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    zIndex: 500,
-    marginHorizontal: Platform.OS == "web" ? "0" : "25%",
-  },
-  inputLanguageCol: {
-    flexDirection: "column",
-    alignItems: "center",
-    zIndex: 500,
-  },
-  languagePicker: {
-    width: Platform.OS === "web" ? "20%" : "100%",
   },
 };
 

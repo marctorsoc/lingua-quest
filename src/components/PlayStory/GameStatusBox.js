@@ -51,10 +51,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: "#8A8686",
+    borderTopWidth: 1,
+    borderColor: GlobalStyles.colors.background,
     // backgroundColor: GlobalStyles.colors.secondaryButton,
-    backgroundColor: GlobalStyles.colors.blackText,
+    backgroundColor: GlobalStyles.colors.header,
   },
   box: {
     flexDirection: "row",
@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    color: "#fff",
-    fontWeight: "bold",
+    color: GlobalStyles.colors.white,
+    // fontWeight: "bold",
     marginLeft: 5,
   },
 });

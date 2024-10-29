@@ -12,6 +12,7 @@ import Button from "../UI/Button";
 import { AntDesign } from "@expo/vector-icons"; // Import icon library
 import IconButton from "../UI/IconButton";
 import Animated, { LinearTransition } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
 
 const DataRestoreModal = ({
   isVisible,
@@ -19,8 +20,9 @@ const DataRestoreModal = ({
   onRestore,
   onDelete,
   options,
-  disabledOption,
+  currentOption,
 }) => {
+  const { t } = useTranslation();
   return (
     <Modal
       visible={isVisible}
@@ -33,7 +35,9 @@ const DataRestoreModal = ({
         onPress={onClose}
       >
         <View style={styles.popupContainer}>
-          <Text style={styles.title}>Restore Data</Text>
+          <Text style={styles.title}>
+            {t("SETTINGS.RESTORE_DATA")}
+          </Text>
           <View style={styles.separator} />
           {options.length > 0 && (
             <View style={styles.flatList}>
@@ -43,9 +47,13 @@ const DataRestoreModal = ({
                 renderItem={({ item }) => (
                   <View style={styles.rowContainer}>
                     <Button
-                      style={styles.button}
+                      style={[
+                        styles.button,
+                        item == currentOption
+                          ? styles.currentOption
+                          : null,
+                      ]}
                       onPress={() => onRestore(item)}
-                      disabled={item == disabledOption}
                     >
                       <Text style={styles.buttonLabel}>{item}</Text>
                     </Button>
@@ -53,8 +61,7 @@ const DataRestoreModal = ({
                       <IconButton
                         icon={"trash-outline"}
                         size={20}
-                        // color={"red"}
-                        disabled={item == disabledOption}
+                        color={GlobalStyles.colors.error}
                         onPress={() => {
                           onDelete(item);
                         }}
@@ -69,7 +76,7 @@ const DataRestoreModal = ({
           {options.length == 0 && (
             <Text style={styles.noDataText}>No data to restore</Text>
           )}
-          <View style={styles.separator} />
+          {/* <View style={styles.separator} />
           <Button
             style={[styles.button, styles.closeButton]}
             onPress={() => onClose()}
@@ -79,7 +86,7 @@ const DataRestoreModal = ({
             >
               Close
             </Text>
-          </Button>
+          </Button> */}
         </View>
       </Pressable>
     </Modal>
@@ -94,32 +101,25 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent backdrop
   },
   popupContainer: {
-    backgroundColor: GlobalStyles.colors.primary800,
+    backgroundColor: GlobalStyles.colors.header,
     borderColor: GlobalStyles.colors.textLight,
     borderWidth: 1,
     paddingTop: 20,
     marginBottom: 0,
+    // maxHeight: "40%",
     marginHorizontal: 50,
-    borderRadius: 8,
-
-    // Add shadow for Android
-    elevation: 5,
-    // Add shadow for iOS
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
+    borderRadius: 16,
+    ...ScreensStyles.tileShadow,
     justifyContent: "center", // Center vertically
     alignSelf: "center", // Center horizontally
-    alignItems: "center",
+    position: "absolute",
   },
   title: {
     fontSize: 18, // Increased font size
     fontWeight: "bold",
     marginBottom: 15, // Increased margin
     textAlign: "center", // Center the title
-    color: GlobalStyles.colors.textLight,
+    color: GlobalStyles.colors.white,
   },
   separator: {
     height: 1, // Use height for cross-platform compatibility
@@ -145,13 +145,18 @@ const styles = StyleSheet.create({
   button: {
     fontSize: 18,
     flex: 1,
-    backgroundColor: GlobalStyles.colors.primary500,
+    backgroundColor: GlobalStyles.colors.secondaryButton,
     color: GlobalStyles.colors.textLight,
     borderWidth: 1,
     borderRadius: 8,
     padding: 8,
     marginHorizontal: 10,
     minWidth: 100,
+  },
+  currentOption: {
+    borderColor: GlobalStyles.colors.accent,
+    borderWidth: 2,
+    backgroundColor: GlobalStyles.colors.thirdButton,
   },
   closeButton: {
     // backgroundColor: GlobalStyles.colors.primary500,
@@ -161,7 +166,8 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   buttonLabel: {
-    color: GlobalStyles.colors.textLight,
+    color: GlobalStyles.colors.header,
+    fontWeight: "bold",
     textAlign: "center",
   },
   closeButtonLabel: {

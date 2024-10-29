@@ -6,7 +6,8 @@
       "CANCEL": "Atšaukti",
       "APPLY": "Taikyti",
       "LEARNING_LANG": "Kalba mokymuisi",
-      "IN_GAME_TRANSLATIONS": "Vertimo kalba"
+      "IN_GAME_TRANSLATIONS": "Vertimo kalba",
+      "TRANSLATIONS": "Vertimai"
     },
     "TABS": {
       "PLAY": "Žaisti",
@@ -14,6 +15,7 @@
       "SETTINGS": "Nustatymai"
     },
     "AUTH": {
+      "ALL_USERS": "Registruoti vartotojai",
       "NAME": "Vardas",
       "SIGNUP": {
         "TITLE": "Sukurti paskyrą",
@@ -27,7 +29,7 @@
       "SIGNIN": {
         "TITLE": "Įkelti savo paskyrą",
         "ABOVE_SIGNUP_LINK_TEXT": "Neturite vis dar paskyros?",
-        "SIGNUP_LINK": "Registruotis iš čia",
+        "SIGNUP_LINK": "Registruotis",
         "CONTINUE": "Įkelti",
         "ALERT_DATA_RESTORED": "Duomenys atkurti. Gerai žaisti"
       }

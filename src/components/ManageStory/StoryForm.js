@@ -136,12 +136,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   input: {
-    marginVertical: "5%",
-    width: "50%",
+    // marginVertical: "5%",
+    width: "70%",
+    height: "20%",
   },
   errorText: {
     textAlign: "center",
-    color: GlobalStyles.colors.error500,
+    color: GlobalStyles.colors.error,
     margin: 8,
   },
   buttons: {

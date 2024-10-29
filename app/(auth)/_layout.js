@@ -13,9 +13,14 @@ import {
 import i18next from "i18next";
 import { GlobalStyles } from "../../src/constants/styles";
 import { useTranslation } from "react-i18next";
+import {
+  initialPlayData,
+  PlayContext,
+} from "../../src/context/play-context";
 
 export default function Layout() {
   const { setGlobalConfig } = useContext(GlobalContext);
+  const { setPlayData } = useContext(PlayContext);
   const router = useRouter();
   const { logout } = useLocalSearchParams(false);
   const { t } = useTranslation();
@@ -28,10 +33,11 @@ export default function Layout() {
       if (logout) {
         console.log("Loading default data");
         setGlobalConfig(initialGlobalData);
+        setPlayData(initialPlayData);
         return;
       }
       const globalConfigFromDisk = await loadData(
-        "globalConfig-" + lastUser,
+        "globalConfig-" + lastUser
       );
       setGlobalConfig(JSON.parse(globalConfigFromDisk));
       console.log("Not first time. Redirecting to (tabs)/library");

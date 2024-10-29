@@ -57,16 +57,17 @@ function StoryItem({ id, title, done, total, is_leaf }) {
     });
   }
   function storyLongPressHandler() {
-    // if this is the leaf of a story, play
-    // if (is_leaf) return;
+    // if this is not the leaf of a story, ignore
+    if (!is_leaf) return;
     setGlobalConfig({
       ...globalConfig,
       storyLongPressed: id,
     });
   }
+
   let storyItemStyle = [styles.StoryItem];
   if (globalConfig.storyLongPressed === id) {
-    storyItemStyle.push(styles.pressed);
+    storyItemStyle.push(styles.longPressed);
   }
 
   return (
@@ -88,8 +89,10 @@ function StoryItem({ id, title, done, total, is_leaf }) {
 export default StoryItem;
 
 const styles = StyleSheet.create({
-  pressed: {
-    borderColor: GlobalStyles.colors.primary50,
+  longPressed: {
+    borderColor: GlobalStyles.colors.accent,
+    backgroundColor: GlobalStyles.colors.header,
+    // borderColor: "orange",
     borderWidth: 2,
   },
   StoryItemWrapper: {
@@ -114,20 +117,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     color: GlobalStyles.colors.white,
-  },
-  langsContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
+    // backgroundColor: "green",
   },
   statusContainer: {
     flexDirection: "row",
     justifyContent: "center",
-  },
-  language: {
-    color: GlobalStyles.colors.primary500,
-    fontWeight: "bold",
-    fontSize: 20,
-    margin: 10,
+    // backgroundColor: "red",
   },
   status: {
     color: GlobalStyles.colors.lightGray,

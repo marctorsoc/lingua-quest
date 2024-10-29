@@ -24,7 +24,12 @@ function ResumeStory({ stories, disabled }) {
   let name = story?.title;
 
   let status = "";
-  status = `${story?.done[globalConfig.filters.learningLanguage]} `;
+  const done = story?.done[globalConfig.filters.learningLanguage];
+
+  // skip if this story does not exist for this language
+  if (done === undefined) return;
+
+  status = `${done} `;
   const currentTotal =
     story?.total[globalConfig.filters.learningLanguage];
   status += `${t("GLOBAL.OF")} ${currentTotal}`;

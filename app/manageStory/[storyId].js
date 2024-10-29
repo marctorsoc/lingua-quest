@@ -60,30 +60,7 @@ function ManageStory() {
 
     showInformativeAlert(t("EDIT.ALERT_STORY_UPDATED"));
     goBack();
-
-    // setIsSubmitting(true);
-    // try {
-    //   if (isEditing) {
-    //     expensesCtx.updateStory(editedExpenseId, expenseData);
-    //     await updateExpense(editedExpenseId, expenseData);
-    //   } else {
-    //     const id = await storeExpense(expenseData);
-    //     expensesCtx.addStory({ ...expenseData, id: id });
-    //   }
-    //   navigation.goBack();
-    // } catch (error) {
-    //   setError("Could not save data - please try again later!");
-    //   setIsSubmitting(false);
-    // }
   }
-
-  // if (error && !isSubmitting) {
-  //   return <ErrorOverlay message={error} />;
-  // }
-
-  // if (isSubmitting) {
-  //   return <LoadingOverlay />;
-  // }
 
   return (
     <View style={styles.container}>

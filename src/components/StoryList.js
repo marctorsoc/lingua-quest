@@ -1,6 +1,7 @@
 import { LinearTransition } from "react-native-reanimated";
 import { Animated } from "react-native";
 import StoryItem from "./Library/StoryItem";
+import { View } from "react-native-web";
 
 function StoryList({ stories, renderer = renderStoryItem }) {
   return (

@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   AnswerContainer: {
     paddingVertical: "4%",
     justifyContent: "center",
-    borderColor: GlobalStyles.colors.textLight,
+    borderColor: GlobalStyles.colors.background,
     borderWidth: 0.5,
   },
   textBase: {

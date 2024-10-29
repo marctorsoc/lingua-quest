@@ -55,7 +55,7 @@ export const HeaderLeft = ({ tintColor }) => {
 export const HeaderRight = ({ tintColor }) => {
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
   const router = useRouter();
-  const { deleteStory } = useContext(StoryContext);
+  // const { deleteStory } = useContext(StoryContext);
   const { t } = useTranslation();
 
   function manageStoryHandler() {
@@ -77,45 +77,45 @@ export const HeaderRight = ({ tintColor }) => {
     );
   }
 
-  function addAndRemoveStoryHandler() {
-    function deleteThisStory() {
-      deleteStory(globalConfig.storyLongPressed);
-      showInformativeAlert(t("LIBRARY.ALERT_REMOVED_STORY"));
-    }
-    return (
-      <IconButton
-        icon={globalConfig.storyLongPressed ? "trash-outline" : "add"}
-        size={24}
-        color={tintColor}
-        containerStyle={ScreensStyles.headerButtonsContainers}
-        onPress={() => {
-          // if clicked with a story long pressed, delete it
-          if (globalConfig.storyLongPressed) {
-            try {
-              // TODO: right now, only showing confirmation for web
-              if (Platform.OS != "web") deleteThisStory();
-              else if (showConfirmation("Remove story?"))
-                deleteThisStory();
-            } catch (error) {
-              let msg =
-                "Could not delete story - please try again later!";
-              console.log(msg);
-              showInformativeAlert(msg);
-            }
-            // update globalConfig.storyLongPressed
-            setGlobalConfig({
-              ...globalConfig,
-              storyLongPressed: undefined,
-            });
-            return;
-          }
-          // otherwise, open modal to add story
-          showInformativeAlert(t("LIBRARY.ALERT_ADD_STORY"));
-          //   router.push("AddStory");
-        }}
-      />
-    );
-  }
+  // function addAndRemoveStoryHandler() {
+  //   function deleteThisStory() {
+  //     deleteStory(globalConfig.storyLongPressed);
+  //     showInformativeAlert(t("LIBRARY.ALERT_REMOVED_STORY"));
+  //   }
+  //   return (
+  //     <IconButton
+  //       icon={globalConfig.storyLongPressed ? "trash-outline" : "add"}
+  //       size={24}
+  //       color={tintColor}
+  //       containerStyle={ScreensStyles.headerButtonsContainers}
+  //       onPress={() => {
+  //         // if clicked with a story long pressed, delete it
+  //         if (globalConfig.storyLongPressed) {
+  //           try {
+  //             // TODO: right now, only showing confirmation for web
+  //             if (Platform.OS != "web") deleteThisStory();
+  //             else if (showConfirmation("Remove story?"))
+  //               deleteThisStory();
+  //           } catch (error) {
+  //             let msg =
+  //               "Could not delete story - please try again later!";
+  //             console.log(msg);
+  //             showInformativeAlert(msg);
+  //           }
+  //           // update globalConfig.storyLongPressed
+  //           setGlobalConfig({
+  //             ...globalConfig,
+  //             storyLongPressed: undefined,
+  //           });
+  //           return;
+  //         }
+  //         // otherwise, open modal to add story
+  //         showInformativeAlert(t("LIBRARY.ALERT_ADD_STORY"));
+  //         //   router.push("AddStory");
+  //       }}
+  //     />
+  //   );
+  // }
 
   function sortAndFilterHandler() {
     return (
@@ -152,7 +152,7 @@ export const HeaderRight = ({ tintColor }) => {
       }}
     >
       {manageStoryHandler()}
-      {addAndRemoveStoryHandler()}
+      {/* {addAndRemoveStoryHandler()} */}
       {sortAndFilterHandler()}
     </View>
   );

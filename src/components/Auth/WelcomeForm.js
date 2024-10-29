@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
+  FlatList,
   ScrollView,
   StyleSheet,
   Text,
@@ -11,7 +12,7 @@ import Button from "../UI/Button";
 import { ScreensStyles } from "../../constants/styles";
 import { getUserNames } from "../../util/storage";
 import { showInformativeAlert } from "../../util/alert";
-import { useRouter } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import { GameLanguagePickers } from "../UI/GameLanguagePickers";
@@ -19,28 +20,30 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
   // TODO: only show options for languages / types that are in the stories
   // TODO: add options to sort
   const [inputUserName, setInputUserName] = useState(
-    defaultValues ? defaultValues.userName : "",
+    defaultValues ? defaultValues.userName : ""
   );
   // TODO: remove if finally not used
   // const [inputAppLanguage, setInputAppLanguage] = useState(
   //   defaultValues ? defaultValues.appLanguage : "en",
   // );
   const [inputLearningLanguage, setInputLearningLanguage] = useState(
-    defaultValues ? defaultValues.learningLanguage : "lt",
+    defaultValues ? defaultValues.learningLanguage : "lt"
   );
   const [inputKnownLanguage, setInputKnownLanguage] = useState(
-    defaultValues ? defaultValues.knownLanguage : "en",
+    defaultValues ? defaultValues.knownLanguage : "en"
   );
   const [allUsers, setAllUsers] = useState([]);
   const { t } = useTranslation();
 
-  useEffect(() => {
-    // setIsFetching(true);
-    getUserNames().then((users) => {
-      setAllUsers(users);
-    });
-    // setIsFetching(false);
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      // Reset states when the screen is focused
+      setInputUserName("");
+      getUserNames().then((users) => {
+        setAllUsers(users);
+      });
+    }, [])
+  );
 
   // TODO: remove if finally not used
   // useEffect(() => {
@@ -50,6 +53,8 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
   // }, [inputAppLanguage]);
 
   function onsignUpInterim() {
+    console.log(allUsers);
+    console.log(inputUserName);
     if (allUsers.includes(inputUserName)) {
       showInformativeAlert(t("AUTH.SIGNUP.ALERT_NAME_TAKEN"));
       return;
@@ -81,6 +86,11 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
       },
     });
   }
+  const onInputUserNameEndEditing = () => {
+    // Remove leading and trailing whitespace after finish editing
+    const trimmedText = inputUserName.trim();
+    setInputUserName(trimmedText);
+  };
 
   const router = useRouter();
 
@@ -89,6 +99,21 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
       style={styles.form}
       contentContainerStyle={styles.scrollViewContainer}
     >
+      {onSignIn && (
+        <View>
+          <Text style={ScreensStyles.buttonLabel}>
+            {t("AUTH.ALL_USERS")}
+          </Text>
+          <View style={styles.userListContainer}>
+            {allUsers.map((item, index) => (
+              <View key={index} style={styles.userListItem}>
+                <Text style={styles.bullet}>•</Text>
+                <Text style={styles.userText}>{item}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
+      )}
       {/* each of the elements inside one below the next one */}
       <View style={styles.inputsCol}>
         {/* <AutocompleteInput
@@ -99,13 +124,14 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
             keyboardType={"default"}
             value={inputUserName}
           /> */}
-        <View style={{ alignItems: "center", marginVertical: "5%" }}>
+        <View>
           <Text style={ScreensStyles.buttonLabel}>
             {t("AUTH.NAME")}
           </Text>
           <TextInput
             style={[ScreensStyles.input, { width: 150 }]}
             onChangeText={setInputUserName}
+            onEndEditing={onInputUserNameEndEditing}
             value={inputUserName}
             // TODO marc: maybe should use keyboardType="decimal-pad"?
             inputMode="keyboard"
@@ -210,19 +236,13 @@ const styles = StyleSheet.create({
   inputsCol: {
     flexDirection: "column",
     alignItems: "center",
-    // marginVertical: "15%",
+    marginVertical: "5%",
     zIndex: 500,
     // marginHorizontal: "5%",
     // width: "5%",
   },
-  inputsRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    zIndex: 500,
-    marginHorizontal: Platform.OS == "web" ? "0" : "25%",
-  },
   buttonsContainer: {
-    marginTop: "20%",
+    marginTop: "10%",
     minWidth: "60%",
   },
   button: {
@@ -232,5 +252,30 @@ const styles = StyleSheet.create({
   picker: {
     width: Platform.OS === "web" ? "100%" : "110%",
     // padding: "5px",
+  },
+
+  userListContainer: {
+    marginTop: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    marginBottom: "5%",
+    backgroundColor: "#f7f7f9", // Light background to separate the list
+    borderRadius: 8,
+    borderColor: "#ddd", // Subtle border
+    borderWidth: 1,
+  },
+  userListItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 4,
+  },
+  bullet: {
+    color: "#6b7280", // Neutral color for the bullet
+    fontSize: 16,
+    marginRight: 6,
+  },
+  userText: {
+    fontSize: 16,
+    color: "#333", // Darker text color for readability
   },
 });
