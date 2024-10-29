@@ -10,7 +10,7 @@ import { useRouter } from "expo-router";
 import { GlobalContext } from "../../context/global-context";
 import { useTranslation } from "react-i18next";
 
-function ResumeStory({ stories: stories }) {
+function ResumeStory({ stories, disabled }) {
   // TODO: find story that was played the latest and surface
   // to the summary to resume
   // if never played any story, remove
@@ -19,7 +19,7 @@ function ResumeStory({ stories: stories }) {
   const { t } = useTranslation();
 
   const storyId = globalConfig.lastStoryId;
-  const enabled = storyId !== undefined;
+  const enabled = storyId !== undefined && !disabled;
   const story = stories.find((story) => story.id === storyId);
   let name = story?.title;
 

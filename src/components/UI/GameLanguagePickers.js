@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { LanguagePickers } from "../../constants/styles";
-import { PickerInput } from "./Input";
+import { PickerInput } from "./PickerInput";
 import { useTranslation } from "react-i18next";
 import {
   LanguageOptionsLongNames,

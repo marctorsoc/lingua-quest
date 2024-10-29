@@ -70,12 +70,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     height: 80,
-    borderColor: GlobalStyles.colors.textLight,
-    borderWidth: 0.5,
+    borderColor: GlobalStyles.colors.white,
+    borderWidth: 0.01,
     // backgroundColor: "blue",
   },
   textBase: {
-    color: GlobalStyles.colors.primary50,
+    color: GlobalStyles.colors.white,
   },
   title: {
     fontSize: 16,

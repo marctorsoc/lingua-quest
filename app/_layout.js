@@ -1,5 +1,6 @@
 import * as NavigationBar from "expo-navigation-bar";
 import React, { useContext, useEffect, useState } from "react";
+import { Platform, UIManager } from "react-native";
 import { Stack } from "expo-router";
 import {
   GlobalContext,
@@ -22,6 +23,10 @@ import { useTranslation } from "react-i18next";
 
 export default function Layout() {
   useStickyImmersive();
+  // Enable layout animation for Android
+  if (Platform.OS === "android") {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
   const { t } = useTranslation();
 
   return (

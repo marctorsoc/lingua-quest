@@ -41,6 +41,6 @@ export default AnswerBox;
 
 const styles = StyleSheet.create({
   AnswerBoxContainer: {
-    backgroundColor: GlobalStyles.colors.primary500,
+    backgroundColor: GlobalStyles.colors.interactiveItem,
   },
 });

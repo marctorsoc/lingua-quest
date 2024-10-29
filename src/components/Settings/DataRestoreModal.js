@@ -53,7 +53,7 @@ const DataRestoreModal = ({
                       <IconButton
                         icon={"trash-outline"}
                         size={20}
-                        color={"red"}
+                        // color={"red"}
                         disabled={item == disabledOption}
                         onPress={() => {
                           onDelete(item);

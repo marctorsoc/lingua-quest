@@ -15,7 +15,7 @@ import {
 import { useTranslation, Trans } from "react-i18next";
 
 import WelcomeForm from "../../src/components/Auth/WelcomeForm";
-import { PickerInput } from "../../src/components/UI/Input";
+import { PickerInput } from "../../src/components/UI/PickerInput";
 import {
   languageOptions,
   LanguageOptionsNoLabel,
@@ -27,7 +27,7 @@ function Welcome() {
   const router = useRouter();
   const { t } = useTranslation();
   const [inputAppLanguage, setInputAppLanguage] = useState(
-    i18next.language ? i18next.language : "en",
+    i18next.language ? i18next.language : "en"
   );
 
   useEffect(() => {
@@ -52,7 +52,7 @@ function Welcome() {
     storeData("lastUser", updatedGlobalConfig.userId);
     storeData(
       "globalConfig-" + updatedGlobalConfig.userId,
-      JSON.stringify(updatedGlobalConfig),
+      JSON.stringify(updatedGlobalConfig)
     );
 
     showInformativeAlert(t("AUTH.SIGNUP.ALERT_DATA_STORED"));

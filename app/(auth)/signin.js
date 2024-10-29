@@ -14,7 +14,7 @@ import {
 } from "../../src/constants/styles";
 import WelcomeForm from "../../src/components/Auth/WelcomeForm";
 import { useTranslation } from "react-i18next";
-import { PickerInput } from "../../src/components/UI/Input";
+import { PickerInput } from "../../src/components/UI/PickerInput";
 import i18next from "i18next";
 import {
   languageOptions,
@@ -26,13 +26,13 @@ function Welcome() {
   const router = useRouter();
   const { t } = useTranslation();
   const [inputAppLanguage, setInputAppLanguage] = useState(
-    i18next.language ? i18next.language : "en",
+    i18next.language ? i18next.language : "en"
   );
   // console.log(globalConfig.filters);
 
   async function signInHandler(welcomeFormData) {
     const globalConfigFromDisk = await loadData(
-      "globalConfig-" + welcomeFormData.userInfo.userId,
+      "globalConfig-" + welcomeFormData.userInfo.userId
     );
     setGlobalConfig(JSON.parse(globalConfigFromDisk));
 

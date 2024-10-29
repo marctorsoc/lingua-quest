@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { GlobalStyles } from "../../constants/styles";
+import { GlobalStyles, ScreensStyles } from "../../constants/styles";
 import { useContext } from "react";
 import { GlobalContext } from "../../context/global-context";
 import MaskedText from "../UI/MaskedText";
@@ -100,15 +100,7 @@ const styles = StyleSheet.create({
     // sentences in PlayStory
     backgroundColor: GlobalStyles.colors.interactiveItem,
     borderRadius: 12,
-    // add shadow
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-
+    ...ScreensStyles.tileShadow,
     textAlign: "center",
     margin: "5%",
     // minHeight: 120,  // this was before removing langs

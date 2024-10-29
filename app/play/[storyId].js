@@ -12,7 +12,6 @@ import {
   ScreensStyles,
 } from "../../src/constants/styles";
 import { StoryContext } from "../../src/context/stories-context";
-import { PickerInput } from "../../src/components/UI/Input";
 import { sleep } from "../../src/util/debug";
 import SentenceList from "../../src/components/PlayStory/SentenceList";
 import AnswerBox from "../../src/components/PlayStory/AnswerBox";
@@ -61,7 +60,7 @@ function PlayStory() {
           globalConfig.filters.learningLanguage;
         const sentencesForStory = await fetchSentences(
           storyId,
-          learningLanguage,
+          learningLanguage
         );
 
         // console.log(globalConfig);
@@ -72,12 +71,12 @@ function PlayStory() {
           globalConfig.numSentencesPerGame;
         const requestStartIdx = Math.max(
           0,
-          story.done[learningLanguage] - numPrevSentences,
+          story.done[learningLanguage] - numPrevSentences
         );
         const requestEndIdx = Math.min(
           story.total[learningLanguage],
           story.done[learningLanguage] +
-            globalConfig.numSentencesPerGame,
+            globalConfig.numSentencesPerGame
         );
         const requestedSentences = [
           ...sentencesForStory.slice(requestStartIdx, requestEndIdx),
@@ -155,6 +154,6 @@ export default PlayStory;
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: GlobalStyles.colors.primary800,
+    backgroundColor: GlobalStyles.colors.background,
   },
 });

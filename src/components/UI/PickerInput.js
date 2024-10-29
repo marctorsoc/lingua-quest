@@ -1,47 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 import { useState } from "react";
 
 import { GlobalStyles } from "../../constants/styles";
 import DropDownPicker from "react-native-dropdown-picker";
-
-export function Input({
-  label,
-  invalid,
-  style,
-  textInputConfig,
-  editable = true,
-}) {
-  const inputStyles = [styles.input];
-
-  if (textInputConfig && textInputConfig.multiline)
-    inputStyles.push(styles.inputMultiline);
-
-  if (invalid) inputStyles.push(styles.invalidInput);
-
-  return (
-    <View style={[styles.inputContainer, style]}>
-      <Text style={[styles.label, invalid && styles.invalidLabel]}>
-        {label}
-      </Text>
-      <TextInput
-        editable={editable}
-        style={
-          editable
-            ? inputStyles
-            : [inputStyles, GlobalStyles.disabled]
-        }
-        {...textInputConfig}
-      />
-    </View>
-  );
-}
 
 export function PickerInput({
   label,
@@ -174,38 +136,16 @@ export function PickerInput({
 }
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    marginVertical: 10,
-    height: 20,
-    padding: 15, // use this when no text for each option
-  },
   pickerInputContainer: {
     marginVertical: "5%",
     minHeight: "0%",
     padding: 0, // use this when no text for each option
-    color: "red",
-    backgroundColor: "red",
+    // color: "red",
+    // backgroundColor: "red",
   },
   label: {
     fontSize: 16,
     color: GlobalStyles.colors.gray,
     textAlign: "center",
-  },
-  input: {
-    backgroundColor: GlobalStyles.colors.primary50,
-    padding: 6,
-    margin: 5,
-    borderRadius: 6,
-    fontSize: 14,
-  },
-  inputMultiline: {
-    minHeight: 100,
-    verticalAlign: "top",
-  },
-  invalidLabel: {
-    color: GlobalStyles.colors.error500,
-  },
-  invalidInput: {
-    backgroundColor: GlobalStyles.colors.error50,
   },
 });

@@ -1,5 +1,5 @@
 import MaskedText from "../UI/MaskedText";
-import { GlobalStyles } from "../../constants/styles";
+import { GlobalStyles, ScreensStyles } from "../../constants/styles";
 import { StyleSheet } from "react-native";
 import { showInformativeToast } from "../../util/alert";
 import * as Clipboard from "expo-clipboard";
@@ -14,7 +14,7 @@ function computeShowTranslation(
   playingThisItem,
   answerWasSelected,
   validItem,
-  readingMode,
+  readingMode
 ) {
   return (
     playingThisItem &&
@@ -53,8 +53,8 @@ function SentenceItem({
       playingThisItem,
       answerWasSelected,
       validItem,
-      globalConfig.readingMode,
-    ),
+      globalConfig.readingMode
+    )
   );
   // if (text == "-Hubertas.") {
   //   console.log("text: ", text);
@@ -73,8 +73,8 @@ function SentenceItem({
         playingThisItem,
         answerWasSelected,
         validItem,
-        globalConfig.readingMode,
-      ),
+        globalConfig.readingMode
+      )
     );
   }, [answerWasSelected, playingThisItem]);
   // TODO marc: this console.log appears many many times.
@@ -131,7 +131,9 @@ function SentenceItem({
   return (
     <View style={sentenceItemStyle}>
       <View style={styles.IndexItem}>
-        <Text style={styles.IndexText}>{index + 1}</Text>
+        <Text style={[styles.textBase, styles.IndexText]}>
+          {index + 1}
+        </Text>
       </View>
       <Button
         style={styles.textsContainer}
@@ -167,24 +169,16 @@ const styles = StyleSheet.create({
     // TODO: extract some style from here to merge with
     // sentences in StoryItem
     padding: 10,
-    marginVertical: 15,
+    marginTop: "3%",
     marginHorizontal: 24,
-    margin: "2%",
-    backgroundColor: GlobalStyles.colors.primary500,
+    backgroundColor: GlobalStyles.colors.primaryButton,
     flexDirection: "row",
     alignItems: "center",
-    // flexDirection: "column",
-    // justifyContent: "space-between",
     borderRadius: 12,
-    // elevation: 3,
-    // boxshadowColor: GlobalStyles.colors.gray500,
-    // boxShadowRadius: 4,
-    // boxShadowOffset: { width: 1, height: 1 },
-    // boxShadowOpacity: 0.4,
-    textAlign: "center",
+    ...ScreensStyles.tileShadow,
   },
   alreadyPlayedSentenceItem: {
-    backgroundColor: GlobalStyles.colors.primary500a,
+    backgroundColor: GlobalStyles.colors.primaryButton,
   },
   textsContainer: {
     flex: 1,
@@ -192,17 +186,18 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   textBase: {
-    color: GlobalStyles.colors.primary50,
+    color: GlobalStyles.colors.white,
   },
   title: {
     fontSize: 16,
     marginBottom: 4,
-    fontWeight: "bold",
+    // fontWeight: "bold",
     textAlign: "center",
   },
   textTranslated: {
-    color: "orange",
+    color: GlobalStyles.colors.lightGray,
     fontStyle: "italic",
+    // fontWeight: "bold",
     textAlign: "center",
   },
   revealedMaskedText: {

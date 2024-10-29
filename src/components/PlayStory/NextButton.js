@@ -51,13 +51,13 @@ function NextButton({ skip }) {
         };
         // save to context AND local storage
         const updatedStories = stories.map((story) =>
-          story.id === updatedStory.id ? updatedStory : story,
+          story.id === updatedStory.id ? updatedStory : story
         );
 
         setStories(updatedStories);
         storeData(
           "stories-" + globalConfig.userId,
-          JSON.stringify(updatedStories),
+          JSON.stringify(updatedStories)
         );
 
         // show a popup to continue "yes/no"
@@ -104,7 +104,7 @@ function NextButton({ skip }) {
           },
         },
       ],
-      { cancelable: false },
+      { cancelable: false }
     );
   };
 
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
   },
   textBase: {
-    color: GlobalStyles.colors.primary50,
+    color: GlobalStyles.colors.white,
   },
   title: {
     fontSize: 16,

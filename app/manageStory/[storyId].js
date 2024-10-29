@@ -50,12 +50,12 @@ function ManageStory() {
             ...story,
             ...storyData,
           }
-        : story,
+        : story
     );
     setStories(updatedStories);
     storeData(
       "stories-" + globalConfig.userId,
-      JSON.stringify(updatedStories),
+      JSON.stringify(updatedStories)
     );
 
     showInformativeAlert(t("EDIT.ALERT_STORY_UPDATED"));
@@ -104,8 +104,8 @@ export default ManageStory;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 24,
-    backgroundColor: GlobalStyles.colors.primary700,
+    paddingVertical: 24,
+    backgroundColor: GlobalStyles.colors.background,
   },
   deleteContainer: {
     marginTop: 16,

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-import { Input, PickerInput } from "../UI/Input";
+import { TextInput } from "../UI/TextInput";
 import Button from "../UI/Button";
 import { getFormattedDate } from "../../util/date";
 import { GlobalStyles, ScreensStyles } from "../../constants/styles";
@@ -27,7 +27,7 @@ function StoryForm({
     // },
     languages: {
       value: JSON.stringify(
-        defaultValues ? defaultValues.languages : {},
+        defaultValues ? defaultValues.languages : {}
       ),
       isValid: true,
     },
@@ -41,7 +41,7 @@ function StoryForm({
   function inputChangedHandler(
     inputIdentifier,
     enteredValue,
-    json_parse = false,
+    json_parse = false
   ) {
     let isValid = enteredValue.trim().length > 0;
     try {
@@ -70,7 +70,7 @@ function StoryForm({
     if (!inputs.title.isValid || !inputs.done.isValid) {
       showInformativeAlert(
         t("EDIT.ALERT_INVALID_STORY"),
-        t("EDIT.ALERT_FIX_ERRORS"),
+        t("EDIT.ALERT_FIX_ERRORS")
       );
       return;
     }
@@ -79,7 +79,7 @@ function StoryForm({
 
   return (
     <View style={styles.form}>
-      <Input
+      <TextInput
         label={t("EDIT.TITLE")}
         invalid={!inputs.title.isValid}
         editable={false}
@@ -90,18 +90,7 @@ function StoryForm({
           value: inputs.title.value,
         }}
       />
-      {/* <Input
-        label="Caption Url" // previously Description
-        invalid={!inputs.url.isValid}
-        textInputConfig={{
-          multiline: true,
-          // autoCapitalize: 'none'
-          // autoCorrect: false // default is true
-          onChangeText: inputChangedHandler.bind(this, "url"),
-          value: inputs.url.value,
-        }}
-      /> */}
-      <Input
+      <TextInput
         label={t("EDIT.LANGUAGES_AND_TRANSLATIONS")}
         editable={false}
         style={styles.input}
@@ -112,29 +101,7 @@ function StoryForm({
           value: inputs.languages.value,
         }}
       />
-      {/* <View style={styles.inputsRow}>
-        <PickerInput
-          style={[styles.rowInput, { width: "45%" }]}
-          label="Learning"
-          pickerConfig={{
-            onChangeText: (text) =>
-              inputChangedHandler("learning_lc", text),
-            value: inputs.learning_lc.value,
-            options: languageOptions,
-          }}
-        />
-        <PickerInput
-          style={[styles.rowInput, { width: "45%" }]}
-          label="From"
-          pickerConfig={{
-            onChangeText: (text) =>
-              inputChangedHandler("known_lc", text),
-            value: inputs.known_lc.value,
-            options: languageOptions,
-          }}
-        />
-      </View> */}
-      <Input
+      <TextInput
         label={t("EDIT.SENTENCES_DONE")}
         invalid={!inputs.done.isValid}
         style={styles.input}
@@ -164,7 +131,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: GlobalStyles.colors.textLight,
+    color: GlobalStyles.colors.white,
     marginVertical: 24,
     textAlign: "center",
   },

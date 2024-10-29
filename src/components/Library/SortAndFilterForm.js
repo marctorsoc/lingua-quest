@@ -14,11 +14,11 @@ function getStoriesForFilters(stories, filters) {
       // TODO: enable filtering by story type
       // story.storyType === filters.storyType.value &&
       Object.keys(story.languages).includes(
-        filters.learningLanguage,
+        filters.learningLanguage
       ) &&
       story.languages[filters.learningLanguage].includes(
-        filters.knownLanguage,
-      ),
+        filters.knownLanguage
+      )
   );
 }
 
@@ -29,13 +29,13 @@ function SortAndFilterForm({ onCancel, onSubmit, defaultValues }) {
   // TODO: only show options for languages / types that are in the stories
   // TODO: add options to sort
   const [inputStoryType, setInputStoryType] = useState(
-    defaultValues ? defaultValues.storyType : "subtitle",
+    defaultValues ? defaultValues.storyType : "subtitle"
   );
   const [inputLearningLanguage, setInputLearningLanguage] = useState(
-    defaultValues ? defaultValues.learningLanguage : "lt",
+    defaultValues ? defaultValues.learningLanguage : "lt"
   );
   const [inputKnownLanguage, setInputKnownLanguage] = useState(
-    defaultValues ? defaultValues.knownLanguage : "en",
+    defaultValues ? defaultValues.knownLanguage : "en"
   );
   const inputs = {
     storyType: inputStoryType,
@@ -53,13 +53,13 @@ function SortAndFilterForm({ onCancel, onSubmit, defaultValues }) {
   // });
 
   const [numFilteredStories, setNumFilteredStories] = useState(
-    getStoriesForFilters(stories, inputs).length,
+    getStoriesForFilters(stories, inputs).length
   );
 
   // TODO: can this be solved without a useEffect?
   useEffect(() => {
     setNumFilteredStories(
-      getStoriesForFilters(stories, inputs).length,
+      getStoriesForFilters(stories, inputs).length
     );
   }, [inputs]);
 

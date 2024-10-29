@@ -70,7 +70,7 @@ function LibraryOutput({ stories, fallbackText, parentId = null }) {
       ) : (
         <StoryList stories={content} />
       )}
-      <ResumeStory stories={stories} />
+      <ResumeStory stories={stories} disabled={parentId !== null} />
     </View>
   );
 }
@@ -90,26 +90,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
     marginTop: 32,
-  },
-  debugText: {
-    color: "black",
-    fontSize: 16,
-    textAlign: "center",
-  },
-  filterParentContainer: {
-    width: "100%",
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "flex-start",
-    backgroundColor: "transparent",
-  },
-  filterContainer: {
-    width: "40%",
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "flex-end",
-    backgroundColor: GlobalStyles.colors.primary500,
   },
 });

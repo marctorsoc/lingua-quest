@@ -20,18 +20,18 @@ export const GlobalStyles = {
     gray700: "#221c30",
   },
   colors: {
-    background: "#f0f1f3", // Main background for all screens
-    header: "#3a7ff0", // Consistent header color for all screens
-    primaryButton: "#4b92e8", // Main color for primary action buttons
-    secondaryButton: "#dce7ff", // Color for secondary buttons or less prominent actions
-    interactiveItem: "#4b92e8", // Color for clickable items like story cards (same as secondary button for coherence)
-    accent: "#f59e0b", // Accent color for highlights, icons, or specific calls-to-action
-    error: "#dc2626", // Error color for alerts and warnings
-    lightGray: "#d1d5db", //
-    gray: "#6b7280", // Neutral gray for secondary text or placeholders
-    blackText: "#111827", // Main text color for readability
-    white: "#f2f2f2", // For elements on dark backgrounds
-    tabBar: "#e2e5ea",
+    background: "#f0f1f3", // Main background for all screens (good choice, light and neutral)
+    header: "#4A115F", // Dark purple header color (works well, but consider a slightly brighter option)
+    primaryButton: "#6B1D73", // Use a brighter variant of purple for primary buttons to enhance visibility
+    secondaryButton: "#DBC2E5", // Light lavender for secondary buttons (this works, soft and pleasant)
+    interactiveItem: "#83389f", // Rich purple for clickable items (consider changing to #6B1D73 for consistency)
+    accent: "#f59e0b", // Bright yellow for highlights and calls-to-action (great choice for visibility)
+    error: "#dc2626", // Red for error messages (effective and clear)
+    lightGray: "#d1d5db", // Light gray for backgrounds and borders (appropriate)
+    gray: "#6b7280", // Neutral gray for secondary text (effective)
+    blackText: "#111827", // Dark gray for main text (excellent choice for readability)
+    white: "#f2f2f2", // Soft white for elements on dark backgrounds (good)
+    tabBar: "#e2e5ea", // Light gray for the tab bar background (this works well)
   },
   disabled: {
     opacity: 0.6,
@@ -57,7 +57,7 @@ export const AuthStyles = {
   container: {
     flex: 1,
     padding: 50,
-    backgroundColor: GlobalStyles.colors.primary700,
+    backgroundColor: GlobalStyles.colors.background,
   },
   title: {
     marginVertical: "10%",
@@ -77,17 +77,22 @@ export const ScreensStyles = {
     margin: 5,
     padding: 0,
   },
-  tabBarStyle: {
-    backgroundColor: GlobalStyles.colors.primary500,
-    paddingBottom: 2,
-    paddingTop: 5,
-  },
   popoverContainer: {
     // width: "100%",
     // height: "20%",
     width: "auto",
     backgroundColor: GlobalStyles.colors.error500,
     borderRadius: 12,
+  },
+  tileShadow: {
+    shadowColor: "#000", // Shadow color for iOS
+    shadowOffset: {
+      width: 4, // Horizontal shadow offset
+      height: 4, // Vertical shadow offset
+    },
+    shadowOpacity: 0.2, // Shadow opacity
+    shadowRadius: 6, // Shadow blur radius
+    elevation: 4, // Elevation for Android
   },
   button: {
     paddingVertical: "3%",
@@ -105,12 +110,12 @@ export const ScreensStyles = {
   buttonLabel: {
     textAlign: "center",
     fontSize: 16,
-    color: GlobalStyles.colors.primaryButton,
+    color: GlobalStyles.colors.blackText,
     paddingHorizontal: "5%",
-    paddingVertical: "2%",
+    // paddingVertical: "2%",
   },
   input: {
-    height: Platform.OS === "web" ? "25px" : "25%",
+    height: Platform.OS === "web" ? "25px" : "45%",
     borderColor: GlobalStyles.colors.lightGray,
     color: "black",
     fontSize: 16,
@@ -144,14 +149,6 @@ export const LanguagePickers = {
 };
 
 export const LibraryStyles = {
-  optionContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: "15%",
-    justifyContent: "space-between",
-    height: 50,
-    backgroundColor: GlobalStyles.colors.primary700,
-  },
   label: {
     fontSize: 25,
     color: GlobalStyles.colors.textLight,

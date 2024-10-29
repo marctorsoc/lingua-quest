@@ -20,7 +20,7 @@ const IconButton = forwardRef(
         <Ionicons name={icon} size={size} color={color} />
       </View>
     </Pressable>
-  ),
+  )
 );
 IconButton.displayName = "IconButton";
 

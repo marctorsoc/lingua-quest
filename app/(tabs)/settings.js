@@ -42,7 +42,7 @@ import { useRouter } from "expo-router";
 import i18next, { use } from "i18next";
 import DataRestoreModal from "../../src/components/Settings/DataRestoreModal";
 import { useTranslation } from "react-i18next";
-import { PickerInput } from "../../src/components/UI/Input";
+import { PickerInput } from "../../src/components/UI/PickerInput";
 import {
   languageOptions,
   LanguageOptionsLongNames,
@@ -309,7 +309,7 @@ const Settings = () => {
       />
       {/* Option: Number of sentences per game */}
       <View style={styles.optionContainer}>
-        <Text style={styles.label}>
+        <Text style={styles.optionLabel}>
           {t("SETTINGS.SENTENCES_PER_ROUND")}
         </Text>
         <TextInput
@@ -323,7 +323,7 @@ const Settings = () => {
       </View>
       {/* Option: History length */}
       <View style={styles.optionContainer}>
-        <Text style={styles.label}>
+        <Text style={styles.optionLabel}>
           {t("SETTINGS.HISTORY_LENGTH")}
         </Text>
         <TextInput
@@ -337,7 +337,9 @@ const Settings = () => {
 
       {/* Option: Reading mode */}
       <View style={styles.optionContainer}>
-        <Text style={styles.label}>{t("SETTINGS.READING_MODE")}</Text>
+        <Text style={styles.optionLabel}>
+          {t("SETTINGS.READING_MODE")}
+        </Text>
         <Switch
           style={styles.switch}
           value={readingMode}
@@ -346,7 +348,6 @@ const Settings = () => {
             false: "#767577",
             true: "#767577",
           }}
-          thumbColor={readingMode ? "red" : "#f4f3f4"}
           activeThumbColor={
             readingMode ? GlobalStyles.colors.accent : "#f4f3f4"
           }
@@ -354,7 +355,7 @@ const Settings = () => {
         />
       </View>
       <View style={styles.optionContainer}>
-        <View>
+        {/* <View>
           <Text style={styles.label}>
             {t("SETTINGS.APP_LANGUAGE")}
           </Text>
@@ -366,7 +367,7 @@ const Settings = () => {
             value={inputAppLanguage}
             options={LanguageOptionsNoLabel}
           />
-        </View>
+        </View> */}
       </View>
       {/* Manage data */}
       {/* height: "auto" is needed to overwrite optionContainer height */}
@@ -403,7 +404,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: "2%",
-    backgroundColor: GlobalStyles.colors.primary700,
     flexDirection: "column",
   },
   optionContainer: {
@@ -415,16 +415,14 @@ const styles = StyleSheet.create({
     zIndex: 1000,
     marginVertical: "1%",
   },
-  label: {
+  optionLabel: {
     fontSize: 18,
     color: GlobalStyles.colors.blackText,
-    width: "100%",
   },
   switch: {
-    width: "10%",
     // TODO: not clear to me why we need 5.5 to align with
     // the input. I would expect 5%.
-    marginRight: "5.5%",
+    marginRight: Platform.OS == "web" ? "5.5%" : "2.5%",
     // backgroundColor: "red",
   },
   pickerView: {

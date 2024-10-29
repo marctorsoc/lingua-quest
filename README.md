@@ -63,8 +63,7 @@ Go to `raw.js` and update. Then run `node raw.js` to generate all `$language.jso
 - Review ALL pickers and buttons for ALL screens, both on web and android
     - picker in settings, review in Android
 
-- Remove colours and simply use black and white. Do 
-bright mode only for now
+- Remove colours and use something simpler. Do bright mode only for now
 
 - Add tutorial after Welcome (first time mandatory, later as optional) and as a button in settings
 
