@@ -27,8 +27,6 @@ export default function Layout() {
 
   useEffect(() => {
     async function getGlobalConfig() {
-      const lastUser = await loadData("lastUser");
-      if (!lastUser) return;
       // if we passed param logout=true, then skip finding last user
       if (logout) {
         console.log("Loading default data");
@@ -36,12 +34,19 @@ export default function Layout() {
         setPlayData(initialPlayData);
         return;
       }
-      const globalConfigFromDisk = await loadData(
-        "globalConfig-" + lastUser
+
+      const lastUser = await loadData("lastUser");
+      if (!lastUser) return;
+
+      const msg = `Not first time. Last user was \`${lastUser}\`. `;
+      console.log(msg + "Redirecting to (tabs)/library");
+
+      loadData("globalConfig-" + lastUser).then(
+        (globalConfigFromDisk) => {
+          setGlobalConfig(JSON.parse(globalConfigFromDisk));
+          router.navigate("(tabs)/library");
+        }
       );
-      setGlobalConfig(JSON.parse(globalConfigFromDisk));
-      console.log("Not first time. Redirecting to (tabs)/library");
-      router.navigate("(tabs)/library");
     }
     // setIsFetching(true);
     getGlobalConfig();

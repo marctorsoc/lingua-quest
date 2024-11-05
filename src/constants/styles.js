@@ -88,13 +88,7 @@ export const ScreensStyles = {
     borderRadius: 12,
   },
   tileShadow: {
-    shadowColor: "#000", // Shadow color for iOS
-    shadowOffset: {
-      width: 4, // Horizontal shadow offset
-      height: 4, // Vertical shadow offset
-    },
-    shadowOpacity: 0.5, // Shadow opacity
-    shadowRadius: 6, // Shadow blur radius
+    boxShadow: "4px 4px 6px rgba(0, 0, 0, 0.5)",
     // For now, disabling this because when clicking this makes
     // the items inside show a box, and looks bad. This is only
     // for Android

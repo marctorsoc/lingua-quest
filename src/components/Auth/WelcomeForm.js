@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
+import Checkbox from "expo-checkbox";
+
 import {
   FlatList,
   ScrollView,
@@ -9,7 +11,7 @@ import {
 } from "react-native";
 import { Platform } from "react-native";
 import Button from "../UI/Button";
-import { ScreensStyles } from "../../constants/styles";
+import { GlobalStyles, ScreensStyles } from "../../constants/styles";
 import { getUserNames } from "../../util/storage";
 import { showInformativeAlert } from "../../util/alert";
 import { useFocusEffect, useRouter } from "expo-router";
@@ -33,6 +35,8 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
     defaultValues ? defaultValues.knownLanguage : "en"
   );
   const [allUsers, setAllUsers] = useState([]);
+  const [skipTutorial, setSkipTutorial] = useState(false);
+
   const { t } = useTranslation();
 
   useFocusEffect(
@@ -77,12 +81,12 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
       },
     });
   }
-  function onsignInInterim() {
+  function onsignInInterim(name) {
     onSignIn({
       userInfo: {
-        userName: inputUserName,
+        userName: name,
         // this could be e.g. the hash of userName
-        userId: inputUserName,
+        userId: name,
       },
     });
   }
@@ -101,16 +105,21 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
     >
       {onSignIn && (
         <View>
-          <Text style={ScreensStyles.buttonLabel}>
-            {t("AUTH.ALL_USERS")}
-          </Text>
           <View style={styles.userListContainer}>
-            {allUsers.map((item, index) => (
-              <View key={index} style={styles.userListItem}>
-                <Text style={styles.bullet}>•</Text>
-                <Text style={styles.userText}>{item}</Text>
-              </View>
-            ))}
+            <Text style={styles.heading}>{t("AUTH.ALL_USERS")}</Text>
+            <View style={styles.userGrid}>
+              {allUsers.map((user, index) => (
+                <Button
+                  key={index}
+                  style={styles.userButton}
+                  onPress={() => {
+                    onsignInInterim(user);
+                  }}
+                >
+                  <Text style={styles.userText}>{user}</Text>
+                </Button>
+              ))}
+            </View>
           </View>
         </View>
       )}
@@ -124,45 +133,47 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
             keyboardType={"default"}
             value={inputUserName}
           /> */}
-        <View>
-          <Text style={ScreensStyles.buttonLabel}>
-            {t("AUTH.NAME")}
-          </Text>
-          <TextInput
-            style={[ScreensStyles.input, { width: 150 }]}
-            onChangeText={setInputUserName}
-            onEndEditing={onInputUserNameEndEditing}
-            value={inputUserName}
-            // TODO marc: maybe should use keyboardType="decimal-pad"?
-            inputMode="keyboard"
-            maxLength={10}
-          />
-        </View>
-        {/* <Text style={styles.errorText}>{inputUserName}</Text> */}
         {onSignUp && (
-          // two (label + picker) blocks in a row, side by side
-          <GameLanguagePickers
-            inputLearningLanguage={inputLearningLanguage}
-            setInputLearningLanguage={setInputLearningLanguage}
-            inputKnownLanguage={inputKnownLanguage}
-            setInputKnownLanguage={setInputKnownLanguage}
-          ></GameLanguagePickers>
+          <View style={styles.inputsCol}>
+            <View style={{ marginBottom: "5%" }}>
+              <Text style={ScreensStyles.buttonLabel}>
+                {t("AUTH.NAME")}
+              </Text>
+              <TextInput
+                style={[ScreensStyles.input, { width: 150 }]}
+                onChangeText={setInputUserName}
+                onEndEditing={onInputUserNameEndEditing}
+                value={inputUserName}
+                // TODO marc: maybe should use keyboardType="decimal-pad"?
+                inputMode="keyboard"
+                maxLength={10}
+              />
+            </View>
+            {/* // two (label + picker) blocks in a row, side by side */}
+            <GameLanguagePickers
+              inputLearningLanguage={inputLearningLanguage}
+              setInputLearningLanguage={setInputLearningLanguage}
+              inputKnownLanguage={inputKnownLanguage}
+              setInputKnownLanguage={setInputKnownLanguage}
+            ></GameLanguagePickers>
+            <View style={styles.checkboxContainer}>
+              <Checkbox
+                value={skipTutorial}
+                onValueChange={setSkipTutorial}
+                color={
+                  skipTutorial
+                    ? GlobalStyles.colors.primaryButton
+                    : undefined
+                }
+              />
+              <Text style={styles.checkboxLabel}>
+                {t("AUTH.SIGNUP.SKIP_TUTORIAL")}
+              </Text>
+            </View>
+          </View>
         )}
       </View>
       <View style={styles.buttonsContainer}>
-        {onSignIn && (
-          <View style={styles.button}>
-            <Button
-              style={ScreensStyles.button}
-              onPress={onsignInInterim}
-              disabled={!allUsers.includes(inputUserName)}
-            >
-              <Text style={ScreensStyles.buttonLabel}>
-                {t("AUTH.SIGNIN.CONTINUE")}
-              </Text>
-            </Button>
-          </View>
-        )}
         {onSignUp && (
           <View style={styles.button}>
             <Button
@@ -255,27 +266,48 @@ const styles = StyleSheet.create({
   },
 
   userListContainer: {
-    marginTop: 16,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    marginBottom: "5%",
-    backgroundColor: "#f7f7f9", // Light background to separate the list
-    borderRadius: 8,
-    borderColor: "#ddd", // Subtle border
-    borderWidth: 1,
+    backgroundColor: "#DBC2E5", // Light purple background from your palette
+    borderRadius: 10,
+    padding: 15,
+    marginTop: 20,
+    alignSelf: "center",
+    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+    elevation: 5,
   },
-  userListItem: {
+  heading: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#4A115F", // Darker purple for the heading
+    textAlign: "center",
+    marginBottom: 10,
+  },
+  userGrid: {
     flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 4,
+    flexWrap: "wrap",
+    justifyContent: "center",
   },
-  bullet: {
-    color: "#6b7280", // Neutral color for the bullet
-    fontSize: 16,
-    marginRight: 6,
+  userButton: {
+    backgroundColor: "#83389f", // Main purple color for user buttons
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    margin: 5,
+    boxShadow: "0px 2px 3px rgba(0, 0, 0, 0.3)",
+    elevation: 4,
   },
   userText: {
+    color: "#f2f2f2", // White text for readability
+    fontWeight: "bold",
     fontSize: 16,
-    color: "#333", // Darker text color for readability
+    textAlign: "center",
+  },
+  checkboxContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 20,
+  },
+  checkboxLabel: {
+    marginLeft: 8,
+    color: GlobalStyles.colors.blackText,
   },
 });

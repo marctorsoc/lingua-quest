@@ -1,36 +1,29 @@
-import { HeaderBackButton, router } from "expo-router";
-
 import * as NavigationBar from "expo-navigation-bar";
-import React, { useContext, useEffect, useState } from "react";
-import { Platform, UIManager } from "react-native";
+import { useEffect } from "react";
+
 import { Stack } from "expo-router";
-import {
-  GlobalContext,
-  GlobalContextProvider,
-} from "../src/context/global-context";
+import { Platform, UIManager } from "react-native";
+import { GlobalContextProvider } from "../src/context/global-context";
 import { StoryContextProvider } from "../src/context/stories-context";
 import { PlayContextProvider } from "../src/context/play-context";
 import { GlobalStyles } from "../src/constants/styles";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
-  setStatusBarBackgroundColor,
   setStatusBarHidden,
   setStatusBarStyle,
-  setStatusBarTranslucent,
   StatusBar,
 } from "expo-status-bar";
-import { fetchStories } from "../src/util/http";
-import { getData } from "../src/util/storage";
 import "../src/lang/i18n";
 import { useTranslation } from "react-i18next";
 
 export default function Layout() {
-  useStickyImmersive();
   // Enable layout animation for Android
   if (Platform.OS === "android") {
+    useStickyImmersive();
     UIManager.setLayoutAnimationEnabledExperimental(true);
   }
+
   const { t } = useTranslation();
 
   return (
@@ -106,7 +99,7 @@ function useStickyImmersive() {
   // StatusBar.setVisibilityAsync("hidden");
   // setStatusBarTranslucent(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (visibilityNB === "visible") {
       const interval = setTimeout(() => {
         NavigationBar.setVisibilityAsync("hidden");

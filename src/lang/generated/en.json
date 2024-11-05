@@ -20,6 +20,7 @@
       "SIGNUP": {
         "TITLE": "Create account",
         "ABOVE_SIGNIN_LINK_TEXT": "Already have an account?",
+        "SKIP_TUTORIAL": "Skip tutorial",
         "SIGNIN_LINK": "Sign in",
         "CONTINUE": "Sign up",
         "ALERT_DATA_STORED": "Data stored. Ready to play",

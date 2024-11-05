@@ -20,6 +20,7 @@
       "SIGNUP": {
         "TITLE": "Sukurti paskyrą",
         "ABOVE_SIGNIN_LINK_TEXT": "Jau turite paskyrą?",
+        "SKIP_TUTORIAL": "Praleisti tutorialą",
         "SIGNIN_LINK": "Įkelti savo paskyrą",
         "CONTINUE": "Registruotis",
         "ALERT_DATA_STORED": "Duomenys saugomi. Gerai žaisti",

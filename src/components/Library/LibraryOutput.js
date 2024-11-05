@@ -42,6 +42,8 @@ function LibraryOutput({ stories, fallbackText, parentId = null }) {
   );
 
   const { globalConfig } = useContext(GlobalContext);
+  // console.log("globalConfig");
+  // console.log(globalConfig);
   // console.log(globalConfig.filters);
   // console.log(stories);
 

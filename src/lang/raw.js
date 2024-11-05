@@ -89,6 +89,12 @@ const translations = {
         ca: "Ja tens una compte?",
         lt: "Jau turite paskyrą?",
       },
+      SKIP_TUTORIAL: {
+        en: "Skip tutorial",
+        es: "Omitir tutorial",
+        ca: "Ometre tutorial",
+        lt: "Praleisti tutorialą",
+      },
       SIGNIN_LINK: {
         en: "Sign in",
         es: "Entra en tu cuenta",

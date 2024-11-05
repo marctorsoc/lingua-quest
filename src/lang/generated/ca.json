@@ -20,6 +20,7 @@
       "SIGNUP": {
         "TITLE": "Crear compte",
         "ABOVE_SIGNIN_LINK_TEXT": "Ja tens una compte?",
+        "SKIP_TUTORIAL": "Ometre tutorial",
         "SIGNIN_LINK": "Entra al teu compte",
         "CONTINUE": "Registrar-se",
         "ALERT_DATA_STORED": "Dades desats. Preparat per jugar",

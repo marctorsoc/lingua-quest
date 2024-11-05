@@ -6,29 +6,23 @@ import { useRouter } from "expo-router";
 import { GlobalContext } from "../../src/context/global-context";
 import { loadData, storeData } from "../../src/util/storage";
 import { showInformativeAlert } from "../../src/util/alert";
-import SortAndFilterForm from "../../src/components/Library/SortAndFilterForm";
 import {
   AuthStyles,
-  GlobalStyles,
   LibraryStyles,
 } from "../../src/constants/styles";
 import WelcomeForm from "../../src/components/Auth/WelcomeForm";
 import { useTranslation } from "react-i18next";
 import { PickerInput } from "../../src/components/UI/PickerInput";
 import i18next from "i18next";
-import {
-  languageOptions,
-  LanguageOptionsNoLabel,
-} from "../../src/constants/languages";
+import { LanguageOptionsNoLabel } from "../../src/constants/languages";
 
 function Welcome() {
-  const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
+  const { setGlobalConfig } = useContext(GlobalContext);
   const router = useRouter();
   const { t } = useTranslation();
   const [inputAppLanguage, setInputAppLanguage] = useState(
     i18next.language ? i18next.language : "en"
   );
-  // console.log(globalConfig.filters);
 
   async function signInHandler(welcomeFormData) {
     const globalConfigFromDisk = await loadData(
@@ -64,10 +58,7 @@ function Welcome() {
           options={LanguageOptionsNoLabel}
         />
       </View>
-      <WelcomeForm
-        onSignIn={signInHandler}
-        //   onSignUp={signInHandler}
-      />
+      <WelcomeForm onSignIn={signInHandler} />
     </View>
   );
 }
