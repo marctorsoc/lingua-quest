@@ -1,10 +1,11 @@
 2024-11-XX:
-- Migrate to expo-router, with lot of cleaning e.g. no more hardcoded back button
-- Header with logo
+- Migrate to expo-router
+- Header with logos
 - Very simple user management (with local storage)
 - Welcome screen and tutorial
 - i8n text
-- New styles
+- New color palette
+- New logo and first mascot!
 
 2024-05-31:
 - Adding prettier pickers supporting logos

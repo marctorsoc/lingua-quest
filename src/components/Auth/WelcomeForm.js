@@ -79,6 +79,7 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
         knownLanguage: inputKnownLanguage,
         learningLanguage: inputLearningLanguage,
       },
+      skipTutorial: skipTutorial,
     });
   }
   function onsignInInterim(name) {
@@ -103,6 +104,7 @@ function WelcomeForm({ onSignUp, onSignIn, defaultValues }) {
       style={styles.form}
       contentContainerStyle={styles.scrollViewContainer}
     >
+      {/* List of users to sign in */}
       {onSignIn && (
         <View>
           <View style={styles.userListContainer}>
@@ -242,15 +244,11 @@ const styles = StyleSheet.create({
   scrollViewContainer: {
     alignItems: "center",
     justifyContent: "center",
-    flex: Platform.OS == "web" ? undefined : 1,
   },
   inputsCol: {
     flexDirection: "column",
     alignItems: "center",
-    marginVertical: "5%",
     zIndex: 500,
-    // marginHorizontal: "5%",
-    // width: "5%",
   },
   buttonsContainer: {
     marginTop: "10%",

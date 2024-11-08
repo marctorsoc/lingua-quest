@@ -3,6 +3,7 @@
     "GLOBAL": {
       "OF": "iš",
       "FROM": "iš",
+      "NEXT": "Kitas",
       "CANCEL": "Atšaukti",
       "APPLY": "Taikyti",
       "LEARNING_LANG": "Kalba mokymuisi",
@@ -40,6 +41,11 @@
       "ALERT_ADD_STORY": "Kol kas negalima pridėti daugiau istorijų 😞",
       "ALERT_REMOVED_STORY": "Istorija pašalinta sėkmingai!"
     },
+    "PLAY": {
+      "COMPLETED": "Baigtas",
+      "FINISH_ROUND": "Baigti rūšį",
+      "TRY_AGAIN": "Pabandyti dar kartą"
+    },
     "SETTINGS": {
       "SENTENCES_PER_ROUND": "Žodžiai per rūšį",
       "HISTORY_LENGTH": "Rūšių skaičius",
@@ -47,6 +53,7 @@
       "APP_LANGUAGE": "App kalba",
       "RESTORE_DATA": "Atkurti duomenis",
       "SAVE_DATA": "Išsaugoti duomenis",
+      "WATCH_TUTORIAL": "Peržiūrėti tutorialą",
       "ALERT_RESTORED_DATA_FOR": "Atkurti duomenys už ",
       "ALERT_ERROR_RESTORING": "Klaida atkurti duomenis",
       "ALERT_ERROR_DELETING": "Negalima ištrinti dabartinio vartotojo duomenų",
@@ -66,6 +73,23 @@
       "ALERT_STORY_UPDATED": "Istorija atnaujinta",
       "ALERT_INVALID_STORY": "Neteisinga istorija",
       "ALERT_FIX_ERRORS": "Prašau ištaisyti klaidų viršuje."
+    },
+    "TUTORIAL": {
+      "STAGE_0": "Sveiki atvykę į LinguaQuest! Čia išmoksite naują kalbą, atkūrus savo mėgstamas istorijas.",
+      "STAGE_1": "Rekomenduojame bent vidurinį A2 lygį (geriausia studijuoti B1), kad patirtis būtų malonesnė. Priešingu atveju tai gali būti nelinksma ir nustosite žaisti.",
+      "STAGE_2": "Šiame tutoriale pamatysime pagrindines funkcijas. Mes neaptarsime visų detalių, nes suprantame, kad esate pavydėjęs ir norite pradėti mokytis 🤓 Swipe žemyn, kad išeitumėte iš tutorialo.",
+      "STAGE_3": {},
+      "STAGE_4": {},
+      "STAGE_5": {},
+      "STAGE_6": {},
+      "STAGE_7": {},
+      "STAGE_8": {},
+      "STAGE_9": {},
+      "STAGE_10": {},
+      "STAGE_11": {},
+      "STAGE_12": {},
+      "STAGE_13": {},
+      "STAGE_14": {}
     }
   }
 }

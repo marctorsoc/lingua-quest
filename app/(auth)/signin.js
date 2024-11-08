@@ -1,7 +1,5 @@
-// Not used atm
-
 import React, { useContext, useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { useRouter } from "expo-router";
 import { GlobalContext } from "../../src/context/global-context";
 import { loadData, storeData } from "../../src/util/storage";
@@ -58,11 +56,13 @@ function Welcome() {
           options={LanguageOptionsNoLabel}
         />
       </View>
+      <Image
+        source={require("../../assets/tutorial_mascot.png")}
+        style={[AuthStyles.mascotImage]}
+      />
       <WelcomeForm onSignIn={signInHandler} />
     </View>
   );
 }
 
 export default Welcome;
-
-const styles = StyleSheet.create({});

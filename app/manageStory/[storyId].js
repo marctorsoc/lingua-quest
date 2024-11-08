@@ -30,7 +30,7 @@ function ManageStory() {
   function goBack() {
     setGlobalConfig({
       ...globalConfig,
-      storyLongPressed: undefined,
+      storyLongPressed: null,
     });
     router.back();
   }

@@ -12,6 +12,12 @@ const translations = {
       ca: "desde",
       lt: "iš",
     },
+    NEXT: {
+      en: "Next",
+      es: "Siguiente",
+      ca: "Següent",
+      lt: "Kitas",
+    },
     CANCEL: {
       en: "Cancel",
       es: "Cancelar",
@@ -109,8 +115,8 @@ const translations = {
       },
       ALERT_DATA_STORED: {
         en: "Data stored. Ready to play",
-        es: "Datos guardados. Listo para jugar",
-        ca: "Dades desats. Preparat per jugar",
+        es: "Datos guardados. Todo listo para jugar",
+        ca: "Dades desades. Tot preparat per jugar",
         lt: "Duomenys saugomi. Gerai žaisti",
       },
       ALERT_NAME_TAKEN: {
@@ -179,6 +185,26 @@ const translations = {
       lt: "Istorija pašalinta sėkmingai!",
     },
   },
+  PLAY: {
+    COMPLETED: {
+      en: "Completed",
+      es: "Completado",
+      ca: "Completat",
+      lt: "Baigtas",
+    },
+    FINISH_ROUND: {
+      en: "Finish round",
+      es: "Finalizar ronda",
+      ca: "Finalitzar ronda",
+      lt: "Baigti rūšį",
+    },
+    TRY_AGAIN: {
+      en: "Try again",
+      es: "Intentar de nuevo",
+      ca: "Tornar a intentar",
+      lt: "Pabandyti dar kartą",
+    },
+  },
   SETTINGS: {
     SENTENCES_PER_ROUND: {
       en: "Sentences per round",
@@ -215,6 +241,12 @@ const translations = {
       es: "Guardar datos",
       ca: "Guardar dades",
       lt: "Išsaugoti duomenis",
+    },
+    WATCH_TUTORIAL: {
+      en: "Watch tutorial",
+      es: "Ver tutorial",
+      ca: "Veure tutorial",
+      lt: "Peržiūrėti tutorialą",
     },
     ALERT_RESTORED_DATA_FOR: {
       en: "Restored data for ",
@@ -309,6 +341,107 @@ const translations = {
       es: "Por favor, corrige los errores.",
       ca: "Si us plau, corregiu els errors.",
       lt: "Prašau ištaisyti klaidų viršuje.",
+    },
+  },
+  TUTORIAL: {
+    STAGE_0: {
+      en: "Welcome to LinguaQuest! Here you will learn a new language \
+while replaying your favorite stories.",
+      es: "¡Bienvenido a LinguaQuest! Aquí aprenderás un nuevo idioma \
+mientras revives tus historias favoritas.",
+      ca: "Benvingut a LinguaQuest! Aquí aprendràs un nou idioma \
+mentre revius les teves històries favorites.",
+      lt: "Sveiki atvykę į LinguaQuest! Čia išmoksite naują kalbą, \
+atkūrus savo mėgstamas istorijas.",
+    },
+    STAGE_1: {
+      en: "We recommend at least mid A2 level (preferably studying B1) \
+for a more pleasant experience. Otherwise, it might be frustrating and \
+you'll stop playing.",
+      es: "Recomendamos al menos nivel A2 (preferiblemente estudiando B1) \
+para una experiencia más agradable. De lo contrario, podría ser frustrante y \
+dejarás de jugar.",
+      ca: "Recomanem al menys nivell A2 (preferiblement estudiant B1) \
+per a una experiència més agradable. En cas contrari, pot ser frustrant i \
+deixaràs de jugar.",
+      lt: "Rekomenduojame bent vidurinį A2 lygį (geriausia studijuoti B1), \
+kad patirtis būtų malonesnė. Priešingu atveju tai gali būti nelinksma ir \
+nustosite žaisti.",
+    },
+    STAGE_2: {
+      en: "In this tutorial, we'll see the basic functions of the \
+app. We won't go over all details, as we understand you're eager to \
+start learning 🤓 Feel free to swipe down to skip the tutorial.",
+      es: "En este tutorial, veremos las funciones básicas de la \
+app. No cubriremos todos los detalles, ya que seguro que estás ansioso por \
+empezar a aprender 🤓 Haz swipe down (desliza hacia abajo) para salir del tutorial.",
+      ca: "En aquest tutorial, veurem les funcions bàsiques de \
+l'app. No cobrirem tots els detalls, ja que entenem que frises per començar a \
+aprendre 🤓 Fes swipe down (llisca cap abaix) per sortir del tutorial.",
+      lt: "Šiame tutoriale pamatysime pagrindines funkcijas. \
+Mes neaptarsime visų detalių, nes suprantame, kad esate pavydėjęs ir norite \
+pradėti mokytis 🤓 Swipe žemyn, kad išeitumėte iš tutorialo.",
+    },
+    STAGE_3: {
+      en: "Below this message, you have the tabs to navigate. In this screen (Play), \
+we see the stories available to play, their length and your progress. \
+Some stories are part of a collection. Press to navigate into the folder.",
+    },
+    STAGE_4: {
+      en: "On top, you can see what language you are learning, and from what language, \
+that is, the language for translations. You can change this by selecting the filter button \
+on the right.",
+    },
+    //     STAGE_5: {
+    //       en: "Finally, you can also press & hold a story. This will allow \
+    // you to change the progress. For example, to skip (cheat) some sentences, or to restart.",
+    //     },
+    //     STORY_LONG_PRESS: {
+    //       en: "Well done. Let's try this again later after the tutorial.",
+    //     },
+    STAGE_5: {
+      en: "Let's press now on any story, and we'll review how to play.",
+    },
+    // Playing a story
+    STAGE_6: {
+      en: 'Exciting! So the "game" consists in guessing the word that is missing in the \
+sentence. You have four possible answers, and one of them is correct.',
+    },
+    STAGE_7: {
+      en: "After selecting one option, the answer will be revealed & the translation. \
+Click next to continue.",
+    },
+    STAGE_8: {
+      en: "And now, next sentence. If you want to see \
+again the translation for the first sentence, show it again by pressing on it. \
+Let's do it.",
+    },
+    STAGE_9: {
+      en: "Translations are not the best. So you can also press & hold on a sentence. This will copy \
+it, so you can send it to your native friend, or double-check on Google Translate.",
+    },
+    WELL_DONE: {
+      en: "Well done!",
+    },
+    STAGE_10: {
+      en: "Finally, let's see what you can configure in Settings.",
+    },
+    STAGE_11: {
+      en: "Here, you can change the sentences per round. Default is 2 but we recommend 10 for a \
+better experience. This is important because to move to next round you need to correctly fill in \
+all sentences.",
+    },
+    STAGE_12: {
+      en: "You can also configure how many rounds of history to show. In case you want to review \
+the story.",
+    },
+    STAGE_13: {
+      en: "As per request of our users, we added a \"reading mode\", where you don't have to guess. \
+Just read. For those days you don't feel like it",
+    },
+    STAGE_14: {
+      en: "And... this completes the tutorial 🎉 Everything else is obvious or not essential. Hope you enjoy \
+learning, and any feedback super welcome. Thanks for using LinguaQuest! 🤗",
     },
   },
 };

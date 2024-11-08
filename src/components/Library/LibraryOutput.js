@@ -2,9 +2,13 @@ import { StyleSheet, Text, View } from "react-native";
 
 import { GlobalStyles } from "../../constants/styles";
 import StoryList from "../StoryList";
+import { useTranslation } from "react-i18next";
+
 import ResumeStory from "./ResumeStory";
 import { GlobalContext } from "../../context/global-context";
 import { useContext } from "react";
+import TutorialOverlay from "../UI/TutorialOverlay";
+import { TUTORIAL_STAGES } from "../../constants/tutorial_stages";
 
 function storyHasAcceptedChildren(story_id, stories, filters) {
   const children = stories.filter(
@@ -72,7 +76,16 @@ function LibraryOutput({ stories, fallbackText, parentId = null }) {
       ) : (
         <StoryList stories={content} />
       )}
-      <ResumeStory stories={stories} disabled={parentId !== null} />
+      {globalConfig.tutorialStage === null ? (
+        <ResumeStory stories={stories} disabled={parentId !== null} />
+      ) : (
+        <TutorialOverlay
+          previousButtonDisabled={globalConfig.tutorialStage == 0}
+          nextButtonDisabled={
+            globalConfig.tutorialStage == TUTORIAL_STAGES.PRESS_STORY
+          }
+        />
+      )}
     </View>
   );
 }

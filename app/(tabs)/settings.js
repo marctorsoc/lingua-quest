@@ -15,68 +15,46 @@ import {
   Platform,
 } from "react-native";
 import { useState } from "react";
-import {
-  GlobalContext,
-  initialGlobalData,
-} from "../../src/context/global-context";
+import { GlobalContext } from "../../src/context/global-context";
 import {
   GlobalStyles,
-  LanguagePickers,
   ScreensStyles,
 } from "../../src/constants/styles";
 import Button from "../../src/components/UI/Button";
 import {
   storeData,
-  cleanAllData,
   getUserNames,
   cleanData,
   loadData,
 } from "../../src/util/storage";
-import { fetchSentences, fetchStories } from "../../src/util/http";
 import { showInformativeAlert } from "../../src/util/alert";
-import {
-  PlayContext,
-  initialPlayData,
-} from "../../src/context/play-context";
+import { PlayContext } from "../../src/context/play-context";
 import { useRouter } from "expo-router";
-import i18next, { use } from "i18next";
+import i18next from "i18next";
 import DataRestoreModal from "../../src/components/Settings/DataRestoreModal";
 import { useTranslation } from "react-i18next";
-import { PickerInput } from "../../src/components/UI/PickerInput";
-import {
-  languageOptions,
-  LanguageOptionsLongNames,
-  LanguageOptionsNoLabel,
-} from "../../src/constants/languages";
+import TutorialOverlay from "../../src/components/UI/TutorialOverlay";
+import { TUTORIAL_STAGES } from "../../src/constants/tutorial_stages";
 // import OptionModal from "../components/UI/Modal";
 
 const Settings = () => {
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
-  const { stories, setStories } = useContext(StoryContext);
-  const { playData, setPlayData } = useContext(PlayContext);
   const [showRestoreModal, setShowRestoreModal] = useState(false);
 
   const [numSentences, setNumSentences] = useState(
     globalConfig.numSentencesPerGame
-    // String(globalConfig.numSentencesPerGame)
   );
   const router = useRouter();
   const { t } = useTranslation();
   const [historyLength, setHistoryLength] = useState(
     globalConfig.historyLength
-    // String(globalConfig.historyLength)
   );
 
   const [readingMode, setReadingMode] = useState(
     globalConfig.readingMode
   );
 
-  const [inputAppLanguage, setInputAppLanguage] = useState(
-    i18next.language ? i18next.language : "en"
-  );
-
   const [allUsers, setAllUsers] = useState([]);
-  // let allUsers = [];
 
   useEffect(() => {
     getUserNames().then((users) => {
@@ -93,20 +71,9 @@ const Settings = () => {
       i18next.changeLanguage(globalConfig.appLanguage);
     }
 
-    // allUsers = getUserNamesWrapper();
     // setIsFetching(false);
   }, [globalConfig]);
   // console.log("allUsers: ", allUsers);
-
-  useEffect(() => {
-    // setIsFetching(true);
-    setGlobalConfig({
-      ...globalConfig,
-      appLanguage: inputAppLanguage,
-    });
-    i18next.changeLanguage(inputAppLanguage);
-    // setIsFetching(false);
-  }, [inputAppLanguage]);
 
   // Function to handle changes to the number of sentences
   const handleNumSentencesChange = (text) => {
@@ -279,6 +246,23 @@ const Settings = () => {
     );
   }
 
+  async function handleWatchTutorial() {
+    setGlobalConfig({
+      ...globalConfig,
+      tutorialStage: 0,
+    });
+    router.navigate("library");
+  }
+
+  // for tutorial
+  const highlightStyle = {
+    borderColor: GlobalStyles.colors.error,
+    borderWidth: 1,
+    paddingVertical: 5,
+    paddingLeft: "3%",
+    marginLeft: "8%",
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <DataRestoreModal
@@ -290,7 +274,13 @@ const Settings = () => {
         currentOption={globalConfig.userId}
       />
       {/* Option: Number of sentences per game */}
-      <View style={styles.optionContainer}>
+      <View
+        style={[
+          styles.optionContainer,
+          globalConfig.tutorialStage ==
+            TUTORIAL_STAGES.SENTS_PER_ROUND && highlightStyle,
+        ]}
+      >
         <Text style={styles.optionLabel}>
           {t("SETTINGS.SENTENCES_PER_ROUND")}
         </Text>
@@ -305,7 +295,13 @@ const Settings = () => {
         />
       </View>
       {/* Option: History length */}
-      <View style={styles.optionContainer}>
+      <View
+        style={[
+          styles.optionContainer,
+          globalConfig.tutorialStage ==
+            TUTORIAL_STAGES.HISTORY_LENGTH && highlightStyle,
+        ]}
+      >
         <Text style={styles.optionLabel}>
           {t("SETTINGS.HISTORY_LENGTH")}
         </Text>
@@ -319,7 +315,13 @@ const Settings = () => {
       </View>
 
       {/* Option: Reading mode */}
-      <View style={styles.optionContainer}>
+      <View
+        style={[
+          styles.optionContainer,
+          globalConfig.tutorialStage ==
+            TUTORIAL_STAGES.READING_MODE && highlightStyle,
+        ]}
+      >
         <Text style={styles.optionLabel}>
           {t("SETTINGS.READING_MODE")}
         </Text>
@@ -342,7 +344,7 @@ const Settings = () => {
           onValueChange={handleReadingModeToggle}
         />
       </View>
-      <View style={styles.optionContainer}>
+      {/* <View style={styles.optionContainer}>
         <View>
           <Text style={styles.optionLabel}>
             {t("SETTINGS.APP_LANGUAGE")}
@@ -361,7 +363,7 @@ const Settings = () => {
             options={LanguageOptionsNoLabel}
           />
         </View>
-      </View>
+      </View> */}
       {/* Manage data */}
       {/* height: "auto" is needed to overwrite optionContainer height */}
       <View
@@ -389,6 +391,34 @@ const Settings = () => {
           </Text>
         </Button>
       </View>
+      <View
+        style={[
+          styles.optionContainer,
+          {
+            height: "auto",
+            marginTop: "-2%",
+            justifyContent: "center",
+          },
+        ]}
+      >
+        <Button
+          style={[ScreensStyles.button, styles.button]}
+          onPress={handleWatchTutorial}
+        >
+          {/*{TODO: center the text}*/}
+          <Text style={ScreensStyles.buttonLabel}>
+            {t("SETTINGS.WATCH_TUTORIAL")}
+          </Text>
+        </Button>
+        {/* <Button
+          style={[ScreensStyles.button, styles.button]}
+          onPress={handleSaveData}
+        >
+          <Text style={ScreensStyles.buttonLabel}>
+            {t("SETTINGS.SAVE_DATA")}
+          </Text>
+        </Button> */}
+      </View>
       {/* For debugging purposes, show global config */}
       {/* <ScrollView
         style={{
@@ -405,6 +435,14 @@ const Settings = () => {
           <Text>{JSON.stringify(playData, null, 2)}</Text>
         </View>
       </ScrollView> */}
+      {globalConfig.tutorialStage != null && (
+        <TutorialOverlay
+          previousButtonDisabled={
+            globalConfig.tutorialStage ==
+            TUTORIAL_STAGES.WELCOME_SETTINGS
+          }
+        />
+      )}
     </ScrollView>
   );
 };

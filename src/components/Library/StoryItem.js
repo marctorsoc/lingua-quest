@@ -1,16 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { GlobalStyles, ScreensStyles } from "../../constants/styles";
 import { useContext } from "react";
 import { GlobalContext } from "../../context/global-context";
-import MaskedText from "../UI/MaskedText";
-function getEmoji(language) {
-  return language.slice(0, 4);
-}
+import { TUTORIAL_STAGES } from "../../constants/tutorial_stages";
+
 import Button from "../UI/Button";
 import { useRouter } from "expo-router";
 import { storeData } from "../../util/storage";
 import { useTranslation } from "react-i18next";
+import { showInformativeAlert } from "../../util/alert";
 
 function StoryItem({ id, title, done, total, is_leaf }) {
   const router = useRouter();
@@ -29,14 +27,35 @@ function StoryItem({ id, title, done, total, is_leaf }) {
 
   function storyPressHandler() {
     // ignore if storyLongPressed is set
-    if (globalConfig.storyLongPressed !== undefined) return;
+    if (globalConfig.storyLongPressed !== null) return;
+
+    // if null, not in tutorial, so just go to story
+    if (globalConfig.tutorialStage !== null) {
+      // if in tutorial, ignore if leaf or not the stage to click
+      const ignore =
+        !is_leaf ||
+        globalConfig.tutorialStage != TUTORIAL_STAGES.PRESS_STORY;
+      if (ignore) {
+        console.log(
+          "Ignoring bc stage: " + globalConfig.tutorialStage
+        );
+        console.log("and th is " + TUTORIAL_STAGES.PRESS_STORY);
+        return;
+      }
+    }
 
     // if this is the leaf of a story, play
     if (is_leaf) {
-      const updatedGlobalConfig = {
+      let updatedGlobalConfig = {
         ...globalConfig,
         lastStoryId: id,
       };
+      if (
+        updatedGlobalConfig.tutorialStage ==
+        TUTORIAL_STAGES.PRESS_STORY
+      )
+        updatedGlobalConfig.tutorialStage += 1;
+
       setGlobalConfig(updatedGlobalConfig);
       storeData(
         "globalConfig-" + globalConfig.userId,
@@ -59,6 +78,16 @@ function StoryItem({ id, title, done, total, is_leaf }) {
   function storyLongPressHandler() {
     // if this is not the leaf of a story, ignore
     if (!is_leaf) return;
+
+    // if we're in tutorial, just show alert and return
+    // but only for the specific stage
+    if (globalConfig.tutorialStage !== null) {
+      if (globalConfig.tutorialStage !== TUTORIAL_STAGES.LONG_PRESS)
+        return;
+      showInformativeAlert(t("TUTORIAL.STORY_LONG_PRESS"));
+      return;
+    }
+
     setGlobalConfig({
       ...globalConfig,
       storyLongPressed: id,

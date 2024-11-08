@@ -3,6 +3,7 @@
     "GLOBAL": {
       "OF": "de",
       "FROM": "desde",
+      "NEXT": "Siguiente",
       "CANCEL": "Cancelar",
       "APPLY": "Aplicar",
       "LEARNING_LANG": "Idioma a aprender",
@@ -40,6 +41,11 @@
       "ALERT_ADD_STORY": "De momento no se pueden añadir más historias 😞",
       "ALERT_REMOVED_STORY": "¡Historia eliminada con éxito!"
     },
+    "PLAY": {
+      "COMPLETED": "Completado",
+      "FINISH_ROUND": "Finalizar ronda",
+      "TRY_AGAIN": "Intentar de nuevo"
+    },
     "SETTINGS": {
       "SENTENCES_PER_ROUND": "Frases por ronda",
       "HISTORY_LENGTH": "Rondas en memoria",
@@ -47,6 +53,7 @@
       "APP_LANGUAGE": "Idioma de la app",
       "RESTORE_DATA": "Restaurar datos",
       "SAVE_DATA": "Guardar datos",
+      "WATCH_TUTORIAL": "Ver tutorial",
       "ALERT_RESTORED_DATA_FOR": "Datos restaurados para ",
       "ALERT_ERROR_RESTORING": "Error al restaurar datos",
       "ALERT_ERROR_DELETING": "No se pueden borrar los datos del usuario actual",
@@ -66,6 +73,23 @@
       "ALERT_STORY_UPDATED": "Historia actualizada",
       "ALERT_INVALID_STORY": "Historia inválida",
       "ALERT_FIX_ERRORS": "Por favor, corrige los errores."
+    },
+    "TUTORIAL": {
+      "STAGE_0": "¡Bienvenido a LinguaQuest! Aquí aprenderás un nuevo idioma mientras revives tus historias favoritas.",
+      "STAGE_1": "Recomendamos al menos nivel A2 (preferiblemente estudiando B1) para una experiencia más agradable. De lo contrario, podría ser frustrante y dejarás de jugar.",
+      "STAGE_2": "En este tutorial, veremos las funciones básicas de la app. No cubriremos todos los detalles, ya que seguro que estás ansioso por empezar a aprender 🤓 Haz swipe down (desliza hacia abajo) para salir del tutorial.",
+      "STAGE_3": {},
+      "STAGE_4": {},
+      "STAGE_5": {},
+      "STAGE_6": {},
+      "STAGE_7": {},
+      "STAGE_8": {},
+      "STAGE_9": {},
+      "STAGE_10": {},
+      "STAGE_11": {},
+      "STAGE_12": {},
+      "STAGE_13": {},
+      "STAGE_14": {}
     }
   }
 }

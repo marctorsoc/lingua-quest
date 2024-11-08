@@ -6,7 +6,10 @@ import {
   HeaderLeft as LibraryHeaderLeft,
   HeaderRight as LibraryHeaderRight,
 } from "../../src/components/Library/Header";
-import { HeaderRight as SettingsHeaderRight } from "../../src/components/Settings/Header";
+import {
+  HeaderLeft as SettingsHeaderLeft,
+  HeaderRight as SettingsHeaderRight,
+} from "../../src/components/Settings/Header";
 import { GlobalContext } from "../../src/context/global-context";
 import { useTranslation } from "react-i18next";
 
@@ -20,7 +23,7 @@ export default function Layout() {
         tabBarInactiveTintColor: GlobalStyles.colors.gray, // Gray or subdued color for inactive icon
         tabBarStyle: {
           backgroundColor: GlobalStyles.colors.tabBar, // Background color of the tab bar
-          padding: 5, // Add margin at the bottom of the tab bar
+          padding: "1%", // Add margin at the bottom of the tab bar
         },
         headerStyle: {
           backgroundColor: GlobalStyles.colors.header,
@@ -33,11 +36,17 @@ export default function Layout() {
         headerTintColor: GlobalStyles.colors.white,
       }}
       screenListeners={{
-        tabPress: () => {
+        tabPress: (e) => {
+          if (globalConfig.tutorialStage !== null) {
+            // Prevent tab navigation during tutorial
+            e.preventDefault();
+            console.log("Preventing tab navigation during tutorial");
+            return;
+          }
           // reset storyLongPressed when a tab is pressed
           setGlobalConfig({
             ...globalConfig,
-            storyLongPressed: undefined,
+            storyLongPressed: null,
           });
         },
       }}
@@ -81,6 +90,9 @@ export default function Layout() {
               size={size}
               color={color}
             />
+          ),
+          headerLeft: ({ tintColor }) => (
+            <SettingsHeaderLeft tintColor={tintColor} />
           ),
           headerRight: ({ tintColor }) => (
             <SettingsHeaderRight tintColor={tintColor} />

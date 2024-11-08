@@ -1,14 +1,19 @@
 import MaskedText from "../UI/MaskedText";
 import { GlobalStyles, ScreensStyles } from "../../constants/styles";
 import { StyleSheet } from "react-native";
-import { showInformativeToast } from "../../util/alert";
+import {
+  showInformativeAlert,
+  showInformativeToast,
+} from "../../util/alert";
 import * as Clipboard from "expo-clipboard";
 import { View, Text } from "react-native";
 import { PlayContext } from "../../context/play-context";
 import { useContext, useEffect, useState } from "react";
 import Button from "../UI/Button";
 import { GlobalContext } from "../../context/global-context";
-// import { useToast } from "react-native-toast-notifications";
+import { TUTORIAL_STAGES } from "../../constants/tutorial_stages";
+import { useRouter } from "expo-router";
+import { useTranslation } from "react-i18next";
 
 function computeShowTranslation(
   playingThisItem,
@@ -31,7 +36,9 @@ function SentenceItem({
   validItem,
 }) {
   const { playData, setPlayData } = useContext(PlayContext);
-  const { globalConfig } = useContext(GlobalContext);
+  const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
+  const router = useRouter();
+  const { t } = useTranslation();
   const currentAnswerIdx = playData.currentAnswerIdx;
   // console.log("currentAnswerIdx: ", currentAnswerIdx);
   const answerWasSelected = currentAnswerIdx !== undefined;
@@ -103,6 +110,14 @@ function SentenceItem({
       ...playData,
       processingClickedTranslation: true,
     });
+    if (
+      globalConfig.tutorialStage == TUTORIAL_STAGES.SHOW_TRANSLATION
+    ) {
+      setGlobalConfig({
+        ...globalConfig,
+        tutorialStage: globalConfig.tutorialStage + 1,
+      });
+    }
   }
 
   function showTranslationHandler() {
@@ -120,6 +135,17 @@ function SentenceItem({
     // googletranslate://?sl=en&tl=tr&text=hello%20world
 
     showInformativeToast("Copied to clipboard");
+
+    if (
+      globalConfig.tutorialStage == TUTORIAL_STAGES.COPY_CLIPBOARD
+    ) {
+      setGlobalConfig({
+        ...globalConfig,
+        tutorialStage: globalConfig.tutorialStage + 1,
+      });
+      showInformativeAlert(t("TUTORIAL.WELL_DONE"));
+      router.navigate("(tabs)/settings");
+    }
     // showInformativeToast(toast, text);
   }
 

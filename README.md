@@ -73,22 +73,13 @@ Go to `raw.js` and update. Then run `node raw.js` to generate all `$language.jso
 
 - Add tutorial after Welcome (first time mandatory, later as optional) and as a button in settings
 
-- Remove values in welcome form when logout
-
-- Update App language in settings picker when changing user
-
-- Set default values in settings when new user
-
-- Update picker to see if warnings go out. Otherwise, silence warnings
-
-- Translate texts in getNextButtonMessage
-
 
 ----------- ENOUGH FOR GOOGLE PLAY ---------
 
 - Start with app language from the the one configured in the phone
 - Disable immersive mode by default, and add to settings to enable. Remove status bar as well in immersive mode
 - re-enable confetti. Right now makes it too slow on Android
+- Update picker to see if warnings go out. Otherwise, silence warnings
 - Fix selected app language in settings when loading another user. There
 is some code comment that creates an infinite loop
 - Show translations for answers when reviewing if clicked
@@ -100,6 +91,7 @@ is some code comment that creates an infinite loop
     - when no label for each option, center icons and remove check
 
 - Make header back in ManageStory remove storyLongPressed
+- Implement better alerts that allow long messages
 - Add ability to add stories from Google Drive
 - Allow edit for stories within folders (it gets selected but the header is not updated to show the icon)
 - Track usage of the app
@@ -125,3 +117,10 @@ is some code comment that creates an infinite loop
 - Add tests
 - GH actions to auto-release with every push to master
 
+
+# Creating logos
+
+* Dall-E creates images, but they webp
+* Transform images from webp to png + crop with [ezgif](https://ezgif.com/webp-to-png)
+* Use [remove.bg](https://www.remove.bg/) to remove background, and remove objects
+* Creating consistent characters: [here](https://www.youtube.com/watch?v=Sc2f2oTaR7U)

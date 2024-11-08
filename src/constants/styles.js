@@ -63,9 +63,27 @@ export const AuthStyles = {
     backgroundColor: GlobalStyles.colors.background,
   },
   title: {
-    marginVertical: "10%",
+    marginTop: "15%",
     fontSize: 28,
     fontWeight: "bold",
+  },
+  mascotImage: {
+    marginVertical: "3%",
+    // backgroundColor: "red",
+    alignSelf: "center", // Center the mascot horizontally
+    // web: 1.1904, android: 1.777
+    ...Platform.select({
+      android: {
+        width: "44.42%",
+        height: "25%",
+      },
+      web: {
+        width: "29.76%",
+        height: "25%",
+      },
+    }),
+    resizeMode: "cover", // Changed from 'contain' to 'cover'
+    // overflow: "hidden", // This will crop anything outside the dimensions
   },
   appLangContainer: {
     position: "absolute",
@@ -80,6 +98,13 @@ export const ScreensStyles = {
     margin: 5,
     padding: 0,
   },
+  highlightHeaderSection: {
+    borderColor: GlobalStyles.colors.error,
+    borderWidth: 1,
+    paddingVertical: 5,
+    paddingHorizontal: 5,
+    marginLeft: 10,
+  },
   popoverContainer: {
     // width: "100%",
     // height: "20%",
@@ -93,17 +118,6 @@ export const ScreensStyles = {
     // the items inside show a box, and looks bad. This is only
     // for Android
     // elevation: 4, // Elevation for Android
-  },
-  tileShadowAccent: {
-    // shadowColor: "#000", // Shadow color for iOS
-    // shadowOffset: {
-    //   width: 5, // Horizontal shadow offset
-    //   height: 5, // Vertical shadow offset
-    // },
-    // shadowOpacity: 1, // Shadow opacity
-    // shadowRadius: 15, // Shadow blur radius
-    // elevation: 15, // Elevation for Android
-    // backgroundColor: GlobalStyles.colors.primaryButton,
   },
   button: {
     paddingVertical: "3%",

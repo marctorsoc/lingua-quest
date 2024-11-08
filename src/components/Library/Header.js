@@ -1,30 +1,23 @@
-import { Image, Platform, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { languageFlag, ScreensStyles } from "../../constants/styles";
 import IconButton from "../UI/IconButton";
-import {
-  showConfirmation,
-  showInformativeAlert,
-} from "../../util/alert";
-import { useNavigation, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { useContext } from "react";
-import { StoryContext } from "../../context/stories-context";
 import { GlobalContext } from "../../context/global-context";
-import { findPropertyByKey, logos } from "../../constants/languages";
-import { Ionicons } from "@expo/vector-icons";
+import { logos } from "../../constants/languages";
+import { TUTORIAL_STAGES } from "../../constants/tutorial_stages";
+
 import { useTranslation } from "react-i18next";
 
 export const HeaderLeft = ({ tintColor }) => {
   const { globalConfig } = useContext(GlobalContext);
   const { t } = useTranslation();
+  const highlightStyle =
+    globalConfig.tutorialStage == TUTORIAL_STAGES.HIGHLIGHT_HEADER
+      ? ScreensStyles.highlightHeaderSection
+      : {};
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        alignItems: "center",
-        marginLeft: 20,
-        color: tintColor,
-      }}
-    >
+    <View style={[styles.headerLeftView, highlightStyle]}>
       {/* <Ionicons name="document" size={18} color="white" /> */}
       {/* <Text
         style={{ color: tintColor, fontSize: 18, fontWeight: "bold" }}
@@ -56,7 +49,6 @@ export const HeaderRight = ({ tintColor }) => {
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
   const router = useRouter();
   // const { deleteStory } = useContext(StoryContext);
-  const { t } = useTranslation();
 
   function manageStoryHandler() {
     return (
@@ -118,6 +110,11 @@ export const HeaderRight = ({ tintColor }) => {
   // }
 
   function sortAndFilterHandler() {
+    const highlightStyle =
+      globalConfig.tutorialStage == TUTORIAL_STAGES.HIGHLIGHT_HEADER
+        ? ScreensStyles.highlightHeaderSection
+        : {};
+    const disabled = globalConfig.tutorialStage !== null;
     return (
       <View>
         <IconButton
@@ -128,12 +125,16 @@ export const HeaderRight = ({ tintColor }) => {
           }
           size={24}
           color={tintColor}
-          containerStyle={ScreensStyles.headerButtonsContainers}
+          containerStyle={[
+            ScreensStyles.headerButtonsContainers,
+            highlightStyle,
+          ]}
           onPress={() => {
+            if (disabled) return;
             if (globalConfig.storyLongPressed) {
               setGlobalConfig({
                 ...globalConfig,
-                storyLongPressed: undefined,
+                storyLongPressed: null,
               });
               return;
             }
@@ -157,3 +158,11 @@ export const HeaderRight = ({ tintColor }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  headerLeftView: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginLeft: 20,
+  },
+});

@@ -3,6 +3,7 @@
     "GLOBAL": {
       "OF": "of",
       "FROM": "from",
+      "NEXT": "Next",
       "CANCEL": "Cancel",
       "APPLY": "Apply",
       "LEARNING_LANG": "Language to learn",
@@ -40,6 +41,11 @@
       "ALERT_ADD_STORY": "Adding stories not implemented yet 😞",
       "ALERT_REMOVED_STORY": "Story removed successfully!"
     },
+    "PLAY": {
+      "COMPLETED": "Completed",
+      "FINISH_ROUND": "Finish round",
+      "TRY_AGAIN": "Try again"
+    },
     "SETTINGS": {
       "SENTENCES_PER_ROUND": "Sentences per round",
       "HISTORY_LENGTH": "Rounds in memory",
@@ -47,6 +53,7 @@
       "APP_LANGUAGE": "App language",
       "RESTORE_DATA": "Restore data",
       "SAVE_DATA": "Save data",
+      "WATCH_TUTORIAL": "Watch tutorial",
       "ALERT_RESTORED_DATA_FOR": "Restored data for ",
       "ALERT_ERROR_RESTORING": "Error restoring data",
       "ALERT_ERROR_DELETING": "Cannot delete current user's data",
@@ -66,6 +73,23 @@
       "ALERT_STORY_UPDATED": "Story updated",
       "ALERT_INVALID_STORY": "Invalid story",
       "ALERT_FIX_ERRORS": "Please fix the errors above."
+    },
+    "TUTORIAL": {
+      "STAGE_0": "Welcome to LinguaQuest! Here you will learn a new language while replaying your favorite stories.",
+      "STAGE_1": "We recommend at least mid A2 level (preferably studying B1) for a more pleasant experience. Otherwise, it might be frustrating and you'll stop playing.",
+      "STAGE_2": "In this tutorial, we'll see the basic functions of the app. We won't go over all details, as we understand you're eager to start learning 🤓 Feel free to swipe down to skip the tutorial.",
+      "STAGE_3": "Below this message, you have the tabs to navigate. In this screen (Play), we see the stories available to play, their length and your progress. Some stories are part of a collection. Press to navigate into the folder.",
+      "STAGE_4": "On top, you can see what language you are learning, and from what language, that is, the language for translations. You can change this by selecting the filter button on the right.",
+      "STAGE_5": "Let's press now on any story, and we'll review how to play.",
+      "STAGE_6": "Exciting! So the \"game\" consists in guessing the word that is missing in the sentence. You have four possible answers, and one of them is correct.",
+      "STAGE_7": "After selecting one option, the answer will be revealed & the translation. Click next to continue.",
+      "STAGE_8": "And now, next sentence. If you want to see again the translation for the first sentence, show it again by pressing on it. Let's do it.",
+      "STAGE_9": "Translations are not the best. So you can also press & hold on a sentence. This will copy it, so you can send it to your native friend, or double-check on Google Translate.",
+      "STAGE_10": "Finally, let's see what you can configure in Settings.",
+      "STAGE_11": "Here, you can change the sentences per round. Default is 2 but we recommend 10 for a better experience. This is important because to move to next round you need to correctly fill in all sentences.",
+      "STAGE_12": "You can also configure how many rounds of history to show. In case you want to review the story.",
+      "STAGE_13": "As per request of our users, we added a \"reading mode\", where you don't have to guess. Just read. For those days you don't feel like it",
+      "STAGE_14": "And... this completes the tutorial 🎉 Everything else is obvious or not essential. Hope you enjoy learning, and any feedback super welcome. Thanks for using LinguaQuest! 🤗"
     }
   }
 }

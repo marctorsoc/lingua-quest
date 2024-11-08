@@ -1,10 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 
 import { GlobalStyles } from "../../constants/styles";
-import { Pressable } from "react-native";
 import { useContext } from "react";
-import { useNavigation } from "@react-navigation/native";
-import { PlayContext } from "../../context/play-context";
 import Button from "../UI/Button";
 import { useRouter } from "expo-router";
 import { GlobalContext } from "../../context/global-context";
@@ -19,7 +16,7 @@ function ResumeStory({ stories, disabled }) {
   const { t } = useTranslation();
 
   const storyId = globalConfig.lastStoryId;
-  const enabled = storyId !== undefined && !disabled;
+  const enabled = storyId !== null && !disabled;
   const story = stories.find((story) => story.id === storyId);
   let name = story?.title;
 

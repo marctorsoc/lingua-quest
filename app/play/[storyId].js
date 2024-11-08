@@ -7,10 +7,7 @@ import {
 } from "react";
 import { StyleSheet, View } from "react-native";
 import LoadingOverlay from "../../src/components/UI/LoadingOverlay";
-import {
-  GlobalStyles,
-  ScreensStyles,
-} from "../../src/constants/styles";
+import { GlobalStyles } from "../../src/constants/styles";
 import { StoryContext } from "../../src/context/stories-context";
 import { sleep } from "../../src/util/debug";
 import SentenceList from "../../src/components/PlayStory/SentenceList";
@@ -19,10 +16,10 @@ import { PlayContext } from "../../src/context/play-context";
 import { initialPlayData } from "../../src/context/play-context";
 import { GlobalContext } from "../../src/context/global-context";
 import GameStatusBox from "../../src/components/PlayStory/GameStatusBox";
-import { storeData } from "../../src/util/storage";
 import { fetchSentences } from "../../src/util/http";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import ConfettiCannon from "react-native-confetti-cannon";
+import PlayTutorial from "../../src/components/PlayStory/PlayTutorial";
 
 function PlayStory() {
   // TODO: move all logic here into components
@@ -154,6 +151,7 @@ function PlayStory() {
       /> */}
       <GameStatusBox />
       <SentenceList sentences={sentences} />
+      {globalConfig.tutorialStage !== null && <PlayTutorial />}
       <AnswerBox
         readingMode={globalConfig.readingMode}
         {...currentSentence}

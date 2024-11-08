@@ -1,12 +1,22 @@
 import { LinearTransition } from "react-native-reanimated";
 import { Animated } from "react-native";
 import StoryItem from "./Library/StoryItem";
-import { View } from "react-native-web";
+import { GlobalContext } from "../context/global-context";
+import { useContext } from "react";
 
 function StoryList({ stories, renderer = renderStoryItem }) {
+  const { globalConfig } = useContext(GlobalContext);
+
+  // if we are in the tutorial, show only the 5 first stories
+  // this will show the tutorial and mascot better
+  const filteredStories =
+    globalConfig.tutorialStage !== null
+      ? stories.slice(0, 5)
+      : stories;
+
   return (
     <Animated.FlatList
-      data={stories}
+      data={filteredStories}
       renderItem={renderer}
       keyExtractor={(item) => item.id}
       numColumns={2}

@@ -1,23 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { useRouter } from "expo-router";
-import { GlobalContext } from "../../src/context/global-context";
-import { loadData, storeData } from "../../src/util/storage";
+import {
+  GlobalContext,
+  initialGlobalData,
+} from "../../src/context/global-context";
+import { storeData } from "../../src/util/storage";
 import { showInformativeAlert } from "../../src/util/alert";
-import SortAndFilterForm from "../../src/components/Library/SortAndFilterForm";
 import {
   AuthStyles,
-  GlobalStyles,
   LibraryStyles,
 } from "../../src/constants/styles";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 import WelcomeForm from "../../src/components/Auth/WelcomeForm";
 import { PickerInput } from "../../src/components/UI/PickerInput";
-import {
-  languageOptions,
-  LanguageOptionsNoLabel,
-} from "../../src/constants/languages";
+import { LanguageOptionsNoLabel } from "../../src/constants/languages";
 import i18next from "i18next";
 import {
   initialPlayData,
@@ -38,18 +36,22 @@ function Welcome() {
     i18next.changeLanguage(inputAppLanguage);
     // setIsFetching(false);
   }, [inputAppLanguage]);
-  // console.log(globalConfig.filters);
+
+  useEffect(() => {
+    setInputAppLanguage(globalConfig.appLanguage);
+  }, [globalConfig.appLanguage]);
 
   async function signUpHandler(welcomeFormData) {
     // save to context and local storage
     const updatedGlobalConfig = {
-      ...globalConfig,
+      ...initialGlobalData,
       filters: {
         ...globalConfig.filters,
         ...welcomeFormData.filters,
       },
       appLanguage: welcomeFormData.appLanguage,
       userId: welcomeFormData.userInfo.userId,
+      tutorialStage: welcomeFormData.skipTutorial ? null : 0,
     };
     setGlobalConfig(updatedGlobalConfig);
     setPlayData(initialPlayData);
@@ -83,10 +85,11 @@ function Welcome() {
           options={LanguageOptionsNoLabel}
         />
       </View>
-      <WelcomeForm
-        onSignUp={signUpHandler}
-        //   onSignIn={signInHandler}
+      <Image
+        source={require("../../assets/tutorial_mascot.png")}
+        style={[AuthStyles.mascotImage]}
       />
+      <WelcomeForm onSignUp={signUpHandler} />
     </View>
   );
 }
