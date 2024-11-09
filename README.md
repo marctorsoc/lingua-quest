@@ -71,12 +71,6 @@ Go to `raw.js` and update. Then run `node raw.js` to generate all `$language.jso
 
 # Pending work
 
-- Add tutorial after Welcome (first time mandatory, later as optional) and as a button in settings
-
-- Settings encara surten buits a Android per usuaris nous...
-
------------ ENOUGH FOR GOOGLE PLAY ---------
-
 - Start with app language from the the one configured in the phone
 - Disable immersive mode by default, and add to settings to enable. Remove status bar as well in immersive mode
 - re-enable confetti. Right now makes it too slow on Android

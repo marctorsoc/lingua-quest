@@ -39,6 +39,7 @@ import { TUTORIAL_STAGES } from "../../src/constants/tutorial_stages";
 
 const Settings = () => {
   const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
+  const { playData } = useContext(PlayContext); // just used for debugging
   const [showRestoreModal, setShowRestoreModal] = useState(false);
 
   const [numSentences, setNumSentences] = useState(
@@ -287,7 +288,7 @@ const Settings = () => {
         <TextInput
           style={[ScreensStyles.input, ScreensStyles.numericInput]}
           onChangeText={handleNumSentencesChange}
-          value={numSentences}
+          value={String(numSentences)}
           // TODO marc: maybe should use keyboardType="decimal-pad"?
           keyboardType="number-pad"
           inputMode="numeric"
@@ -308,7 +309,7 @@ const Settings = () => {
         <TextInput
           style={[ScreensStyles.input, ScreensStyles.numericInput]}
           onChangeText={handleHistoryLengthChange}
-          value={historyLength}
+          value={String(historyLength)}
           inputMode="numeric"
           maxLength={2}
         />
@@ -435,6 +436,7 @@ const Settings = () => {
           <Text>{JSON.stringify(playData, null, 2)}</Text>
         </View>
       </ScrollView> */}
+      {/* up to here */}
       {globalConfig.tutorialStage != null && (
         <TutorialOverlay
           previousButtonDisabled={

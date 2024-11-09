@@ -98,13 +98,6 @@ export const ScreensStyles = {
     margin: 5,
     padding: 0,
   },
-  highlightHeaderSection: {
-    borderColor: GlobalStyles.colors.error,
-    borderWidth: 1,
-    paddingVertical: 5,
-    paddingHorizontal: 5,
-    marginLeft: 10,
-  },
   popoverContainer: {
     // width: "100%",
     // height: "20%",

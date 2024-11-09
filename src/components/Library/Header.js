@@ -1,5 +1,9 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import { languageFlag, ScreensStyles } from "../../constants/styles";
+import {
+  GlobalStyles,
+  languageFlag,
+  ScreensStyles,
+} from "../../constants/styles";
 import IconButton from "../UI/IconButton";
 import { useRouter } from "expo-router";
 import { useContext } from "react";
@@ -14,7 +18,7 @@ export const HeaderLeft = ({ tintColor }) => {
   const { t } = useTranslation();
   const highlightStyle =
     globalConfig.tutorialStage == TUTORIAL_STAGES.HIGHLIGHT_HEADER
-      ? ScreensStyles.highlightHeaderSection
+      ? styles.highlightHeaderSection
       : {};
   return (
     <View style={[styles.headerLeftView, highlightStyle]}>
@@ -112,7 +116,7 @@ export const HeaderRight = ({ tintColor }) => {
   function changeLanguagesHandler() {
     const highlightStyle =
       globalConfig.tutorialStage == TUTORIAL_STAGES.HIGHLIGHT_HEADER
-        ? ScreensStyles.highlightHeaderSection
+        ? styles.highlightHeaderSection
         : {};
     const disabled = globalConfig.tutorialStage !== null;
     return (
@@ -163,6 +167,13 @@ const styles = StyleSheet.create({
   headerLeftView: {
     flexDirection: "row",
     alignItems: "center",
-    marginLeft: 20,
+    marginLeft: 10,
+  },
+  highlightHeaderSection: {
+    borderColor: GlobalStyles.colors.error,
+    borderWidth: 1,
+    paddingVertical: 5,
+    paddingHorizontal: 5,
+    marginLeft: 5,
   },
 });
