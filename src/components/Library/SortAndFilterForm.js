@@ -89,10 +89,11 @@ function SortAndFilterForm({ onCancel, onSubmit, defaultValues }) {
         onCancel={onCancel}
         onApply={onsubmitInterim}
         applyButtonLabel={t("GLOBAL.APPLY")}
+        disabledApply={numFilteredStories == 0}
       ></CancelApplyButtons>
       <View style={{ alignItems: "center", padding: 10 }}>
         <Text style={{ color: GlobalStyles.colors.gray500 }}>
-          {t("FILTER.NUM_STORIES")}: {numFilteredStories}
+          {t("CHANGE_LANGUAGES.NUM_STORIES")}: {numFilteredStories}
         </Text>
       </View>
     </View>

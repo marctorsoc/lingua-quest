@@ -21,7 +21,7 @@
       "SIGNUP": {
         "TITLE": "Sukurti paskyrą",
         "ABOVE_SIGNIN_LINK_TEXT": "Jau turite paskyrą?",
-        "SKIP_TUTORIAL": "Praleisti tutorialą",
+        "SKIP_TUTORIAL": "Praleisti apmokymus",
         "SIGNIN_LINK": "Įkelti savo paskyrą",
         "CONTINUE": "Registruotis",
         "ALERT_DATA_STORED": "Duomenys saugomi. Gerai žaisti",
@@ -53,17 +53,17 @@
       "APP_LANGUAGE": "App kalba",
       "RESTORE_DATA": "Atkurti duomenis",
       "SAVE_DATA": "Išsaugoti duomenis",
-      "WATCH_TUTORIAL": "Peržiūrėti tutorialą",
+      "WATCH_TUTORIAL": "Peržiūrėti apmokymus",
       "ALERT_RESTORED_DATA_FOR": "Atkurti duomenys už ",
       "ALERT_ERROR_RESTORING": "Klaida atkurti duomenis",
       "ALERT_ERROR_DELETING": "Negalima ištrinti dabartinio vartotojo duomenų",
       "ALERT_DELETED_DATA_FOR": "Ištrinti duomenys už ",
       "ALERT_SETTINGS_SAVED_FOR": "Nustatymai saugomi už žaidėją `"
     },
-    "FILTER": {
-      "TITLE": "Filtruoti istorijas",
+    "CHANGE_LANGUAGES": {
+      "TITLE": "Keisti kalbas",
       "NUM_STORIES": "Skaičius istorijų",
-      "ALERT_DATA_FILTERED": "Duomenys filtravimas"
+      "ALERT_DATA_FILTERED": "Atnaujinta"
     },
     "EDIT": {
       "TITLE": "Redaguoti istoriją",
@@ -78,18 +78,19 @@
       "STAGE_0": "Sveiki atvykę į LinguaQuest! Čia išmoksite naują kalbą, atkūrus savo mėgstamas istorijas.",
       "STAGE_1": "Rekomenduojame bent vidurinį A2 lygį (geriausia studijuoti B1), kad patirtis būtų malonesnė. Priešingu atveju tai gali būti nelinksma ir nustosite žaisti.",
       "STAGE_2": "Šiame tutoriale pamatysime pagrindines funkcijas. Mes neaptarsime visų detalių, nes suprantame, kad esate pavydėjęs ir norite pradėti mokytis 🤓 Swipe žemyn, kad išeitumėte iš tutorialo.",
-      "STAGE_3": {},
-      "STAGE_4": {},
-      "STAGE_5": {},
-      "STAGE_6": {},
-      "STAGE_7": {},
-      "STAGE_8": {},
-      "STAGE_9": {},
-      "STAGE_10": {},
-      "STAGE_11": {},
-      "STAGE_12": {},
-      "STAGE_13": {},
-      "STAGE_14": {}
+      "STAGE_3": "Šalia šio pranešimo yra mygtukai, kurie leidžia naršyti. Šiame ekranėje (Žaisti) matome pasiekiamas žaidimų sąrašą, jų ilgį ir progresą.",
+      "STAGE_4": "Aukštyje matote, kokį kalbą mokate ir iš kokios kalbės, kokios kalbės vertimams. Šį parametrą galite pakeisti paspaudę mygtuką dešinėje.",
+      "STAGE_5": "Paspauskime dabar bet kurią istoriją ir pamatysime, kaip žaisti.",
+      "STAGE_6": "Puikiai! Žaidimas susideda iš atspėjimo, kokia yra žodis, kurį reikia įrašyti į sakinį. Turite keturias galimas atsakymus, ir vienas iš jų yra teisingas.",
+      "STAGE_7": "Pasirinkus parinktį, bus atskleistas atsakymas ir vertimas. Spustelėkite \"Kitas\", kad tęstumėte.",
+      "STAGE_8": "Jei norite pamatyti ankstesnį vertimą, galite jį parodyti spustelėdami. Pabandykite tai padaryti.",
+      "STAGE_9": "Kai kurie vertimai nėra visiškai tikslūs. Jei norite, galite spustelėti ir užimti vieną iš sakinių. Tai leis jums kopijuoti jį, todėl galite jį išsiųsti savo natyviam draugui arba patikrinti jį Google Vertimas.",
+      "WELL_DONE": "Puikiai!",
+      "STAGE_10": "Galų gale, pažiūrėkime, ką galime pakeisti nustatymuose. Paspauskite mygtuką, kad ištirti.",
+      "STAGE_11": "Čia galite pakeisti frazes per rūšį. Numatytoji vertė yra 2, bet rekomenduojame 10, kad ėte geresnę patirtį. Prisiminkite tai, kad norėdami pereiti į kitą rūšį, turite teisingai užpildyti visi sakiniai.",
+      "STAGE_12": "Taip pat galite konfigūruoti, kiek istorijos raundų rodyti. Jei norite peržiūrėti istoriją jei grįšite po kelių dienų nežaidę.",
+      "STAGE_13": "Ir su \"skaitymo režimu\" nereikės spėlioti. Tiesiog skaityti. Tomis dienomis kai nesinori komplikuotis 😉",
+      "STAGE_14": "Čia apmokimai užbaigiami 🎉 Visa kita akivaizdu arba nesvarbu. Tikimės, kad jums patiks mokytis ir laukiame jūsų atsiliepimų. Dėkojame, kad naudojatės LinguaQuest! 🤗"
     }
   }
 }

@@ -60,10 +60,10 @@ export default function Layout() {
                   options={{ presentation: "modal" }}
                 />
                 <Stack.Screen
-                  name="filterLibrary"
+                  name="changeLanguages"
                   options={{
                     presentation: "modal",
-                    title: t("FILTER.TITLE"),
+                    title: t("CHANGE_LANGUAGES.TITLE"),
                   }}
                 />
                 <Stack.Screen

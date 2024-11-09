@@ -7,6 +7,7 @@ export function CancelApplyButtons({
   onCancel,
   onApply,
   applyButtonLabel,
+  disabledApply = false,
 }) {
   const { t } = useTranslation();
 
@@ -31,6 +32,7 @@ export function CancelApplyButtons({
           styles.button,
           styles.applyButton,
         ]}
+        disabled={disabledApply}
         onPress={onApply}
       >
         <Text style={ScreensStyles.buttonLabel}>

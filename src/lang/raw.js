@@ -99,7 +99,7 @@ const translations = {
         en: "Skip tutorial",
         es: "Omitir tutorial",
         ca: "Ometre tutorial",
-        lt: "Praleisti tutorialą",
+        lt: "Praleisti apmokymus",
       },
       SIGNIN_LINK: {
         en: "Sign in",
@@ -244,9 +244,9 @@ const translations = {
     },
     WATCH_TUTORIAL: {
       en: "Watch tutorial",
-      es: "Ver tutorial",
       ca: "Veure tutorial",
-      lt: "Peržiūrėti tutorialą",
+      es: "Ver tutorial",
+      lt: "Peržiūrėti apmokymus",
     },
     ALERT_RESTORED_DATA_FOR: {
       en: "Restored data for ",
@@ -279,12 +279,12 @@ const translations = {
       lt: "Nustatymai saugomi už žaidėją `",
     },
   },
-  FILTER: {
+  CHANGE_LANGUAGES: {
     TITLE: {
-      en: "Filter stories",
-      es: "Filtrar historias",
-      ca: "Filtrar històries",
-      lt: "Filtruoti istorijas",
+      en: "Change languages",
+      es: "Cambiar idiomas",
+      ca: "Canviar idiomes",
+      lt: "Keisti kalbas",
     },
     NUM_STORIES: {
       en: "Number of stories",
@@ -293,10 +293,10 @@ const translations = {
       lt: "Skaičius istorijų",
     },
     ALERT_DATA_FILTERED: {
-      en: "Data filtered",
-      es: "Datos filtrados",
-      ca: "Dades filtrades",
-      lt: "Duomenys filtravimas",
+      en: "Updated",
+      es: "Actualizado",
+      ca: "Actualitzat",
+      lt: "Atnaujinta",
     },
   },
   EDIT: {
@@ -384,13 +384,27 @@ pradėti mokytis 🤓 Swipe žemyn, kad išeitumėte iš tutorialo.",
     },
     STAGE_3: {
       en: "Below this message, you have the tabs to navigate. In this screen (Play), \
-we see the stories available to play, their length and your progress. \
-Some stories are part of a collection. Press to navigate into the folder.",
+we see the stories available to play, their length and your progress.",
+      es: "Debajo de este mensaje, tienes la barra de navegación. En esta pantalla (Jugar), \
+tenemos las historias disponibles para jugar, su longitud y tu progreso.",
+      ca: "A sota d'aquest missatge, tens les pestanyes per navegar. En aquesta pantalla (Jugar), \
+tenim les històries disponibles per jugar, la seva longitud i el teu progrés.",
+      lt: "Šalia šio pranešimo yra mygtukai, kurie leidžia naršyti. Šiame ekranėje (Žaisti) \
+matome pasiekiamas žaidimų sąrašą, jų ilgį ir progresą.",
     },
     STAGE_4: {
       en: "On top, you can see what language you are learning, and from what language, \
-that is, the language for translations. You can change this by selecting the filter button \
+i.e. the language for translations. You can change this by selecting the button \
 on the right.",
+      es: "Arriba, puedes ver qué idioma estás aprendiendo, y desde qué idioma, \
+es decir, el idioma para las traducciones. Puedes cambiar esto seleccionando el botón \
+de la derecha",
+      ca: "A dalt, pots veure quin idioma estàs estudiant, i des de quin idioma, \
+és a dir, l'idioma per a les traduccions. Pots canviar això seleccionant el botó \
+de la dreta",
+      lt: "Aukštyje matote, kokį kalbą mokate ir iš kokios kalbės, \
+kokios kalbės vertimams. Šį parametrą galite pakeisti paspaudę mygtuką \
+dešinėje.",
     },
     //     STAGE_5: {
     //       en: "Finally, you can also press & hold a story. This will allow \
@@ -401,47 +415,112 @@ on the right.",
     //     },
     STAGE_5: {
       en: "Let's press now on any story, and we'll review how to play.",
+      es: "Ahora presiona en cualquier historia y revisaremos cómo jugar.",
+      ca: "Ara prem qualsevol història i revisarem com jugar.",
+      lt: "Paspauskime dabar bet kurią istoriją ir pamatysime, kaip žaisti.",
     },
     // Playing a story
     STAGE_6: {
       en: 'Exciting! So the "game" consists in guessing the word that is missing in the \
 sentence. You have four possible answers, and one of them is correct.',
+      es: 'Fantástico! El "juego" consiste en adivinar la palabra para rellanar el hueco \
+en cada frase. Tienes cuatro posibles respuestas, y una de ellas es correcta.',
+      ca: 'Fantàstic! El "joc" consisteix en adivinar la paraula per omplir el buit \
+a cada frase. Tens quatre opcions possibles, i una d\'elles és correcta.',
+      lt: "Puikiai! Žaidimas susideda iš atspėjimo, kokia yra žodis, kurį reikia \
+įrašyti į sakinį. Turite keturias galimas atsakymus, ir vienas iš jų yra teisingas.",
     },
     STAGE_7: {
-      en: "After selecting one option, the answer will be revealed & the translation. \
-Click next to continue.",
+      en: 'After selecting one option, the answer & translation will be revealed. \
+Click "Next" to continue.',
+      es: 'Después de seleccionar una opción, se revelará la respuesta y la traducción. \
+Haz clic en "Siguiente" para continuar.',
+      ca: 'Després de seleccionar una opció, es revelarà la resposta i la traducció. \
+Fes clic a "Següent" per continuar.',
+      lt: 'Pasirinkus parinktį, bus atskleistas atsakymas ir vertimas. \
+Spustelėkite "Kitas", kad tęstumėte.',
     },
     STAGE_8: {
-      en: "And now, next sentence. If you want to see \
-again the translation for the first sentence, show it again by pressing on it. \
+      en: "If you want to see \
+again any previous translation, show it again by pressing on it. \
 Let's do it.",
+      es: "Si quieres ver alguna traducción anterior, \
+puedes mostrarla presionando en ella. Prueba de hacerlo.",
+      ca: "Si vols veure alguna traducció anterior, pots \
+mostrar-la prement-hi. Prova de fer-ho.",
+      lt: "Jei norite pamatyti ankstesnį vertimą, \
+galite jį parodyti spustelėdami. Pabandykite tai padaryti.",
     },
     STAGE_9: {
-      en: "Translations are not the best. So you can also press & hold on a sentence. This will copy \
+      en: "Some translations might have errors. You can also press & hold on a sentence. This will copy \
 it, so you can send it to your native friend, or double-check on Google Translate.",
+      es: "Algunas traducciones no son perfectas. Si quieres, puedes presionar y mantener una frase \
+para copiarla. Así puedes enviarla a tu amigo nativo o verificarla en Google \
+Translate.",
+      ca: "Algunes traduccions no són perfectes. Si vols, pots pressionar i mantenir una frase \
+per copiar-la. Així pots enviar-la al teu amic nadiu o verificar-la a Google \
+Translate",
+      lt: "Kai kurie vertimai nėra visiškai tikslūs. Jei norite, galite spustelėti ir užimti vieną iš sakinių. Tai \
+leis jums kopijuoti jį, todėl galite jį išsiųsti savo natyviam draugui arba patikrinti jį Google \
+Vertimas.",
     },
     WELL_DONE: {
       en: "Well done!",
+      es: "¡Bien hecho!",
+      ca: "Molt bé!",
+      lt: "Puikiai!",
     },
     STAGE_10: {
-      en: "Finally, let's see what you can configure in Settings.",
+      en: "Finally, we'll show what you can configure in Settings. Press the next button to explore.",
+      es: "Finalmente, veamos qué podemos cambiar en la Configuración. Presiona el botón de continuar \
+para explorarlo.",
+      ca: "Finalment, vegem què podem canviar en la Configuració. Prem el botó de continuar per explorar-ho",
+      lt: "Galų gale, pažiūrėkime, ką galime pakeisti nustatymuose. Paspauskite mygtuką, kad ištirti.",
     },
     STAGE_11: {
       en: "Here, you can change the sentences per round. Default is 2 but we recommend 10 for a \
-better experience. This is important because to move to next round you need to correctly fill in \
+better experience. Remember that to complete a round you need to correctly fill in \
 all sentences.",
+      es: "Aquí puedes cambiar las frases por ronda. Por defecto son 2, pero recomendamos 10 para \
+una mejor experiencia. Recuerda que para pasar de ronda tienes que rellenar \
+correctamente todas las frases.",
+      ca: "Aquí pots canviar les frases per ronda. Per defecte són 2, però recomanem 10 per \
+una millor experiència. Recorda que per passar de ronda has de completar \
+correctament totes les frases.",
+      lt: "Čia galite pakeisti frazes per rūšį. Numatytoji vertė yra 2, bet rekomenduojame 10, kad \
+ėte geresnę patirtį. Prisiminkite tai, kad norėdami pereiti į kitą rūšį, turite teisingai užpildyti \
+visi sakiniai.",
     },
     STAGE_12: {
-      en: "You can also configure how many rounds of history to show. In case you want to review \
-the story.",
+      en: "You can also configure how many previous rounds you want to show. In case you want to review \
+the story if you come back after some days.",
+      es: "También puedes configurar cuántas rondas previas se muestras. En caso de que \
+quieras revisar la historia si vuelves tras unos días sin jugar.",
+      ca: "També pots configurar quantes rondes de història vols mostrar. En cas de que \
+vulguis revisar la història si tornes després d'uns dies sense jugar.",
+      lt: "Taip pat galite konfigūruoti, kiek istorijos raundų rodyti. Jei norite peržiūrėti \
+istoriją jei grįšite po kelių dienų nežaidę.",
     },
     STAGE_13: {
-      en: "As per request of our users, we added a \"reading mode\", where you don't have to guess. \
-Just read. For those days you don't feel like it",
+      en: "And with the \"reading mode\" you don't have to guess. \
+Just read. For those days you don't want to complicate 😉",
+      es: 'Y con el "modo lectura" no tienes que \
+adivinar. Solo leer. Para esos días que no tienes ganas de romperte la cabeza 😉',
+      ca: 'I amb el "mode lectura" no has d\'adivinar, \
+tan sols llegir. Per aquells dies on no tens ganes de trencar-te el cap 😉',
+      lt: 'Ir su "skaitymo režimu" nereikės spėlioti. \
+Tiesiog skaityti. Tomis dienomis kai nesinori komplikuotis 😉',
     },
     STAGE_14: {
-      en: "And... this completes the tutorial 🎉 Everything else is obvious or not essential. Hope you enjoy \
-learning, and any feedback super welcome. Thanks for using LinguaQuest! 🤗",
+      en: "This completes the tutorial 🎉 Everything else is obvious or not essential. \
+Hope you enjoy learning, and any feedback super welcome. Thanks for using LinguaQuest! 🤗",
+      es: "Con esto completamos el tutorial 🎉 Todo lo demás es obvio o no esencial. \
+Espero que disfrutes aprendiendo, y cualquier comentario es bienvenido. Gracias por usar LinguaQuest! 🤗",
+      ca: "Amb això completem el tutorial 🎉 Tota la resta és obvi, o no essencial. \
+Espero que gaudeixis aprenent, i qualsevol comentari és benvingut. Gràcies per utilitzar LinguaQuest! 🤗",
+      lt: "Čia apmokimai užbaigiami 🎉 Visa kita akivaizdu arba nesvarbu. \
+Tikimės, kad jums patiks mokytis ir laukiame jūsų atsiliepimų. \
+Dėkojame, kad naudojatės LinguaQuest! 🤗",
     },
   },
 };

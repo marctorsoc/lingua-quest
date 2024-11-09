@@ -24,7 +24,7 @@
         "SKIP_TUTORIAL": "Ometre tutorial",
         "SIGNIN_LINK": "Entra al teu compte",
         "CONTINUE": "Registrar-se",
-        "ALERT_DATA_STORED": "Dades desats. Preparat per jugar",
+        "ALERT_DATA_STORED": "Dades desades. Tot preparat per jugar",
         "ALERT_NAME_TAKEN": "Nom ja utilitzat. Si us plau, trieu un altre nom.",
         "ALERT_LANGUAGE_CLASH": "El idioma a aprendre i l'idioma per a les traduccions no poden ser el mateix."
       },
@@ -60,10 +60,10 @@
       "ALERT_DELETED_DATA_FOR": "Dades eliminades per a ",
       "ALERT_SETTINGS_SAVED_FOR": "Configuració guardada per al jugador `"
     },
-    "FILTER": {
-      "TITLE": "Filtrar històries",
+    "CHANGE_LANGUAGES": {
+      "TITLE": "Canviar idiomes",
       "NUM_STORIES": "Nombre d'històries",
-      "ALERT_DATA_FILTERED": "Dades filtrades"
+      "ALERT_DATA_FILTERED": "Actualitzat"
     },
     "EDIT": {
       "TITLE": "Editar història",
@@ -78,18 +78,19 @@
       "STAGE_0": "Benvingut a LinguaQuest! Aquí aprendràs un nou idioma mentre revius les teves històries favorites.",
       "STAGE_1": "Recomanem al menys nivell A2 (preferiblement estudiant B1) per a una experiència més agradable. En cas contrari, pot ser frustrant i deixaràs de jugar.",
       "STAGE_2": "En aquest tutorial, veurem les funcions bàsiques de l'app. No cobrirem tots els detalls, ja que entenem que frises per començar a aprendre 🤓 Fes swipe down (llisca cap abaix) per sortir del tutorial.",
-      "STAGE_3": {},
-      "STAGE_4": {},
-      "STAGE_5": {},
-      "STAGE_6": {},
-      "STAGE_7": {},
-      "STAGE_8": {},
-      "STAGE_9": {},
-      "STAGE_10": {},
-      "STAGE_11": {},
-      "STAGE_12": {},
-      "STAGE_13": {},
-      "STAGE_14": {}
+      "STAGE_3": "A sota d'aquest missatge, tens les pestanyes per navegar. En aquesta pantalla (Jugar), tenim les històries disponibles per jugar, la seva longitud i el teu progrés.",
+      "STAGE_4": "A dalt, pots veure quin idioma estàs estudiant, i des de quin idioma, és a dir, l'idioma per a les traduccions. Pots canviar això seleccionant el botó de la dreta",
+      "STAGE_5": "Ara prem qualsevol història i revisarem com jugar.",
+      "STAGE_6": "Fantàstic! El \"joc\" consisteix en adivinar la paraula per omplir el buit a cada frase. Tens quatre opcions possibles, i una d'elles és correcta.",
+      "STAGE_7": "Després de seleccionar una opció, es revelarà la resposta i la traducció. Fes clic a \"Següent\" per continuar.",
+      "STAGE_8": "Si vols veure alguna traducció anterior, pots mostrar-la prement-hi. Prova de fer-ho.",
+      "STAGE_9": "Algunes traduccions no són perfectes. Si vols, pots pressionar i mantenir una frase per copiar-la. Així pots enviar-la al teu amic nadiu o verificar-la a Google Translate",
+      "WELL_DONE": "Molt bé!",
+      "STAGE_10": "Finalment, vegem què podem canviar en la Configuració. Prem el botó de continuar per explorar-ho",
+      "STAGE_11": "Aquí pots canviar les frases per ronda. Per defecte són 2, però recomanem 10 per una millor experiència. Recorda que per passar de ronda has de completar correctament totes les frases.",
+      "STAGE_12": "També pots configurar quantes rondes de història vols mostrar. En cas de que vulguis revisar la història si tornes després d'uns dies sense jugar.",
+      "STAGE_13": "I amb el \"mode lectura\" no has d'adivinar, tan sols llegir. Per aquells dies on no tens ganes de trencar-te el cap 😉",
+      "STAGE_14": "Amb això completem el tutorial 🎉 Tota la resta és obvi, o no essencial. Espero que gaudeixis aprenent, i qualsevol comentari és benvingut. Gràcies per utilitzar LinguaQuest! 🤗"
     }
   }
 }

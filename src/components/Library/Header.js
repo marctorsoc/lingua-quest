@@ -109,7 +109,7 @@ export const HeaderRight = ({ tintColor }) => {
   //   );
   // }
 
-  function sortAndFilterHandler() {
+  function changeLanguagesHandler() {
     const highlightStyle =
       globalConfig.tutorialStage == TUTORIAL_STAGES.HIGHLIGHT_HEADER
         ? ScreensStyles.highlightHeaderSection
@@ -121,7 +121,7 @@ export const HeaderRight = ({ tintColor }) => {
           icon={
             globalConfig.storyLongPressed
               ? "close-circle-outline"
-              : "funnel-outline"
+              : "language-outline"
           }
           size={24}
           color={tintColor}
@@ -138,7 +138,7 @@ export const HeaderRight = ({ tintColor }) => {
               });
               return;
             }
-            router.push("filterLibrary");
+            router.push("changeLanguages");
           }}
         />
       </View>
@@ -154,7 +154,7 @@ export const HeaderRight = ({ tintColor }) => {
     >
       {manageStoryHandler()}
       {/* {addAndRemoveStoryHandler()} */}
-      {sortAndFilterHandler()}
+      {changeLanguagesHandler()}
     </View>
   );
 };

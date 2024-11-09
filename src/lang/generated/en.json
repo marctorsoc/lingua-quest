@@ -60,10 +60,10 @@
       "ALERT_DELETED_DATA_FOR": "Deleted data for ",
       "ALERT_SETTINGS_SAVED_FOR": "Settings saved for player `"
     },
-    "FILTER": {
-      "TITLE": "Filter stories",
+    "CHANGE_LANGUAGES": {
+      "TITLE": "Change languages",
       "NUM_STORIES": "Number of stories",
-      "ALERT_DATA_FILTERED": "Data filtered"
+      "ALERT_DATA_FILTERED": "Updated"
     },
     "EDIT": {
       "TITLE": "Edit story",
@@ -78,18 +78,19 @@
       "STAGE_0": "Welcome to LinguaQuest! Here you will learn a new language while replaying your favorite stories.",
       "STAGE_1": "We recommend at least mid A2 level (preferably studying B1) for a more pleasant experience. Otherwise, it might be frustrating and you'll stop playing.",
       "STAGE_2": "In this tutorial, we'll see the basic functions of the app. We won't go over all details, as we understand you're eager to start learning 🤓 Feel free to swipe down to skip the tutorial.",
-      "STAGE_3": "Below this message, you have the tabs to navigate. In this screen (Play), we see the stories available to play, their length and your progress. Some stories are part of a collection. Press to navigate into the folder.",
-      "STAGE_4": "On top, you can see what language you are learning, and from what language, that is, the language for translations. You can change this by selecting the filter button on the right.",
+      "STAGE_3": "Below this message, you have the tabs to navigate. In this screen (Play), we see the stories available to play, their length and your progress.",
+      "STAGE_4": "On top, you can see what language you are learning, and from what language, i.e. the language for translations. You can change this by selecting the button on the right.",
       "STAGE_5": "Let's press now on any story, and we'll review how to play.",
       "STAGE_6": "Exciting! So the \"game\" consists in guessing the word that is missing in the sentence. You have four possible answers, and one of them is correct.",
-      "STAGE_7": "After selecting one option, the answer will be revealed & the translation. Click next to continue.",
-      "STAGE_8": "And now, next sentence. If you want to see again the translation for the first sentence, show it again by pressing on it. Let's do it.",
-      "STAGE_9": "Translations are not the best. So you can also press & hold on a sentence. This will copy it, so you can send it to your native friend, or double-check on Google Translate.",
-      "STAGE_10": "Finally, let's see what you can configure in Settings.",
-      "STAGE_11": "Here, you can change the sentences per round. Default is 2 but we recommend 10 for a better experience. This is important because to move to next round you need to correctly fill in all sentences.",
-      "STAGE_12": "You can also configure how many rounds of history to show. In case you want to review the story.",
-      "STAGE_13": "As per request of our users, we added a \"reading mode\", where you don't have to guess. Just read. For those days you don't feel like it",
-      "STAGE_14": "And... this completes the tutorial 🎉 Everything else is obvious or not essential. Hope you enjoy learning, and any feedback super welcome. Thanks for using LinguaQuest! 🤗"
+      "STAGE_7": "After selecting one option, the answer & translation will be revealed. Click \"Next\" to continue.",
+      "STAGE_8": "If you want to see again any previous translation, show it again by pressing on it. Let's do it.",
+      "STAGE_9": "Some translations might have errors. You can also press & hold on a sentence. This will copy it, so you can send it to your native friend, or double-check on Google Translate.",
+      "WELL_DONE": "Well done!",
+      "STAGE_10": "Finally, we'll show what you can configure in Settings. Press the next button to explore.",
+      "STAGE_11": "Here, you can change the sentences per round. Default is 2 but we recommend 10 for a better experience. Remember that to complete a round you need to correctly fill in all sentences.",
+      "STAGE_12": "You can also configure how many previous rounds you want to show. In case you want to review the story if you come back after some days.",
+      "STAGE_13": "And with the \"reading mode\" you don't have to guess. Just read. For those days you don't want to complicate 😉",
+      "STAGE_14": "This completes the tutorial 🎉 Everything else is obvious or not essential. Hope you enjoy learning, and any feedback super welcome. Thanks for using LinguaQuest! 🤗"
     }
   }
 }

@@ -73,6 +73,7 @@ Go to `raw.js` and update. Then run `node raw.js` to generate all `$language.jso
 
 - Add tutorial after Welcome (first time mandatory, later as optional) and as a button in settings
 
+- Settings encara surten buits a Android per usuaris nous...
 
 ----------- ENOUGH FOR GOOGLE PLAY ---------
 

@@ -50,9 +50,10 @@ function PlayTutorial() {
       />
       <View style={[styles.overlayContainer]}>
         <ScrollView style={styles.messageScroll}>
-          <Text style={styles.messageText}>
+          {/* to debug */}
+          {/* <Text style={styles.messageText}>
             {globalConfig.tutorialStage}
-          </Text>
+          </Text> */}
           <Text style={styles.messageText}>
             {t(`TUTORIAL.STAGE_${globalConfig.tutorialStage}`)}
           </Text>
