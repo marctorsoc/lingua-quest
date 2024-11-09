@@ -62,7 +62,7 @@ Just run `eas build -p android --profile preview`, and wait for some time (> 10m
 Compressing project files and uploading to EAS Build. Learn more
 ✔ Uploaded to EAS 2s
 
-Build details: https://expo.dev/accounts/marc.torsoc/projects/caption-master/builds/cb2dfa67-5f3e-4b45-afd6-6afcbc8ecfc0
+Build details: https://expo.dev/accounts/marc.torsoc/projects/lingua-quest/builds/cb2dfa67-5f3e-4b45-afd6-6afcbc8ecfc0
 ```
 
 # Updating translations

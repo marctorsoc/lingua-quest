@@ -5,10 +5,10 @@ import { loadData } from "./storage";
 
 const BACKEND_URL =
   // "https://expense-app-30907-default-rtdb.firebaseio.com";
-  "https://caption-master-cd8b4-default-rtdb.europe-west1.firebasedatabase.app/";
+  "https://lingua-quest-cd8b4-default-rtdb.europe-west1.firebasedatabase.app/";
 
 export async function fetchStories(
-  props = { try_from_disk: true, userId: undefined },
+  props = { try_from_disk: true, userId: undefined }
 ) {
   const { try_from_disk, userId } = props;
 
@@ -35,7 +35,7 @@ export async function fetchStories(
 export async function fetchSentences(
   storyId,
   LearningLanguage,
-  try_from_disk = false,
+  try_from_disk = false
 ) {
   if (storyId === undefined)
     throw new Error("fetchSentences: storyId cannot be undefined");
@@ -45,7 +45,7 @@ export async function fetchSentences(
     try {
       console.log("loading sentences from disk");
       const jsonValue = await AsyncStorage.getItem(
-        `sentences_${storyId}_${LearningLanguage}`,
+        `sentences_${storyId}_${LearningLanguage}`
       );
       sentencesForStory = JSON.parse(jsonValue);
 
@@ -65,7 +65,7 @@ export async function fetchSentences(
   sentencesForStory = data.sentences.filter(
     (sentence) =>
       sentence.story_id === storyId &&
-      sentence.learning_lc === LearningLanguage,
+      sentence.learning_lc === LearningLanguage
   );
 
   return [...sentencesForStory];
