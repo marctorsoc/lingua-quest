@@ -6,18 +6,20 @@ export const initialGlobalData = {
   // setLanguage: (language) => {},
   // theme: "dark",
   // setTheme: (theme) => {},
-  storyLongPressed: undefined,
+  storyLongPressed: null, // use null's so when priting state in json they are shown
   // storyLongPressed: "d599c6801b3eb562",
   numSentencesPerGame: 2,
   historyLength: 1,
   readingMode: false,
   filters: {
-    learningLanguage: "lt",
+    learningLanguage: "es",
     knownLanguage: "en",
     storyType: "subtitle",
   },
-  userInfo: null,
-  tutorialMode: false,
+  appLanguage: "en",
+  userId: null,
+  tutorialStage: null,
+  lastStoryId: null,
   // numGamesPerDay: 3,  // TODO marc: implement this
 };
 

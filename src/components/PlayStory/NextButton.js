@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 import { GlobalStyles } from "@/constants/styles";
 import { StyleSheet } from "react-native";
 import Button from "../UI/Button";
@@ -7,14 +7,17 @@ import { PlayContext } from "@/context/play-context";
 import { useNavigation } from "@react-navigation/native";
 import { StoryContext } from "@/context/stories-context";
 import { storeData } from "@/util/storage";
-import { alert, showConfirmation } from "@/util/alert";
+import { showConfirmation } from "@/util/alert";
 import { GlobalContext } from "@/context/global-context";
+import { useTranslation } from "react-i18next";
+import { TUTORIAL_STAGES } from "../../constants/tutorial_stages";
 
 function NextButton({ skip }) {
   const navigation = useNavigation();
   const { playData, setPlayData } = useContext(PlayContext);
-  const { globalConfig } = useContext(GlobalContext);
+  const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
   const { stories, setStories } = useContext(StoryContext);
+  const { t } = useTranslation();
   const storyId = playData.storyId;
   const answered = skip || playData.currentAnswerIdx !== undefined;
   const isLastSentence =
@@ -27,6 +30,7 @@ function NextButton({ skip }) {
   function resetGame() {
     setPlayData({
       ...playData,
+      celebrate: false,
       currentAnswerIdx: undefined,
       currentSentenceIdx: playData.startIdx,
       numWrongAnswers: 0,
@@ -48,16 +52,24 @@ function NextButton({ skip }) {
             [learningLanguage]: playData.endIdx,
           },
         };
-        // save to context and local storage
+        // save to context AND local storage
         const updatedStories = stories.map((story) =>
-          story.id === updatedStory.id ? updatedStory : story,
+          story.id === updatedStory.id ? updatedStory : story
         );
 
         setStories(updatedStories);
-        storeData("stories", JSON.stringify(updatedStories));
+        storeData(
+          "stories-" + globalConfig.userId,
+          JSON.stringify(updatedStories)
+        );
 
         // show a popup to continue "yes/no"
         if (globalConfig.showConfirmationDialog) askForContinue();
+
+        setPlayData({
+          ...playData,
+          celebrate: true,
+        });
 
         return;
       }
@@ -72,6 +84,12 @@ function NextButton({ skip }) {
       currentSentenceIdx: playData.currentSentenceIdx + 1,
       numAnswersToGo: playData.numAnswersToGo - 1,
     });
+    if (globalConfig.tutorialStage == TUTORIAL_STAGES.NEXT) {
+      setGlobalConfig({
+        ...globalConfig,
+        tutorialStage: globalConfig.tutorialStage + 1,
+      });
+    }
   }
 
   const askForContinue = () => {
@@ -95,16 +113,18 @@ function NextButton({ skip }) {
           },
         },
       ],
-      { cancelable: false },
+      { cancelable: false }
     );
   };
 
   const getNextButtonMessage = () => {
-    if (storyCompleted) return "Completed";
+    if (storyCompleted) return t("PLAY.COMPLETED");
     if (isLastSentence) {
-      return allCorrect ? "Finish round" : "Try again";
+      return allCorrect
+        ? t("PLAY.FINISH_ROUND")
+        : t("PLAY.TRY_AGAIN");
     }
-    return "Next";
+    return t("GLOBAL.NEXT");
   };
 
   // console.log(playData);
@@ -132,14 +152,13 @@ const styles = StyleSheet.create({
   AnswerContainer: {
     paddingVertical: "4%",
     justifyContent: "center",
-    borderColor: "white",
+    borderColor: GlobalStyles.colors.background,
     borderWidth: 0.5,
   },
   textBase: {
-    color: GlobalStyles.colors.primary50,
+    color: GlobalStyles.colors.white,
   },
   title: {
-    fontSize: 16,
     fontWeight: "bold",
   },
   answerText: {

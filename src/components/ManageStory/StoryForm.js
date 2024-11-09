@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-import { Input, PickerInput } from "../UI/Input";
+import { TextInput } from "../UI/TextInput";
 import Button from "../UI/Button";
 import { getFormattedDate } from "../../util/date";
 import { GlobalStyles, ScreensStyles } from "../../constants/styles";
 import { Picker } from "@react-native-picker/picker";
 import { showInformativeAlert } from "../../util/alert";
+import { useTranslation } from "react-i18next";
+import { CancelApplyButtons } from "../UI/CancelApplyButtons";
 
 function StoryForm({
   submitButtonLabel,
@@ -25,7 +27,7 @@ function StoryForm({
     // },
     languages: {
       value: JSON.stringify(
-        defaultValues ? defaultValues.languages : {},
+        defaultValues ? defaultValues.languages : {}
       ),
       isValid: true,
     },
@@ -34,11 +36,12 @@ function StoryForm({
       isValid: true,
     },
   });
+  const { t } = useTranslation();
 
   function inputChangedHandler(
     inputIdentifier,
     enteredValue,
-    json_parse = false,
+    json_parse = false
   ) {
     let isValid = enteredValue.trim().length > 0;
     try {
@@ -66,8 +69,8 @@ function StoryForm({
 
     if (!inputs.title.isValid || !inputs.done.isValid) {
       showInformativeAlert(
-        "Invalid story",
-        "Please fix the errors above.",
+        t("EDIT.ALERT_INVALID_STORY"),
+        t("EDIT.ALERT_FIX_ERRORS")
       );
       return;
     }
@@ -76,29 +79,21 @@ function StoryForm({
 
   return (
     <View style={styles.form}>
-      <Input
-        label="Title"
+      <TextInput
+        label={t("EDIT.TITLE")}
         invalid={!inputs.title.isValid}
+        editable={false}
+        style={styles.input}
         textInputConfig={{
           keyboardType: "default",
           onChangeText: (text) => inputChangedHandler("title", text),
           value: inputs.title.value,
         }}
       />
-      {/* <Input
-        label="Caption Url" // previously Description
-        invalid={!inputs.url.isValid}
-        textInputConfig={{
-          multiline: true,
-          // autoCapitalize: 'none'
-          // autoCorrect: false // default is true
-          onChangeText: inputChangedHandler.bind(this, "url"),
-          value: inputs.url.value,
-        }}
-      /> */}
-      <Input
-        label="Languages"
+      <TextInput
+        label={t("EDIT.LANGUAGES_AND_TRANSLATIONS")}
         editable={false}
+        style={styles.input}
         textInputConfig={{
           keyboardType: "default",
           onChangeText: (text) =>
@@ -106,31 +101,10 @@ function StoryForm({
           value: inputs.languages.value,
         }}
       />
-      {/* <View style={styles.inputsRow}>
-        <PickerInput
-          style={[styles.rowInput, { width: "45%" }]}
-          label="Learning"
-          pickerConfig={{
-            onChangeText: (text) =>
-              inputChangedHandler("learning_lc", text),
-            value: inputs.learning_lc.value,
-            options: languageOptions,
-          }}
-        />
-        <PickerInput
-          style={[styles.rowInput, { width: "45%" }]}
-          label="From"
-          pickerConfig={{
-            onChangeText: (text) =>
-              inputChangedHandler("known_lc", text),
-            value: inputs.known_lc.value,
-            options: languageOptions,
-          }}
-        />
-      </View> */}
-      <Input
-        label="Sentences done"
+      <TextInput
+        label={t("EDIT.SENTENCES_DONE")}
         invalid={!inputs.done.isValid}
+        style={styles.input}
         textInputConfig={{
           keyboardType: "default",
           onChangeText: (text) =>
@@ -138,17 +112,11 @@ function StoryForm({
           value: inputs.done.value,
         }}
       />
-      <View style={styles.buttons}>
-        <Button style={ScreensStyles.button} onPress={onCancel}>
-          <Text style={{ color: "white" }}>Cancel</Text>
-        </Button>
-        <Button
-          style={ScreensStyles.button}
-          onPress={onsubmitInterim}
-        >
-          <Text style={{ color: "white" }}>{submitButtonLabel}</Text>
-        </Button>
-      </View>
+      <CancelApplyButtons
+        onCancel={onCancel}
+        onApply={onsubmitInterim}
+        applyButtonLabel={submitButtonLabel}
+      ></CancelApplyButtons>
     </View>
   );
 }
@@ -158,32 +126,33 @@ export default StoryForm;
 const styles = StyleSheet.create({
   form: {
     marginTop: 40,
+    alignItems: "center",
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "white",
+    color: GlobalStyles.colors.white,
     marginVertical: 24,
     textAlign: "center",
   },
-  inputsRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  // TODO marc: remove this if stays empty
-  rowInput: {
-    // flex: 1,
-    padding: 6,
+  input: {
+    // marginVertical: "5%",
+    width: "70%",
+    height: "20%",
   },
   errorText: {
     textAlign: "center",
-    color: GlobalStyles.colors.error500,
+    color: GlobalStyles.colors.error,
     margin: 8,
   },
   buttons: {
-    marginTop: 24,
+    marginTop: "10%",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+  },
+  button: {
+    minWidth: 120,
+    marginHorizontal: "3%",
   },
 });

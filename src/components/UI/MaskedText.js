@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   buttonText: {
-    color: "white",
+    color: GlobalStyles.colors.textLight,
     textAlign: "center",
   },
   flatText: {

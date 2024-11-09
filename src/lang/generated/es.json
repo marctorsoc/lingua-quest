@@ -1,0 +1,96 @@
+{
+  "translation": {
+    "GLOBAL": {
+      "OF": "de",
+      "FROM": "desde",
+      "NEXT": "Siguiente",
+      "CANCEL": "Cancelar",
+      "APPLY": "Aplicar",
+      "LEARNING_LANG": "Idioma a aprender",
+      "IN_GAME_TRANSLATIONS": "Idioma conocido",
+      "TRANSLATIONS": "Traducciones"
+    },
+    "TABS": {
+      "PLAY": "Jugar",
+      "CATALOG": "Catálogo",
+      "SETTINGS": "Ajustes"
+    },
+    "AUTH": {
+      "ALL_USERS": "Usuarios registrados",
+      "NAME": "Nombre",
+      "SIGNUP": {
+        "TITLE": "Crear cuenta",
+        "ABOVE_SIGNIN_LINK_TEXT": "¿Ya tienes una cuenta?",
+        "SKIP_TUTORIAL": "Omitir tutorial",
+        "SIGNIN_LINK": "Entra en tu cuenta",
+        "CONTINUE": "Registrarse",
+        "ALERT_DATA_STORED": "Datos guardados. Todo listo para jugar",
+        "ALERT_NAME_TAKEN": "Nombre ya usado. Por favor, elige otro nombre.",
+        "ALERT_LANGUAGE_CLASH": "El idioma a aprender y el idioma para las traducciones no pueden ser el mismo."
+      },
+      "SIGNIN": {
+        "TITLE": "Entra en tu cuenta",
+        "ABOVE_SIGNUP_LINK_TEXT": "¿Aún no tienes una cuenta?",
+        "SIGNUP_LINK": "Registrarse",
+        "CONTINUE": "Entrar",
+        "ALERT_DATA_RESTORED": "Datos restaurados. Listo para jugar"
+      }
+    },
+    "LIBRARY": {
+      "RESUME": "Continuar",
+      "ALERT_ADD_STORY": "De momento no se pueden añadir más historias 😞",
+      "ALERT_REMOVED_STORY": "¡Historia eliminada con éxito!"
+    },
+    "PLAY": {
+      "COMPLETED": "Completado",
+      "FINISH_ROUND": "Finalizar ronda",
+      "TRY_AGAIN": "Intentar de nuevo"
+    },
+    "SETTINGS": {
+      "SENTENCES_PER_ROUND": "Frases por ronda",
+      "HISTORY_LENGTH": "Rondas en memoria",
+      "READING_MODE": "Modo lectura",
+      "APP_LANGUAGE": "Idioma de la app",
+      "RESTORE_DATA": "Restaurar datos",
+      "SAVE_DATA": "Guardar datos",
+      "WATCH_TUTORIAL": "Ver tutorial",
+      "ALERT_RESTORED_DATA_FOR": "Datos restaurados para ",
+      "ALERT_ERROR_RESTORING": "Error al restaurar datos",
+      "ALERT_ERROR_DELETING": "No se pueden borrar los datos del usuario actual",
+      "ALERT_DELETED_DATA_FOR": "Datos eliminados para ",
+      "ALERT_SETTINGS_SAVED_FOR": "Ajustes guardados para el jugador `"
+    },
+    "CHANGE_LANGUAGES": {
+      "TITLE": "Cambiar idiomas",
+      "NUM_STORIES": "Número de historias",
+      "ALERT_DATA_FILTERED": "Actualizado"
+    },
+    "EDIT": {
+      "TITLE": "Editar historia",
+      "TITLE_INPUT": "Título",
+      "LANGUAGES_AND_TRANSLATIONS": "Idiomas y traducciones",
+      "SENTENCES_DONE": "Frases completadas",
+      "ALERT_STORY_UPDATED": "Historia actualizada",
+      "ALERT_INVALID_STORY": "Historia inválida",
+      "ALERT_FIX_ERRORS": "Por favor, corrige los errores."
+    },
+    "TUTORIAL": {
+      "STAGE_0": "¡Bienvenido a LinguaQuest! Aquí aprenderás un nuevo idioma mientras revives tus historias favoritas.",
+      "STAGE_1": "Recomendamos al menos nivel A2 (preferiblemente estudiando B1) para una experiencia más agradable. De lo contrario, podría ser frustrante y dejarás de jugar.",
+      "STAGE_2": "En este tutorial, veremos las funciones básicas de la app. No cubriremos todos los detalles, ya que seguro que estás ansioso por empezar a aprender 🤓 Haz swipe down (desliza hacia abajo) para salir del tutorial.",
+      "STAGE_3": "Debajo de este mensaje, tienes la barra de navegación. En esta pantalla (Jugar), tenemos las historias disponibles para jugar, su longitud y tu progreso.",
+      "STAGE_4": "Arriba, puedes ver qué idioma estás aprendiendo, y desde qué idioma, es decir, el idioma para las traducciones. Puedes cambiar esto seleccionando el botón de la derecha",
+      "STAGE_5": "Ahora presiona en cualquier historia y revisaremos cómo jugar.",
+      "STAGE_6": "Fantástico! El \"juego\" consiste en adivinar la palabra para rellanar el hueco en cada frase. Tienes cuatro posibles respuestas, y una de ellas es correcta.",
+      "STAGE_7": "Después de seleccionar una opción, se revelará la respuesta y la traducción. Haz clic en \"Siguiente\" para continuar.",
+      "STAGE_8": "Si quieres ver alguna traducción anterior, puedes mostrarla presionando en ella. Prueba de hacerlo.",
+      "STAGE_9": "Algunas traducciones no son perfectas. Si quieres, puedes presionar y mantener una frase para copiarla. Así puedes enviarla a tu amigo nativo o verificarla en Google Translate.",
+      "WELL_DONE": "¡Bien hecho!",
+      "STAGE_10": "Finalmente, veamos qué podemos cambiar en la Configuración. Presiona el botón de continuar para explorarlo.",
+      "STAGE_11": "Aquí puedes cambiar las frases por ronda. Por defecto son 2, pero recomendamos 10 para una mejor experiencia. Recuerda que para pasar de ronda tienes que rellenar correctamente todas las frases.",
+      "STAGE_12": "También puedes configurar cuántas rondas previas se muestras. En caso de que quieras revisar la historia si vuelves tras unos días sin jugar.",
+      "STAGE_13": "Y con el \"modo lectura\" no tienes que adivinar. Solo leer. Para esos días que no tienes ganas de romperte la cabeza 😉",
+      "STAGE_14": "Con esto completamos el tutorial 🎉 Todo lo demás es obvio o no esencial. Espero que disfrutes aprendiendo, y cualquier comentario es bienvenido. Gracias por usar LinguaQuest! 🤗"
+    }
+  }
+}

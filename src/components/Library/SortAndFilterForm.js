@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useContext } from "react";
-import { Platform } from "react-native";
-import { PickerInput } from "../UI/Input";
-import Button from "../UI/Button";
-import { GlobalStyles, ScreensStyles } from "../../constants/styles";
-import { languageOptions } from "../../constants/languages";
-import { storyTypeOptions } from "../../constants/story_type";
+import { GlobalStyles } from "../../constants/styles";
 import { StoryContext } from "../../context/stories-context";
+import { useTranslation } from "react-i18next";
+import { GameLanguagePickers } from "../UI/GameLanguagePickers";
+import { CancelApplyButtons } from "../UI/CancelApplyButtons";
 
 function getStoriesForFilters(stories, filters) {
   return stories.filter(
@@ -16,27 +14,28 @@ function getStoriesForFilters(stories, filters) {
       // TODO: enable filtering by story type
       // story.storyType === filters.storyType.value &&
       Object.keys(story.languages).includes(
-        filters.learningLanguage,
+        filters.learningLanguage
       ) &&
       story.languages[filters.learningLanguage].includes(
-        filters.knownLanguage,
-      ),
+        filters.knownLanguage
+      )
   );
 }
 
 function SortAndFilterForm({ onCancel, onSubmit, defaultValues }) {
   const { stories } = useContext(StoryContext);
+  const { t } = useTranslation();
 
   // TODO: only show options for languages / types that are in the stories
   // TODO: add options to sort
   const [inputStoryType, setInputStoryType] = useState(
-    defaultValues ? defaultValues.storyType : "subtitle",
+    defaultValues ? defaultValues.storyType : "subtitle"
   );
   const [inputLearningLanguage, setInputLearningLanguage] = useState(
-    defaultValues ? defaultValues.learningLanguage : "lt",
+    defaultValues ? defaultValues.learningLanguage : "lt"
   );
   const [inputKnownLanguage, setInputKnownLanguage] = useState(
-    defaultValues ? defaultValues.knownLanguage : "en",
+    defaultValues ? defaultValues.knownLanguage : "en"
   );
   const inputs = {
     storyType: inputStoryType,
@@ -54,13 +53,13 @@ function SortAndFilterForm({ onCancel, onSubmit, defaultValues }) {
   // });
 
   const [numFilteredStories, setNumFilteredStories] = useState(
-    getStoriesForFilters(stories, inputs).length,
+    getStoriesForFilters(stories, inputs).length
   );
 
   // TODO: can this be solved without a useEffect?
   useEffect(() => {
     setNumFilteredStories(
-      getStoriesForFilters(stories, inputs).length,
+      getStoriesForFilters(stories, inputs).length
     );
   }, [inputs]);
 
@@ -77,56 +76,24 @@ function SortAndFilterForm({ onCancel, onSubmit, defaultValues }) {
       storyType: filterData.storyType,
     });
   }
-  const languageOptionsProcessed = languageOptions.map((item) => ({
-    ...item,
-    label: item.longName,
-  }));
 
-  console.log(storyTypeOptions);
   return (
     <View style={styles.form}>
-      <View style={styles.inputsRow}>
-        <PickerInput
-          style={styles.picker}
-          label="Story Type"
-          onChangeText={(text) => setInputStoryType(text)}
-          zIndex={3000}
-          value={inputStoryType}
-          options={storyTypeOptions}
-          disabled={true}
-        />
-        <PickerInput
-          style={styles.picker}
-          label="Learning"
-          onChangeText={(text) => setInputLearningLanguage(text)}
-          zIndex={2000}
-          value={inputLearningLanguage}
-          options={languageOptionsProcessed}
-        />
-        <PickerInput
-          style={styles.picker}
-          label="Translations"
-          onChangeText={(text) => setInputKnownLanguage(text)}
-          zIndex={1000}
-          value={inputKnownLanguage}
-          options={languageOptionsProcessed}
-        />
-      </View>
-      <View style={styles.buttons}>
-        <Button style={ScreensStyles.button} onPress={onCancel}>
-          <Text style={{ color: "white" }}>Cancel</Text>
-        </Button>
-        <Button
-          style={ScreensStyles.button}
-          onPress={onsubmitInterim}
-          disabled={numFilteredStories === 0}
-        >
-          <Text style={{ color: "white" }}>Apply</Text>
-        </Button>
-      </View>
+      <GameLanguagePickers
+        inputLearningLanguage={inputLearningLanguage}
+        setInputLearningLanguage={setInputLearningLanguage}
+        inputKnownLanguage={inputKnownLanguage}
+        setInputKnownLanguage={setInputKnownLanguage}
+      ></GameLanguagePickers>
+      <CancelApplyButtons
+        onCancel={onCancel}
+        onApply={onsubmitInterim}
+        applyButtonLabel={t("GLOBAL.APPLY")}
+        disabledApply={numFilteredStories == 0}
+      ></CancelApplyButtons>
       <View style={{ alignItems: "center", padding: 10 }}>
-        <Text style={{ color: "white" }}>
-          Num stories: {numFilteredStories}
+        <Text style={{ color: GlobalStyles.colors.gray500 }}>
+          {t("CHANGE_LANGUAGES.NUM_STORIES")}: {numFilteredStories}
         </Text>
       </View>
     </View>
@@ -138,6 +105,7 @@ export default SortAndFilterForm;
 const styles = StyleSheet.create({
   form: {
     marginTop: 40,
+    alignItems: "center",
   },
   inputsRow: {
     flexDirection: "column",
@@ -153,11 +121,6 @@ const styles = StyleSheet.create({
     marginTop: 30,
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center",
     zIndex: -100,
-  },
-  picker: {
-    width: Platform.OS === "web" ? "32%" : "45%",
-    padding: 5,
   },
 });

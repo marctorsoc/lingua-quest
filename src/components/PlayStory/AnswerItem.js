@@ -1,12 +1,15 @@
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 import { GlobalStyles } from "../../constants/styles";
 import { StyleSheet } from "react-native";
 import Button from "../UI/Button";
 import { useContext } from "react";
 import { PlayContext } from "../../context/play-context";
+import { GlobalContext } from "../../context/global-context";
+import { TUTORIAL_STAGES } from "../../constants/tutorial_stages";
 
 function AnswerItem({ index, text, correct_answer }) {
   const { playData, setPlayData } = useContext(PlayContext);
+  const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
   const thisAnswerSelected = playData.currentAnswerIdx === index;
 
   // default, keep white
@@ -31,6 +34,13 @@ function AnswerItem({ index, text, correct_answer }) {
     if (playData.currentAnswerIdx !== undefined) return;
     if (text == "") return;
 
+    if (globalConfig.tutorialStage == TUTORIAL_STAGES.ANSWER) {
+      setGlobalConfig({
+        ...globalConfig,
+        tutorialStage: globalConfig.tutorialStage + 1,
+      });
+    } else if (globalConfig.tutorialStage != null) return;
+
     if (index == correct_answer) {
       setPlayData({
         ...playData,
@@ -50,12 +60,7 @@ function AnswerItem({ index, text, correct_answer }) {
     <Button style={answerContainerStyle} onPress={onAnswerSelected}>
       <Text
         // TODO marc: use composed styles here
-        style={[
-          styles.textBase,
-          styles.title,
-          styles.answerText,
-          textStyle,
-        ]}
+        style={[styles.textBase, styles.answerText, textStyle]}
       >
         {text}
       </Text>
@@ -69,27 +74,24 @@ const styles = StyleSheet.create({
   AnswerContainer: {
     flex: 1,
     justifyContent: "center",
-    height: 80,
-    borderColor: "white",
+    height: 70,
+    borderColor: GlobalStyles.colors.background,
     borderWidth: 0.5,
     // backgroundColor: "blue",
   },
   textBase: {
-    color: GlobalStyles.colors.primary50,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: "bold",
+    color: GlobalStyles.colors.white,
   },
   answerText: {
-    fontSize: 20,
+    fontSize: 18,
+    fontWeight: "bold",
     textAlign: "center",
     alignSelf: "center",
   },
   answerTextSelectedCorrect: {
-    color: "green",
+    color: GlobalStyles.colors.correctAnswer,
   },
   answerTextSelectedWrong: {
-    color: "red",
+    color: GlobalStyles.colors.incorrectAnswer,
   },
 });

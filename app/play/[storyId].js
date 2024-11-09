@@ -7,12 +7,8 @@ import {
 } from "react";
 import { StyleSheet, View } from "react-native";
 import LoadingOverlay from "../../src/components/UI/LoadingOverlay";
-import {
-  GlobalStyles,
-  ScreensStyles,
-} from "../../src/constants/styles";
+import { GlobalStyles } from "../../src/constants/styles";
 import { StoryContext } from "../../src/context/stories-context";
-import { PickerInput } from "../../src/components/UI/Input";
 import { sleep } from "../../src/util/debug";
 import SentenceList from "../../src/components/PlayStory/SentenceList";
 import AnswerBox from "../../src/components/PlayStory/AnswerBox";
@@ -20,9 +16,10 @@ import { PlayContext } from "../../src/context/play-context";
 import { initialPlayData } from "../../src/context/play-context";
 import { GlobalContext } from "../../src/context/global-context";
 import GameStatusBox from "../../src/components/PlayStory/GameStatusBox";
-import { storeData } from "../../src/util/storage";
 import { fetchSentences } from "../../src/util/http";
 import { useLocalSearchParams, useNavigation } from "expo-router";
+import ConfettiCannon from "react-native-confetti-cannon";
+import PlayTutorial from "../../src/components/PlayStory/PlayTutorial";
 
 function PlayStory() {
   // TODO: move all logic here into components
@@ -60,7 +57,7 @@ function PlayStory() {
           globalConfig.filters.learningLanguage;
         const sentencesForStory = await fetchSentences(
           storyId,
-          learningLanguage,
+          learningLanguage
         );
 
         // console.log(globalConfig);
@@ -71,24 +68,40 @@ function PlayStory() {
           globalConfig.numSentencesPerGame;
         const requestStartIdx = Math.max(
           0,
-          story.done[learningLanguage] - numPrevSentences,
+          story.done[learningLanguage] - numPrevSentences
         );
         const requestEndIdx = Math.min(
           story.total[learningLanguage],
           story.done[learningLanguage] +
-            globalConfig.numSentencesPerGame,
+            globalConfig.numSentencesPerGame
         );
         const requestedSentences = [
           ...sentencesForStory.slice(requestStartIdx, requestEndIdx),
         ];
-        // console.log("requested sentences");
-        // console.log(requestedSentences);
+        console.log(playData);
+        console.log(
+          "requested sentences from " +
+            requestStartIdx +
+            " to " +
+            requestEndIdx
+        );
+        console.log({
+          story_total: story.total[learningLanguage],
+          story_done: story.done[learningLanguage],
+          requestEndIdx: requestEndIdx,
+          numPrevSentences: numPrevSentences,
+          numSentencesPerGame: globalConfig.numSentencesPerGame,
+        });
+        console.log(requestedSentences);
         await sleep(0.1);
         setSentences(requestedSentences);
         const playLength =
           requestEndIdx - story.done[learningLanguage];
         setPlayData({
           ...initialPlayData,
+          // keep celebrate from previous iteration
+          // so it's run just once
+          celebrate: playData.celebrate,
           numSentences: playLength,
           numAnswersToGo: playLength,
           currentSentenceIdx: story.done[learningLanguage],
@@ -97,7 +110,6 @@ function PlayStory() {
           startHistoryIdx: requestStartIdx,
           storyId: storyId,
         });
-        storeData("last_story_id", storyId);
       } catch (error) {
         // setError("Could not fetch expenses!");
         // TODO: use the error state
@@ -130,8 +142,16 @@ function PlayStory() {
   }
   return (
     <View style={styles.mainContainer}>
+      {/* <ConfettiCannon
+        autoStart={playData.celebrate}
+        count={150}
+        explosionSpeed={500}
+        // fallSpeed={3000}
+        origin={{ x: -10, y: 0 }}
+      /> */}
       <GameStatusBox />
       <SentenceList sentences={sentences} />
+      {globalConfig.tutorialStage !== null && <PlayTutorial />}
       <AnswerBox
         readingMode={globalConfig.readingMode}
         {...currentSentence}
@@ -145,6 +165,6 @@ export default PlayStory;
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: GlobalStyles.colors.primary800,
+    backgroundColor: GlobalStyles.colors.background,
   },
 });

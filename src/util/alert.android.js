@@ -28,7 +28,7 @@ export const showConfirmation = (title, message) => {
       cancelable: true,
       // do nothing
       onDismiss: () => {},
-    },
+    }
   );
   console.log("result", result);
   return result;

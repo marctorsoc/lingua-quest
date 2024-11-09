@@ -17,23 +17,22 @@ const alertPolyfill = (
       text: "Ok",
       onPress: () => true,
     },
-  ],
-  extra,
+  ]
 ) => {
   const handler =
     options.length === 1 ? window.alert : window.confirm;
   const result = handler(
-    [title, description].filter(Boolean).join("\n"),
+    [title, description].filter(Boolean).join("\n")
   );
 
   if (result) {
     const confirmOption = options.find(
-      ({ style }) => style !== "cancel",
+      ({ style }) => style !== "cancel"
     );
     return confirmOption && confirmOption.onPress();
   } else {
     const cancelOption = options.find(
-      ({ style }) => style === "cancel",
+      ({ style }) => style === "cancel"
     );
     return cancelOption && cancelOption.onPress();
   }
@@ -53,6 +52,8 @@ export function _showInformativeAlert(title, message) {
         onPress: () => {},
       },
     ],
-    { cancelable: false },
+    {
+      cancelable: false,
+    }
   );
 }

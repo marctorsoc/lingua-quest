@@ -1,10 +1,9 @@
 import * as NavigationBar from "expo-navigation-bar";
-import React, { useContext } from "react";
+import { useEffect } from "react";
+
 import { Stack } from "expo-router";
-import {
-  GlobalContext,
-  GlobalContextProvider,
-} from "../src/context/global-context";
+import { Platform, UIManager } from "react-native";
+import { GlobalContextProvider } from "../src/context/global-context";
 import { StoryContextProvider } from "../src/context/stories-context";
 import { PlayContextProvider } from "../src/context/play-context";
 import { GlobalStyles } from "../src/constants/styles";
@@ -12,28 +11,45 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
   setStatusBarHidden,
-  setStatusBarTranslucent,
+  setStatusBarStyle,
   StatusBar,
 } from "expo-status-bar";
+import "../src/lang/i18n";
+import { useTranslation } from "react-i18next";
 
 export default function Layout() {
-  useStickyImmersive();
+  // Enable layout animation for Android
+  if (Platform.OS === "android") {
+    useStickyImmersive();
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+
+  const { t } = useTranslation();
+
   return (
     <GestureHandlerRootView>
       <SafeAreaProvider>
         <GlobalContextProvider>
           <StoryContextProvider>
             <PlayContextProvider>
+              <StatusBar style="light" />
               <Stack
                 screenOptions={{
-                  tabBarActiveTintColor:
-                    GlobalStyles.colors.accent500,
+                  tabBarActiveTintColor: GlobalStyles.colors.accent,
                   headerStyle: {
-                    backgroundColor: GlobalStyles.colors.primary500,
+                    backgroundColor: GlobalStyles.colors.header,
                   },
-                  headerTintColor: "white",
+                  headerTitleStyle: {
+                    fontWeight: "bold",
+                    fontSize: 20,
+                  },
+                  headerTintColor: GlobalStyles.colors.white,
                 }}
               >
+                <Stack.Screen
+                  name="(auth)"
+                  options={{ headerShown: false }}
+                />
                 <Stack.Screen
                   name="(tabs)"
                   options={{ headerShown: false }}
@@ -44,10 +60,10 @@ export default function Layout() {
                   options={{ presentation: "modal" }}
                 />
                 <Stack.Screen
-                  name="filterLibrary"
+                  name="changeLanguages"
                   options={{
                     presentation: "modal",
-                    title: "Filter Library",
+                    title: t("CHANGE_LANGUAGES.TITLE"),
                   }}
                 />
                 <Stack.Screen
@@ -58,7 +74,7 @@ export default function Layout() {
                   name="manageStory/[storyId]"
                   options={{
                     presentation: "modal",
-                    title: "Edit story",
+                    title: t("EDIT.TITLE"),
                   }}
                 />
               </Stack>
@@ -75,12 +91,15 @@ function useStickyImmersive() {
   NavigationBar.setPositionAsync("absolute");
   NavigationBar.setVisibilityAsync("hidden");
   NavigationBar.setBehaviorAsync("inset-swipe");
-  NavigationBar.setBackgroundColorAsync("#00000080"); // `rgba(0,0,0,0.5)`
+  // NavigationBar.setBackgroundColorAsync("#fff"); // `rgba(0,0,0,0.5)`
+  // StatusBar.setco("#fff"); // `rgba(0,0,0,0.5)`
+  // setStatusBarBackgroundColor("#fff"); // `rgba(0,0,0,0.5)`
+  setStatusBarStyle("light");
   setStatusBarHidden(true, "none");
   // StatusBar.setVisibilityAsync("hidden");
   // setStatusBarTranslucent(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (visibilityNB === "visible") {
       const interval = setTimeout(() => {
         NavigationBar.setVisibilityAsync("hidden");

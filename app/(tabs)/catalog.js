@@ -16,6 +16,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { PlayContext } from "../../src/context/play-context";
 import { GlobalContext } from "../../src/context/global-context";
 import CatalogItem from "../../src/components/Catalog/CatalogItem";
+import { loadData } from "../../src/util/storage";
 
 function Catalog() {
   // TODO marc: see example for this in https://reactnative.dev/docs/network
@@ -42,12 +43,12 @@ function Catalog() {
     }
     async function getSettings() {
       // console.log("Getting settings from disk");
-      const settings = await AsyncStorage.getItem("settings");
-      if (settings) {
-        // console.log("Setting settings in globalConfig");
-        setGlobalConfig(JSON.parse(settings));
-      }
-      return settings;
+      return loadData("settings").then((settings) => {
+        if (settings) {
+          setGlobalConfig(JSON.parse(settings));
+        }
+        return settings;
+      });
     }
     setIsFetching(true);
     getSettings();
@@ -71,7 +72,7 @@ function Catalog() {
   if (stories.length > 0) {
     content = stories
       .filter(
-        (story) => story.parent_id === null,
+        (story) => story.parent_id === null
         // story.parent_id === undefined &&
         // story.storyType === globalConfig.filters.storyType &&
       )
@@ -82,13 +83,13 @@ function Catalog() {
       {content === undefined || content.length === 0 ? (
         defaultContent
       ) : (
-        <StoryList stories={content} renderer={renderCatalogStory} />
+        <StoryList stories={content} renderer={renderCatalogItem} />
       )}
     </View>
   );
 }
 
-function renderCatalogStory(itemData) {
+function renderCatalogItem(itemData) {
   // TODO: try using simply CatalogItem so this function can be removed
   return <CatalogItem {...itemData.item} />;
 }
@@ -97,12 +98,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 5,
-    paddingTop: 24,
     paddingBottom: 0,
-    backgroundColor: GlobalStyles.colors.primary700,
+    backgroundColor: GlobalStyles.colors.background,
   },
   infoText: {
-    color: "white",
+    color: GlobalStyles.colors.textLight,
     fontSize: 16,
     textAlign: "center",
     marginTop: 32,

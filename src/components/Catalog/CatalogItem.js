@@ -1,4 +1,10 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalStyles } from "../../constants/styles";
 import { useContext } from "react";
@@ -6,6 +12,7 @@ import { GlobalContext } from "../../context/global-context";
 import Button from "../UI/Button";
 import { Image } from "react-native";
 import { logos } from "../../constants/languages";
+import { useTranslation } from "react-i18next";
 
 function CatalogItem({
   id,
@@ -16,6 +23,7 @@ function CatalogItem({
   total,
   parent_id,
 }) {
+  const { t } = useTranslation();
   function renderLanguage(lang) {
     return (
       <Image
@@ -27,57 +35,67 @@ function CatalogItem({
   }
   return (
     <View style={styles.StoryItemWrapper}>
+      {/* Movie Title */}
       <Text style={[styles.textBase, styles.title]}>{title}</Text>
+
+      {/* Two columns for the labels of each type */}
+      <View style={{ flexDirection: "row", marginTop: "3%" }}>
+        <Text style={styles.languagesLabel}>
+          {t("GLOBAL.LEARNING_LANG")}
+        </Text>
+        <View style={styles.verticalDivider} />
+        <Text style={styles.languagesLabel}>
+          {t("GLOBAL.TRANSLATIONS")}
+        </Text>
+      </View>
+
+      <View style={styles.horizontalDivider} />
+
+      {/* Two columns for the flags of each type */}
+      <View style={{ flexDirection: "row" }}>
+        <FlatList
+          data={Object.keys(languages)}
+          renderItem={renderLanguage}
+          numColumns={2}
+          style={styles.languagesList}
+        />
+        <View style={styles.verticalDivider} />
+        <FlatList
+          data={[...new Set(Object.values(languages).flat())]}
+          renderItem={renderLanguage}
+          numColumns={2}
+          style={styles.languagesList}
+        />
+      </View>
+      <View style={{ marginTop: "10%" }}></View>
+
       <View style={styles.badge}>
         <Text style={styles.badgeText}>x{num_episodes}</Text>
       </View>
-      <View style={{ flex: 1, flexDirection: "row" }}>
-        <View style={styles.languagesContainer}>
-          <Text style={styles.languagesLabel}>Learning</Text>
-          <FlatList
-            data={Object.keys(languages)}
-            renderItem={renderLanguage}
-            numColumns={2}
-            style={styles.languagesList}
-          />
-        </View>
-        <View style={styles.separator} />
-        <View style={styles.languagesContainer}>
-          <Text style={styles.languagesLabel}>Translations</Text>
-          <FlatList
-            data={[...new Set(Object.values(languages).flat())]}
-            renderItem={renderLanguage}
-            numColumns={2}
-            style={styles.languagesList}
-          />
-        </View>
-      </View>
     </View>
-    // </Button>
   );
 }
 
 export default CatalogItem;
 
 const styles = StyleSheet.create({
-  pressed: {
-    borderColor: GlobalStyles.colors.primary50,
-    borderWidth: 2,
-  },
   StoryItemWrapper: {
     flex: 1 / 2,
+    flexDirection: "column",
     // TODO: extract some style from here to merge with
     // sentences in PlayStory
-    backgroundColor: GlobalStyles.colors.primary500,
+    // backgroundColor: GlobalStyles.colors.interactiveItem,
+    borderColor: GlobalStyles.colors.interactiveItem,
+    borderWidth: 1,
     borderRadius: 12,
     textAlign: "center",
-    margin: "2%",
+    marginBottom: "5%",
+    marginTop: "2%",
+    marginHorizontal: "2%",
     minHeight: 150, // this was before removing langs
-    // minHeight: 90,
-    justifyContent: "center",
   },
   textBase: {
-    color: GlobalStyles.colors.primary50,
+    color: GlobalStyles.colors.header,
   },
   title: {
     fontSize: 18,
@@ -86,27 +104,15 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
-  langsContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-  languagesContainer: {
-    flex: 0.5,
-  },
-  language: {
-    color: GlobalStyles.colors.primary500,
-    fontWeight: "bold",
-    fontSize: 20,
-    margin: 1,
-  },
   languagesLabel: {
-    color: "white",
-    margin: 10,
+    color: GlobalStyles.colors.header,
     marginHorizontal: 5,
     fontSize: 13,
     textAlign: "center",
+    flex: 1 / 2,
   },
   languagesList: {
+    flex: 1 / 2,
     alignItems: "center",
     borderTopWidth: 1, // Adding a border only at the bottom
     borderColor: "gray", // Color of the border
@@ -129,13 +135,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   badgeText: {
-    color: "white",
+    color: GlobalStyles.colors.header,
     fontSize: 13,
   },
-  separator: {
+  verticalDivider: {
     width: 1,
-    backgroundColor: "gray",
-    marginTop: 10, // Adjust the value to your needs
-    marginBottom: 5, // Adjust the value to your needs
+    backgroundColor: GlobalStyles.colors.gray,
+  },
+  horizontalDivider: {
+    height: 1,
+    backgroundColor: GlobalStyles.colors.gray,
   },
 });

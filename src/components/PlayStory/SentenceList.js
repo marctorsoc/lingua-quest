@@ -4,6 +4,12 @@ import { useContext, useEffect } from "react";
 import { PlayContext } from "../../context/play-context";
 import { useRef, useState } from "react";
 import { GlobalContext } from "../../context/global-context";
+import Animated, {
+  FadingTransition,
+  JumpingTransition,
+  LinearTransition,
+  SequencedTransition,
+} from "react-native-reanimated";
 
 function SentenceList(props) {
   const flatListRef = useRef(null);
@@ -38,7 +44,8 @@ function SentenceList(props) {
   }
 
   return (
-    <FlatList
+    <Animated.FlatList
+      // <FlatList
       ref={flatListRef}
       data={sentences}
       style={{ flex: 1 }}
@@ -52,6 +59,11 @@ function SentenceList(props) {
           });
         else flatListRef.current?.scrollToEnd();
       }}
+      // TODO: this is bouncing too much. Need to play a bit more with it
+      // itemLayoutAnimation={LinearTransition}
+      // itemLayoutAnimation={LinearTransition.springify().stiffness(0)}
+      // itemLayoutAnimation={SequencedTransition.duration(1000)}
+      // itemLayoutAnimation={JumpingTransition}
     />
   );
 }

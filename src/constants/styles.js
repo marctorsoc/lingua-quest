@@ -3,7 +3,7 @@ import { Platform } from "react-native";
 export const GlobalStyles = {
   // TODO: add more colors. Could use
   // https://uicolors.app/create
-  colors: {
+  colors_old: {
     white: "#ffffff",
     primary50: "#e4d9fd",
     primary100: "#c6affc",
@@ -19,32 +19,84 @@ export const GlobalStyles = {
     gray500: "#39324a",
     gray700: "#221c30",
   },
+  colors: {
+    background: "#DFE1E6", // Main background for all screens (good choice, light and neutral)
+    header: "#4A115F", // Dark purple header color (works well, but consider a slightly brighter option)
+    primaryButton: "#6B1D73", // Use a brighter variant of purple for primary buttons to enhance visibility
+    secondaryButton: "#DBC2E5", // Light lavender for secondary buttons (this works, soft and pleasant)
+    thirdButton: "#B699C4",
+    interactiveItem: "#83389f", // Rich purple for clickable items (consider changing to #6B1D73 for consistency)
+    accent: "#a564b5", // Bright yellow for highlights and calls-to-action (great choice for visibility)
+    error: "#dc2626", // Red for error messages (effective and clear)
+    lightGray: "#d1d5db", // Light gray for backgrounds and borders (appropriate)
+    gray: "#6b7280", // Neutral gray for secondary text (effective)
+    blackText: "#111827", // Dark gray for main text (excellent choice for readability)
+    white: "#f2f2f2", // Soft white for elements on dark backgrounds (good)
+    tabBar: "#e2e5ea", // Light gray for the tab bar background (this works well)
+    correctAnswer: "#22c55e", // Green for correct answers (effective)
+    incorrectAnswer: "#DB564C", // Red for incorrect answers (clear and impactful)
+  },
+  disabled: {
+    opacity: 0.6,
+  },
 };
 
-export const IconStyle = {
+export const languageFlag = {
+  width: 24,
+  height: 24,
+  backgroundColor: "#dce7ff", // Soft background color for container
+  borderRadius: 12,
+  borderWidth: 1,
+  borderColor: GlobalStyles.colors.lightGray, // Soft border for flags
+};
+
+export const languageFlagPicker = {
   width: 24,
   height: 24,
   resizeMode: "contain",
-  tintColor: GlobalStyles.colors.primary,
+};
+
+export const AuthStyles = {
+  container: {
+    flex: 1,
+    padding: 50,
+    backgroundColor: GlobalStyles.colors.background,
+  },
+  title: {
+    marginTop: "15%",
+    fontSize: 28,
+    fontWeight: "bold",
+  },
+  mascotImage: {
+    marginVertical: "3%",
+    // backgroundColor: "red",
+    alignSelf: "center", // Center the mascot horizontally
+    // web: 1.1904, android: 1.777
+    ...Platform.select({
+      android: {
+        width: "44.42%",
+        height: "25%",
+      },
+      web: {
+        width: "29.76%",
+        height: "25%",
+      },
+    }),
+    resizeMode: "cover", // Changed from 'contain' to 'cover'
+    // overflow: "hidden", // This will crop anything outside the dimensions
+  },
+  appLangContainer: {
+    position: "absolute",
+    top: Platform.OS == "web" ? "2%" : "5%",
+    right: "5%",
+    maxWidth: "20%",
+  },
 };
 
 export const ScreensStyles = {
   headerButtonsContainers: {
     margin: 5,
     padding: 0,
-  },
-  headerTitleStyle: {
-    top: 22,
-    left: 47,
-    position: "fixed",
-    width: 100,
-    height: 20,
-    // backgroundColor: "blue",
-  },
-  tabBarStyle: {
-    backgroundColor: GlobalStyles.colors.primary500,
-    paddingBottom: 2,
-    paddingTop: 5,
   },
   popoverContainer: {
     // width: "100%",
@@ -53,40 +105,56 @@ export const ScreensStyles = {
     backgroundColor: GlobalStyles.colors.error500,
     borderRadius: 12,
   },
+  tileShadow: {
+    boxShadow: "4px 4px 6px rgba(0, 0, 0, 0.5)",
+    // For now, disabling this because when clicking this makes
+    // the items inside show a box, and looks bad. This is only
+    // for Android
+    // elevation: 4, // Elevation for Android
+  },
   button: {
-    paddingVertical: 10,
-    paddingHorizontal: 40,
-    justifyContent: "center",
-    marginHorizontal: 8,
-    backgroundColor: GlobalStyles.colors.primary500,
-    overflow: "hidden",
-    borderRadius: 30,
+    paddingVertical: "3%",
+    paddingHorizontal: "2%",
+    marginHorizontal: "5%",
+    backgroundColor: GlobalStyles.colors.secondaryButton,
+    // overflow: "hidden",
+    borderRadius: 20,
+    borderColor: GlobalStyles.colors.lightGray,
+    borderWidth: 1,
+
     // TODO: is this needed?
     zIndex: 5,
   },
   buttonLabel: {
     textAlign: "center",
-    fontSize: 18,
-    color: "white",
+    fontSize: 16,
+    color: GlobalStyles.colors.blackText,
+    paddingHorizontal: "5%",
+    // paddingVertical: "2%",
+  },
+  input: {
+    height: "25px",
+    borderColor: GlobalStyles.colors.lightGray,
+    color: "black",
+    fontSize: 16,
+    textAlign: "center",
+    borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: "white",
+    margin: "1%",
+  },
+  numericInput: {
+    width: "10%",
+    marginRight: "5%",
   },
 };
 
 export const LibraryStyles = {
-  optionContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: "15%",
-    justifyContent: "space-between",
-    height: 50,
-    backgroundColor: GlobalStyles.colors.primary700,
-  },
   label: {
-    fontSize: 18,
-    color: "white",
+    fontSize: 25,
+    color: GlobalStyles.colors.textLight,
     paddingHorizontal: 16,
+    textAlign: "center",
     width: "100%",
-  },
-  languagePicker: {
-    width: Platform.OS === "web" ? "20%" : "100%",
   },
 };

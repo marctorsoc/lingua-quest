@@ -1,20 +1,25 @@
 import MaskedText from "../UI/MaskedText";
-import { GlobalStyles } from "../../constants/styles";
+import { GlobalStyles, ScreensStyles } from "../../constants/styles";
 import { StyleSheet } from "react-native";
-import { showInformativeToast } from "../../util/alert";
+import {
+  showInformativeAlert,
+  showInformativeToast,
+} from "../../util/alert";
 import * as Clipboard from "expo-clipboard";
 import { View, Text } from "react-native";
 import { PlayContext } from "../../context/play-context";
 import { useContext, useEffect, useState } from "react";
 import Button from "../UI/Button";
 import { GlobalContext } from "../../context/global-context";
-// import { useToast } from "react-native-toast-notifications";
+import { TUTORIAL_STAGES } from "../../constants/tutorial_stages";
+import { useRouter } from "expo-router";
+import { useTranslation } from "react-i18next";
 
 function computeShowTranslation(
   playingThisItem,
   answerWasSelected,
   validItem,
-  readingMode,
+  readingMode
 ) {
   return (
     playingThisItem &&
@@ -31,7 +36,9 @@ function SentenceItem({
   validItem,
 }) {
   const { playData, setPlayData } = useContext(PlayContext);
-  const { globalConfig } = useContext(GlobalContext);
+  const { globalConfig, setGlobalConfig } = useContext(GlobalContext);
+  const router = useRouter();
+  const { t } = useTranslation();
   const currentAnswerIdx = playData.currentAnswerIdx;
   // console.log("currentAnswerIdx: ", currentAnswerIdx);
   const answerWasSelected = currentAnswerIdx !== undefined;
@@ -53,8 +60,8 @@ function SentenceItem({
       playingThisItem,
       answerWasSelected,
       validItem,
-      globalConfig.readingMode,
-    ),
+      globalConfig.readingMode
+    )
   );
   // if (text == "-Hubertas.") {
   //   console.log("text: ", text);
@@ -73,8 +80,8 @@ function SentenceItem({
         playingThisItem,
         answerWasSelected,
         validItem,
-        globalConfig.readingMode,
-      ),
+        globalConfig.readingMode
+      )
     );
   }, [answerWasSelected, playingThisItem]);
   // TODO marc: this console.log appears many many times.
@@ -103,6 +110,14 @@ function SentenceItem({
       ...playData,
       processingClickedTranslation: true,
     });
+    if (
+      globalConfig.tutorialStage == TUTORIAL_STAGES.SHOW_TRANSLATION
+    ) {
+      setGlobalConfig({
+        ...globalConfig,
+        tutorialStage: globalConfig.tutorialStage + 1,
+      });
+    }
   }
 
   function showTranslationHandler() {
@@ -120,6 +135,17 @@ function SentenceItem({
     // googletranslate://?sl=en&tl=tr&text=hello%20world
 
     showInformativeToast("Copied to clipboard");
+
+    if (
+      globalConfig.tutorialStage == TUTORIAL_STAGES.COPY_CLIPBOARD
+    ) {
+      setGlobalConfig({
+        ...globalConfig,
+        tutorialStage: globalConfig.tutorialStage + 1,
+      });
+      showInformativeAlert(t("TUTORIAL.WELL_DONE"));
+      router.navigate("(tabs)/settings");
+    }
     // showInformativeToast(toast, text);
   }
 
@@ -131,7 +157,9 @@ function SentenceItem({
   return (
     <View style={sentenceItemStyle}>
       <View style={styles.IndexItem}>
-        <Text style={styles.IndexText}>{index + 1}</Text>
+        <Text style={[styles.textBase, styles.IndexText]}>
+          {index + 1}
+        </Text>
       </View>
       <Button
         style={styles.textsContainer}
@@ -161,30 +189,22 @@ const styles = StyleSheet.create({
   },
   IndexText: {
     fontWeight: "bold",
-    color: "white",
+    color: GlobalStyles.colors.white,
   },
   SentenceItem: {
     // TODO: extract some style from here to merge with
     // sentences in StoryItem
     padding: 10,
-    marginVertical: 15,
+    marginTop: "3%",
     marginHorizontal: 24,
-    margin: "2%",
-    backgroundColor: GlobalStyles.colors.primary500,
+    backgroundColor: GlobalStyles.colors.interactiveItem,
     flexDirection: "row",
     alignItems: "center",
-    // flexDirection: "column",
-    // justifyContent: "space-between",
     borderRadius: 12,
-    // elevation: 3,
-    // boxshadowColor: GlobalStyles.colors.gray500,
-    // boxShadowRadius: 4,
-    // boxShadowOffset: { width: 1, height: 1 },
-    // boxShadowOpacity: 0.4,
-    textAlign: "center",
+    ...ScreensStyles.tileShadow,
   },
   alreadyPlayedSentenceItem: {
-    backgroundColor: GlobalStyles.colors.primary500a,
+    backgroundColor: GlobalStyles.colors.interactiveItem,
   },
   textsContainer: {
     flex: 1,
@@ -192,21 +212,22 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   textBase: {
-    color: GlobalStyles.colors.primary50,
+    color: GlobalStyles.colors.white,
   },
   title: {
     fontSize: 16,
     marginBottom: 4,
-    fontWeight: "bold",
+    // fontWeight: "bold",
     textAlign: "center",
   },
   textTranslated: {
-    color: "orange",
+    color: GlobalStyles.colors.lightGray,
     fontStyle: "italic",
+    // fontWeight: "bold",
     textAlign: "center",
   },
   revealedMaskedText: {
-    color: "green",
+    color: GlobalStyles.colors.correctAnswer,
     fontStyle: "italic",
   },
 });

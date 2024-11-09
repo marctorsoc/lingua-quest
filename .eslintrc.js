@@ -1,25 +1,25 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es2021: true
   },
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended",
+    "plugin:prettier/recommended"
   ],
   overrides: [
     {
       files: ["*.js", "*.spec.js"],
       rules: {
         "react/prop-types": "off",
-        "react/react-in-jsx-scope": "off",
-      },
-    },
+        "react/react-in-jsx-scope": "off"
+      }
+    }
   ],
   parserOptions: {
     ecmaVersion: "latest",
-    sourceType: "module",
+    sourceType: "module"
   },
   plugins: ["react"],
   rules: {
@@ -29,8 +29,8 @@ module.exports = {
       "warn",
       "double",
       {
-        avoidEscape: true,
-      },
+        avoidEscape: true
+      }
     ],
     semi: ["warn", "always"],
     "no-unused-vars": ["warn"],
@@ -44,9 +44,9 @@ module.exports = {
         ignoreStrings: true,
         ignoreTemplateLiterals: true,
         ignoreComments: true,
-        ignoreTrailingComments: true,
-      },
+        ignoreTrailingComments: true
+      }
     ],
-    "prettier/prettier": ["warn"],
-  },
+    "prettier/prettier": ["warn"]
+  }
 };
