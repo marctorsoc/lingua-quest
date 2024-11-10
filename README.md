@@ -1,20 +1,28 @@
-Disclaimer: this is far from production code, but hey, my first frontend project, and multi-platform! (*)! 💪
+# LinguaQuest: Learn a Language Through Stories! 📚
+
+LinguaQuest is a unique app that helps you build vocabulary and comprehension by immersing you in stories from your favorite movies, TV series, and books. Inspired by [ClozeMaster](https://www.clozemaster.com/) and contextual learning, LinguaQuest lets you follow narratives, helping you learn in a sequential context for a more natural language experience.
+
+Disclaimer: this is far from production code, but hey, my first react native project, and multi-platform! (*)! 💪
 
 (*) only tested on Android and web
 
-# What's this
+# 🌟 Key Features:
 
-This is a language learning app, inspired by [Cloze Master](https://www.clozemaster.com/), a popular app for learning languages. The twist here is to learn from movies, tv series, and books, i.e. from stories. While `Cloze Master`'s motto is to *learn in context*, one still learns from sentences coming in a random order, from a dictionary of millions of sentences. Instead, here we follow stories, *learning in a sequential context*.
+* Story-Based Learning: Learn through engaging, real-world stories that keep you interested and motivated.
+* Two Practice Modes: Choose Reading Mode to enjoy the story without interaction or Standard Mode for challenging fill-in-the-blank exercises.
+* Advanced Vocabulary Building: Perfect for intermediate learners (A2 level or above) looking to expand beyond basic vocabulary.
 
-# Who is this for?
+# 🔹 Who is LinguaQuest for? 
 
-This app does not help in learning the basics of a language. It is recommended for language learners with **at least an A2 level**. You won't learn grammar or basic vocabulary, but practice/extend vocabulary and see applications of what you already know.
+LinguaQuest is ideal for language learners with some foundation in the language. This app doesn’t cover basic grammar or beginner vocabulary but instead focuses on vocabulary expansion and contextual understanding. It’s great for intermediate to advanced learners aiming to deepen their knowledge.
 
-# How to use?
+# 💡 How to Use LinguaQuest
 
-As of writing, there are two modes: reading mode, and standard mode. In reading mode, you'll just be reading without any interaction. In standard mode, you'll be tasked with filling the gap in the sentence with one of the 4 options presented. Please note that the standard mode can be hard, even for natives! That's because the wrong answers are not simply random. I plan to add `easy` mode in the future. For those days where you don't feel like a challenge, but still want to continue the story :)
+* Reading Mode: Simply follow the story, absorbing vocabulary as you go.
+* Standard Mode: Challenge yourself by filling in blanks with the correct words from four options. The distractor words are thoughtfully chosen, so it can be tough—even for native speakers!
+* For Movies/TV Stories: Refresh your memory by re-watching before starting. LinguaQuest doesn’t show scene transitions or speaker names, so familiarity with the story helps you stay on track.
 
-In case of movies / tv series, I strongly recommend to re-watch them before starting the story in `Lingua Quest`, unless you know it by heart, e.g. me with `Back to the Future`. Take into account that reading only subtitles will exclude all the scenes without dialogues, or suddenly change location and characters from one sentence to the next. At the moment, we don't even have an indication of who is the speaker. For all these reasons, the story might be hard to follow at times. 
+Experience language learning in a new way with LinguaQuest. Dive into the stories you love and enhance your language skills through engaging, contextual practice. Start your language journey today!
 
 # Short note on status
 
