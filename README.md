@@ -28,6 +28,7 @@ It seems to grow faster than I can implement them, so if you want to contribute,
 - [Debugging](#debugging)
 - [Building](#building)
 - [Updating translations](#updating-translations)
+- [Creating logos](#creating-logos)
 - [Pending work](#pending-work)
 
 To install, run `npm install`
@@ -68,6 +69,13 @@ Build details: https://expo.dev/accounts/marc.torsoc/projects/lingua-quest/build
 # Updating translations
 
 Go to `raw.js` and update. Then run `node raw.js` to generate all `$language.json` files.
+
+# Creating logos
+
+* Dall-E creates images, but they webp
+* Transform images from webp to png + crop with [ezgif](https://ezgif.com/webp-to-png)
+* Use [remove.bg](https://www.remove.bg/) to remove background, and remove objects
+* To create consistent characters, see [this](https://www.youtube.com/watch?v=Sc2f2oTaR7U)
 
 # Pending work
 
@@ -113,9 +121,3 @@ is some code comment that creates an infinite loop
 - GH actions to auto-release with every push to master
 
 
-# Creating logos
-
-* Dall-E creates images, but they webp
-* Transform images from webp to png + crop with [ezgif](https://ezgif.com/webp-to-png)
-* Use [remove.bg](https://www.remove.bg/) to remove background, and remove objects
-* Creating consistent characters: [here](https://www.youtube.com/watch?v=Sc2f2oTaR7U)
