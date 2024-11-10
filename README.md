@@ -11,6 +11,7 @@ Disclaimer: this is far from production code, but hey, my first react native pro
 * Story-Based Learning: Learn through engaging, real-world stories that keep you interested and motivated.
 * Two Practice Modes: Choose Reading Mode to enjoy the story without interaction or Standard Mode for challenging fill-in-the-blank exercises.
 * Advanced Vocabulary Building: Perfect for intermediate learners (A2 level or above) looking to expand beyond basic vocabulary.
+* Support for Multiple Languages: LinguaQuest currently helps you learn English, Spanish, Catalan and Lithuanian. The app menus are also available in these four languages, whereas stories have translations to English and Spanish. More languages coming soon!
 
 # 🔹 Who is LinguaQuest for? 
 
