@@ -1,4 +1,4 @@
-2024-11-XX:
+2024-11-09:
 - Migrate to expo-router
 - Header with logos
 - Very simple user management (with local storage)

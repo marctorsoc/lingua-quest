@@ -27,7 +27,7 @@ It seems to grow faster than I can implement them, so if you want to contribute,
 - [Running](#running)
 - [Debugging](#debugging)
 - [Building](#building)
-- [Updating translations][#updating-translations]
+- [Updating translations](#updating-translations)
 - [Pending work](#pending-work)
 
 To install, run `npm install`
