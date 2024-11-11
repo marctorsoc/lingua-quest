@@ -2,7 +2,8 @@
   "expo": {
     "name": "LinguaQuest",
     "slug": "lingua-quest",
-    "version": "1.0.0",
+    // not used, see eas.json (done remotely)
+    // "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/logo3.2.png",
     "userInterfaceStyle": "light",
@@ -27,7 +28,10 @@
         "foregroundImage": "./assets/logo3.2.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.marc.torsoc.linguaquest"
+      "package": "com.marc.torsoc.linguaquest",
+      "permissions": [
+        "com.google.android.gms.permission.AD_ID"
+      ]
     },
     "androidStatusBar": {
       "hidden": true

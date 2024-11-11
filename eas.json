@@ -1,6 +1,9 @@
 {
   "cli": {
-    "version": ">= 3.10.0"
+    "version": ">= 13.1.1",
+    // see https://docs.expo.dev/build-reference/app-versions/
+    // this ensures the version is incremented on every build
+    "appVersionSource": "remote"
   },
   "build": {
     "development": {
@@ -19,7 +22,10 @@
     "production": {
       "ios": {
         "resourceClass": "m-medium"
-      }
+      },
+      // see https://docs.expo.dev/build-reference/app-versions/
+      // this ensures the version is incremented on every build
+      "autoIncrement": true
     }
   },
   "submit": {

@@ -1,29 +1,30 @@
 # LinguaQuest: Learn a Language Through Stories! 📚
 
-LinguaQuest is a unique app that helps you build vocabulary and comprehension by immersing you in stories from your favorite movies, TV series, and books. Inspired by [ClozeMaster](https://www.clozemaster.com/) and contextual learning, LinguaQuest lets you follow narratives, helping you learn in a sequential context for a more natural language experience.
+LinguaQuest is a unique, free language learning app designed to build your vocabulary and comprehension by immersing you in stories from movies, TV series, and books. Inspired by [ClozeMaster](https://www.clozemaster.com/) and contextual learning, LinguaQuest lets you follow narratives, learning in a sequential context for a more natural language experience.
 
-Disclaimer: this is far from production code, but hey, my first react native project, and multi-platform! (*)! 💪
+_Disclaimer: This is still a work in progress, but it's my first React Native project—and it’s multi-platform! (*) 💪_
 
-(*) only tested on Android and web
+_(*) only tested on Android and web_
 
 # 🌟 Key Features:
 
-* Story-Based Learning: Learn through engaging, real-world stories that keep you interested and motivated.
-* Two Practice Modes: Choose Reading Mode to enjoy the story without interaction or Standard Mode for challenging fill-in-the-blank exercises.
-* Advanced Vocabulary Building: Perfect for intermediate learners (A2 level or above) looking to expand beyond basic vocabulary.
-* Support for Multiple Languages: LinguaQuest currently helps you learn English, Spanish, Catalan and Lithuanian. The app menus are also available in these four languages, whereas stories have translations to English and Spanish. More languages coming soon!
+* **Story-Based Learning**: Learn through engaging, familiar stories that keep you interested and motivated.
+* **Two Practice Modes**: Choose Reading Mode to enjoy the story without interaction or Standard Mode for challenging fill-in-the-blank exercises.
+* **Advanced Vocabulary Building**: Perfect for intermediate learners (A2 level or above) looking to expand beyond basic vocabulary.
+* **Offline Access**: Use LinguaQuest without an internet connection, so you can learn anywhere — even on a plane.
+* **Support for Multiple Languages**: LinguaQuest currently helps you learn English, Spanish, Catalan and Lithuanian. The app menus are also available in these four languages, whereas stories have translations to English and Spanish. More languages coming soon!
 
 # 🔹 Who is LinguaQuest for? 
 
-LinguaQuest is ideal for language learners with some foundation in the language. This app doesn’t cover basic grammar or beginner vocabulary but instead focuses on vocabulary expansion and contextual understanding. It’s great for intermediate to advanced learners aiming to deepen their knowledge.
+LinguaQuest is ideal for learners with a foundational understanding of the language. It doesn’t cover basic grammar or beginner vocabulary, focusing instead on expanding vocabulary and enhancing contextual understanding. Perfect for intermediate to advanced learners looking to deepen their skills!
 
 # 💡 How to Use LinguaQuest
 
-* Reading Mode: Simply follow the story, absorbing vocabulary as you go.
-* Standard Mode: Challenge yourself by filling in blanks with the correct words from four options. The distractor words are thoughtfully chosen, so it can be tough—even for native speakers!
-* For Movies/TV Stories: Refresh your memory by re-watching before starting. LinguaQuest doesn’t show scene transitions or speaker names, so familiarity with the story helps you stay on track.
+* **Reading Mode**: Simply follow the story, absorbing vocabulary as you go.
+* **Standard Mode**: Challenge yourself by filling in blanks with the correct words from four options. The distractor words are thoughtfully chosen, so it can be tough—even for native speakers!
+* **For Movies/TV Stories**: Refresh your memory by re-watching before starting. LinguaQuest doesn’t show scene transitions or speaker names, so familiarity with the story helps you stay on track.
 
-Experience language learning in a new way with LinguaQuest. Dive into the stories you love and enhance your language skills through engaging, contextual practice. Start your language journey today!
+Experience language learning in a new way with LinguaQuest. Dive into the stories you love, enhance your language skills, and enjoy the flexibility of learning offline. Start your language journey today — free and accessible wherever you go!
 
 # Short note on status
 
@@ -74,6 +75,13 @@ Compressing project files and uploading to EAS Build. Learn more
 
 Build details: https://expo.dev/accounts/marc.torsoc/projects/lingua-quest/builds/cb2dfa67-5f3e-4b45-afd6-6afcbc8ecfc0
 ```
+This will create an `apk` file that you can download and install on your Android device.
+
+## Google Play
+
+To publish to Google Play, you need to create a Google Play Developer account and follow the instructions in the [Expo documentation](https://docs.expo.dev/distribution/app-stores/).
+
+At some point, we're asked to create an `aab` file (Android App Bundle). This is a file that contains the app and all its dependencies. To create this file, we need to run the following command:
 
 # Updating translations
 
